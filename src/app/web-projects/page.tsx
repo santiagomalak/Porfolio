@@ -13,7 +13,7 @@ const webProjects = [
     title: 'Portfolio Personal',
     description: 'Portfolio profesional de doble especialidad (Desarrollo Web & Data Science) construido con Next.js 14 y App Router. Sistema de diseño personalizado con Tailwind CSS.',
     tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'React'],
-    githubUrl: 'https://github.com/santiagomalak/Portafolio',
+    githubUrl: 'https://github.com/santiagomalak/Porfolio',
     type: 'web' as const,
   },
 ]
