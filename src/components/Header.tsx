@@ -1,11 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Code2, Database } from 'lucide-react'
+import { Code2, Database, Menu, X } from 'lucide-react'
 
 export default function Header() {
   const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navLinks = [
     { href: '/', label: 'Inicio' },
@@ -14,10 +16,14 @@ export default function Header() {
     { href: '/contact', label: 'Contacto' },
   ]
 
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false)
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
           <div className="flex items-center">
             <Code2 className="h-6 w-6 text-primary-700" />
             <Database className="h-6 w-6 text-secondary-500 -ml-2" />
@@ -25,6 +31,7 @@ export default function Header() {
           <span className="font-bold text-xl">Santiago Aragon</span>
         </Link>
 
+        {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <li key={link.href}>
@@ -42,13 +49,42 @@ export default function Header() {
           ))}
         </ul>
 
-        {/* Mobile menu button - implementar después si es necesario */}
-        <button className="md:hidden p-2">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+        >
+          {mobileMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
       </nav>
+
+      {/* Mobile Navigation Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t bg-background">
+          <ul className="container mx-auto px-4 py-4 space-y-2">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    pathname === link.href
+                      ? 'bg-primary-50 text-primary-700'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-primary-700'
+                  }`}
+                  onClick={closeMobileMenu}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   )
 }
