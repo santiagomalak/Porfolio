@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, Linkedin, Github, Send } from 'lucide-react'
+import { Mail, Linkedin, Github, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+
+type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,12 +12,45 @@ export default function Contact() {
     subject: '',
     message: '',
   })
+  const [status, setStatus] = useState<FormStatus>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Aquí implementarás la lógica de envío (EmailJS, API, etc.)
-    console.log('Form submitted:', formData)
-    alert('Mensaje enviado! (Implementar lógica de envío real)')
+    setStatus('loading')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Error al enviar el mensaje')
+      }
+
+      setStatus('success')
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      })
+
+      // Resetear el estado de éxito después de 5 segundos
+      setTimeout(() => {
+        setStatus('idle')
+      }, 5000)
+    } catch (error: any) {
+      setStatus('error')
+      setErrorMessage(error.message || 'Error al enviar el mensaje. Por favor, intenta nuevamente.')
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -166,12 +201,38 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Success Message */}
+                {status === 'success' && (
+                  <div className="flex items-center gap-2 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
+                    <CheckCircle className="h-5 w-5 flex-shrink-0" />
+                    <p className="text-sm">¡Mensaje enviado exitosamente! Te responderé pronto.</p>
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {status === 'error' && (
+                  <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+                    <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                    <p className="text-sm">{errorMessage}</p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-700 text-white rounded-lg hover:bg-primary-800 transition-colors"
+                  disabled={status === 'loading'}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-700 text-white rounded-lg hover:bg-primary-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send className="h-5 w-5" />
-                  Enviar Mensaje
+                  {status === 'loading' ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-5 w-5" />
+                      Enviar Mensaje
+                    </>
+                  )}
                 </button>
               </form>
             </div>
