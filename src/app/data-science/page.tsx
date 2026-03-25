@@ -15,25 +15,39 @@ const fadeUp = {
 
 const dataScienceProjects = [
   {
-    title: 'IBM HR Analytics',
-    description: 'Análisis completo de deserción y rendimiento de empleados usando Random Forest, K-Means clustering y PCA. Identificación de factores clave que afectan la rotación laboral con más de 1.400 registros.',
-    tags: ['Python', 'Scikit-learn', 'Pandas', 'Seaborn', 'Random Forest', 'PCA'],
+    title: 'IBM HR Analytics — Predicción de Deserción',
+    description: 'Análisis end-to-end sobre dataset real de IBM con +1.400 empleados. Identifica los factores con mayor impacto en la rotación laboral usando Random Forest, K-Means clustering y PCA. Genera insights accionables para reducir churn en equipos de RR.HH.',
+    tags: ['Python', 'Scikit-learn', 'Pandas', 'Random Forest', 'K-Means', 'PCA', 'Seaborn'],
+    highlight: '+1.400 registros',
     githubUrl: 'https://github.com/santiagomalak/IBM-Proyect',
     type: 'datascience' as const,
+    accentColor: 'blue' as const,
   },
   {
-    title: 'Segmentación de Usuarios — Marketing',
-    description: 'Aprendizaje no supervisado para segmentar usuarios de campañas de mailing. K-Means, análisis de silueta y PCA para optimizar estrategias de marketing personalizadas.',
-    tags: ['Python', 'Scikit-learn', 'K-Means', 'PCA', 'Clustering'],
+    title: 'Segmentación de Usuarios — Email Marketing',
+    description: 'Sistema de segmentación no supervisada para campañas de mailing. Aplica K-Means con análisis de silueta para encontrar el k óptimo y reducción dimensional con PCA. El output permite personalizar estrategias por segmento con criterio estadístico sólido.',
+    tags: ['Python', 'K-Means', 'PCA', 'Scikit-learn', 'Pandas', 'Clustering'],
+    highlight: 'Segmentación óptima',
     githubUrl: 'https://github.com/santiagomalak/Datos-de-Mailing',
     type: 'datascience' as const,
+    accentColor: 'purple' as const,
   },
   {
-    title: 'Preprocesamiento — Weather AUS',
-    description: 'Pipeline de limpieza y preprocesamiento sobre dataset climático australiano. Énfasis en imputación de valores faltantes, encoding y técnicas avanzadas de feature engineering.',
-    tags: ['Python', 'Scikit-learn', 'Pandas', 'Data Cleaning', 'Feature Engineering'],
+    title: 'Pipeline de Preprocesamiento — Weather AUS',
+    description: 'Pipeline completo sobre datos climáticos de Australia. Imputación de valores faltantes, encoding de variables categóricas, feature engineering y estandarización. Base robusta lista para cualquier modelo de predicción de lluvia sobre el dataset original de Kaggle.',
+    tags: ['Python', 'Pandas', 'Scikit-learn', 'Feature Engineering', 'Data Cleaning'],
+    highlight: 'Dataset Kaggle',
     githubUrl: 'https://github.com/santiagomalak/weatherAUS',
     type: 'datascience' as const,
+    accentColor: 'teal' as const,
+  },
+  {
+    title: 'Analytics Dashboard — Performance',
+    description: 'Dashboard web full-stack para visualización de métricas de rendimiento en tiempo real. REST API en Node.js con frontend interactivo en Chart.js, containerizado con Docker para facilitar el deploy en cualquier entorno.',
+    tags: ['React', 'Node.js', 'PostgreSQL', 'Chart.js', 'Docker', 'REST API'],
+    highlight: 'Full-stack',
+    type: 'datascience' as const,
+    accentColor: 'green' as const,
   },
 ]
 
@@ -52,12 +66,12 @@ export default function DataScience() {
             <span className="text-primary-700">Data Science</span>
           </h1>
           <p className="text-xl text-gray-600">
-            Soluciones basadas en datos: machine learning, análisis estadístico y visualización.
+            Machine learning, análisis estadístico y pipelines de datos — del dataset al insight accionable.
           </p>
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mb-16">
           {dataScienceProjects.map((project, index) => (
             <motion.div
               key={index}

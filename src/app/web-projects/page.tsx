@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import type { Metadata } from 'next'
 import ProjectCard from '@/components/ProjectCard'
 
 const fadeUp = {
@@ -15,27 +14,33 @@ const fadeUp = {
 const webProjects = [
   {
     title: 'StackAdvisor',
-    description: 'SaaS que ayuda a developers y founders a elegir su tech stack ideal en 5 minutos. Motor de recomendación con 25+ stacks, 13 preguntas inteligentes y roadmap de 12 semanas personalizado.',
+    description: 'SaaS que resuelve la parálisis de decisión tecnológica: 13 preguntas inteligentes → stack ideal con justificación detallada + roadmap de 12 semanas personalizado. Motor de recomendación propio con 25+ stacks evaluados. Pensado para founders sin CTO y developers tomando decisiones arquitectónicas críticas.',
     tags: ['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine', 'SaaS'],
+    highlight: 'En producción',
     githubUrl: 'https://github.com/santiagomalak/StackAdvisor',
     liveUrl: 'https://stackadvisor-nu.vercel.app',
     type: 'web' as const,
+    accentColor: 'blue' as const,
   },
   {
-    title: 'Wayra Huasi — Rental Platform',
-    description: 'Landing page profesional para servicio de alquiler de departamentos amueblados. Diseño responsivo, galería de imágenes y sistema de contacto integrado con WhatsApp.',
-    tags: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
+    title: 'Wayra Huasi — Plataforma de Alquiler',
+    description: 'Landing page profesional para servicio de alquiler de departamentos amueblados en Córdoba. Diseño responsivo con galería de imágenes, descripción de amenities y sistema de contacto directo integrado con WhatsApp para consultas inmediatas.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Responsive Design', 'WhatsApp API'],
+    highlight: 'Live',
     githubUrl: 'https://github.com/santiagomalak/Servicios---Tu-Complejo',
     liveUrl: 'https://resplendent-kangaroo-a8dbd3.netlify.app/',
     type: 'web' as const,
+    accentColor: 'green' as const,
   },
   {
     title: 'Portfolio Personal',
-    description: 'Portfolio profesional de doble especialidad (Desarrollo Web & Data Science) construido con Next.js 14, App Router, Framer Motion y sistema de diseño personalizado con Tailwind CSS.',
-    tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    description: 'Portfolio profesional de doble especialidad (Desarrollo Web & Data Science) construido con Next.js 14 App Router, animaciones con Framer Motion, sistema de diseño personalizado con Tailwind CSS y formulario de contacto funcional via Resend.',
+    tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Resend'],
+    highlight: 'Este sitio',
     githubUrl: 'https://github.com/santiagomalak/Porfolio',
     liveUrl: 'https://santiagomalak.is-a.dev',
     type: 'web' as const,
+    accentColor: 'purple' as const,
   },
 ]
 
