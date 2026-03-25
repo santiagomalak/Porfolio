@@ -34,6 +34,11 @@ const screenshots = [
     description: 'Dashboard individual con media móvil de 5 evaluaciones, umbrales dinámicos de supercompensación/fatiga y estado del atleta en tiempo real. Muestra RFD de frenado (CMJ) y RFD en 100ms (IMTP) con serie histórica completa.',
   },
   {
+    src: '/ivolution-fatiga-neuromuscular.png',
+    title: 'ASH Test - CMJ Bilateral — Control de Fatiga Neuromuscular',
+    description: 'Dashboard de monitoreo de fatiga con ASH "I" Test (hombro) y CMJ Bilateral (miembros inferiores). Tendencia de fuerza pico izquierda/derecha con comparativa vs día anterior y vs mes anterior, más altura de salto en el tiempo.',
+  },
+  {
     src: '/ivolution-comparaciones.png',
     title: 'Comparaciones individuales — Dashboard Comparativo',
     description: 'Vista side-by-side entre dos atletas con gauges para CMJ (Altura de Salto), IMTP (Fuerza Pico) y Drop Jump (RSI). Permite comparar rendimiento entre atletas de la misma institución en tiempo real.',
