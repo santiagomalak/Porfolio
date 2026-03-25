@@ -18,11 +18,11 @@ Córdoba, Argentina &nbsp;·&nbsp; Apasionado por convertir datos en decisiones
 
 ## Sobre mí
 
-Data Engineer y Full-Stack Developer con 5 años trabajando con Python. Diseño sistemas de datos de punta a punta — desde pipelines en BigQuery hasta dashboards que usan equipos enteros. También construyo en el lado web con React y Next.js, y me interesa especialmente la intersección entre **datos y producto**.
+Data Engineer y Data Scientist con foco en convertir datos en decisiones reales. Me especializo en diseñar pipelines, modelos y dashboards que los equipos realmente usan para operar mejor.
 
-En mi último rol diseñé de cero un sistema de monitoreo de indicadores de rendimiento para más de 100 personas, con pipelines BigQuery → dbt → Metabase y lógica de alertas por percentil. Se convirtió en la herramienta de referencia principal de la empresa.
+En mi último rol trabajé con SQL, BigQuery y dbt para construir sistemas de análisis usados por más de 300 personas — atletas, profesionales y equipos completos. Desarrollé múltiples procesos de análisis, modelos de datos y dashboards que se convirtieron en la herramienta principal de toma de decisiones de la organización.
 
-Actualmente independiente, enfocado en proyectos propios desafiantes. El más reciente: **StackAdvisor**, un SaaS que ayuda a developers y founders a elegir su tech stack ideal. Además, estoy cursando una Tecnicatura en Programación para afianzar y formalizar todo lo que construí de forma autodidacta.
+Actualmente independiente, enfocado en proyectos propios. Estoy construyendo **StackAdvisor**, un SaaS que resuelve uno de los problemas más comunes de cualquier equipo técnico: elegir el stack correcto desde el inicio. Además, curso una Tecnicatura en Programación para afianzar y formalizar todo lo que construí de forma autodidacta.
 
 ---
 
@@ -57,30 +57,58 @@ Actualmente independiente, enfocado en proyectos propios desafiantes. El más re
 ## Proyectos destacados
 
 ### 🏗️ Performance Monitoring System — *Ivolution*
-Sistema completo de monitoreo de indicadores de rendimiento para +100 personas. Diseñado de cero: pipelines **BigQuery → dbt → Metabase**, alertas dinámicas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO), ventanas móviles de 5 evaluaciones, umbrales por percentil (p25/p75) y soporte multilingüe ES/EN/PT. Se convirtió en la herramienta de referencia principal de la empresa.
 
-`BigQuery` `dbt` `SQL` `Metabase` `Analytics Engineering`
+Sistema de análisis de indicadores de rendimiento diseñado de cero para más de **300 personas** — atletas, profesionales de la salud y equipos completos. Construido con **SQL + BigQuery + dbt + Metabase**, incluye múltiples procesos de análisis, modelos de datos, ventanas móviles de evaluación, alertas dinámicas de tres estados con umbrales por percentil (p25/p75) y soporte multilingüe ES/EN/PT. Se convirtió en la herramienta principal de toma de decisiones de la organización.
+
+`SQL` `BigQuery` `dbt` `Metabase` `Python` `Analytics Engineering`
 
 ---
 
-### 🤖 [StackAdvisor](https://github.com/santiagomalak/StackAdvisor)
-SaaS de recomendación de tecnologías. El usuario responde 13 preguntas sobre su proyecto y recibe un stack ideal con justificación y roadmap de 12 semanas. Pensado para founders sin CTO y devs junior tomando decisiones arquitectónicas.
+### 🤖 [StackAdvisor](https://github.com/santiagomalak/StackAdvisor) — *SaaS · En producción*
 
-`React` `Next.js` `TypeScript` `Node.js`
+Plataforma que resuelve la parálisis de análisis tecnológico: el usuario responde 13 preguntas sobre su proyecto y recibe el stack ideal con justificación detallada y un roadmap de 12 semanas. Pensado para founders sin CTO y developers tomando decisiones arquitectónicas críticas. Motor de recomendación propio con 25+ stacks evaluados.
+
+`Next.js` `TypeScript` `React` `Node.js` `TailwindCSS`
+
+---
+
+### 📊 [IBM HR Analytics](https://github.com/santiagomalak/IBM-Proyect)
+
+Análisis end-to-end de deserción laboral sobre dataset real de IBM con +1.400 registros. Implementa Random Forest, K-Means clustering y PCA para identificar los factores con mayor impacto en la rotación de empleados y construir un modelo predictivo accionable.
+
+`Python` `Scikit-learn` `Pandas` `Random Forest` `PCA` `Seaborn`
+
+---
+
+### 🎯 [Segmentación de Usuarios — Marketing](https://github.com/santiagomalak/Datos-de-Mailing)
+
+Sistema de segmentación no supervisada para campañas de email marketing. Clustering con K-Means, análisis de silueta para selección óptima de k y reducción dimensional con PCA. El output permite personalizar estrategias por segmento con criterio estadístico sólido.
+
+`Python` `K-Means` `PCA` `Scikit-learn` `Pandas`
+
+---
+
+### 🌦️ [Data Pipeline — Weather AUS](https://github.com/santiagomalak/weatherAUS)
+
+Pipeline completo de preprocesamiento sobre datos climáticos de Australia. Imputación de valores faltantes, encoding de variables categóricas, feature engineering y estandarización. Base para cualquier modelo de predicción de lluvia sobre el dataset original de Kaggle.
+
+`Python` `Pandas` `Scikit-learn` `Feature Engineering` `Data Cleaning`
 
 ---
 
 ### 📊 Analytics Dashboard — Performance
-Dashboard web full-stack para visualización de métricas de rendimiento. Backend REST API + frontend con Chart.js.
+
+Dashboard web full-stack para visualización de métricas de rendimiento en tiempo real. REST API en Node.js + frontend interactivo con Chart.js, containerizado con Docker.
 
 `React` `Node.js` `PostgreSQL` `Chart.js` `Docker`
 
 ---
 
 ### 🔍 Job Hunting Automation *(en construcción)*
-Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, scoring con IA, checkpoint de aprobación vía Telegram y adaptación de CV.
 
-`n8n` `Telegram API` `AI` `Automatización`
+Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, scoring con IA, checkpoint de aprobación vía Telegram y generación de CV adaptado. Pensado para correr desde VPS de forma autónoma.
+
+`n8n` `Telegram API` `IA` `Automatización` `Docker`
 
 ---
 
