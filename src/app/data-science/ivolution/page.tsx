@@ -1,8 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowLeft, ExternalLink } from 'lucide-react'
+import { ArrowLeft, ExternalLink, X, ZoomIn } from 'lucide-react'
+import { useState } from 'react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -29,23 +30,25 @@ const screenshots = [
     description: 'Análisis de ratios funcionales mediante el Push Pull simple. Histograma de diferencia altura CMIR/DJ y serie temporal para seguimiento longitudinal.',
   },
   {
-    src: '/ivolution-cmj-imtp.png',
+    src: '/ivolution-comparaciones.png',
     title: 'v2 CMJ - IMTP II — Media Móvil vs Última Evaluación',
-    description: 'Dashboard individual con media móvil de 5 evaluaciones, umbrales dinámicos de supercompensación/fatiga y estado del atleta en tiempo real. Muestra RFD de frenado (CMJ) y RFD en 100ms (IMTP) con serie histórica completa.',
+    description: 'Dashboard individual con media móvil de 5 evaluaciones y umbrales dinámicos de supercompensación/fatiga. Muestra RFD de frenado (CMJ) y RFD en 100ms (IMTP) con serie histórica completa y estado del atleta en tiempo real.',
   },
   {
     src: '/ivolution-fatiga-neuromuscular.png',
     title: 'ASH Test - CMJ Bilateral — Control de Fatiga Neuromuscular',
-    description: 'Dashboard de monitoreo de fatiga con ASH "I" Test (hombro) y CMJ Bilateral (miembros inferiores). Tendencia de fuerza pico izquierda/derecha con comparativa vs día anterior y vs mes anterior, más altura de salto en el tiempo.',
+    description: 'Monitoreo de fatiga con ASH "I" Test (hombro) y CMJ Bilateral (miembros inferiores). Tendencia de fuerza pico izquierda/derecha con comparativa vs día anterior y serie histórica.',
   },
   {
-    src: '/ivolution-comparaciones.png',
+    src: '/ivolution-comparaciones-atletas.png',
     title: 'Comparaciones individuales — Dashboard Comparativo',
     description: 'Vista side-by-side entre dos atletas con gauges para CMJ (Altura de Salto), IMTP (Fuerza Pico) y Drop Jump (RSI). Permite comparar rendimiento entre atletas de la misma institución en tiempo real.',
   },
 ]
 
 export default function IvolutionPage() {
+  const [selected, setSelected] = useState<number | null>(null)
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12 max-w-5xl">
@@ -89,7 +92,7 @@ export default function IvolutionPage() {
           ))}
         </motion.div>
 
-        {/* Highlights */}
+        {/* Stats */}
         <motion.div
           variants={fadeUp} initial="hidden" animate="visible" custom={0.15}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
@@ -110,12 +113,18 @@ export default function IvolutionPage() {
         {/* Screenshots */}
         <motion.h2
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="text-2xl font-bold mb-8 text-gray-900"
+          className="text-2xl font-bold mb-2 text-gray-900"
         >
           Capturas del sistema
         </motion.h2>
+        <motion.p
+          variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.05}
+          className="text-sm text-gray-400 mb-8"
+        >
+          Hacé click en cualquier imagen para verla en pantalla completa.
+        </motion.p>
 
-        <div className="space-y-10">
+        <div className="space-y-6">
           {screenshots.map((s, i) => (
             <motion.div
               key={s.src}
@@ -123,11 +132,22 @@ export default function IvolutionPage() {
               viewport={{ once: true, margin: '-60px' }} custom={i * 0.05}
               className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
             >
-              <img
-                src={s.src}
-                alt={s.title}
-                className="w-full object-cover"
-              />
+              {/* Image — clickable */}
+              <div
+                className="relative cursor-zoom-in group"
+                onClick={() => setSelected(i)}
+              >
+                <img
+                  src={s.src}
+                  alt={s.title}
+                  className="w-full object-cover transition-transform duration-300 group-hover:scale-[1.01]"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3 shadow-lg">
+                    <ZoomIn className="h-5 w-5 text-gray-800" />
+                  </div>
+                </div>
+              </div>
               <div className="p-6">
                 <h3 className="font-semibold text-gray-900 mb-2">{s.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{s.description}</p>
@@ -149,8 +169,67 @@ export default function IvolutionPage() {
             <ExternalLink className="h-4 w-4" />
           </Link>
         </motion.div>
-
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {selected !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+            onClick={() => setSelected(null)}
+          >
+            {/* Close button */}
+            <button
+              className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
+              onClick={() => setSelected(null)}
+            >
+              <X className="h-6 w-6" />
+            </button>
+
+            {/* Image */}
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-5xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={screenshots[selected].src}
+                alt={screenshots[selected].title}
+                className="w-full rounded-xl shadow-2xl"
+              />
+              <div className="mt-4 text-center">
+                <p className="text-white font-semibold">{screenshots[selected].title}</p>
+                <p className="text-white/60 text-sm mt-1">{screenshots[selected].description}</p>
+              </div>
+            </motion.div>
+
+            {/* Prev / Next */}
+            {selected > 0 && (
+              <button
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-3 transition-colors"
+                onClick={(e) => { e.stopPropagation(); setSelected(selected - 1) }}
+              >
+                ‹
+              </button>
+            )}
+            {selected < screenshots.length - 1 && (
+              <button
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-3 transition-colors"
+                onClick={(e) => { e.stopPropagation(); setSelected(selected + 1) }}
+              >
+                ›
+              </button>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
