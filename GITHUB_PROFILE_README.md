@@ -6,7 +6,7 @@
 
 # Hey, soy Santiago 👋
 
-**Data Engineer · Analytics Engineer · Sports Data nerd**
+**Data Engineer · Analytics Engineer · Full-Stack Developer**
 
 Córdoba, Argentina &nbsp;·&nbsp; Autodidacta desde 2023 &nbsp;·&nbsp; Apasionado por convertir datos en decisiones
 
@@ -20,7 +20,7 @@ Córdoba, Argentina &nbsp;·&nbsp; Autodidacta desde 2023 &nbsp;·&nbsp; Apasion
 
 ## Sobre mí
 
-Soy Data Engineer / Data Scientist con foco en **sports analytics** y **analytics engineering**. Me gusta entender el *por qué* detrás de cada solución antes de escribir una línea de código, y disfruto construir sistemas que realmente usen las personas.
+Soy Data Engineer / Data Scientist con experiencia en **analytics engineering** y desarrollo web. Me gusta entender el *por qué* detrás de cada solución antes de escribir una línea de código, y disfruto construir sistemas que realmente usen las personas.
 
 Mi experiencia más significativa fue en **Ivolution Sport Science**, donde diseñé de cero un sistema de monitoreo de fatiga neuromuscular para más de 100 atletas — con pipelines en BigQuery, modelos dbt, dashboards en Metabase y alertas dinámicas por percentil. Esos dashboards hoy son la herramienta de referencia principal de la empresa.
 
@@ -104,7 +104,7 @@ Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, sco
 
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=santiagomalak&show_icons=true&hide_border=true&theme=default&hide=issues&count_private=true)
 &nbsp;&nbsp;
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=santiagomalak&layout=compact&hide_border=true&theme=default&langs_count=6)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=santiagomalak&layout=compact&hide_border=true&theme=default&langs_count=8&hide=Jupyter%20Notebook,HTML,CSS,Shell)
 
 </div>
 
