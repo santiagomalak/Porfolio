@@ -11,6 +11,7 @@ export default function Header() {
 
   const navLinks = [
     { href: '/', label: 'Inicio' },
+    { href: '/about', label: 'Sobre Mí' },
     { href: '/web-projects', label: 'Desarrollo Web' },
     { href: '/data-science', label: 'Data Science' },
     { href: '/contact', label: 'Contacto' },

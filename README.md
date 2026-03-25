@@ -1,132 +1,62 @@
-# Portfolio - Desarrollador Web & Data Scientist
+# Santiago Aragon — Portfolio
 
-Portfolio profesional que combina proyectos de desarrollo web y ciencia de datos en una sola plataforma.
+**Data Scientist & Full-Stack Developer**
 
-## Tecnologías
+Portfolio profesional que combina proyectos de desarrollo web y ciencia de datos.
 
-- **Frontend**: Next.js 14, React, TypeScript
-- **Estilos**: Tailwind CSS
-- **Iconos**: Lucide React
-- **Animaciones**: Framer Motion
+🌐 **Live:** [santiagoaragon.vercel.app](https://santiagoaragon.vercel.app)
 
-## Estructura del Proyecto
+---
 
-```
-portfolio/
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── layout.tsx          # Layout principal
-│   │   ├── page.tsx            # Página de inicio
-│   │   ├── web-projects/       # Proyectos de desarrollo web
-│   │   ├── data-science/       # Proyectos de data science
-│   │   └── contact/            # Página de contacto
-│   ├── components/             # Componentes reutilizables
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   └── ProjectCard.tsx
-│   └── styles/                 # Estilos globales
-├── public/                     # Assets estáticos
-└── package.json
-```
+## Stack
 
-## Instalación
+| Categoría | Tecnologías |
+|-----------|-------------|
+| Framework | Next.js 14 (App Router) |
+| Lenguaje | TypeScript |
+| Estilos | Tailwind CSS |
+| Animaciones | Framer Motion |
+| Email | Resend |
+| Deploy | Vercel |
 
-1. Instalar dependencias:
+## Páginas
+
+| Ruta | Descripción |
+|------|-------------|
+| `/` | Hero con animaciones, badge de disponibilidad y tech stack pills |
+| `/about` | Bio, experiencia en Ivolution, stack tecnológico, filosofía |
+| `/web-projects` | StackAdvisor, Wayra Huasi, Portfolio |
+| `/data-science` | IBM HR Analytics, Marketing Segmentation, Weather AUS |
+| `/contact` | Formulario funcional con Resend, rate limiting y XSS protection |
+
+## Correr localmente
+
 ```bash
+git clone https://github.com/santiagomalak/Porfolio.git
+cd Porfolio
 npm install
 ```
 
-2. Ejecutar en modo desarrollo:
+Crear `.env.local`:
+```
+RESEND_API_KEY=tu_api_key
+```
+
 ```bash
 npm run dev
+# → http://localhost:3000
 ```
 
-3. Abrir [http://localhost:3000](http://localhost:3000) en tu navegador
+## Features
 
-## Personalización
+- ✅ Animaciones con Framer Motion (scroll-reveal, hero entrance secuencial)
+- ✅ Formulario de contacto funcional con rate limiting (5 req/IP/hora) y sanitización XSS
+- ✅ Open Graph + Twitter card metadata completo
+- ✅ Favicon SVG con gradiente personalizado
+- ✅ Sitemap automático en `/sitemap.xml`
+- ✅ Totalmente responsivo (mobile-first)
+- ✅ Build estático optimizado (Next.js static generation)
 
-### 1. Actualizar información personal
+---
 
-**Footer y Header:**
-- Edita `src/components/Footer.tsx` para cambiar tus enlaces sociales
-- Edita `src/components/Header.tsx` para modificar el logo y navegación
-
-### 2. Agregar tus proyectos
-
-**Proyectos Web** (`src/app/web-projects/page.tsx`):
-```typescript
-const webProjects = [
-  {
-    title: 'Tu Proyecto',
-    description: 'Descripción del proyecto',
-    tags: ['React', 'Node.js'],
-    githubUrl: 'https://github.com/tuusuario/proyecto',
-    liveUrl: 'https://proyecto.com',
-    type: 'web' as const,
-  },
-]
-```
-
-**Proyectos Data Science** (`src/app/data-science/page.tsx`):
-```typescript
-const dataScienceProjects = [
-  {
-    title: 'Tu Análisis',
-    description: 'Descripción del análisis',
-    tags: ['Python', 'Pandas'],
-    githubUrl: 'https://github.com/tuusuario/analisis',
-    type: 'datascience' as const,
-  },
-]
-```
-
-### 3. Personalizar colores
-
-Edita `tailwind.config.ts` para cambiar la paleta de colores:
-```typescript
-colors: {
-  primary: {
-    // Tus colores personalizados
-  }
-}
-```
-
-### 4. Agregar imágenes a proyectos
-
-Coloca las imágenes en `public/images/` y referéncialas:
-```typescript
-image: '/images/proyecto-1.png'
-```
-
-## Siguientes Pasos
-
-1. **Implementar formulario de contacto**: Integrar EmailJS, Formspree o tu API preferida
-2. **Agregar animaciones**: Implementar Framer Motion para transiciones
-3. **Blog (opcional)**: Agregar sección de blog con MDX
-4. **SEO**: Optimizar metadatos y agregar sitemap
-5. **Analytics**: Integrar Google Analytics o alternativa
-
-## Deployment
-
-### Vercel (Recomendado para Next.js)
-
-```bash
-npm install -g vercel
-vercel
-```
-
-### Otras opciones
-- Netlify
-- Railway
-- AWS Amplify
-
-## Comandos
-
-- `npm run dev` - Modo desarrollo
-- `npm run build` - Build para producción
-- `npm run start` - Ejecutar build de producción
-- `npm run lint` - Ejecutar linter
-
-## Licencia
-
-MIT
+Construido por [Santiago Aragon](https://linkedin.com/in/aragonmalak) · [santiagoaragonmalak@gmail.com](mailto:santiagoaragonmalak@gmail.com)
