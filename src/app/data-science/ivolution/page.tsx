@@ -28,6 +28,16 @@ const screenshots = [
     title: 'Reporte de Estabilidad de Cadera',
     description: 'Análisis de ratios funcionales mediante el Push Pull simple. Histograma de diferencia altura CMIR/DJ y serie temporal para seguimiento longitudinal.',
   },
+  {
+    src: '/ivolution-cmj-imtp.png',
+    title: 'v2 CMJ - IMTP II — Media Móvil vs Última Evaluación',
+    description: 'Dashboard individual con media móvil de 5 evaluaciones, umbrales dinámicos de supercompensación/fatiga y estado del atleta en tiempo real. Muestra RFD de frenado (CMJ) y RFD en 100ms (IMTP) con serie histórica completa.',
+  },
+  {
+    src: '/ivolution-comparaciones.png',
+    title: 'Comparaciones individuales — Dashboard Comparativo',
+    description: 'Vista side-by-side entre dos atletas con gauges para CMJ (Altura de Salto), IMTP (Fuerza Pico) y Drop Jump (RSI). Permite comparar rendimiento entre atletas de la misma institución en tiempo real.',
+  },
 ]
 
 export default function IvolutionPage() {
