@@ -134,7 +134,7 @@ Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, sco
 
 ## ¿Hablamos?
 
-Abierto a roles remotos de **Analytics Engineer**, **Data Engineer** o **Data Scientist**. También a proyectos freelance de datos o desarrollo web.
+Abierto a roles remotos de **Analytics Engineer**, **Data Engineer**, **Data Scientist**, **Full-Stack Developer** o cualquier rol que combine datos y producto. También a proyectos freelance — datos, web, automatización, lo que sea desafiante y tenga impacto real.
 
 <div align="center">
 
