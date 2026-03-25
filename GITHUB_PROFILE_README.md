@@ -1,14 +1,12 @@
 <div align="center">
 
-<!-- Reemplazá la URL con tu foto real de GitHub o una imagen tuya -->
-<!-- Para usar tu foto de GitHub: https://avatars.githubusercontent.com/u/TU_USER_ID -->
 <img src="https://avatars.githubusercontent.com/santiagomalak" width="120" style="border-radius: 50%;" />
 
 # Hey, soy Santiago 👋
 
 **Data Engineer · Analytics Engineer · Full-Stack Developer**
 
-Córdoba, Argentina &nbsp;·&nbsp; Autodidacta desde 2023 &nbsp;·&nbsp; Apasionado por convertir datos en decisiones
+Córdoba, Argentina &nbsp;·&nbsp; Python desde 2020 &nbsp;·&nbsp; Apasionado por convertir datos en decisiones
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/aragonmalak)
 [![Portfolio](https://img.shields.io/badge/Portfolio-111827?style=for-the-badge&logo=vercel&logoColor=white)](https://santiagoaragon.vercel.app)
@@ -20,11 +18,11 @@ Córdoba, Argentina &nbsp;·&nbsp; Autodidacta desde 2023 &nbsp;·&nbsp; Apasion
 
 ## Sobre mí
 
-Soy Data Engineer / Data Scientist con experiencia en **analytics engineering** y desarrollo web. Me gusta entender el *por qué* detrás de cada solución antes de escribir una línea de código, y disfruto construir sistemas que realmente usen las personas.
+Data Engineer y Full-Stack Developer con 5 años trabajando con Python. Diseño sistemas de datos de punta a punta — desde pipelines en BigQuery hasta dashboards que usan equipos enteros. También construyo en el lado web con React y Next.js, y me interesa especialmente la intersección entre **datos y producto**.
 
-Mi experiencia más significativa fue en **Ivolution Sport Science**, donde diseñé de cero un sistema de monitoreo de fatiga neuromuscular para más de 100 atletas — con pipelines en BigQuery, modelos dbt, dashboards en Metabase y alertas dinámicas por percentil. Esos dashboards hoy son la herramienta de referencia principal de la empresa.
+En mi último rol diseñé de cero un sistema de monitoreo de indicadores de rendimiento para más de 100 personas, con pipelines BigQuery → dbt → Metabase y lógica de alertas por percentil. Se convirtió en la herramienta de referencia principal de la empresa.
 
-También construyo en el lado web: tengo proyectos con React, Next.js, TypeScript y Node.js, y me interesa mucho la intersección entre **datos + producto**.
+Actualmente independiente, enfocado en proyectos propios desafiantes. El más reciente: **StackAdvisor**, un SaaS que ayuda a developers y founders a elegir su tech stack ideal. Además, estoy cursando una Tecnicatura en Programación para afianzar y formalizar todo lo que construí de forma autodidacta.
 
 ---
 
@@ -52,39 +50,35 @@ También construyo en el lado web: tengo proyectos con React, Next.js, TypeScrip
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![n8n](https://img.shields.io/badge/n8n-EA4B71?style=flat-square&logo=n8n&logoColor=white)
-
-**Seguridad**
-
 ![Security](https://img.shields.io/badge/Ciberseguridad-222?style=flat-square&logo=hackthebox&logoColor=00FF41)
-&nbsp;Detección de vulnerabilidades · Código seguro · OSINT
 
 ---
 
 ## Proyectos destacados
 
-### 🏋️ Neuromuscular Fatigue Monitoring System — *Ivolution Sport Science*
-Sistema completo de monitoreo de fatiga para +100 atletas. Pipelines BigQuery → dbt → Metabase con alertas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO), ventanas móviles de 5 evaluaciones, umbrales dinámicos por percentil (p25/p75) y soporte multilingüe ES/EN/PT. Hoy es la herramienta de análisis principal de la empresa.
+### 🏗️ Performance Monitoring System — *Ivolution*
+Sistema completo de monitoreo de indicadores de rendimiento para +100 personas. Diseñado de cero: pipelines **BigQuery → dbt → Metabase**, alertas dinámicas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO), ventanas móviles de 5 evaluaciones, umbrales por percentil (p25/p75) y soporte multilingüe ES/EN/PT. Se convirtió en la herramienta de referencia principal de la empresa.
 
-`BigQuery` `dbt` `SQL` `Metabase` `Sports Analytics`
+`BigQuery` `dbt` `SQL` `Metabase` `Analytics Engineering`
 
 ---
 
 ### 🤖 [StackAdvisor](https://github.com/santiagomalak/StackAdvisor)
-SaaS de recomendación de tecnologías. El usuario responde 13 preguntas sobre su proyecto y recibe un stack ideal con justificación y roadmap. Pensado para founders sin CTO y devs junior tomando decisiones arquitectónicas.
+SaaS de recomendación de tecnologías. El usuario responde 13 preguntas sobre su proyecto y recibe un stack ideal con justificación y roadmap de 12 semanas. Pensado para founders sin CTO y devs junior tomando decisiones arquitectónicas.
 
 `React` `Next.js` `TypeScript` `Node.js`
 
 ---
 
-### 📊 Analytics Dashboard — Sports Performance
-Dashboard web full-stack para visualización de métricas de rendimiento deportivo. Backend REST API + frontend con Chart.js.
+### 📊 Analytics Dashboard — Performance
+Dashboard web full-stack para visualización de métricas de rendimiento. Backend REST API + frontend con Chart.js.
 
 `React` `Node.js` `PostgreSQL` `Chart.js` `Docker`
 
 ---
 
 ### 🔍 Job Hunting Automation *(en construcción)*
-Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, scoring con IA, checkpoint de aprobación vía Telegram y adaptación de CV. Pensado para escalar desde VPS.
+Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, scoring con IA, checkpoint de aprobación vía Telegram y adaptación de CV.
 
 `n8n` `Telegram API` `AI` `Automatización`
 
@@ -92,7 +86,7 @@ Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, sco
 
 ## Formación
 
-- 📐 **Tecnicatura en Tecnologías de la Programación** — UPSO *(en curso, 2026–2027)*
+- 📐 **Tecnicatura en Tecnologías de la Programación** — UPSO *(en curso)*
 - 📊 **Diplomatura en Ciencia de Datos** — UNC / ICARO · 250hs · 2025
 - 🔒 **Diplomatura en Ciberseguridad** — USIL / Mundos E · 200hs · 2025
 
@@ -112,7 +106,7 @@ Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, sco
 
 ## ¿Hablamos?
 
-Estoy disponible para roles **remotos** de Analytics Engineer, Data Engineer o Data Scientist. También para proyectos freelance de datos o desarrollo web.
+Abierto a roles remotos de **Analytics Engineer**, **Data Engineer** o **Data Scientist**. También a proyectos freelance de datos o desarrollo web.
 
 <div align="center">
 
