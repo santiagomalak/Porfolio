@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { ExternalLink, Github } from 'lucide-react'
 
 interface ProjectCardProps {
@@ -119,15 +120,25 @@ export default function ProjectCard({
             </a>
           )}
           {liveUrl && (
-            <a
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Ver proyecto
-            </a>
+            liveUrl.startsWith('/') ? (
+              <Link
+                href={liveUrl}
+                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Ver detalle
+              </Link>
+            ) : (
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Ver proyecto
+              </a>
+            )
           )}
         </div>
       </div>
