@@ -10,7 +10,7 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-const BASE_URL = 'https://santiagoaragon.vercel.app'
+const BASE_URL = 'https://santiagomalak.is-a.dev'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

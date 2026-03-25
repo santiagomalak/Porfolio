@@ -34,7 +34,7 @@ const webProjects = [
     description: 'Portfolio profesional de doble especialidad (Desarrollo Web & Data Science) construido con Next.js 14, App Router, Framer Motion y sistema de diseño personalizado con Tailwind CSS.',
     tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     githubUrl: 'https://github.com/santiagomalak/Porfolio',
-    liveUrl: 'https://santiagoaragon.vercel.app',
+    liveUrl: 'https://santiagomalak.is-a.dev',
     type: 'web' as const,
   },
 ]
