@@ -8,11 +8,6 @@
     --foreground: 222.2 84% 4.9%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-  }
-
   body {
     @apply bg-background text-gray-900 antialiased;
   }
@@ -20,10 +15,21 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Better font rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-gradient-to-r from-primary-700 to-secondary-500 bg-clip-text text-transparent;
+  }
+
+  /* Selection color */
+  ::selection {
+    @apply bg-primary-100 text-primary-900;
   }
 }
