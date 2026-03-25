@@ -5,6 +5,7 @@ import ProjectCard from '@/components/ProjectCard'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
+
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: (delay = 0) => ({
@@ -14,6 +15,15 @@ const fadeUp = {
 }
 
 const dataScienceProjects = [
+  {
+    title: 'Performance Monitoring System — Ivolution',
+    description: 'Sistema de análisis de rendimiento diseñado de cero para más de 300 personas — atletas, profesionales de la salud y equipos completos. Alertas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO) con umbrales dinámicos por percentil (p25/p75), ventanas móviles de evaluación y soporte multilingüe ES/EN/PT. Hoy es la herramienta principal de toma de decisiones de la organización.',
+    tags: ['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'],
+    highlight: '+300 usuarios',
+    image: '/project-ivolution.svg',
+    type: 'datascience' as const,
+    accentColor: 'blue' as const,
+  },
   {
     title: 'IBM HR Analytics — Predicción de Deserción',
     description: 'Análisis end-to-end sobre dataset real de IBM con +1.400 empleados. Identifica los factores con mayor impacto en la rotación laboral usando Random Forest, K-Means clustering y PCA. Genera insights accionables para reducir churn en equipos de RR.HH.',

@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f4ff"/>
+      <stop offset="100%" style="stop-color:#e8f0fe"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#dc2626"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#2563eb"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)" rx="12"/>
+
+  <!-- Top bar -->
+  <rect x="0" y="0" width="800" height="48" fill="#1e293b" rx="12"/>
+  <rect x="0" y="36" width="800" height="12" fill="#1e293b"/>
+  <text x="24" y="30" font-family="monospace" font-size="13" fill="#94a3b8">Performance Monitoring System</text>
+  <text x="680" y="30" font-family="monospace" font-size="11" fill="#64748b">● Live  ▲ 300+ users</text>
+
+  <!-- Metric cards row -->
+  <!-- Card 1: SUPERCOMPENSACIÓN -->
+  <rect x="24" y="68" width="170" height="80" rx="8" fill="white" stroke="#d1fae5" stroke-width="1.5"/>
+  <rect x="24" y="68" width="4" height="80" rx="2" fill="url(#green)"/>
+  <text x="40" y="90" font-family="sans-serif" font-size="9" fill="#6b7280" font-weight="500">SUPERCOMPENSACIÓN</text>
+  <text x="40" y="114" font-family="sans-serif" font-size="26" fill="#10b981" font-weight="700">142</text>
+  <text x="40" y="136" font-family="sans-serif" font-size="9" fill="#10b981">↑ +12 esta semana</text>
+
+  <!-- Card 2: ATENCIÓN -->
+  <rect x="206" y="68" width="170" height="80" rx="8" fill="white" stroke="#fef3c7" stroke-width="1.5"/>
+  <rect x="206" y="68" width="4" height="80" rx="2" fill="url(#amber)"/>
+  <text x="222" y="90" font-family="sans-serif" font-size="9" fill="#6b7280" font-weight="500">ATENCIÓN</text>
+  <text x="222" y="114" font-family="sans-serif" font-size="26" fill="#f59e0b" font-weight="700">87</text>
+  <text x="222" y="136" font-family="sans-serif" font-size="9" fill="#f59e0b">→ estable</text>
+
+  <!-- Card 3: FATIGADO -->
+  <rect x="388" y="68" width="170" height="80" rx="8" fill="white" stroke="#fee2e2" stroke-width="1.5"/>
+  <rect x="388" y="68" width="4" height="80" rx="2" fill="url(#red)"/>
+  <text x="404" y="90" font-family="sans-serif" font-size="9" fill="#6b7280" font-weight="500">FATIGADO</text>
+  <text x="404" y="114" font-family="sans-serif" font-size="26" fill="#ef4444" font-weight="700">23</text>
+  <text x="404" y="136" font-family="sans-serif" font-size="9" fill="#ef4444">↓ -4 vs semana ant.</text>
+
+  <!-- Card 4: Total -->
+  <rect x="570" y="68" width="206" height="80" rx="8" fill="white" stroke="#dbeafe" stroke-width="1.5"/>
+  <rect x="570" y="68" width="4" height="80" rx="2" fill="url(#blue)"/>
+  <text x="586" y="90" font-family="sans-serif" font-size="9" fill="#6b7280" font-weight="500">ATLETAS MONITOREADOS</text>
+  <text x="586" y="114" font-family="sans-serif" font-size="26" fill="#3b82f6" font-weight="700">300+</text>
+  <text x="586" y="136" font-family="sans-serif" font-size="9" fill="#3b82f8">ES / EN / PT</text>
+
+  <!-- Line chart area -->
+  <rect x="24" y="164" width="480" height="200" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="40" y="186" font-family="sans-serif" font-size="10" fill="#374151" font-weight="600">Tendencia de rendimiento — últimas 8 semanas</text>
+
+  <!-- Chart grid lines -->
+  <line x1="40" y1="340" x2="488" y2="340" stroke="#f3f4f6" stroke-width="1"/>
+  <line x1="40" y1="310" x2="488" y2="310" stroke="#f3f4f6" stroke-width="1"/>
+  <line x1="40" y1="280" x2="488" y2="280" stroke="#f3f4f6" stroke-width="1"/>
+  <line x1="40" y1="250" x2="488" y2="250" stroke="#f3f4f6" stroke-width="1"/>
+  <line x1="40" y1="220" x2="488" y2="220" stroke="#f3f4f6" stroke-width="1"/>
+
+  <!-- Y axis labels -->
+  <text x="26" y="343" font-family="monospace" font-size="8" fill="#9ca3af">0</text>
+  <text x="20" y="313" font-family="monospace" font-size="8" fill="#9ca3af">25</text>
+  <text x="20" y="283" font-family="monospace" font-size="8" fill="#9ca3af">50</text>
+  <text x="20" y="253" font-family="monospace" font-size="8" fill="#9ca3af">75</text>
+  <text x="14" y="223" font-family="monospace" font-size="8" fill="#9ca3af">100</text>
+
+  <!-- Green line (supercompensation) -->
+  <polyline points="60,300 117,285 174,260 231,245 288,238 345,222 402,228 459,215"
+    fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Green area fill -->
+  <polygon points="60,300 117,285 174,260 231,245 288,238 345,222 402,228 459,215 459,340 60,340"
+    fill="#10b981" fill-opacity="0.08"/>
+
+  <!-- Amber line (attention) -->
+  <polyline points="60,310 117,308 174,312 231,305 288,308 345,310 402,306 459,308"
+    fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4,3"/>
+
+  <!-- X axis labels -->
+  <text x="50" y="356" font-family="monospace" font-size="8" fill="#9ca3af">S1</text>
+  <text x="107" y="356" font-family="monospace" font-size="8" fill="#9ca3af">S2</text>
+  <text x="164" y="356" font-family="monospace" font-size="8" fill="#9ca3af">S3</text>
+  <text x="221" y="356" font-family="monospace" font-size="8" fill="#9ca3af">S4</text>
+  <text x="278" y="356" font-family="monospace" font-size="8" fill="#9ca3af">S5</text>
+  <text x="335" y="356" font-family="monospace" font-size="8" fill="#9ca3af">S6</text>
+  <text x="392" y="356" font-family="monospace" font-size="8" fill="#9ca3af">S7</text>
+  <text x="449" y="356" font-family="monospace" font-size="8" fill="#9ca3af">S8</text>
+
+  <!-- Legend -->
+  <rect x="40" y="362" width="10" height="3" rx="1.5" fill="#10b981"/>
+  <text x="56" y="368" font-family="sans-serif" font-size="8" fill="#6b7280">Supercompensación</text>
+  <rect x="160" y="362" width="10" height="3" rx="1.5" fill="#f59e0b"/>
+  <text x="176" y="368" font-family="sans-serif" font-size="8" fill="#6b7280">Atención</text>
+
+  <!-- Right panel: athlete list -->
+  <rect x="516" y="164" width="260" height="200" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="532" y="186" font-family="sans-serif" font-size="10" fill="#374151" font-weight="600">Estado por atleta</text>
+
+  <!-- Athlete rows -->
+  <rect x="532" y="196" width="8" height="20" rx="2" fill="#10b981"/>
+  <text x="546" y="210" font-family="sans-serif" font-size="9" fill="#374151">Atleta 001</text>
+  <text x="700" y="210" font-family="sans-serif" font-size="8" fill="#10b981" font-weight="600">p75 ↑</text>
+
+  <rect x="532" y="222" width="8" height="20" rx="2" fill="#10b981"/>
+  <text x="546" y="236" font-family="sans-serif" font-size="9" fill="#374151">Atleta 002</text>
+  <text x="700" y="236" font-family="sans-serif" font-size="8" fill="#10b981" font-weight="600">p75 ↑</text>
+
+  <rect x="532" y="248" width="8" height="20" rx="2" fill="#f59e0b"/>
+  <text x="546" y="262" font-family="sans-serif" font-size="9" fill="#374151">Atleta 003</text>
+  <text x="700" y="262" font-family="sans-serif" font-size="8" fill="#f59e0b" font-weight="600">p25–p75</text>
+
+  <rect x="532" y="274" width="8" height="20" rx="2" fill="#ef4444"/>
+  <text x="546" y="288" font-family="sans-serif" font-size="9" fill="#374151">Atleta 004</text>
+  <text x="700" y="288" font-family="sans-serif" font-size="8" fill="#ef4444" font-weight="600">p25 ↓</text>
+
+  <rect x="532" y="300" width="8" height="20" rx="2" fill="#10b981"/>
+  <text x="546" y="314" font-family="sans-serif" font-size="9" fill="#374151">Atleta 005</text>
+  <text x="700" y="314" font-family="sans-serif" font-size="8" fill="#10b981" font-weight="600">p75 ↑</text>
+
+  <rect x="532" y="326" width="8" height="20" rx="2" fill="#f59e0b"/>
+  <text x="546" y="340" font-family="sans-serif" font-size="9" fill="#374151">Atleta 006</text>
+  <text x="700" y="340" font-family="sans-serif" font-size="8" fill="#f59e0b" font-weight="600">p25–p75</text>
+
+  <text x="532" y="358" font-family="sans-serif" font-size="8" fill="#9ca3af">+ 294 atletas más...</text>
+
+  <!-- Bottom badges -->
+  <rect x="24" y="380" width="752" height="56" rx="8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="48" y="396" width="90" height="24" rx="6" fill="#eff6ff"/>
+  <text x="60" y="412" font-family="sans-serif" font-size="9" fill="#3b82f6" font-weight="600">BigQuery</text>
+  <rect x="154" y="396" width="55" height="24" rx="6" fill="#fff7ed"/>
+  <text x="166" y="412" font-family="sans-serif" font-size="9" fill="#ea580c" font-weight="600">dbt</text>
+  <rect x="225" y="396" width="80" height="24" rx="6" fill="#f0fdf4"/>
+  <text x="237" y="412" font-family="sans-serif" font-size="9" fill="#16a34a" font-weight="600">Metabase</text>
+  <rect x="321" y="396" width="50" height="24" rx="6" fill="#faf5ff"/>
+  <text x="333" y="412" font-family="sans-serif" font-size="9" fill="#7c3aed" font-weight="600">SQL</text>
+  <rect x="387" y="396" width="65" height="24" rx="6" fill="#fef9c3"/>
+  <text x="399" y="412" font-family="sans-serif" font-size="9" fill="#854d0e" font-weight="600">Python</text>
+  <text x="600" y="412" font-family="sans-serif" font-size="9" fill="#9ca3af">Sistema en producción · ES / EN / PT</text>
+</svg>
