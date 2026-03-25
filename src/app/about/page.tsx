@@ -62,9 +62,9 @@ export default function AboutPage() {
           variants={fadeUp} initial="hidden" animate="visible" custom={0.16}
           className="text-xl text-gray-600 leading-relaxed max-w-3xl mb-8"
         >
-          Data Scientist y Full-Stack Developer con 23 años, basado en Argentina.
-          Trabajo en <strong className="text-gray-800">Ivolution</strong> como Data Scientist y en mi tiempo libre
-          construyo productos que combinan lo mejor de ambos mundos — datos e interfaces modernas.
+          Data Engineer, Analytics Engineer y Full-Stack Developer. Actualmente independiente —
+          construyo proyectos propios, busco mi próximo rol y convierto ideas en productos reales.
+          Me muevo bien en la intersección entre datos, producto y código.
         </motion.p>
 
         <motion.div
@@ -111,20 +111,22 @@ export default function AboutPage() {
             >
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Data Scientist</h3>
-                  <p className="text-primary-700 font-medium">Ivolution</p>
+                  <h3 className="text-lg font-semibold text-gray-900">Analytics Engineer / Data Scientist</h3>
+                  <p className="text-primary-700 font-medium">Ivolution Sport Science</p>
                 </div>
                 <span className="text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-full border whitespace-nowrap">
-                  Actual
+                  2024 — Feb 2025
                 </span>
               </div>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Análisis de datos, construcción de modelos de machine learning y generación de insights
-                accionables para decisiones de negocio. Desarrollo de pipelines de datos y dashboards
-                para visualización de métricas clave.
+                Diseñé de cero el sistema de análisis de rendimiento de la empresa: pipelines en BigQuery,
+                modelos en dbt y dashboards en Metabase con alertas dinámicas por percentil (p25/p75) y
+                soporte multilingüe ES/EN/PT. Usado por más de 300 personas — atletas, profesionales de
+                la salud y equipos completos. Se convirtió en la herramienta principal de toma de decisiones
+                de la organización.
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
-                {['Python', 'Pandas', 'Scikit-learn', 'SQL', 'Machine Learning'].map((t) => (
+                {['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'].map((t) => (
                   <span key={t} className="px-2.5 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">
                     {t}
                   </span>
@@ -147,33 +149,66 @@ export default function AboutPage() {
           Qué estoy construyendo
         </motion.h2>
 
-        <motion.div
-          variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-2xl border border-primary-200 p-8"
-        >
-          <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-1">StackAdvisor</h3>
-              <p className="text-primary-700 font-medium text-sm">SaaS · En desarrollo</p>
-            </div>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-100 text-green-700 text-xs font-semibold rounded-full border border-green-200">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              MVP en progreso
-            </span>
-          </div>
-          <p className="text-gray-700 leading-relaxed mb-5">
-            Plataforma que ayuda a developers y founders a elegir su tech stack ideal en 5 minutos.
-            13 preguntas inteligentes → motor de recomendación con 25+ stacks → roadmap de 12 semanas
-            personalizado. Resuelve el problema de parálisis de análisis tecnológico que afecta a miles de equipos.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine', 'SaaS'].map((t) => (
-              <span key={t} className="px-2.5 py-1 bg-white border border-primary-200 text-primary-700 text-xs font-medium rounded-full">
-                {t}
+        <div className="space-y-6">
+          {/* StackAdvisor */}
+          <motion.div
+            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}
+            className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-2xl border border-primary-200 p-8"
+          >
+            <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">StackAdvisor</h3>
+                <p className="text-primary-700 font-medium text-sm">SaaS · En producción</p>
+              </div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-100 text-green-700 text-xs font-semibold rounded-full border border-green-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                Live
               </span>
-            ))}
-          </div>
-        </motion.div>
+            </div>
+            <p className="text-gray-700 leading-relaxed mb-5">
+              Plataforma que resuelve la parálisis de decisión tecnológica: 13 preguntas inteligentes
+              → motor de recomendación con 25+ stacks evaluados → roadmap de 12 semanas personalizado.
+              Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine', 'SaaS'].map((t) => (
+                <span key={t} className="px-2.5 py-1 bg-white border border-primary-200 text-primary-700 text-xs font-medium rounded-full">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Job Hunting Automation */}
+          <motion.div
+            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.1}
+            className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl border border-orange-200 p-8"
+          >
+            <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Job Hunting Automation</h3>
+                <p className="text-orange-700 font-medium text-sm">Automatización · En construcción</p>
+              </div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full border border-orange-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+                En desarrollo
+              </span>
+            </div>
+            <p className="text-gray-700 leading-relaxed mb-5">
+              Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes relevantes,
+              scoring con IA, checkpoint de aprobación vía Telegram y generación de CV adaptado a cada
+              oferta. Pensado para correr desde VPS de forma autónoma — porque buscar trabajo también
+              se puede optimizar.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['n8n', 'Telegram API', 'IA', 'Automatización', 'Docker', 'VPS'].map((t) => (
+                <span key={t} className="px-2.5 py-1 bg-white border border-orange-200 text-orange-700 text-xs font-medium rounded-full">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ── Tech Stack ── */}
@@ -242,7 +277,8 @@ export default function AboutPage() {
         >
           <h2 className="text-2xl font-bold mb-3 text-gray-900">¿Trabajamos juntos?</h2>
           <p className="text-gray-600 mb-8 max-w-lg mx-auto">
-            Estoy disponible para proyectos freelance en desarrollo web y análisis de datos.
+            Abierto a roles remotos de Analytics Engineer, Data Engineer, Data Scientist o Full-Stack Developer.
+            También a proyectos freelance — datos, web, automatización.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
