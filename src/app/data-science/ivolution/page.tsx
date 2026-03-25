@@ -28,11 +28,6 @@ const screenshots = [
     title: 'Reporte de Estabilidad de Cadera',
     description: 'Análisis de ratios funcionales mediante el Push Pull simple. Histograma de diferencia altura CMIR/DJ y serie temporal para seguimiento longitudinal.',
   },
-  {
-    src: '/ivolution-dbt-pipeline.png',
-    title: 'Pipeline dbt — Lineage graph',
-    description: 'Arquitectura del pipeline de datos: desde las fuentes raw hasta los modelos analíticos finales que alimentan los dashboards en Metabase.',
-  },
 ]
 
 export default function IvolutionPage() {
