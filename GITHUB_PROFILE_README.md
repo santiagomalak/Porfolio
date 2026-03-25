@@ -6,7 +6,7 @@
 
 **Data Engineer · Analytics Engineer · Full-Stack Developer**
 
-Córdoba, Argentina &nbsp;·&nbsp; Python desde 2020 &nbsp;·&nbsp; Apasionado por convertir datos en decisiones
+Córdoba, Argentina &nbsp;·&nbsp; Apasionado por convertir datos en decisiones
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/aragonmalak)
 [![Portfolio](https://img.shields.io/badge/Portfolio-111827?style=for-the-badge&logo=vercel&logoColor=white)](https://santiagoaragon.vercel.app)
