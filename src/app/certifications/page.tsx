@@ -16,14 +16,30 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
-const university = {
-  name: 'Diplomatura en Data Science & Machine Learning',
-  institution: 'Universidad Nacional de Córdoba · ICARO',
-  date: 'Mayo 2025',
-  hours: '250 horas · CRE 10',
-  resolution: 'RD-2025-149-E-UNC-DEC#FCEFYN',
-  description: 'Diplomatura universitaria de formación continua dictada por ICARO Asociación Civil en conjunto con la Secretaría de Extensión de la Facultad de Ciencias Exactas, Físicas y Naturales de la UNC.',
-}
+const universities = [
+  {
+    name: 'Diplomatura en Data Science & Machine Learning',
+    institution: 'Universidad Nacional de Córdoba · ICARO',
+    date: 'Mayo 2025',
+    hours: '250 horas · CRE 10',
+    resolution: 'RD-2025-149-E-UNC-DEC#FCEFYN',
+    description: 'Diplomatura universitaria de formación continua dictada por ICARO Asociación Civil en conjunto con la Secretaría de Extensión de la Facultad de Ciencias Exactas, Físicas y Naturales de la UNC.',
+    color: 'from-primary-50 to-indigo-50',
+    border: 'border-primary-200',
+    tag: 'bg-primary-100 text-primary-700',
+  },
+  {
+    name: 'Diplomado en Ciberseguridad',
+    institution: 'Universidad Nacional de Córdoba · Mundos E · USIL',
+    date: 'Septiembre 2025',
+    hours: '200 horas',
+    resolution: 'FCEFyN UNC + Universidad San Ignacio de Loyola',
+    description: 'Diplomatura dictada por la Facultad de Ciencias Exactas, Físicas y Naturales de la UNC en conjunto con Mundos E y la Universidad San Ignacio de Loyola. Fundamentos y práctica en seguridad informática.',
+    color: 'from-red-50 to-orange-50',
+    border: 'border-red-200',
+    tag: 'bg-red-100 text-red-700',
+  },
+]
 
 const certifications = [
   {
@@ -157,22 +173,26 @@ export default function CertificationsPage() {
             <h2 className="text-xl font-bold text-gray-900">Formación Universitaria</h2>
           </div>
 
-          <div className="bg-gradient-to-br from-primary-50 to-indigo-50 rounded-2xl border-2 border-primary-200 p-8">
-            <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
-              <div>
-                <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-primary-100 text-primary-700 mb-3">
-                  Universidad Nacional de Córdoba
-                </span>
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">{university.name}</h3>
-                <p className="text-primary-700 font-medium">{university.institution}</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {universities.map((u) => (
+              <div key={u.name} className={`bg-gradient-to-br ${u.color} rounded-2xl border-2 ${u.border} p-8`}>
+                <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
+                  <div>
+                    <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 ${u.tag}`}>
+                      Universidad Nacional de Córdoba
+                    </span>
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">{u.name}</h3>
+                    <p className="text-gray-600 font-medium text-sm">{u.institution}</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-sm text-gray-500 block">{u.date}</span>
+                    <span className="text-sm font-semibold text-gray-700 block mt-1">{u.hours}</span>
+                  </div>
+                </div>
+                <p className="text-gray-600 leading-relaxed mb-4 text-sm">{u.description}</p>
+                <p className="text-xs text-gray-400 font-mono">{u.resolution}</p>
               </div>
-              <div className="text-right">
-                <span className="text-sm text-gray-500 block">{university.date}</span>
-                <span className="text-sm font-semibold text-primary-700 block mt-1">{university.hours}</span>
-              </div>
-            </div>
-            <p className="text-gray-600 leading-relaxed mb-4">{university.description}</p>
-            <p className="text-xs text-gray-400 font-mono">Resolución: {university.resolution}</p>
+            ))}
           </div>
         </motion.div>
 
