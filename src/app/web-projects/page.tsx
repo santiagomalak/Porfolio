@@ -25,7 +25,7 @@ const webProjects = [
   },
   {
     title: 'Wayra Huasi — Plataforma de Alquiler',
-    description: 'Landing page profesional para servicio de alquiler de departamentos amueblados en Córdoba. Diseño responsivo con galería de imágenes, descripción de amenities y sistema de contacto directo integrado con WhatsApp para consultas inmediatas.',
+    description: 'Landing page profesional para servicio de alquiler de departamentos amueblados en Catamarca Capital. Diseño responsivo con galería de imágenes, descripción de amenities y sistema de contacto directo integrado con WhatsApp para consultas inmediatas.',
     tags: ['HTML', 'CSS', 'JavaScript', 'Responsive Design', 'WhatsApp API'],
     highlight: 'Live',
     image: '/project-wayrahuasi.png',
