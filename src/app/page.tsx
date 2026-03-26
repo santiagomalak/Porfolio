@@ -68,7 +68,7 @@ export default function Home() {
             variants={fadeUp} initial="hidden" animate="visible" custom={0.08}
             className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
           >
-            <span className="text-secondary-500">Data Engineer</span>{' '}
+            <span className="text-secondary-500">Data Scientist</span>{' '}
             <span className="text-gray-400 font-light">&amp;</span>{' '}
             <br className="hidden md:block" />
             <span className="text-primary-700">Full-Stack Developer</span>
