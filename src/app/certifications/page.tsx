@@ -79,12 +79,14 @@ const certifications = [
         issuer: 'Cisco Networking Academy · Python Institute',
         date: 'Oct 2024',
         detail: 'Fundamentos de Python 3, algoritmos, estructuras',
+        credlyUrl: 'https://www.credly.com/badges/2baf7b0f-b071-42f8-b2b6-bfb4be35506c/public_url',
       },
       {
         name: 'Python Essentials 2',
         issuer: 'Cisco Networking Academy · Python Institute',
         date: 'Oct 2024',
         detail: 'OOP, módulos, aplicaciones avanzadas en Python',
+        credlyUrl: 'https://www.credly.com/badges/f0060ccf-e241-4295-980d-c27e87433cad/public_url',
       },
       {
         name: 'HTML, CSS & JavaScript for Web Developers',
