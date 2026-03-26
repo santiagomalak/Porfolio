@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, ExternalLink, X, ZoomIn } from 'lucide-react'
 import { useState } from 'react'
 
@@ -137,10 +138,13 @@ export default function IvolutionPage() {
                 className="relative cursor-zoom-in group"
                 onClick={() => setSelected(i)}
               >
-                <img
+                <Image
                   src={s.src}
                   alt={s.title}
+                  width={1200}
+                  height={675}
                   className="w-full object-cover transition-transform duration-300 group-hover:scale-[1.01]"
+                  priority={i === 0}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3 shadow-lg">
@@ -199,10 +203,13 @@ export default function IvolutionPage() {
               className="max-w-5xl w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <Image
                 src={screenshots[selected].src}
                 alt={screenshots[selected].title}
+                width={1200}
+                height={675}
                 className="w-full rounded-xl shadow-2xl"
+                priority
               />
               <div className="mt-4 text-center">
                 <p className="text-white font-semibold">{screenshots[selected].title}</p>
