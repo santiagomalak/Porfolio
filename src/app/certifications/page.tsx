@@ -24,6 +24,8 @@ const universities = [
     hours: '250 horas · CRE 10',
     resolution: 'RD-2025-149-E-UNC-DEC#FCEFYN',
     description: 'Diplomatura universitaria de formación continua dictada por ICARO Asociación Civil en conjunto con la Secretaría de Extensión de la Facultad de Ciencias Exactas, Físicas y Naturales de la UNC.',
+    verifyUrl: 'https://fcefyn.unc.edu.ar/facultad/secretarias/extension/area-de-formacion-continua/cursos-y-diplomaturas/validador-de-certificados/',
+    verifyLabel: 'Validar en UNC (código: DS240502)',
     color: 'from-primary-50 to-indigo-50',
     border: 'border-primary-200',
     tag: 'bg-primary-100 text-primary-700',
@@ -200,7 +202,7 @@ export default function CertificationsPage() {
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-gray-900 transition-colors"
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
-                    Ver certificado
+                    {'verifyLabel' in u && u.verifyLabel ? u.verifyLabel as string : 'Ver certificado'}
                   </a>
                 )}
               </div>
