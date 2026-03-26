@@ -207,6 +207,21 @@ export default function CertificationsPage() {
           <h2 className="text-xl font-bold text-gray-900">Certificaciones internacionales</h2>
         </motion.div>
 
+        {/* Credly banner */}
+        <motion.a
+          href="https://www.credly.com/users/santiago-aragon-malak"
+          target="_blank"
+          rel="noopener noreferrer"
+          variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true }}
+          className="flex items-center justify-between gap-4 bg-orange-50 border border-orange-200 rounded-2xl px-7 py-5 mb-10 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
+        >
+          <div>
+            <p className="font-bold text-gray-900 mb-0.5">Ver todas mis badges verificadas en Credly</p>
+            <p className="text-sm text-gray-500">Google IT Support · IBM Web Dev · y más badges verificables</p>
+          </div>
+          <ExternalLink className="h-5 w-5 text-orange-500 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+        </motion.a>
+
         <div className="space-y-8">
           {certifications.map((group, gi) => (
             <motion.div
