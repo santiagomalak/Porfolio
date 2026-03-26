@@ -14,6 +14,7 @@ export default function Header() {
     { href: '/about', label: 'Sobre Mí' },
     { href: '/web-projects', label: 'Desarrollo Web' },
     { href: '/data-science', label: 'Data Science' },
+    { href: '/certifications', label: 'Certificaciones' },
     { href: '/contact', label: 'Contacto' },
   ]
 
