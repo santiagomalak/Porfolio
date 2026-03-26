@@ -35,6 +35,7 @@ const universities = [
     hours: '200 horas',
     resolution: 'FCEFyN UNC + Universidad San Ignacio de Loyola',
     description: 'Diplomatura dictada por la Facultad de Ciencias Exactas, Físicas y Naturales de la UNC en conjunto con Mundos E y la Universidad San Ignacio de Loyola. Fundamentos y práctica en seguridad informática.',
+    verifyUrl: 'https://certificados.mundose.com/?i=bW9kZT1QREYmcmVjb3JkPTM5eDM1MTMwNTk=',
     color: 'from-red-50 to-orange-50',
     border: 'border-red-200',
     tag: 'bg-red-100 text-red-700',
@@ -190,7 +191,18 @@ export default function CertificationsPage() {
                   </div>
                 </div>
                 <p className="text-gray-600 leading-relaxed mb-4 text-sm">{u.description}</p>
-                <p className="text-xs text-gray-400 font-mono">{u.resolution}</p>
+                <p className="text-xs text-gray-400 font-mono mb-4">{u.resolution}</p>
+                {'verifyUrl' in u && u.verifyUrl && (
+                  <a
+                    href={u.verifyUrl as string}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-gray-900 transition-colors"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Ver certificado
+                  </a>
+                )}
               </div>
             ))}
           </div>
