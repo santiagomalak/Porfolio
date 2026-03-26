@@ -153,7 +153,7 @@ export default function AboutPage() {
           {/* StackAdvisor */}
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}
-            className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-2xl border border-primary-200 p-8"
+            className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-2xl border border-primary-200 p-8 group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
           >
             <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
               <div>
@@ -170,13 +170,22 @@ export default function AboutPage() {
               → motor de recomendación con 25+ stacks evaluados → roadmap de 12 semanas personalizado.
               Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-5">
               {['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine', 'SaaS'].map((t) => (
                 <span key={t} className="px-2.5 py-1 bg-white border border-primary-200 text-primary-700 text-xs font-medium rounded-full">
                   {t}
                 </span>
               ))}
             </div>
+            <a
+              href="https://stackadvisor-nu.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary-700 hover:text-primary-900 transition-colors"
+            >
+              Visitar StackAdvisor
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </a>
           </motion.div>
 
           {/* Job Hunting Automation */}
