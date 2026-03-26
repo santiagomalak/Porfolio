@@ -1,77 +1,44 @@
 <svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="450" fill="url(#bg_mail)"/>
-
-  <!-- Grid -->
-  <g opacity="0.06" stroke="#7c3aed" stroke-width="1">
-    <line x1="0" y1="90" x2="800" y2="90"/>
-    <line x1="0" y1="180" x2="800" y2="180"/>
-    <line x1="0" y1="270" x2="800" y2="270"/>
-    <line x1="0" y1="360" x2="800" y2="360"/>
-    <line x1="160" y1="0" x2="160" y2="450"/>
-    <line x1="320" y1="0" x2="320" y2="450"/>
-    <line x1="480" y1="0" x2="480" y2="450"/>
-    <line x1="640" y1="0" x2="640" y2="450"/>
-  </g>
-
-  <!-- PCA cluster visualization -->
-  <g opacity="0.18">
-    <!-- Cluster 0 -->
-    <circle cx="560" cy="150" r="50" fill="#7c3aed"/>
-    <!-- Cluster 1 -->
-    <circle cx="660" cy="200" r="35" fill="#6d28d9"/>
-    <!-- Cluster 2 -->
-    <circle cx="610" cy="280" r="45" fill="#8b5cf6"/>
-    <!-- Cluster 3 -->
-    <circle cx="720" cy="300" r="28" fill="#7c3aed"/>
-    <!-- Cluster 4 -->
-    <circle cx="530" cy="310" r="30" fill="#6d28d9"/>
-    <!-- Cluster 5 -->
-    <circle cx="680" cy="130" r="22" fill="#a78bfa"/>
-  </g>
-
-  <!-- Silhouette score bars -->
-  <g opacity="0.2">
-    <rect x="480" y="380" width="12" height="20" rx="2" fill="#7c3aed"/>
-    <rect x="496" y="365" width="12" height="35" rx="2" fill="#7c3aed"/>
-    <rect x="512" y="350" width="12" height="50" rx="2" fill="#8b5cf6"/>
-    <rect x="528" y="330" width="12" height="70" rx="2" fill="#a78bfa"/>
-    <rect x="544" y="340" width="12" height="60" rx="2" fill="#8b5cf6"/>
-    <rect x="560" y="360" width="12" height="40" rx="2" fill="#7c3aed"/>
-    <rect x="576" y="370" width="12" height="30" rx="2" fill="#7c3aed"/>
-  </g>
-
-  <!-- Badge: 6 clusters -->
-  <rect x="630" y="30" width="140" height="50" rx="8" fill="#7c3aed" opacity="0.9"/>
-  <text x="700" y="51" font-family="Arial, sans-serif" font-size="11" fill="#d4b8ff" text-anchor="middle">Segmentos</text>
-  <text x="700" y="71" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle" font-weight="bold">6 clusters</text>
-
-  <!-- Badge: records -->
-  <rect x="630" y="90" width="140" height="50" rx="8" fill="#1a0a2e" opacity="0.9"/>
-  <text x="700" y="111" font-family="Arial, sans-serif" font-size="10" fill="#888" text-anchor="middle">Registros</text>
-  <text x="700" y="131" font-family="Arial, sans-serif" font-size="16" fill="#a78bfa" text-anchor="middle" font-weight="bold">212.292</text>
-
-  <!-- Main text -->
-  <text x="60" y="120" font-family="monospace" font-size="11" fill="#8b5cf6" opacity="0.9" letter-spacing="3">K-MEANS · PCA · SILHOUETTE SCORE · CLUSTERING</text>
-
-  <text x="60" y="200" font-family="Georgia, serif" font-size="52" font-weight="bold" fill="#ffffff">Segmentación</text>
-  <text x="60" y="255" font-family="Georgia, serif" font-size="52" font-weight="bold" fill="#8b5cf6">de Usuarios</text>
-
-  <text x="60" y="310" font-family="Arial, sans-serif" font-size="16" fill="#888">212.292 registros · 6 segmentos · Mailing</text>
-
-  <!-- Pills -->
-  <rect x="60" y="340" width="90" height="26" rx="13" fill="#7c3aed" opacity="0.9"/>
-  <text x="105" y="357" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="bold">K-Means</text>
-
-  <rect x="162" y="340" width="80" height="26" rx="13" fill="#1a0a2e" opacity="0.9"/>
-  <text x="202" y="357" font-family="Arial, sans-serif" font-size="11" fill="#888" text-anchor="middle">Silhouette</text>
-
-  <rect x="254" y="340" width="60" height="26" rx="13" fill="#1a0a2e" opacity="0.9"/>
-  <text x="284" y="357" font-family="Arial, sans-serif" font-size="11" fill="#888" text-anchor="middle">PCA</text>
-
   <defs>
-    <linearGradient id="bg_mail" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#0a0014"/>
       <stop offset="100%" stop-color="#08000f"/>
     </linearGradient>
+    <filter id="blur-lg"><feGaussianBlur stdDeviation="18"/></filter>
+    <filter id="blur-md"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="blur-sm"><feGaussianBlur stdDeviation="5"/></filter>
   </defs>
+
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Library watermarks -->
+  <g filter="url(#blur-lg)" opacity="0.18">
+    <text x="420" y="210" font-family="monospace" font-size="125" fill="#7c3aed" text-anchor="middle">K-Means</text>
+  </g>
+  <g filter="url(#blur-md)" opacity="0.13">
+    <text x="660" y="340" font-family="monospace" font-size="85" fill="#8b5cf6" text-anchor="middle">sklearn</text>
+  </g>
+  <g filter="url(#blur-md)" opacity="0.10">
+    <text x="140" y="390" font-family="monospace" font-size="70" fill="#7c3aed" text-anchor="middle">pandas</text>
+  </g>
+  <g filter="url(#blur-sm)" opacity="0.12">
+    <text x="630" y="115" font-family="monospace" font-size="52" fill="#a78bfa" text-anchor="middle">PCA</text>
+  </g>
+
+  <!-- Grid -->
+  <g opacity="0.05" stroke="#7c3aed" stroke-width="1">
+    <line x1="0" y1="150" x2="800" y2="150"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="200" y1="0" x2="200" y2="450"/>
+    <line x1="500" y1="0" x2="500" y2="450"/>
+  </g>
+
+  <!-- Accent line -->
+  <rect x="60" y="100" width="3" height="160" rx="2" fill="#7c3aed" opacity="0.8"/>
+
+  <!-- Main content -->
+  <text x="80" y="135" font-family="monospace" font-size="11" fill="#8b5cf6" opacity="0.7" letter-spacing="3">K-MEANS · PCA · SILHOUETTE SCORE · CLUSTERING</text>
+  <text x="80" y="200" font-family="Georgia, serif" font-size="56" font-weight="bold" fill="#ffffff">Segmentación</text>
+  <text x="80" y="258" font-family="Georgia, serif" font-size="44" font-weight="bold" fill="#8b5cf6">de Usuarios</text>
+  <text x="80" y="295" font-family="Arial, sans-serif" font-size="14" fill="#888">212.292 registros · 6 segmentos · Silhouette · PCA</text>
 </svg>
