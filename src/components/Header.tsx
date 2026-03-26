@@ -37,7 +37,7 @@ export default function Header() {
           <div className="flex flex-col leading-none">
             <span className="font-bold text-[15px] text-gray-900 tracking-tight">Santiago Aragon</span>
             <span className="text-[10px] font-semibold text-primary-600 tracking-[0.12em] uppercase mt-0.5">
-              Dev &amp; Data Scientist
+              Data Engineer &amp; Dev
             </span>
           </div>
         </Link>
