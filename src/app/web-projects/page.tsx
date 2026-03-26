@@ -34,17 +34,6 @@ const webProjects = [
     type: 'web' as const,
     accentColor: 'green' as const,
   },
-  {
-    title: 'Portfolio Personal',
-    description: 'Portfolio profesional de doble especialidad (Desarrollo Web & Data Science) construido con Next.js 14 App Router, animaciones con Framer Motion, sistema de diseño personalizado con Tailwind CSS y formulario de contacto funcional via Resend.',
-    tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Resend'],
-    highlight: 'Este sitio',
-    image: '/project-portfolio.png',
-    githubUrl: 'https://github.com/santiagomalak/Porfolio',
-    liveUrl: 'https://santiagomalak.is-a.dev',
-    type: 'web' as const,
-    accentColor: 'purple' as const,
-  },
 ]
 
 export default function WebProjects() {
