@@ -25,7 +25,7 @@ const webProjects = [
   },
   {
     title: 'Wayra Huasi — Plataforma de Alquiler',
-    description: 'Landing page profesional para servicio de alquiler de departamentos amueblados en Argentina.Diseño responsivo con galería de imágenes, descripción de amenities y sistema de contacto directo integrado con WhatsApp para consultas inmediatas.',
+    description: 'Sitio web completo para complejo de departamentos amueblados en Córdoba, Argentina. Galería interactiva de unidades, sección de amenities, mapa de ubicación y sistema de reservas con contacto directo vía WhatsApp. Diseño responsivo optimizado para conversión.',
     tags: ['HTML', 'CSS', 'JavaScript', 'Responsive Design', 'WhatsApp API'],
     highlight: 'Live',
     image: '/project-wayrahuasi.png',
