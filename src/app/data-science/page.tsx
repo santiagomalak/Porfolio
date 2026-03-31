@@ -16,6 +16,16 @@ const fadeUp = {
 
 const dataScienceProjects = [
   {
+    title: 'E-Commerce Data Platform — Olist Brazil',
+    description: 'Pipeline de datos end-to-end sobre 100k+ órdenes reales de e-commerce. PostgreSQL + dbt con 4 capas de modelos: staging → intermediate → marts. RFM segmentation, cohort retention, revenue trends y seller performance — todo en SQL puro. CI/CD con GitHub Actions.',
+    tags: ['PostgreSQL', 'dbt', 'Python', 'Docker', 'SQL', 'RFM', 'Cohort Analysis', 'GitHub Actions'],
+    highlight: '100k+ órdenes · Analytics Engineering',
+    image: '/ds-ecommerce-cover.svg',
+    githubUrl: 'https://github.com/santiagomalak/ecommerce-data-platform',
+    type: 'datascience' as const,
+    accentColor: 'orange' as const,
+  },
+  {
     title: 'Performance Monitoring System — Ivolution',
     description: 'Sistema de análisis de rendimiento diseñado de cero para más de 300 personas — atletas, profesionales de la salud y equipos completos. Alertas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO) con umbrales dinámicos por percentil (p25/p75), ventanas móviles de evaluación y soporte multilingüe ES/EN/PT. Hoy es la herramienta principal de toma de decisiones de la organización.',
     tags: ['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'],
