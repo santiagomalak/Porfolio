@@ -23,7 +23,7 @@ const DASHBOARDS = [
     title:       'Crypto Live Dashboard',
     subtitle:    'BTC · ETH · SOL · BNB · XRP — Binance WebSocket',
     description: 'Dashboard en tiempo real con velas TradingView, volumen, 6 timeframes y detección de anomalías por z-score. Feed de trades en vivo.',
-    liveUrl:     'https://crypto-dashboard-psi-two.vercel.app',          // ← swap
+    liveUrl:     'https://crypto-dashboard-five-dun.vercel.app',
     githubUrl:   'https://github.com/santiagomalak/crypto-dashboard',
     color:       '#6366f1',
     icon:        TrendingUp,
