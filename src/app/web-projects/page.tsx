@@ -13,6 +13,17 @@ const fadeUp = {
 
 const webProjects = [
   {
+    title: 'Crypto Live Dashboard',
+    description: 'Dashboard en tiempo real conectado a Binance WebSocket: velas TradingView, volumen, 6 timeframes (1m→1d) y detección de anomalías por z-score sobre retornos de precio. Feed de trades en vivo con color buy/sell. BTC · ETH · SOL · BNB · XRP. Sin API key — datos 100% públicos.',
+    tags: ['Next.js', 'WebSocket', 'Binance API', 'lightweight-charts', 'Zustand', 'Z-score'],
+    highlight: 'Tiempo real · LIVE',
+    image: '/crypto-cover.svg',
+    githubUrl: 'https://github.com/santiagomalak/crypto-dashboard',
+    liveUrl: 'https://crypto-dashboard-five-dun.vercel.app',
+    type: 'web' as const,
+    accentColor: 'purple' as const,
+  },
+  {
     title: 'StackAdvisor',
     description: 'SaaS que resuelve la parálisis de decisión tecnológica: 13 preguntas inteligentes → stack ideal con justificación detallada + roadmap de 12 semanas personalizado. Motor de recomendación propio con 25+ stacks evaluados. Pensado para founders sin CTO y developers tomando decisiones arquitectónicas críticas.',
     tags: ['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine', 'SaaS'],

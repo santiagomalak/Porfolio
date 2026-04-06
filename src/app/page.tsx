@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Code2, Database, BarChart3, Zap } from 'lucide-react'
+import { ArrowRight, Code2, Database, BarChart3, Zap, TrendingUp, ExternalLink } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const fadeUp = {
@@ -84,7 +84,7 @@ export default function Home() {
 
           <motion.div
             variants={fadeUp} initial="hidden" animate="visible" custom={0.28}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap"
           >
             <Link
               href="/data-science"
@@ -92,6 +92,13 @@ export default function Home() {
             >
               Ver proyectos de datos
               <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/dashboards"
+              className="px-8 py-3.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-indigo-200 hover:scale-[1.02]"
+            >
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              Dashboards live
             </Link>
             <Link
               href="/web-projects"
@@ -175,6 +182,83 @@ export default function Home() {
               Ver todos los proyectos <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── Live Dashboards ── */}
+      <section className="py-16 bg-[#080810]">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <motion.div
+            variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8"
+          >
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-400 mb-2">Live Projects</p>
+              <h2 className="text-2xl font-bold text-white">Dashboards interactivos</h2>
+              <p className="text-zinc-400 text-sm mt-1">Datos reales, deployados en producción — abrís y funcionan.</p>
+            </div>
+            <Link
+              href="/dashboards"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-indigo-400 border border-indigo-500/30 hover:bg-indigo-500/10 transition-all whitespace-nowrap"
+            >
+              Ver todos <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              {
+                title: 'E-Commerce Analytics',
+                sub: 'Olist Brazil · 100k+ órdenes · dbt + PostgreSQL',
+                color: '#FF694B',
+                url: 'https://ecommerce-dashboard-puce.vercel.app',
+                tags: ['PostgreSQL', 'dbt', 'RFM', 'Cohort', 'i18n'],
+                Icon: Database,
+              },
+              {
+                title: 'Crypto Live Dashboard',
+                sub: 'BTC · ETH · SOL · BNB · XRP — Binance WebSocket',
+                color: '#6366f1',
+                url: 'https://crypto-dashboard-five-dun.vercel.app',
+                tags: ['WebSocket', 'TradingView', 'Z-score', 'Zustand'],
+                Icon: TrendingUp,
+              },
+            ].map((d) => (
+              <motion.a
+                key={d.title}
+                href={d.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
+                className="group p-6 rounded-2xl transition-all hover:-translate-y-1"
+                style={{ background: '#0f0f17', border: `1px solid #1e1e32` }}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2.5">
+                    <d.Icon size={16} style={{ color: d.color }} />
+                    <span className="font-semibold text-white text-sm">{d.title}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full"
+                      style={{ background: '#22c55e18', color: '#22c55e', border: '1px solid #22c55e30' }}>
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                      LIVE
+                    </span>
+                    <ExternalLink size={12} className="text-zinc-600 group-hover:text-zinc-400 transition-colors" />
+                  </div>
+                </div>
+                <p className="text-zinc-500 text-xs mb-4">{d.sub}</p>
+                <div className="flex gap-1.5 flex-wrap">
+                  {d.tags.map(t => (
+                    <span key={t} className="text-[10px] px-2 py-0.5 rounded"
+                      style={{ background: `${d.color}12`, color: d.color }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
       </section>
 
