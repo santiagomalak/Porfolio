@@ -11,7 +11,7 @@ const DASHBOARDS = [
     title:       'E-Commerce Analytics',
     subtitle:    'Olist Brazil · 100k+ orders · dbt + PostgreSQL',
     description: 'Pipeline de datos end-to-end con segmentación RFM, cohort retention, revenue trends y seller performance. Datos reales de 93k clientes únicos. Soporte EN/ES/PT.',
-    liveUrl:     'https://ecommerce-dashboard-d09zf8xrn-santiago-aragons-projects.vercel.app',
+    liveUrl:     'https://ecommerce-dashboard-puce.vercel.app',
     githubUrl:   'https://github.com/santiagomalak/ecommerce-dashboard',
     color:       '#FF694B',
     icon:        BarChart2,
