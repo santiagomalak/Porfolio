@@ -4,9 +4,9 @@
 
 # Hey, soy Santiago 👋
 
-**Data Engineer · Analytics Engineer · Full-Stack Developer**
+**Data Scientist · Analytics Engineer · Full-Stack Developer**
 
-Córdoba, Argentina &nbsp;·&nbsp; Apasionado por convertir datos en decisiones
+Córdoba, Argentina &nbsp;·&nbsp; Convierto datos en decisiones reales
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/aragonmalak)
 [![Portfolio](https://img.shields.io/badge/Portfolio-111827?style=for-the-badge&logo=vercel&logoColor=white)](https://santiagomalak.is-a.dev)
@@ -18,11 +18,9 @@ Córdoba, Argentina &nbsp;·&nbsp; Apasionado por convertir datos en decisiones
 
 ## Sobre mí
 
-Data Engineer y Data Scientist con foco en convertir datos en decisiones reales. Me especializo en diseñar pipelines, modelos y dashboards que los equipos realmente usan para operar mejor.
+Data Scientist y Analytics Engineer con foco en construir infraestructura de datos que los equipos realmente usan. Me especializo en el stack completo: desde la ingesta y modelado hasta el análisis estadístico y machine learning.
 
-En mi último rol trabajé con SQL, BigQuery y dbt para construir sistemas de análisis usados por más de 300 personas — atletas, profesionales y equipos completos. Desarrollé múltiples procesos de análisis, modelos de datos y dashboards que se convirtieron en la herramienta principal de toma de decisiones de la organización.
-
-Actualmente independiente, enfocado en proyectos propios. Estoy construyendo **StackAdvisor**, un SaaS que resuelve uno de los problemas más comunes de cualquier equipo técnico: elegir el stack correcto desde el inicio. Además, curso una Tecnicatura en Programación para afianzar y formalizar todo lo que construí de forma autodidacta.
+En mi último rol diseñé de cero un sistema de análisis de rendimiento para más de **300 personas** usando SQL, BigQuery y dbt — hoy es la herramienta principal de toma de decisiones de la organización. Actualmente construyo **StackAdvisor**, un SaaS que ayuda a founders y developers a elegir el stack correcto desde el inicio.
 
 ---
 
@@ -34,89 +32,86 @@ Actualmente independiente, enfocado en proyectos propios. Estoy construyendo **S
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat-square&logo=postgresql&logoColor=white)
 ![BigQuery](https://img.shields.io/badge/BigQuery-4285F4?style=flat-square&logo=google-cloud&logoColor=white)
 ![dbt](https://img.shields.io/badge/dbt-FF694B?style=flat-square&logo=dbt&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white)
 ![Metabase](https://img.shields.io/badge/Metabase-509EE3?style=flat-square&logo=metabase&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=flat-square&logo=python&logoColor=white)
-![Seaborn](https://img.shields.io/badge/Seaborn-3776AB?style=flat-square&logo=python&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
 
-**Web & Automatización**
+**Web & DevOps**
 
-![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)
 ![n8n](https://img.shields.io/badge/n8n-EA4B71?style=flat-square&logo=n8n&logoColor=white)
-![Security](https://img.shields.io/badge/Ciberseguridad-222?style=flat-square&logo=hackthebox&logoColor=00FF41)
 
 ---
 
 ## Proyectos destacados
 
-### 🏗️ Performance Monitoring System — *Ivolution*
+### Performance Monitoring System — *Ivolution*
 
-Sistema de análisis de indicadores de rendimiento diseñado de cero para más de **300 personas** — atletas, profesionales de la salud y equipos completos. Construido con **SQL + BigQuery + dbt + Metabase**, incluye múltiples procesos de análisis, modelos de datos, ventanas móviles de evaluación, alertas dinámicas de tres estados con umbrales por percentil (p25/p75) y soporte multilingüe ES/EN/PT. Se convirtió en la herramienta principal de toma de decisiones de la organización.
+Sistema de análisis de rendimiento diseñado de cero para más de **300 personas**. Construido con SQL + BigQuery + dbt + Metabase. Alertas de tres estados con umbrales dinámicos por percentil (p25/p75), ventanas móviles de evaluación y soporte ES/EN/PT. Herramienta principal de decisión de la organización.
 
 `SQL` `BigQuery` `dbt` `Metabase` `Python` `Analytics Engineering`
 
 ---
 
-### 🤖 [StackAdvisor](https://github.com/santiagomalak/StackAdvisor) — *SaaS · En producción*
+### [StackAdvisor](https://github.com/santiagomalak/StackAdvisor) — *SaaS · En producción*
 
-Plataforma que resuelve la parálisis de análisis tecnológico: el usuario responde 13 preguntas sobre su proyecto y recibe el stack ideal con justificación detallada y un roadmap de 12 semanas. Pensado para founders sin CTO y developers tomando decisiones arquitectónicas críticas. Motor de recomendación propio con 25+ stacks evaluados.
+13 preguntas → stack ideal con justificación técnica y roadmap de 12 semanas. Motor de recomendación propio con 25+ stacks evaluados. Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.
 
-`Next.js` `TypeScript` `React` `Node.js` `TailwindCSS`
-
----
-
-### 📊 [IBM HR Analytics](https://github.com/santiagomalak/IBM-Proyect)
-
-Análisis end-to-end de deserción laboral sobre dataset real de IBM con +1.400 registros. Implementa Random Forest, K-Means clustering y PCA para identificar los factores con mayor impacto en la rotación de empleados y construir un modelo predictivo accionable.
-
-`Python` `Scikit-learn` `Pandas` `Random Forest` `PCA` `Seaborn`
+`Next.js` `TypeScript` `React` `TailwindCSS`
 
 ---
 
-### 🎯 [Segmentación de Usuarios — Marketing](https://github.com/santiagomalak/Datos-de-Mailing)
+### [NLP & Sentiment Analysis — Yelp Reviews](https://github.com/santiagomalak/NLP-Yelp)
 
-Sistema de segmentación no supervisada para campañas de email marketing. Clustering con K-Means, análisis de silueta para selección óptima de k y reducción dimensional con PCA. El output permite personalizar estrategias por segmento con criterio estadístico sólido.
+Pipeline NLP completo sobre **27.290 reseñas** reales (2005–2015). Análisis de sentimiento con TextBlob, Topic Modeling con LDA (5 tópicos), clustering semántico K-Means sobre TF-IDF. Insight: reseñas más largas → sentimiento más negativo.
 
-`Python` `K-Means` `PCA` `Scikit-learn` `Pandas`
-
----
-
-### 🌦️ [Data Pipeline — Weather AUS](https://github.com/santiagomalak/weatherAUS)
-
-Pipeline completo de preprocesamiento sobre datos climáticos de Australia. Imputación de valores faltantes, encoding de variables categóricas, feature engineering y estandarización. Base para cualquier modelo de predicción de lluvia sobre el dataset original de Kaggle.
-
-`Python` `Pandas` `Scikit-learn` `Feature Engineering` `Data Cleaning`
+`Python` `NLTK` `TextBlob` `TF-IDF` `LDA` `K-Means`
 
 ---
 
-### 📊 Analytics Dashboard — Performance
+### [Segmentación de Usuarios — Email Marketing](https://github.com/santiagomalak/Datos-de-Mailing)
 
-Dashboard web full-stack para visualización de métricas de rendimiento en tiempo real. REST API en Node.js + frontend interactivo con Chart.js, containerizado con Docker.
+Segmentación no supervisada sobre **212.292 registros** reales de mailing. K-Means + MiniBatchKMeans con Silhouette Score para k óptimo (6 segmentos). Output: recomendaciones de estrategia por segmento exportadas a Excel.
 
-`React` `Node.js` `PostgreSQL` `Chart.js` `Docker`
+`Python` `K-Means` `PCA` `Silhouette Score` `Scikit-learn`
 
 ---
 
-### 🔍 Job Hunting Automation *(en construcción)*
+### [IBM HR Analytics — Attrition Prediction](https://github.com/santiagomalak/IBM-Proyect)
 
-Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, scoring con IA, checkpoint de aprobación vía Telegram y generación de CV adaptado. Pensado para correr desde VPS de forma autónoma.
+Análisis end-to-end sobre **1.470 empleados** del dataset oficial de IBM. Random Forest para predicción de deserción, K-Means + PCA para segmentación. Insights accionables para reducir churn en RR.HH.
 
-`n8n` `Telegram API` `IA` `Automatización` `Docker`
+`Python` `Random Forest` `K-Means` `PCA` `Scikit-learn`
+
+---
+
+### [House Price Prediction](https://github.com/santiagomalak/House-Price-Kaggle)
+
+Predicción de precios con **80+ features** sobre dataset Kaggle. Regresión con RandomForestRegressor + Clasificación con 84% de accuracy. Pipeline completo con imputación, encoding y StandardScaler.
+
+`Python` `Scikit-learn` `RandomForest` `Pipeline` `Pandas`
+
+---
+
+### [Spotify Music Analysis — EDA](https://github.com/santiagomalak/Spotify-EDA)
+
+EDA sobre **2.000 canciones** de Spotify (1998–2020) · 59 géneros. Correlación entre audio features, tendencias de popularidad por género y evolución temporal con tema visual dark/Spotify.
+
+`Python` `Pandas` `Seaborn` `Matplotlib` `EDA`
 
 ---
 
 ## Formación
 
-- 📐 **Tecnicatura en Tecnologías de la Programación** — UPSO *(en curso)*
-- 📊 **Diplomatura en Ciencia de Datos** — UNC / ICARO · 250hs · 2025
-- 🔒 **Diplomatura en Ciberseguridad** — USIL / Mundos E · 200hs · 2025
+- **Tecnicatura en Tecnologías de la Programación** — UPSO *(en curso)*
+- **Diplomatura en Ciencia de Datos & ML** — UNC / ICARO · 250hs · 2025
+- **Diplomatura en Ciberseguridad** — UNC / USIL / Mundos E · 200hs · 2025
 
 ---
 
@@ -132,12 +127,10 @@ Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes, sco
 
 ---
 
-## ¿Hablamos?
-
-Abierto a roles remotos de **Analytics Engineer**, **Data Engineer**, **Data Scientist**, **Full-Stack Developer** o cualquier rol que combine datos y producto. También a proyectos freelance — datos, web, automatización, lo que sea desafiante y tenga impacto real.
-
 <div align="center">
 
-**santiagoaragonmalak@gmail.com** &nbsp;·&nbsp; [linkedin.com/in/aragonmalak](https://linkedin.com/in/aragonmalak) &nbsp;·&nbsp; [santiagoaragon.vercel.app](https://santiagomalak.is-a.dev)
+Abierto a roles de **Analytics Engineer · Data Engineer · Data Scientist**
+
+**santiagoaragonmalak@gmail.com** &nbsp;·&nbsp; [linkedin.com/in/aragonmalak](https://linkedin.com/in/aragonmalak) &nbsp;·&nbsp; [santiagomalak.is-a.dev](https://santiagomalak.is-a.dev)
 
 </div>
