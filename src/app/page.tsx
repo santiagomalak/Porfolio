@@ -223,6 +223,14 @@ export default function Home() {
                 tags: ['WebSocket', 'TradingView', 'Z-score', 'Zustand'],
                 Icon: TrendingUp,
               },
+              {
+                title: 'Argentina Macro Dashboard',
+                sub: 'Dólar · Inflación · Riesgo País — datos en tiempo real',
+                color: '#74b9ff',
+                url: 'https://argentina-macro.vercel.app',
+                tags: ['dolarapi', 'INDEC', 'MEP', 'CCL', 'Blue'],
+                Icon: ExternalLink,
+              },
             ].map((d) => (
               <motion.a
                 key={d.title}

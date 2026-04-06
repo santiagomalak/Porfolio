@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, BarChart2, TrendingUp, Database, Zap } from 'lucide-react'
+import { ExternalLink, Github, BarChart2, TrendingUp, Database, Globe } from 'lucide-react'
 
 // ── Config — swap URLs once deployed ─────────────────────────────────────────
 const DASHBOARDS = [
@@ -28,6 +28,18 @@ const DASHBOARDS = [
     color:       '#6366f1',
     icon:        TrendingUp,
     tags:        ['Next.js', 'WebSocket', 'Binance API', 'lightweight-charts', 'Zustand'],
+    status:      'live' as const,
+  },
+  {
+    id:          'argentina',
+    title:       'Argentina Macro Dashboard',
+    subtitle:    'Dólar · Inflación · Riesgo País — datos en tiempo real',
+    description: 'Tipos de cambio en vivo (oficial, blue, MEP, CCL, cripto, tarjeta), brecha cambiaria, evolución histórica, inflación mensual e interanual (INDEC) y riesgo país EMBI+. Polling cada 60s.',
+    liveUrl:     'https://argentina-macro.vercel.app',
+    githubUrl:   'https://github.com/santiagomalak/Argentina-Macro',
+    color:       '#74b9ff',
+    icon:        Globe,
+    tags:        ['Next.js', 'dolarapi', 'INDEC', 'Recharts', 'ArgentinaDatos'],
     status:      'live' as const,
   },
 ]
@@ -187,12 +199,12 @@ export default function DashboardsPage() {
                 tags: ['dbt', 'PostgreSQL', 'Python', 'Docker'],
               },
               {
-                title: 'Coming soon — Argentina Macro',
-                desc: 'Inflación INDEC, dólar blue, reservas BCRA. Datos económicos de Argentina en tiempo real.',
+                title: 'Argentina Macro — Repo',
+                desc: 'Código fuente del dashboard macroeconómico: dólar, inflación INDEC y riesgo país.',
                 color: '#74b9ff',
-                icon: Zap,
-                url: null,
-                tags: ['En desarrollo', 'BCRA API', 'INDEC'],
+                icon: Globe,
+                url: 'https://github.com/santiagomalak/Argentina-Macro',
+                tags: ['Next.js', 'dolarapi', 'INDEC', 'ArgentinaDatos'],
               },
             ].map(p => {
               const PIcon = p.icon
