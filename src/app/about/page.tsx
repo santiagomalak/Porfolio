@@ -121,9 +121,9 @@ export default function AboutPage() {
               <p className="text-gray-600 text-sm leading-relaxed">
                 Diseñé de cero el sistema de análisis de rendimiento de la empresa: pipelines en BigQuery,
                 modelos en dbt y dashboards en Metabase con alertas dinámicas por percentil (p25/p75) y
-                soporte multilingüe ES/EN/PT. Usado por más de 300 personas — atletas, profesionales de
-                la salud y equipos completos. Se convirtió en la herramienta principal de toma de decisiones
-                de la organización.
+                soporte multilingüe ES/EN/PT. 967 atletas monitoreados en 13 deportes, 10.000+ mediciones
+                registradas. El sistema sigue operativo más de 1 año después de mi salida — herramienta
+                principal de toma de decisiones de la organización.
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
                 {['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'].map((t) => (

@@ -28,9 +28,9 @@ const dataScienceProjects = [
   },
   {
     title: 'Performance Monitoring System — Ivolution',
-    description: 'Sistema de análisis de rendimiento diseñado de cero para más de 300 personas — atletas, profesionales de la salud y equipos completos. Alertas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO) con umbrales dinámicos por percentil (p25/p75), ventanas móviles de evaluación y soporte multilingüe ES/EN/PT. Hoy es la herramienta principal de toma de decisiones de la organización.',
+    description: '967 atletas monitoreados en 13 deportes. Alertas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO) con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte multilingüe ES/EN/PT. El sistema sigue operativo más de 1 año después de mi salida — herramienta principal de decisiones de la organización.',
     tags: ['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'],
-    highlight: '+300 usuarios',
+    highlight: '967 atletas · 13 deportes',
     image: '/ivolution-dashboard.png',
     liveUrl: '/data-science/ivolution',
     type: 'datascience' as const,

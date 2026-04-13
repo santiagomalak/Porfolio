@@ -75,9 +75,9 @@ export default function IvolutionPage() {
           </h1>
           <p className="text-xl text-gray-500 font-medium mb-6">Ivolution Sport Science</p>
           <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
-            Sistema de análisis de rendimiento diseñado de cero para más de <strong>300 personas</strong> —
-            atletas, profesionales de la salud y equipos completos. Construido con SQL, BigQuery, dbt y
-            Metabase. Hoy es la herramienta principal de toma de decisiones de la organización.
+            Sistema de análisis de rendimiento diseñado de cero para <strong>967 atletas en 13 deportes</strong> —
+            fútbol, rugby, atletismo, hockey, natación, basketball y más. Construido con SQL, BigQuery, dbt y
+            Metabase. El sistema sigue operativo más de 1 año después de mi salida.
           </p>
         </motion.div>
 
@@ -99,10 +99,10 @@ export default function IvolutionPage() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
         >
           {[
-            { value: '300+', label: 'usuarios activos' },
-            { value: '3', label: 'estados de alerta' },
-            { value: 'p25/p75', label: 'umbrales dinámicos' },
-            { value: 'ES/EN/PT', label: 'soporte multilingüe' },
+            { value: '967', label: 'atletas monitoreados' },
+            { value: '13', label: 'deportes cubiertos' },
+            { value: '10k+', label: 'mediciones registradas' },
+            { value: '1+ año', label: 'activo post-salida' },
           ].map((stat) => (
             <div key={stat.label} className="bg-white rounded-xl border border-gray-200 p-5 text-center">
               <p className="text-2xl font-bold text-primary-700 mb-1">{stat.value}</p>
