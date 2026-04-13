@@ -60,7 +60,7 @@ export default function DashboardsPage() {
     <div className="min-h-screen bg-[#080810] text-white">
       {/* Hero */}
       <section className="border-b border-white/5 bg-[#0c0c18]">
-        <div className="max-w-6xl mx-auto px-6 py-14">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-400 mb-4">
               Live Projects
@@ -76,10 +76,10 @@ export default function DashboardsPage() {
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         {/* Tab selector */}
         <motion.div initial="hidden" animate="visible" custom={0.1} variants={fadeUp}
-          className="flex gap-3 mb-8 flex-wrap">
+          className="flex gap-2 mb-6 flex-wrap">
           {DASHBOARDS.map(d => {
             const DIcon = d.icon
             const isActive = active === d.id
@@ -139,10 +139,31 @@ export default function DashboardsPage() {
           </div>
         </motion.div>
 
-        {/* Iframe embed */}
+        {/* Mobile: card con botón abrir */}
+        <motion.div key={active + '-mobile'} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="sm:hidden rounded-2xl overflow-hidden p-8 flex flex-col items-center gap-6 text-center"
+          style={{ border: `1px solid ${current.color}30`, background: '#0a0a0f' }}>
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center"
+            style={{ background: `${current.color}18`, border: `1px solid ${current.color}30` }}>
+            <Icon size={28} style={{ color: current.color }} />
+          </div>
+          <div>
+            <p className="text-white font-semibold text-lg mb-1">{current.title}</p>
+            <p className="text-zinc-500 text-sm">{current.subtitle}</p>
+          </div>
+          <a href={current.liveUrl} target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all w-full justify-center"
+            style={{ background: current.color, color: '#fff' }}>
+            <ExternalLink size={15} /> Abrir dashboard
+          </a>
+          <p className="text-zinc-700 text-xs">Mejor experiencia en desktop</p>
+        </motion.div>
+
+        {/* Desktop: iframe embed */}
         <motion.div key={active + '-frame'} initial={{ opacity: 0, scale: 0.99 }}
           animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }}
-          className="relative rounded-2xl overflow-hidden"
+          className="hidden sm:block relative rounded-2xl overflow-hidden"
           style={{ border: `1px solid ${current.color}30`, background: '#0a0a0f' }}>
 
           {/* Browser chrome */}
