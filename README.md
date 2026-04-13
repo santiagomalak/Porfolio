@@ -1,33 +1,44 @@
-# Santiago Aragon — Portfolio
+# Santiago Malak — Portfolio
 
 **Data Scientist & Full-Stack Developer**
 
-Portfolio profesional que combina proyectos de desarrollo web y ciencia de datos.
+Portfolio profesional con proyectos de desarrollo web, dashboards interactivos y ciencia de datos.
 
-🌐 **Live:** [santiagoaragon.vercel.app](https://santiagoaragon.vercel.app)
+Live: [santiagomalak.is-a.dev](https://santiagomalak.is-a.dev)
 
 ---
 
 ## Stack
 
-| Categoría | Tecnologías |
+| Categoria | Tecnologias |
 |-----------|-------------|
-| Framework | Next.js 14 (App Router) |
+| Framework | Next.js 15 (App Router) |
 | Lenguaje | TypeScript |
 | Estilos | Tailwind CSS |
 | Animaciones | Framer Motion |
 | Email | Resend |
 | Deploy | Vercel |
 
-## Páginas
+## Paginas
 
-| Ruta | Descripción |
+| Ruta | Descripcion |
 |------|-------------|
-| `/` | Hero con animaciones, badge de disponibilidad y tech stack pills |
-| `/about` | Bio, experiencia en Ivolution, stack tecnológico, filosofía |
-| `/web-projects` | StackAdvisor, Wayra Huasi, Portfolio |
+| `/` | Hero con animaciones, live projects, tech stack pills |
+| `/about` | Bio, experiencia en Ivolution, stack tecnologico, filosofia |
+| `/web-projects` | StackAdvisor, Ivolution, Crypto Dashboard, Portfolio |
+| `/dashboards` | Argentina Macro, Crypto Live, E-Commerce Analytics (iframes interactivos) |
 | `/data-science` | IBM HR Analytics, Marketing Segmentation, Weather AUS |
-| `/contact` | Formulario funcional con Resend, rate limiting y XSS protection |
+| `/certifications` | Certificaciones y cursos |
+| `/contact` | Formulario funcional con Resend, rate limiting y proteccion XSS |
+
+## Proyectos live
+
+| Proyecto | Stack | URL |
+|----------|-------|-----|
+| Argentina Macro Dashboard | Next.js, dolarapi, INDEC, Recharts | [argentina-macro.vercel.app](https://argentina-macro.vercel.app) |
+| Crypto Live Dashboard | Next.js, WebSocket, Binance API, lightweight-charts | [crypto-dashboard-five-dun.vercel.app](https://crypto-dashboard-five-dun.vercel.app) |
+| E-Commerce Analytics | Next.js, PostgreSQL, dbt, Recharts | [ecommerce-dashboard-puce.vercel.app](https://ecommerce-dashboard-puce.vercel.app) |
+| StackAdvisor | Next.js, OpenAI | En portfolio |
 
 ## Correr localmente
 
@@ -49,14 +60,14 @@ npm run dev
 
 ## Features
 
-- ✅ Animaciones con Framer Motion (scroll-reveal, hero entrance secuencial)
-- ✅ Formulario de contacto funcional con rate limiting (5 req/IP/hora) y sanitización XSS
-- ✅ Open Graph + Twitter card metadata completo
-- ✅ Favicon SVG con gradiente personalizado
-- ✅ Sitemap automático en `/sitemap.xml`
-- ✅ Totalmente responsivo (mobile-first)
-- ✅ Build estático optimizado (Next.js static generation)
+- Animaciones con Framer Motion (scroll-reveal, hero entrance secuencial)
+- Formulario de contacto funcional con rate limiting (5 req/IP/hora) y sanitizacion XSS
+- Dashboards con iframe embed + fallback mobile con boton externo
+- Open Graph + Twitter card metadata completo en todas las paginas
+- Favicon SVG con gradiente personalizado
+- Sitemap automatico en `/sitemap.xml`
+- Totalmente responsivo (mobile-first)
 
 ---
 
-Construido por [Santiago Aragon](https://linkedin.com/in/aragonmalak) · [santiagoaragonmalak@gmail.com](mailto:santiagoaragonmalak@gmail.com)
+Construido por [Santiago Malak](https://linkedin.com/in/aragonmalak) · [santiagoaragonmalak@gmail.com](mailto:santiagoaragonmalak@gmail.com)
