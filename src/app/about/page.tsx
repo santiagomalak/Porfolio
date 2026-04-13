@@ -19,21 +19,21 @@ const fadeIn = {
 }
 
 const techStack = {
-  'Desarrollo Web': [
-    { name: 'React', color: 'bg-blue-50 text-blue-700 border-blue-200' },
-    { name: 'Next.js', color: 'bg-gray-50 text-gray-800 border-gray-300' },
-    { name: 'TypeScript', color: 'bg-blue-50 text-blue-800 border-blue-200' },
-    { name: 'Node.js', color: 'bg-green-50 text-green-700 border-green-200' },
-    { name: 'Tailwind CSS', color: 'bg-cyan-50 text-cyan-700 border-cyan-200' },
-    { name: 'PostgreSQL', color: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
-  ],
-  'Data Science': [
-    { name: 'Python', color: 'bg-yellow-50 text-yellow-800 border-yellow-200' },
-    { name: 'Pandas', color: 'bg-purple-50 text-purple-700 border-purple-200' },
-    { name: 'Scikit-learn', color: 'bg-orange-50 text-orange-700 border-orange-200' },
-    { name: 'Machine Learning', color: 'bg-red-50 text-red-700 border-red-200' },
+  'Analytics Engineering': [
+    { name: 'BigQuery', color: 'bg-blue-50 text-blue-700 border-blue-200' },
+    { name: 'dbt', color: 'bg-orange-50 text-orange-700 border-orange-200' },
+    { name: 'Metabase', color: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
     { name: 'SQL', color: 'bg-teal-50 text-teal-700 border-teal-200' },
-    { name: 'Matplotlib', color: 'bg-pink-50 text-pink-700 border-pink-200' },
+    { name: 'Python · Pandas', color: 'bg-yellow-50 text-yellow-800 border-yellow-200' },
+    { name: 'PostgreSQL', color: 'bg-purple-50 text-purple-700 border-purple-200' },
+  ],
+  'Desarrollo Web': [
+    { name: 'React · Next.js', color: 'bg-blue-50 text-blue-700 border-blue-200' },
+    { name: 'TypeScript', color: 'bg-blue-50 text-blue-800 border-blue-200' },
+    { name: 'Node.js · APIs', color: 'bg-green-50 text-green-700 border-green-200' },
+    { name: 'Tailwind CSS', color: 'bg-cyan-50 text-cyan-700 border-cyan-200' },
+    { name: 'Docker · Vercel', color: 'bg-gray-50 text-gray-800 border-gray-300' },
+    { name: 'n8n · Automatización', color: 'bg-orange-50 text-orange-700 border-orange-200' },
   ],
 }
 
@@ -55,7 +55,7 @@ export default function AboutPage() {
           className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
         >
           Hola, soy{' '}
-          <span className="text-gradient">Santiago Aragon</span>
+          <span className="text-gradient">Santiago Malak</span>
         </motion.h1>
 
         <motion.p
@@ -242,9 +242,9 @@ export default function AboutPage() {
                 className="bg-white rounded-2xl border border-gray-200 p-6"
               >
                 <div className="flex items-center gap-2 mb-5">
-                  {category === 'Desarrollo Web'
-                    ? <Code2 className="h-5 w-5 text-primary-700" />
-                    : <Database className="h-5 w-5 text-secondary-500" />
+                  {category === 'Analytics Engineering'
+                    ? <Database className="h-5 w-5 text-secondary-500" />
+                    : <Code2 className="h-5 w-5 text-primary-700" />
                   }
                   <h3 className="font-semibold text-gray-900">{category}</h3>
                 </div>

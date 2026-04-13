@@ -68,18 +68,18 @@ export default function Home() {
             variants={fadeUp} initial="hidden" animate="visible" custom={0.08}
             className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
           >
-            <span className="text-secondary-500">Data Scientist</span>{' '}
+            <span className="text-secondary-500">Analytics Engineer</span>{' '}
             <span className="text-gray-400 font-light">&amp;</span>{' '}
             <br className="hidden md:block" />
-            <span className="text-primary-700">Full-Stack Developer</span>
+            <span className="text-primary-700">Data Scientist</span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp} initial="hidden" animate="visible" custom={0.18}
             className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Diseño pipelines, modelos y dashboards que los equipos realmente usan para operar mejor.
-            También construyo productos web — de la idea al deploy.
+            Construyo pipelines de datos, modelos analíticos y dashboards que los equipos realmente
+            usan para tomar decisiones. BigQuery · dbt · Metabase en producción real.
           </motion.p>
 
           <motion.div
@@ -209,7 +209,7 @@ export default function Home() {
             {[
               {
                 title: 'E-Commerce Analytics',
-                sub: 'Olist Brazil · 100k+ órdenes · dbt + PostgreSQL',
+                sub: 'Olist Brazil (PT-BR) · 100k+ órdenes · dbt + PostgreSQL',
                 color: '#FF694B',
                 url: 'https://ecommerce-dashboard-puce.vercel.app',
                 tags: ['PostgreSQL', 'dbt', 'RFM', 'Cohort', 'i18n'],
