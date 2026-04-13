@@ -37,9 +37,9 @@ export default function Header() {
           </div>
           {/* Name block */}
           <div className="flex flex-col leading-none">
-            <span className="font-bold text-[15px] text-gray-900 tracking-tight">Santiago Aragon</span>
+            <span className="font-bold text-[15px] text-gray-900 tracking-tight">Santiago Malak</span>
             <span className="text-[10px] font-semibold text-primary-600 tracking-[0.12em] uppercase mt-0.5">
-              Data Scientist &amp; Dev
+              Analytics Engineer
             </span>
           </div>
         </Link>

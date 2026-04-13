@@ -46,7 +46,7 @@ export default function AboutPage() {
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-200 text-primary-700 text-sm font-medium mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            Disponible para proyectos freelance
+            Disponible · Analytics Engineer / Data Engineer
           </div>
         </motion.div>
 
