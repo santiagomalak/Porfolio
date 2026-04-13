@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ExternalLink, Github } from 'lucide-react'
+import { ExternalLink, Github, BookOpen } from 'lucide-react'
 
 interface ProjectCardProps {
   title: string
@@ -9,6 +9,7 @@ interface ProjectCardProps {
   image?: string
   githubUrl?: string
   liveUrl?: string
+  notebookUrl?: string
   type: 'web' | 'datascience'
   accentColor?: 'blue' | 'purple' | 'green' | 'orange' | 'teal'
 }
@@ -53,6 +54,7 @@ export default function ProjectCard({
   image,
   githubUrl,
   liveUrl,
+  notebookUrl,
   type,
   accentColor = 'blue',
 }: ProjectCardProps) {
@@ -117,6 +119,17 @@ export default function ProjectCard({
             >
               <Github className="h-4 w-4" />
               Código
+            </a>
+          )}
+          {notebookUrl && (
+            <a
+              href={notebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
+            >
+              <BookOpen className="h-4 w-4" />
+              Notebook
             </a>
           )}
           {liveUrl && (

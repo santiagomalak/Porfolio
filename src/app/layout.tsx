@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,13 +16,13 @@ const BASE_URL = 'https://santiagomalak.is-a.dev'
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Santiago Aragon — Data Scientist & Full-Stack Developer',
-    template: '%s | Santiago Aragon',
+    default: 'Santiago Malak — Data Scientist & Full-Stack Developer',
+    template: '%s | Santiago Malak',
   },
   description:
-    'Portfolio de Santiago Aragon: Data Scientist y Full-Stack Developer. Especializado en React, Next.js, Python y Machine Learning. Disponible para proyectos freelance.',
+    'Portfolio de Santiago Malak: Data Scientist y Full-Stack Developer. Especializado en React, Next.js, Python y Machine Learning. Disponible para proyectos freelance.',
   keywords: [
-    'Santiago Aragon',
+    'Santiago Malak',
     'Data Scientist',
     'Full-Stack Developer',
     'React',
@@ -34,14 +35,14 @@ export const metadata: Metadata = {
     'desarrollo web',
     'ciencia de datos',
   ],
-  authors: [{ name: 'Santiago Aragon' }],
-  creator: 'Santiago Aragon',
+  authors: [{ name: 'Santiago Malak' }],
+  creator: 'Santiago Malak',
   openGraph: {
     type: 'website',
     locale: 'es_AR',
     url: BASE_URL,
-    siteName: 'Santiago Aragon',
-    title: 'Santiago Aragon — Data Scientist & Full-Stack Developer',
+    siteName: 'Santiago Malak',
+    title: 'Santiago Malak — Data Scientist & Full-Stack Developer',
     description:
       'Portfolio profesional combinando desarrollo web moderno y análisis de datos impactante.',
     images: [
@@ -49,13 +50,13 @@ export const metadata: Metadata = {
         url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: 'Santiago Aragon — Data Scientist & Full-Stack Developer',
+        alt: 'Santiago Malak — Data Scientist & Full-Stack Developer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Santiago Aragon — Data Scientist & Full-Stack Developer',
+    title: 'Santiago Malak — Data Scientist & Full-Stack Developer',
     description:
       'Portfolio profesional combinando desarrollo web moderno y análisis de datos impactante.',
     images: ['/og-image.svg'],
@@ -91,6 +92,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   )
