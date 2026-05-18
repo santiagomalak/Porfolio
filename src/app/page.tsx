@@ -82,80 +82,152 @@ function StatCounter({ value, suffix, label, sub }: (typeof stats)[0]) {
   )
 }
 
+const TERMINAL_LINES = [
+  { text: '-- fct_performance.sql · Ivolution', color: '#4b5563' },
+  { text: '', color: '' },
+  { text: 'SELECT', color: '#c084fc' },
+  { text: '  athlete_id,', color: '#e2e8f0' },
+  { text: '  sport,', color: '#e2e8f0' },
+  { text: '  CASE', color: '#c084fc' },
+  { text: '    WHEN score < p25', color: '#e2e8f0' },
+  { text: "      THEN 'FATIGADO'",   color: '#f87171' },
+  { text: '    WHEN score > p75', color: '#e2e8f0' },
+  { text: "      THEN 'SUPERCOMP.'", color: '#4ade80' },
+  { text: "    ELSE 'ATENCIÓN'",     color: '#facc15' },
+  { text: '  END AS status', color: '#e2e8f0' },
+  { text: "FROM {{ ref('fct_performance') }}", color: '#67e8f9' },
+  { text: '', color: '' },
+  { text: '$ dbt run --select fct_performance', color: '#818cf8' },
+  { text: '✓  967 rows · 13 sports · Completed', color: '#22c55e' },
+]
+
+function TerminalCard() {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
+  return (
+    <div
+      ref={ref}
+      className="rounded-2xl overflow-hidden shadow-2xl shadow-black/30"
+      style={{ background: '#0f0f17', border: '1px solid #1e1e32' }}
+    >
+      {/* Chrome */}
+      <div className="flex items-center gap-2 px-4 py-3" style={{ background: '#080810', borderBottom: '1px solid #1e1e32' }}>
+        <div className="flex gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-red-500/70" />
+          <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+          <div className="w-3 h-3 rounded-full bg-green-500/70" />
+        </div>
+        <span className="text-xs text-zinc-500 font-mono ml-2">fct_performance.sql</span>
+        <div className="ml-auto">
+          <span className="text-[10px] px-2 py-0.5 rounded-full font-mono"
+            style={{ background: '#22c55e15', color: '#22c55e', border: '1px solid #22c55e30' }}>
+            dbt · BigQuery
+          </span>
+        </div>
+      </div>
+
+      {/* Code */}
+      <div className="p-5 font-mono text-[13px] leading-[1.65]">
+        {TERMINAL_LINES.map((line, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -8 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.2 + i * 0.07, duration: 0.22, ease: 'easeOut' }}
+            className="min-h-[1.65rem]"
+            style={{ color: line.color || 'transparent' }}
+          >
+            {line.text || ' '}
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section className="container mx-auto px-4 py-20 md:py-36">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="container mx-auto px-4 py-16 md:py-24">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
 
-          <motion.div
-            variants={fadeUp} initial="hidden" animate="visible" custom={0}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium mb-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            Abierto a roles remotos y proyectos
-          </motion.div>
-
-          <motion.h1
-            variants={fadeUp} initial="hidden" animate="visible" custom={0.08}
-            className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
-          >
-            <span className="text-secondary-500">Analytics Engineer</span>{' '}
-            <span className="text-gray-400 dark:text-gray-500 font-light">&amp;</span>{' '}
-            <br className="hidden md:block" />
-            <span className="text-primary-700 dark:text-primary-400">Data Scientist</span>
-          </motion.h1>
-
-          <motion.p
-            variants={fadeUp} initial="hidden" animate="visible" custom={0.18}
-            className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
-          >
-            Construyo pipelines de datos, modelos analíticos y dashboards que los equipos realmente
-            usan para tomar decisiones. BigQuery · dbt · Metabase en producción real.
-          </motion.p>
-
-          <motion.div
-            variants={fadeUp} initial="hidden" animate="visible" custom={0.28}
-            className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap"
-          >
-            <Link
-              href="/data-science"
-              className="px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:shadow-primary-300 hover:scale-[1.02]"
-            >
-              Ver proyectos de datos
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/dashboards"
-              className="px-8 py-3.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 hover:scale-[1.02]"
-            >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Dashboards live
-            </Link>
-            <Link
-              href="/web-projects"
-              className="px-8 py-3.5 border-2 border-primary-600 dark:border-primary-500 text-primary-600 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200 flex items-center justify-center gap-2 font-medium hover:scale-[1.02]"
-            >
-              Ver proyectos web
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </motion.div>
-
-          <motion.div
-            variants={fadeUp} initial="hidden" animate="visible" custom={0.38}
-            className="flex flex-wrap justify-center gap-2 mt-10"
-          >
-            {['SQL', 'BigQuery', 'dbt', 'Python', 'React', 'Next.js', 'TypeScript', 'n8n'].map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1 bg-white dark:bg-[#111120] border border-gray-200 dark:border-[#1e1e32] rounded-full text-xs text-gray-500 dark:text-gray-400 font-medium shadow-sm"
+            {/* Left — text */}
+            <div className="text-center md:text-left">
+              <motion.div
+                variants={fadeUp} initial="hidden" animate="visible" custom={0}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium mb-8"
               >
-                {tech}
-              </span>
-            ))}
-          </motion.div>
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                Abierto a roles remotos y proyectos
+              </motion.div>
+
+              <motion.h1
+                variants={fadeUp} initial="hidden" animate="visible" custom={0.08}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              >
+                <span className="text-secondary-500">Analytics</span><br />
+                <span className="text-secondary-500">Engineer</span>{' '}
+                <span className="text-gray-400 dark:text-gray-500 font-light">&amp;</span>{' '}
+                <br />
+                <span className="text-primary-700 dark:text-primary-400">Data Scientist</span>
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp} initial="hidden" animate="visible" custom={0.18}
+                className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl leading-relaxed mx-auto md:mx-0"
+              >
+                Construyo pipelines de datos, modelos analíticos y dashboards que los equipos realmente
+                usan para tomar decisiones. BigQuery · dbt · Metabase en producción real.
+              </motion.p>
+
+              <motion.div
+                variants={fadeUp} initial="hidden" animate="visible" custom={0.28}
+                className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start flex-wrap"
+              >
+                <Link
+                  href="/data-science"
+                  className="px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
+                >
+                  Ver proyectos de datos
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/dashboards"
+                  className="px-8 py-3.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 hover:scale-[1.02]"
+                >
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  Dashboards live
+                </Link>
+              </motion.div>
+
+              <motion.div
+                variants={fadeUp} initial="hidden" animate="visible" custom={0.38}
+                className="flex flex-wrap justify-center md:justify-start gap-2 mt-8"
+              >
+                {['SQL', 'BigQuery', 'dbt', 'Python', 'React', 'Next.js', 'TypeScript', 'n8n'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 bg-white dark:bg-[#111120] border border-gray-200 dark:border-[#1e1e32] rounded-full text-xs text-gray-500 dark:text-gray-400 font-medium shadow-sm"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Right — terminal (desktop only) */}
+            <motion.div
+              variants={fadeUp} initial="hidden" animate="visible" custom={0.15}
+              className="hidden md:block"
+            >
+              <TerminalCard />
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
