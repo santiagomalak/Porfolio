@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ExternalLink, Github, BarChart2, TrendingUp, Database, Globe } from 'lucide-react'
 
-// ── Config — swap URLs once deployed ─────────────────────────────────────────
 const DASHBOARDS = [
   {
     id:          'ecommerce',
@@ -57,18 +56,19 @@ export default function DashboardsPage() {
   const Icon    = current.icon
 
   return (
-    <div className="min-h-screen bg-[#080810] text-white">
+    <div className="min-h-screen bg-background">
+
       {/* Hero */}
-      <section className="border-b border-white/5 bg-[#0c0c18]">
+      <section className="border-b border-gray-200 dark:border-white/5 bg-background-alt">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-400 mb-4">
+            <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-500 dark:text-indigo-400 mb-4">
               Live Projects
             </p>
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-900 dark:text-white">
               Interactive Dashboards
             </h1>
-            <p className="text-zinc-400 text-lg max-w-2xl">
+            <p className="text-gray-600 dark:text-zinc-400 text-lg max-w-2xl">
               Proyectos productivos con datos reales — desde pipelines de datos hasta streams en tiempo real.
               Cada uno deployado y funcional.
             </p>
@@ -77,6 +77,7 @@ export default function DashboardsPage() {
       </section>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+
         {/* Tab selector */}
         <motion.div initial="hidden" animate="visible" custom={0.1} variants={fadeUp}
           className="flex gap-2 mb-6 flex-wrap">
@@ -84,13 +85,20 @@ export default function DashboardsPage() {
             const DIcon = d.icon
             const isActive = active === d.id
             return (
-              <button key={d.id} onClick={() => setActive(d.id)}
-                className="flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200"
-                style={{
-                  background: isActive ? `${d.color}18` : '#0f0f1a',
-                  border:     `1px solid ${isActive ? d.color + '50' : '#1e1e32'}`,
-                  color:      isActive ? d.color : '#71717a',
-                }}>
+              <button
+                key={d.id}
+                onClick={() => setActive(d.id)}
+                className={`flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 border ${
+                  isActive
+                    ? ''
+                    : 'bg-gray-100 dark:bg-[#0f0f1a] border-gray-200 dark:border-[#1e1e32] text-gray-500 dark:text-zinc-500 hover:border-gray-300 dark:hover:border-zinc-600'
+                }`}
+                style={isActive ? {
+                  background: `${d.color}18`,
+                  border: `1px solid ${d.color}50`,
+                  color: d.color,
+                } : undefined}
+              >
                 <DIcon size={15} />
                 {d.title}
                 {d.status === 'live' && (
@@ -112,10 +120,10 @@ export default function DashboardsPage() {
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div className="w-2.5 h-2.5 rounded-full" style={{ background: current.color }} />
-              <h2 className="text-xl font-bold text-white">{current.title}</h2>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{current.title}</h2>
             </div>
-            <p className="text-zinc-500 text-sm ml-5">{current.subtitle}</p>
-            <p className="text-zinc-400 text-sm mt-2 max-w-2xl ml-5">{current.description}</p>
+            <p className="text-gray-500 dark:text-zinc-500 text-sm ml-5">{current.subtitle}</p>
+            <p className="text-gray-600 dark:text-zinc-400 text-sm mt-2 max-w-2xl ml-5">{current.description}</p>
             <div className="flex gap-2 flex-wrap mt-3 ml-5">
               {current.tags.map(t => (
                 <span key={t} className="text-xs px-2 py-0.5 rounded-md"
@@ -127,46 +135,44 @@ export default function DashboardsPage() {
           </div>
           <div className="flex gap-2">
             <a href={current.githubUrl} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-white/10"
-              style={{ border: '1px solid #1e1e32', color: '#a1a1aa' }}>
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-200 dark:border-[#1e1e32] text-gray-500 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-white/10">
               <Github size={14} /> Código
             </a>
             <a href={current.liveUrl} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all"
-              style={{ background: current.color, color: '#fff' }}>
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all text-white"
+              style={{ background: current.color }}>
               <ExternalLink size={14} /> Abrir
             </a>
           </div>
         </motion.div>
 
-        {/* Mobile: card con botón abrir */}
+        {/* Mobile: card */}
         <motion.div key={active + '-mobile'} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="sm:hidden rounded-2xl overflow-hidden p-8 flex flex-col items-center gap-6 text-center"
-          style={{ border: `1px solid ${current.color}30`, background: '#0a0a0f' }}>
+          className="sm:hidden rounded-2xl overflow-hidden p-8 flex flex-col items-center gap-6 text-center bg-gray-50 dark:bg-[#0a0a0f]"
+          style={{ border: `1px solid ${current.color}30` }}>
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center"
             style={{ background: `${current.color}18`, border: `1px solid ${current.color}30` }}>
             <Icon size={28} style={{ color: current.color }} />
           </div>
           <div>
-            <p className="text-white font-semibold text-lg mb-1">{current.title}</p>
-            <p className="text-zinc-500 text-sm">{current.subtitle}</p>
+            <p className="text-gray-900 dark:text-white font-semibold text-lg mb-1">{current.title}</p>
+            <p className="text-gray-500 dark:text-zinc-500 text-sm">{current.subtitle}</p>
           </div>
           <a href={current.liveUrl} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all w-full justify-center"
-            style={{ background: current.color, color: '#fff' }}>
+            className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all w-full justify-center text-white"
+            style={{ background: current.color }}>
             <ExternalLink size={15} /> Abrir dashboard
           </a>
-          <p className="text-zinc-700 text-xs">Mejor experiencia en desktop</p>
+          <p className="text-gray-400 dark:text-zinc-700 text-xs">Mejor experiencia en desktop</p>
         </motion.div>
 
-        {/* Desktop: iframe embed */}
+        {/* Desktop: iframe embed — browser chrome stays dark by design */}
         <motion.div key={active + '-frame'} initial={{ opacity: 0, scale: 0.99 }}
           animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }}
           className="hidden sm:block relative rounded-2xl overflow-hidden"
           style={{ border: `1px solid ${current.color}30`, background: '#0a0a0f' }}>
 
-          {/* Browser chrome */}
           <div className="flex items-center gap-2 px-4 py-3 border-b"
             style={{ background: '#0f0f17', borderColor: '#1e1e32' }}>
             <div className="flex gap-1.5">
@@ -182,7 +188,6 @@ export default function DashboardsPage() {
             <Icon size={13} style={{ color: current.color }} />
           </div>
 
-          {/* Loading state */}
           {!loaded[active] && (
             <div className="absolute inset-0 top-[44px] flex flex-col items-center justify-center z-10 gap-3"
               style={{ background: '#0a0a0f' }}>
@@ -204,9 +209,8 @@ export default function DashboardsPage() {
         </motion.div>
 
         {/* Other projects grid */}
-        <motion.div initial="hidden" animate="visible" custom={0.3} variants={fadeUp}
-          className="mt-12">
-          <h3 className="text-sm text-zinc-500 uppercase tracking-widest mb-5 flex items-center gap-2">
+        <motion.div initial="hidden" animate="visible" custom={0.3} variants={fadeUp} className="mt-12">
+          <h3 className="text-sm text-gray-500 dark:text-zinc-500 uppercase tracking-widest mb-5 flex items-center gap-2">
             <Database size={13} /> Otros proyectos
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -230,13 +234,13 @@ export default function DashboardsPage() {
             ].map(p => {
               const PIcon = p.icon
               return (
-                <div key={p.title} className="p-5 rounded-xl transition-all hover:bg-white/3"
-                  style={{ background: '#0f0f17', border: `1px solid #1e1e32` }}>
+                <div key={p.title}
+                  className="p-5 rounded-xl transition-all bg-gray-50 dark:bg-[#0f0f17] border border-gray-200 dark:border-[#1e1e32] hover:bg-gray-100 dark:hover:bg-white/5">
                   <div className="flex items-center gap-2 mb-2">
                     <PIcon size={14} style={{ color: p.color }} />
-                    <span className="text-sm font-semibold text-zinc-200">{p.title}</span>
+                    <span className="text-sm font-semibold text-gray-800 dark:text-zinc-200">{p.title}</span>
                   </div>
-                  <p className="text-xs text-zinc-500 mb-3">{p.desc}</p>
+                  <p className="text-xs text-gray-500 dark:text-zinc-500 mb-3">{p.desc}</p>
                   <div className="flex items-center justify-between">
                     <div className="flex gap-1.5 flex-wrap">
                       {p.tags.map(t => (
@@ -248,7 +252,7 @@ export default function DashboardsPage() {
                     </div>
                     {p.url && (
                       <a href={p.url} target="_blank" rel="noopener noreferrer"
-                        className="text-xs text-zinc-600 hover:text-zinc-400 flex items-center gap-1 transition-colors">
+                        className="text-xs text-gray-500 dark:text-zinc-600 hover:text-gray-800 dark:hover:text-zinc-400 flex items-center gap-1 transition-colors">
                         <Github size={12} /> Ver repo
                       </a>
                     )}
