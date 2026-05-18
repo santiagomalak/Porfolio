@@ -6,6 +6,7 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -26,8 +27,8 @@ const config: Config = {
         },
       },
       backgroundColor: {
-        'background': '#FAFBFC',
-        'background-alt': '#F3F4F6',
+        'background': 'var(--bg)',
+        'background-alt': 'var(--bg-alt)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

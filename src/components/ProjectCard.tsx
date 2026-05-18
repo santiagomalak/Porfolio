@@ -15,11 +15,11 @@ interface ProjectCardProps {
 }
 
 const gradients: Record<string, string> = {
-  blue:   'from-blue-50 to-indigo-100',
-  purple: 'from-purple-50 to-violet-100',
-  green:  'from-emerald-50 to-teal-100',
-  orange: 'from-orange-50 to-amber-100',
-  teal:   'from-teal-50 to-cyan-100',
+  blue:   'from-blue-50 to-indigo-100 dark:from-blue-950/40 dark:to-indigo-950/40',
+  purple: 'from-purple-50 to-violet-100 dark:from-purple-950/40 dark:to-violet-950/40',
+  green:  'from-emerald-50 to-teal-100 dark:from-emerald-950/40 dark:to-teal-950/40',
+  orange: 'from-orange-50 to-amber-100 dark:from-orange-950/40 dark:to-amber-950/40',
+  teal:   'from-teal-50 to-cyan-100 dark:from-teal-950/40 dark:to-cyan-950/40',
 }
 
 const iconColors: Record<string, string> = {
@@ -31,11 +31,11 @@ const iconColors: Record<string, string> = {
 }
 
 const tagColors: Record<string, string> = {
-  blue:   'bg-blue-50 text-blue-700',
-  purple: 'bg-purple-50 text-purple-700',
-  green:  'bg-emerald-50 text-emerald-700',
-  orange: 'bg-orange-50 text-orange-700',
-  teal:   'bg-teal-50 text-teal-700',
+  blue:   'bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-400',
+  purple: 'bg-purple-50 text-purple-700 dark:bg-purple-950/50 dark:text-purple-400',
+  green:  'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400',
+  orange: 'bg-orange-50 text-orange-700 dark:bg-orange-950/50 dark:text-orange-400',
+  teal:   'bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-400',
 }
 
 const highlightColors: Record<string, string> = {
@@ -64,7 +64,7 @@ export default function ProjectCard({
   const highlightColor = highlightColors[accentColor]
 
   return (
-    <div className="group relative bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+    <div className="group relative bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] overflow-hidden hover:shadow-xl dark:hover:shadow-[#1e1e32]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
 
       {/* Header visual */}
       <div className={`aspect-video bg-gradient-to-br ${gradient} relative overflow-hidden`}>
@@ -79,7 +79,6 @@ export default function ProjectCard({
             {type === 'web' ? '🌐' : '📊'}
           </div>
         )}
-        {/* Highlight badge */}
         {highlight && (
           <span className={`absolute top-3 right-3 ${highlightColor} text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md`}>
             {highlight}
@@ -89,10 +88,10 @@ export default function ProjectCard({
 
       {/* Content */}
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-lg font-bold mb-2 text-gray-900 leading-snug">
+        <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white leading-snug">
           {title}
         </h3>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
+        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
           {description}
         </p>
 
@@ -109,13 +108,13 @@ export default function ProjectCard({
         </div>
 
         {/* Links */}
-        <div className="flex gap-4 mt-auto border-t border-gray-100 pt-4">
+        <div className="flex gap-4 mt-auto border-t border-gray-100 dark:border-[#1e1e32] pt-4">
           {githubUrl && (
             <a
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
+              className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium"
             >
               <Github className="h-4 w-4" />
               Código
@@ -126,7 +125,7 @@ export default function ProjectCard({
               href={notebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
+              className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium"
             >
               <BookOpen className="h-4 w-4" />
               Notebook
@@ -136,7 +135,7 @@ export default function ProjectCard({
             liveUrl.startsWith('/') ? (
               <Link
                 href={liveUrl}
-                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
+                className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium"
               >
                 <ExternalLink className="h-4 w-4" />
                 Ver detalle
@@ -146,7 +145,7 @@ export default function ProjectCard({
                 href={liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
+                className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium"
               >
                 <ExternalLink className="h-4 w-4" />
                 Ver proyecto

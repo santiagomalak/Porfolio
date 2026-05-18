@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { ArrowRight, Briefcase, Code2, Database, ExternalLink, Rocket } from 'lucide-react'
 import { motion } from 'framer-motion'
-import type { Metadata } from 'next'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -20,20 +19,20 @@ const fadeIn = {
 
 const techStack = {
   'Analytics Engineering': [
-    { name: 'BigQuery', color: 'bg-blue-50 text-blue-700 border-blue-200' },
-    { name: 'dbt', color: 'bg-orange-50 text-orange-700 border-orange-200' },
-    { name: 'Metabase', color: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
-    { name: 'SQL', color: 'bg-teal-50 text-teal-700 border-teal-200' },
-    { name: 'Python · Pandas', color: 'bg-yellow-50 text-yellow-800 border-yellow-200' },
-    { name: 'PostgreSQL', color: 'bg-purple-50 text-purple-700 border-purple-200' },
+    { name: 'BigQuery', color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50' },
+    { name: 'dbt', color: 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/50 dark:text-orange-400 dark:border-orange-800/50' },
+    { name: 'Metabase', color: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/50 dark:text-indigo-400 dark:border-indigo-800/50' },
+    { name: 'SQL', color: 'bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950/50 dark:text-teal-400 dark:border-teal-800/50' },
+    { name: 'Python · Pandas', color: 'bg-yellow-50 text-yellow-800 border-yellow-200 dark:bg-yellow-950/50 dark:text-yellow-400 dark:border-yellow-800/50' },
+    { name: 'PostgreSQL', color: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/50 dark:text-purple-400 dark:border-purple-800/50' },
   ],
   'Desarrollo Web': [
-    { name: 'React · Next.js', color: 'bg-blue-50 text-blue-700 border-blue-200' },
-    { name: 'TypeScript', color: 'bg-blue-50 text-blue-800 border-blue-200' },
-    { name: 'Node.js · APIs', color: 'bg-green-50 text-green-700 border-green-200' },
-    { name: 'Tailwind CSS', color: 'bg-cyan-50 text-cyan-700 border-cyan-200' },
-    { name: 'Docker · Vercel', color: 'bg-gray-50 text-gray-800 border-gray-300' },
-    { name: 'n8n · Automatización', color: 'bg-orange-50 text-orange-700 border-orange-200' },
+    { name: 'React · Next.js', color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50' },
+    { name: 'TypeScript', color: 'bg-blue-50 text-blue-800 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50' },
+    { name: 'Node.js · APIs', color: 'bg-green-50 text-green-700 border-green-200 dark:bg-green-950/50 dark:text-green-400 dark:border-green-800/50' },
+    { name: 'Tailwind CSS', color: 'bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-950/50 dark:text-cyan-400 dark:border-cyan-800/50' },
+    { name: 'Docker · Vercel', color: 'bg-gray-50 text-gray-800 border-gray-300 dark:bg-gray-800/50 dark:text-gray-300 dark:border-gray-700/50' },
+    { name: 'n8n · Automatización', color: 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/50 dark:text-orange-400 dark:border-orange-800/50' },
   ],
 }
 
@@ -44,7 +43,7 @@ export default function AboutPage() {
       {/* ── Hero ── */}
       <section className="container mx-auto px-4 pt-16 pb-12 max-w-4xl">
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-200 text-primary-700 text-sm font-medium mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             Disponible · Analytics Engineer / Data Engineer
           </div>
@@ -60,7 +59,7 @@ export default function AboutPage() {
 
         <motion.p
           variants={fadeUp} initial="hidden" animate="visible" custom={0.16}
-          className="text-xl text-gray-600 leading-relaxed max-w-3xl mb-8"
+          className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-8"
         >
           Data Engineer, Analytics Engineer y Full-Stack Developer. Actualmente independiente —
           construyo proyectos propios, busco mi próximo rol y convierto ideas en productos reales.
@@ -73,7 +72,7 @@ export default function AboutPage() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-200 hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
           >
             Contactarme
             <ArrowRight className="h-4 w-4" />
@@ -82,7 +81,7 @@ export default function AboutPage() {
             href="https://github.com/santiagomalak"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-200 text-gray-700 rounded-xl hover:border-primary-400 hover:text-primary-700 transition-all font-medium"
+            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-200 dark:border-[#1e1e32] text-gray-700 dark:text-gray-300 rounded-xl hover:border-primary-400 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400 transition-all font-medium"
           >
             <ExternalLink className="h-4 w-4" />
             GitHub
@@ -95,7 +94,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           <motion.h2
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            className="text-2xl font-bold mb-10 flex items-center gap-3"
+            className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white"
           >
             <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
               <Briefcase className="h-4 w-4 text-white" />
@@ -104,21 +103,20 @@ export default function AboutPage() {
           </motion.h2>
 
           <div className="space-y-6">
-            {/* Ivolution */}
             <motion.div
               variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}
-              className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-md transition-shadow"
+              className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6 hover:shadow-md dark:hover:shadow-[#1e1e32]/50 transition-shadow"
             >
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Analytics Engineer / Data Scientist</h3>
-                  <p className="text-primary-700 font-medium">Ivolution Sport Science</p>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Analytics Engineer / Data Scientist</h3>
+                  <p className="text-primary-700 dark:text-primary-400 font-medium">Ivolution Sport Science</p>
                 </div>
-                <span className="text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-full border whitespace-nowrap">
+                <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-[#111120] px-3 py-1 rounded-full border border-gray-200 dark:border-[#1e1e32] whitespace-nowrap">
                   2024 — Feb 2025
                 </span>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                 Diseñé de cero el sistema de análisis de rendimiento de la empresa: pipelines en BigQuery,
                 modelos en dbt y dashboards en Metabase con alertas dinámicas por percentil (p25/p75) y
                 soporte multilingüe ES/EN/PT. 967 atletas monitoreados en 13 deportes, 10.000+ mediciones
@@ -127,7 +125,7 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
                 {['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'].map((t) => (
-                  <span key={t} className="px-2.5 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full">
+                  <span key={t} className="px-2.5 py-1 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
                     {t}
                   </span>
                 ))}
@@ -141,7 +139,7 @@ export default function AboutPage() {
       <section className="container mx-auto px-4 py-16 max-w-4xl">
         <motion.h2
           variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-          className="text-2xl font-bold mb-10 flex items-center gap-3"
+          className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white"
         >
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-600 to-secondary-500 flex items-center justify-center">
             <Rocket className="h-4 w-4 text-white" />
@@ -153,26 +151,26 @@ export default function AboutPage() {
           {/* StackAdvisor */}
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}
-            className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-2xl border border-primary-200 p-8 group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+            className="bg-gradient-to-br from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-2xl border border-primary-200 dark:border-primary-800/50 p-8 group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
           >
             <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">StackAdvisor</h3>
-                <p className="text-primary-700 font-medium text-sm">SaaS · En producción</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">StackAdvisor</h3>
+                <p className="text-primary-700 dark:text-primary-400 font-medium text-sm">SaaS · En producción</p>
               </div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-100 text-green-700 text-xs font-semibold rounded-full border border-green-200">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-100 dark:bg-green-950/50 text-green-700 dark:text-green-400 text-xs font-semibold rounded-full border border-green-200 dark:border-green-800/50">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 Live
               </span>
             </div>
-            <p className="text-gray-700 leading-relaxed mb-5">
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-5">
               Plataforma que resuelve la parálisis de decisión tecnológica: 13 preguntas inteligentes
               → motor de recomendación con 25+ stacks evaluados → roadmap de 12 semanas personalizado.
               Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.
             </p>
             <div className="flex flex-wrap gap-2 mb-5">
               {['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine', 'SaaS'].map((t) => (
-                <span key={t} className="px-2.5 py-1 bg-white border border-primary-200 text-primary-700 text-xs font-medium rounded-full">
+                <span key={t} className="px-2.5 py-1 bg-white dark:bg-[#111120] border border-primary-200 dark:border-primary-800/50 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
                   {t}
                 </span>
               ))}
@@ -181,7 +179,7 @@ export default function AboutPage() {
               href="https://stackadvisor-nu.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary-700 hover:text-primary-900 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary-700 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 transition-colors"
             >
               Visitar StackAdvisor
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -191,19 +189,19 @@ export default function AboutPage() {
           {/* Job Hunting Automation */}
           <motion.div
             variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.1}
-            className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl border border-orange-200 p-8"
+            className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20 rounded-2xl border border-orange-200 dark:border-orange-800/50 p-8"
           >
             <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Job Hunting Automation</h3>
-                <p className="text-orange-700 font-medium text-sm">Automatización · En construcción</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Job Hunting Automation</h3>
+                <p className="text-orange-700 dark:text-orange-400 font-medium text-sm">Automatización · En construcción</p>
               </div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full border border-orange-200">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 text-xs font-semibold rounded-full border border-orange-200 dark:border-orange-800/50">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
                 En desarrollo
               </span>
             </div>
-            <p className="text-gray-700 leading-relaxed mb-5">
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-5">
               Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes relevantes,
               scoring con IA, checkpoint de aprobación vía Telegram y generación de CV adaptado a cada
               oferta. Pensado para correr desde VPS de forma autónoma — porque buscar trabajo también
@@ -211,7 +209,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-wrap gap-2">
               {['n8n', 'Telegram API', 'IA', 'Automatización', 'Docker', 'VPS'].map((t) => (
-                <span key={t} className="px-2.5 py-1 bg-white border border-orange-200 text-orange-700 text-xs font-medium rounded-full">
+                <span key={t} className="px-2.5 py-1 bg-white dark:bg-[#111120] border border-orange-200 dark:border-orange-800/50 text-orange-700 dark:text-orange-400 text-xs font-medium rounded-full">
                   {t}
                 </span>
               ))}
@@ -225,7 +223,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           <motion.h2
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            className="text-2xl font-bold mb-10 flex items-center gap-3"
+            className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white"
           >
             <div className="w-8 h-8 rounded-lg bg-secondary-500 flex items-center justify-center">
               <Code2 className="h-4 w-4 text-white" />
@@ -239,14 +237,14 @@ export default function AboutPage() {
                 key={category}
                 variants={fadeUp} initial="hidden" whileInView="visible"
                 viewport={{ once: true }} custom={catIdx * 0.1}
-                className="bg-white rounded-2xl border border-gray-200 p-6"
+                className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6"
               >
                 <div className="flex items-center gap-2 mb-5">
                   {category === 'Analytics Engineering'
                     ? <Database className="h-5 w-5 text-secondary-500" />
-                    : <Code2 className="h-5 w-5 text-primary-700" />
+                    : <Code2 className="h-5 w-5 text-primary-700 dark:text-primary-400" />
                   }
-                  <h3 className="font-semibold text-gray-900">{category}</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">{category}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
@@ -284,22 +282,22 @@ export default function AboutPage() {
         <motion.div
           variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-3 text-gray-900">¿Trabajamos juntos?</h2>
-          <p className="text-gray-600 mb-8 max-w-lg mx-auto">
+          <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">¿Trabajamos juntos?</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
             Abierto a roles remotos de Analytics Engineer, Data Engineer, Data Scientist o Full-Stack Developer.
             También a proyectos freelance — datos, web, automatización.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-200 hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
             >
               Iniciar conversación
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/web-projects"
-              className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-primary-200 text-primary-700 rounded-xl hover:bg-primary-50 transition-all font-medium"
+              className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium"
             >
               Ver mis proyectos
             </Link>

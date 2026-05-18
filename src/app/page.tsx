@@ -29,10 +29,10 @@ const featuredProjects = [
     company: 'Ivolution Sport Science',
     description: '967 atletas monitoreados en 13 deportes — fútbol, rugby, atletismo, hockey, natación y más. Alertas de tres estados con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte ES/EN/PT. El sistema sigue operativo más de 1 año después de mi salida.',
     tags: ['BigQuery', 'dbt', 'SQL', 'Metabase', 'Python'],
-    color: 'from-blue-50 to-indigo-50',
-    border: 'border-blue-200',
-    labelColor: 'bg-blue-100 text-blue-700',
-    tagColor: 'bg-blue-50 text-blue-700',
+    color: 'from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40',
+    border: 'border-blue-200 dark:border-blue-900/50',
+    labelColor: 'bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
+    tagColor: 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
   },
   {
     label: 'SaaS · En producción',
@@ -41,10 +41,10 @@ const featuredProjects = [
     description: '13 preguntas inteligentes → stack ideal con justificación detallada + roadmap de 12 semanas personalizado. Motor de recomendación propio con 25+ stacks evaluados. Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.',
     tags: ['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine'],
     href: 'https://stackadvisor-nu.vercel.app',
-    color: 'from-purple-50 to-violet-50',
-    border: 'border-purple-200',
-    labelColor: 'bg-purple-100 text-purple-700',
-    tagColor: 'bg-purple-50 text-purple-700',
+    color: 'from-purple-50 to-violet-50 dark:from-purple-950/40 dark:to-violet-950/40',
+    border: 'border-purple-200 dark:border-purple-900/50',
+    labelColor: 'bg-purple-100 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
+    tagColor: 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
   },
 ]
 
@@ -58,7 +58,7 @@ export default function Home() {
 
           <motion.div
             variants={fadeUp} initial="hidden" animate="visible" custom={0}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-200 text-primary-700 text-sm font-medium mb-8"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             Abierto a roles remotos y proyectos
@@ -69,14 +69,14 @@ export default function Home() {
             className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
           >
             <span className="text-secondary-500">Analytics Engineer</span>{' '}
-            <span className="text-gray-400 font-light">&amp;</span>{' '}
+            <span className="text-gray-400 dark:text-gray-500 font-light">&amp;</span>{' '}
             <br className="hidden md:block" />
-            <span className="text-primary-700">Data Scientist</span>
+            <span className="text-primary-700 dark:text-primary-400">Data Scientist</span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp} initial="hidden" animate="visible" custom={0.18}
-            className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
             Construyo pipelines de datos, modelos analíticos y dashboards que los equipos realmente
             usan para tomar decisiones. BigQuery · dbt · Metabase en producción real.
@@ -88,21 +88,21 @@ export default function Home() {
           >
             <Link
               href="/data-science"
-              className="px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-primary-200 hover:shadow-primary-300 hover:scale-[1.02]"
+              className="px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:shadow-primary-300 hover:scale-[1.02]"
             >
               Ver proyectos de datos
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/dashboards"
-              className="px-8 py-3.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-indigo-200 hover:scale-[1.02]"
+              className="px-8 py-3.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 hover:scale-[1.02]"
             >
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
               Dashboards live
             </Link>
             <Link
               href="/web-projects"
-              className="px-8 py-3.5 border-2 border-primary-600 text-primary-600 rounded-xl hover:bg-primary-50 transition-all duration-200 flex items-center justify-center gap-2 font-medium hover:scale-[1.02]"
+              className="px-8 py-3.5 border-2 border-primary-600 dark:border-primary-500 text-primary-600 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200 flex items-center justify-center gap-2 font-medium hover:scale-[1.02]"
             >
               Ver proyectos web
               <ArrowRight className="h-4 w-4" />
@@ -116,7 +116,7 @@ export default function Home() {
             {['SQL', 'BigQuery', 'dbt', 'Python', 'React', 'Next.js', 'TypeScript', 'n8n'].map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 bg-white border border-gray-200 rounded-full text-xs text-gray-500 font-medium shadow-sm"
+                className="px-3 py-1 bg-white dark:bg-[#111120] border border-gray-200 dark:border-[#1e1e32] rounded-full text-xs text-gray-500 dark:text-gray-400 font-medium shadow-sm"
               >
                 {tech}
               </span>
@@ -132,8 +132,8 @@ export default function Home() {
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Proyectos destacados</h2>
-            <p className="text-gray-500 text-sm">Lo más relevante de mi trabajo</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">Proyectos destacados</h2>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">Lo más relevante de mi trabajo</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -147,9 +147,9 @@ export default function Home() {
                 <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 ${p.labelColor}`}>
                   {p.label}
                 </span>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{p.title}</h3>
-                <p className="text-sm text-gray-500 mb-3 font-medium">{p.company}</p>
-                <p className="text-gray-600 text-sm leading-relaxed mb-5">{p.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{p.title}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 font-medium">{p.company}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-5">{p.description}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {p.tags.map((tag) => (
                     <span key={tag} className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${p.tagColor}`}>
@@ -162,7 +162,7 @@ export default function Home() {
                     href={p.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-5 text-sm font-medium text-purple-700 hover:text-purple-900 transition-colors"
+                    className="inline-flex items-center gap-1.5 mt-5 text-sm font-medium text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300 transition-colors"
                   >
                     Ver proyecto <ArrowRight className="h-3.5 w-3.5" />
                   </a>
@@ -177,7 +177,7 @@ export default function Home() {
           >
             <Link
               href="/data-science"
-              className="inline-flex items-center gap-2 text-primary-700 font-medium hover:text-primary-900 transition-colors text-sm"
+              className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
             >
               Ver todos los proyectos <ArrowRight className="h-4 w-4" />
             </Link>
@@ -185,7 +185,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Live Dashboards ── */}
+      {/* ── Live Dashboards ── (already dark, no changes needed) */}
       <section className="py-16 bg-[#080810]">
         <div className="container mx-auto px-4 max-w-5xl">
           <motion.div
@@ -285,16 +285,16 @@ export default function Home() {
             <motion.div
               variants={fadeUp} initial="hidden" whileInView="visible"
               viewport={{ once: true, margin: '-60px' }} custom={0}
-              className="bg-white p-7 rounded-2xl border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+              className="bg-white dark:bg-[#0f0f17] p-7 rounded-2xl border border-gray-200 dark:border-[#1e1e32] hover:shadow-xl dark:hover:shadow-[#1e1e32]/50 hover:-translate-y-1 transition-all duration-300 group"
             >
-              <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
-                <BarChart3 className="h-5 w-5 text-blue-600" />
+              <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center mb-4 group-hover:bg-blue-100 dark:group-hover:bg-blue-950/70 transition-colors">
+                <BarChart3 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Analytics Engineering</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-4">
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Analytics Engineering</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
                 Pipelines de datos, modelos analíticos y dashboards que se usan de verdad.
               </p>
-              <ul className="space-y-1.5 text-sm text-gray-600">
+              <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
                 {['SQL · BigQuery · dbt', 'Metabase · Dashboards', 'Alertas dinámicas · Percentiles', 'Python · Pandas'].map(item => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
@@ -308,16 +308,16 @@ export default function Home() {
             <motion.div
               variants={fadeUp} initial="hidden" whileInView="visible"
               viewport={{ once: true, margin: '-60px' }} custom={0.1}
-              className="bg-white p-7 rounded-2xl border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+              className="bg-white dark:bg-[#0f0f17] p-7 rounded-2xl border border-gray-200 dark:border-[#1e1e32] hover:shadow-xl dark:hover:shadow-[#1e1e32]/50 hover:-translate-y-1 transition-all duration-300 group"
             >
-              <div className="w-11 h-11 rounded-xl bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors">
-                <Code2 className="h-5 w-5 text-primary-700" />
+              <div className="w-11 h-11 rounded-xl bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center mb-4 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
+                <Code2 className="h-5 w-5 text-primary-700 dark:text-primary-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Desarrollo Web</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-4">
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Desarrollo Web</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
                 Aplicaciones web modernas del frontend al backend, listas para producción.
               </p>
-              <ul className="space-y-1.5 text-sm text-gray-600">
+              <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
                 {['React · Next.js · TypeScript', 'Node.js · APIs REST', 'Tailwind CSS · Framer Motion', 'Docker · Vercel'].map(item => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0" />
@@ -331,16 +331,16 @@ export default function Home() {
             <motion.div
               variants={fadeUp} initial="hidden" whileInView="visible"
               viewport={{ once: true, margin: '-60px' }} custom={0.2}
-              className="bg-white p-7 rounded-2xl border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+              className="bg-white dark:bg-[#0f0f17] p-7 rounded-2xl border border-gray-200 dark:border-[#1e1e32] hover:shadow-xl dark:hover:shadow-[#1e1e32]/50 hover:-translate-y-1 transition-all duration-300 group"
             >
-              <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center mb-4 group-hover:bg-orange-100 transition-colors">
-                <Zap className="h-5 w-5 text-orange-500" />
+              <div className="w-11 h-11 rounded-xl bg-orange-50 dark:bg-orange-950/40 flex items-center justify-center mb-4 group-hover:bg-orange-100 dark:group-hover:bg-orange-950/60 transition-colors">
+                <Zap className="h-5 w-5 text-orange-500 dark:text-orange-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Automatización</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-4">
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Automatización</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
                 Flujos automáticos que eliminan trabajo repetitivo y escalan desde un VPS.
               </p>
-              <ul className="space-y-1.5 text-sm text-gray-600">
+              <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
                 {['n8n · Workflows visuales', 'Telegram API · Notificaciones', 'Scraping · Scoring con IA', 'Docker · VPS'].map(item => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />
@@ -357,26 +357,26 @@ export default function Home() {
       <section className="container mx-auto px-4 py-20">
         <motion.div
           variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-          className="max-w-3xl mx-auto text-center bg-gradient-to-br from-primary-50 to-purple-50 p-12 rounded-3xl border border-primary-200"
+          className="max-w-3xl mx-auto text-center bg-gradient-to-br from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 p-12 rounded-3xl border border-primary-200 dark:border-primary-800/50"
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900 dark:text-white">
             ¿Trabajamos juntos?
           </h2>
-          <p className="text-gray-600 mb-8 max-w-lg mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
             Abierto a roles remotos de Analytics Engineer, Data Engineer, Data Scientist o Full-Stack Developer.
             También a proyectos freelance — datos, web, automatización.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 font-medium shadow-lg shadow-primary-200 hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
             >
               Iniciar conversación
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-primary-200 text-primary-700 rounded-xl hover:bg-primary-50 transition-all font-medium"
+              className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium"
             >
               Sobre mí
             </Link>
