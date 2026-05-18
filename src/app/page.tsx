@@ -1,8 +1,9 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Code2, Database, BarChart3, Zap, TrendingUp, ExternalLink } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, useInView, animate } from 'framer-motion'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -47,6 +48,39 @@ const featuredProjects = [
     tagColor: 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
   },
 ]
+
+const stats = [
+  { value: 967,  suffix: '',   label: 'Atletas monitoreados', sub: 'Performance · Ivolution' },
+  { value: 100,  suffix: 'k+', label: 'Órdenes analizadas',   sub: 'E-Commerce · Olist' },
+  { value: 10,   suffix: 'k+', label: 'Mediciones en BigQuery', sub: 'dbt · SQL · Alertas' },
+  { value: 25,   suffix: '+',  label: 'Stacks evaluados',      sub: 'StackAdvisor · SaaS' },
+]
+
+function StatCounter({ value, suffix, label, sub }: (typeof stats)[0]) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+
+  useEffect(() => {
+    if (!inView || !ref.current) return
+    const el = ref.current
+    const controls = animate(0, value, {
+      duration: 1.8,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (v) => { el.textContent = Math.round(v).toLocaleString('es-AR') },
+    })
+    return controls.stop
+  }, [inView, value])
+
+  return (
+    <div className="text-center px-4">
+      <div className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-1 tabular-nums">
+        <span ref={ref}>0</span><span>{suffix}</span>
+      </div>
+      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-1">{label}</p>
+      <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{sub}</p>
+    </div>
+  )
+}
 
 export default function Home() {
   return (
@@ -120,6 +154,20 @@ export default function Home() {
               >
                 {tech}
               </span>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Stats ── */}
+      <section className="border-y border-gray-100 dark:border-[#1e1e32] py-12 bg-white dark:bg-[#0a0a14]">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <motion.div
+            variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100 dark:divide-[#1e1e32]"
+          >
+            {stats.map((s) => (
+              <StatCounter key={s.label} {...s} />
             ))}
           </motion.div>
         </div>
