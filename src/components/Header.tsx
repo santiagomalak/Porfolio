@@ -94,8 +94,17 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile: toggle + hamburger */}
+        {/* Mobile: CV + toggle + hamburger */}
         <div className="md:hidden flex items-center gap-1">
+          <a
+            href="/CV_Santiago_Malak.pdf"
+            download
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-primary-700 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all"
+            aria-label="Descargar CV"
+          >
+            <Download className="w-4 h-4" />
+            <span className="text-xs font-semibold">CV</span>
+          </a>
           <ThemeToggle />
           <button
             className="p-2 hover:bg-gray-100 dark:hover:bg-[#1e1e32] rounded-lg transition-colors"
@@ -130,6 +139,17 @@ export default function Header() {
                 </Link>
               </li>
             ))}
+            <li className="pt-2 border-t border-gray-100 dark:border-[#1e1e32]">
+              <a
+                href="/CV_Santiago_Malak.pdf"
+                download
+                className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
+                onClick={closeMobileMenu}
+              >
+                <Download className="w-4 h-4" />
+                Descargar CV
+              </a>
+            </li>
           </ul>
         </div>
       )}
