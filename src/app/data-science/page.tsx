@@ -25,6 +25,37 @@ const dataScienceProjects = [
     liveUrl: 'https://ecommerce-dashboard-puce.vercel.app',
     type: 'datascience' as const,
     accentColor: 'orange' as const,
+    codeSnippet: {
+      language: 'SQL',
+      code: `-- mart_rfm_segmentation.sql (dbt model)
+WITH rfm_base AS (
+  SELECT
+    customer_unique_id,
+    DATEDIFF('day', MAX(order_purchase_timestamp),
+             CURRENT_DATE)                    AS recency,
+    COUNT(DISTINCT order_id)                  AS frequency,
+    SUM(payment_value)                        AS monetary
+  FROM {{ ref('int_orders_enriched') }}
+  WHERE order_status = 'delivered'
+  GROUP BY 1
+),
+rfm_scores AS (
+  SELECT *,
+    NTILE(5) OVER (ORDER BY recency DESC)     AS r_score,
+    NTILE(5) OVER (ORDER BY frequency)        AS f_score,
+    NTILE(5) OVER (ORDER BY monetary)         AS m_score
+  FROM rfm_base
+)
+SELECT *,
+  CASE
+    WHEN r_score >= 4 AND f_score >= 4 THEN 'Champions'
+    WHEN r_score >= 3 AND f_score >= 3 THEN 'Loyal'
+    WHEN r_score >= 4 AND f_score <= 2 THEN 'New Customers'
+    WHEN r_score <= 2 AND f_score >= 3 THEN 'At Risk'
+    ELSE 'Hibernating'
+  END AS segment
+FROM rfm_scores`,
+    },
   },
   {
     title: 'Performance Monitoring System — Ivolution',
@@ -35,6 +66,39 @@ const dataScienceProjects = [
     liveUrl: '/data-science/ivolution',
     type: 'datascience' as const,
     accentColor: 'blue' as const,
+    codeSnippet: {
+      language: 'SQL',
+      code: `-- athlete_fatigue_alerts.sql (BigQuery + dbt)
+WITH athlete_baseline AS (
+  SELECT
+    athlete_id,
+    exercise_type,
+    PERCENTILE_CONT(max_force, 0.25)
+      OVER (PARTITION BY athlete_id, exercise_type) AS p25,
+    PERCENTILE_CONT(max_force, 0.75)
+      OVER (PARTITION BY athlete_id, exercise_type) AS p75
+  FROM {{ ref('stg_measurements') }}
+  WHERE eval_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 90 DAY)
+),
+latest_eval AS (
+  SELECT DISTINCT ON (athlete_id, exercise_type)
+    athlete_id, exercise_type, max_force, eval_date
+  FROM {{ ref('stg_measurements') }}
+  ORDER BY athlete_id, exercise_type, eval_date DESC
+)
+SELECT
+  l.athlete_id,
+  l.exercise_type,
+  l.max_force,
+  b.p25, b.p75,
+  CASE
+    WHEN l.max_force >= b.p75 THEN 'SUPERCOMPENSACIÓN'
+    WHEN l.max_force <= b.p25 THEN 'FATIGADO'
+    ELSE 'ATENCIÓN'
+  END AS estado
+FROM latest_eval l
+JOIN athlete_baseline b USING (athlete_id, exercise_type)`,
+    },
   },
   {
     title: 'Segmentación de Usuarios — Email Marketing',
@@ -46,6 +110,32 @@ const dataScienceProjects = [
     notebookUrl: 'https://github.com/santiagomalak/Datos-de-Mailing/blob/master/Clustering%20de%20Usuarios%20a%20partir%20de%20Datos%20de%20Mailing.ipynb',
     type: 'datascience' as const,
     accentColor: 'purple' as const,
+    codeSnippet: {
+      language: 'Python',
+      code: `from sklearn.cluster import MiniBatchKMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
+import pandas as pd
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(df[features])
+
+# Silhouette analysis to find optimal k
+scores = {}
+for k in range(2, 11):
+    model = MiniBatchKMeans(n_clusters=k, random_state=42)
+    labels = model.fit_predict(X_scaled)
+    scores[k] = silhouette_score(X_scaled, labels, sample_size=5000)
+
+optimal_k = max(scores, key=scores.get)  # k=6
+
+final_model = MiniBatchKMeans(n_clusters=optimal_k, random_state=42)
+df['cluster'] = final_model.fit_predict(X_scaled)
+
+# Cluster profiling
+profile = df.groupby('cluster')[features].mean()
+profile['size'] = df['cluster'].value_counts()`,
+    },
   },
   {
     title: 'IBM HR Analytics — Predicción de Deserción',
@@ -57,6 +147,35 @@ const dataScienceProjects = [
     notebookUrl: 'https://github.com/santiagomalak/IBM-Proyect/blob/master/IBM-Proyect.ipynb',
     type: 'datascience' as const,
     accentColor: 'blue' as const,
+    codeSnippet: {
+      language: 'Python',
+      code: `from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+import pandas as pd
+
+X = df.drop(columns=['Attrition'])
+y = df['Attrition'].map({'Yes': 1, 'No': 0})
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42
+)
+
+rf = RandomForestClassifier(
+    n_estimators=200,
+    class_weight='balanced',
+    random_state=42
+)
+rf.fit(X_train, y_train)
+
+print(classification_report(y_test, rf.predict(X_test)))
+
+# Top drivers of attrition
+importances = pd.Series(
+    rf.feature_importances_, index=X.columns
+).sort_values(ascending=False)
+# OverTime, MonthlyIncome, Age top 3`,
+    },
   },
   {
     title: 'NLP & Sentiment Analysis — Yelp Reviews',
@@ -68,6 +187,31 @@ const dataScienceProjects = [
     notebookUrl: 'https://github.com/santiagomalak/NLP-Yelp/blob/main/NLP.ipynb',
     type: 'datascience' as const,
     accentColor: 'purple' as const,
+    codeSnippet: {
+      language: 'Python',
+      code: `from textblob import TextBlob
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+
+# Sentiment analysis
+df['sentiment'] = df['text'].apply(
+    lambda x: TextBlob(x).sentiment.polarity
+)
+df['label'] = pd.cut(df['sentiment'],
+    bins=[-1, -0.1, 0.1, 1],
+    labels=['negative', 'neutral', 'positive']
+)
+
+# Topic modeling with LDA
+vectorizer = TfidfVectorizer(max_features=5000, stop_words='english')
+X = vectorizer.fit_transform(df['text_clean'])
+
+lda = LatentDirichletAllocation(n_components=5, random_state=42)
+lda.fit(X)
+
+# Key insight: longer reviews → more negative sentiment
+# corr(len(text), sentiment) = -0.18`,
+    },
   },
   {
     title: 'Pipeline de Preprocesamiento — Weather AUS',
@@ -79,6 +223,31 @@ const dataScienceProjects = [
     notebookUrl: 'https://github.com/santiagomalak/weatherAUS/blob/master/weatherAUS.ipynb',
     type: 'datascience' as const,
     accentColor: 'teal' as const,
+    codeSnippet: {
+      language: 'Python',
+      code: `from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.compose import ColumnTransformer
+
+num_pipeline = Pipeline([
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', StandardScaler()),
+])
+cat_pipeline = Pipeline([
+    ('imputer', SimpleImputer(strategy='most_frequent')),
+    ('encoder', LabelEncoder()),
+])
+
+preprocessor = ColumnTransformer([
+    ('num', num_pipeline, numerical_cols),
+    ('cat', cat_pipeline, categorical_cols),
+])
+
+X_train_processed = preprocessor.fit_transform(X_train)
+X_test_processed  = preprocessor.transform(X_test)
+# Ready for any classifier — no leakage`,
+    },
   },
   {
     title: 'House Price Prediction — Kaggle',
@@ -90,6 +259,27 @@ const dataScienceProjects = [
     notebookUrl: 'https://github.com/santiagomalak/House-Price-Kaggle/blob/main/SPRINT%202A.ipynb',
     type: 'datascience' as const,
     accentColor: 'green' as const,
+    codeSnippet: {
+      language: 'Python',
+      code: `import numpy as np
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import cross_val_score
+
+# Feature engineering
+df['TotalSF']      = df['TotalBsmtSF'] + df['1stFlrSF'] + df['2ndFlrSF']
+df['HouseAge']     = df['YrSold'] - df['YearBuilt']
+df['RemodAge']     = df['YrSold'] - df['YearRemodAdd']
+df['HasGarage']    = (df['GarageArea'] > 0).astype(int)
+df['HasPool']      = (df['PoolArea'] > 0).astype(int)
+
+# Log-transform skewed target
+y_log = np.log1p(df['SalePrice'])
+
+# Ridge regression with CV
+model = Ridge(alpha=10)
+scores = cross_val_score(model, X, y_log, cv=5, scoring='r2')
+print(f"CV R² mean: {scores.mean():.4f}")  # ~0.84`,
+    },
   },
   {
     title: 'Spotify Music Analysis — EDA',
@@ -101,6 +291,29 @@ const dataScienceProjects = [
     notebookUrl: 'https://github.com/santiagomalak/Spotify-EDA/blob/main/analysis.ipynb',
     type: 'datascience' as const,
     accentColor: 'green' as const,
+    codeSnippet: {
+      language: 'Python',
+      code: `import seaborn as sns
+import matplotlib.pyplot as plt
+
+audio_features = [
+    'danceability', 'energy', 'valence',
+    'tempo', 'instrumentalness', 'acousticness'
+]
+
+# Correlation heatmap
+corr = df[audio_features + ['popularity']].corr()
+sns.heatmap(corr, annot=True, cmap='coolwarm', center=0)
+
+# Popularity trend by decade
+df['decade'] = (df['year'] // 10) * 10
+trend = df.groupby('decade')['popularity'].mean()
+
+# Key findings:
+# energy ↑ → valence ↑ (r=0.39)
+# instrumentalness ↑ → popularity ↓ (r=-0.28)
+# acousticness ↑ over 2010–2020 (+12%)`,
+    },
   },
 ]
 
