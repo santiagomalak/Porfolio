@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Briefcase, Code2, Database, ExternalLink, Rocket } from 'lucide-react'
+import { ArrowRight, Briefcase, Code2, Database, ExternalLink, Rocket, Download, Globe } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const fadeUp = {
@@ -77,6 +77,14 @@ export default function AboutPage() {
             Contactarme
             <ArrowRight className="h-4 w-4" />
           </Link>
+          <a
+            href="/CV_Santiago_Malak.pdf"
+            download
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-[#0f0f17] border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium hover:scale-[1.02]"
+          >
+            <Download className="h-4 w-4" />
+            Descargar CV
+          </a>
           <a
             href="https://github.com/santiagomalak"
             target="_blank"
@@ -259,6 +267,44 @@ export default function AboutPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Idiomas ── */}
+      <section className="container mx-auto px-4 py-12 max-w-4xl">
+        <motion.h2
+          variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+          className="text-2xl font-bold mb-8 flex items-center gap-3 text-gray-900 dark:text-white"
+        >
+          <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
+            <Globe className="h-4 w-4 text-white" />
+          </div>
+          Idiomas
+        </motion.h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { lang: 'Español', level: 'Nativo', detail: 'Lengua materna', bar: 100, color: 'bg-primary-600' },
+            { lang: 'Inglés', level: 'Profesional', detail: 'Lectura técnica · Escritura · Comunicación', bar: 85, color: 'bg-indigo-500' },
+            { lang: 'Portugués', level: 'C1 Avanzado', detail: 'Análisis de datos · Documentación técnica', bar: 80, color: 'bg-secondary-500' },
+          ].map((l, i) => (
+            <motion.div
+              key={l.lang}
+              variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.1}
+              className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <h3 className="font-bold text-gray-900 dark:text-white">{l.lang}</h3>
+                  <p className="text-sm text-primary-700 dark:text-primary-400 font-medium">{l.level}</p>
+                </div>
+                <span className="text-2xl">{l.lang === 'Español' ? '🇦🇷' : l.lang === 'Inglés' ? '🇬🇧' : '🇧🇷'}</span>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">{l.detail}</p>
+              <div className="w-full bg-gray-100 dark:bg-[#1e1e32] rounded-full h-1.5">
+                <div className={`${l.color} h-1.5 rounded-full`} style={{ width: `${l.bar}%` }} />
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 

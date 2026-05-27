@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Moon, Sun } from 'lucide-react'
+import { Menu, X, Moon, Sun, Download } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
 function ThemeToggle() {
@@ -80,7 +80,16 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="ml-2 pl-2 border-l border-gray-200 dark:border-[#1e1e32]">
+          <div className="ml-2 pl-2 border-l border-gray-200 dark:border-[#1e1e32] flex items-center gap-1">
+            <a
+              href="/CV_Santiago_Malak.pdf"
+              download
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-primary-700 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all"
+              aria-label="Descargar CV"
+            >
+              <Download className="w-4 h-4" />
+              CV
+            </a>
             <ThemeToggle />
           </div>
         </div>
