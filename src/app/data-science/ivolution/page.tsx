@@ -68,7 +68,7 @@ export default function IvolutionPage() {
         {/* Header */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0.05} className="mb-12">
           <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 text-blue-700 mb-4">
-            Trabajo real · 2024 — Feb 2025
+            Trabajo real · Abr 2025 — Mar 2026
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             Performance Monitoring System
@@ -77,7 +77,7 @@ export default function IvolutionPage() {
           <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
             Sistema de análisis de rendimiento diseñado de cero para <strong>967 atletas en 13 deportes</strong> —
             fútbol, rugby, atletismo, hockey, natación, basketball y más. Construido con SQL, BigQuery, dbt y
-            Metabase. El sistema sigue operativo más de 1 año después de mi salida.
+            Metabase. El sistema continúa operativo tras mi salida.
           </p>
         </motion.div>
 

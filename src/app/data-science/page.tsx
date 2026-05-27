@@ -28,7 +28,7 @@ const dataScienceProjects = [
   },
   {
     title: 'Performance Monitoring System — Ivolution',
-    description: '967 atletas monitoreados en 13 deportes. Alertas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO) con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte multilingüe ES/EN/PT. El sistema sigue operativo más de 1 año después de mi salida — herramienta principal de decisiones de la organización.',
+    description: '967 atletas monitoreados en 13 deportes. Alertas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO) con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte multilingüe ES/EN/PT. El sistema continúa operativo tras mi salida — herramienta principal de decisiones de la organización.',
     tags: ['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'],
     highlight: '967 atletas · 13 deportes',
     image: '/ivolution-dashboard.png',

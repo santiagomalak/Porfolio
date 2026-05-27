@@ -113,14 +113,14 @@ export default function AboutPage() {
                   <p className="text-primary-700 dark:text-primary-400 font-medium">Ivolution Sport Science</p>
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-[#111120] px-3 py-1 rounded-full border border-gray-200 dark:border-[#1e1e32] whitespace-nowrap">
-                  2024 — Feb 2025
+                  Abr 2025 — Mar 2026
                 </span>
               </div>
               <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                 Diseñé de cero el sistema de análisis de rendimiento de la empresa: pipelines en BigQuery,
                 modelos en dbt y dashboards en Metabase con alertas dinámicas por percentil (p25/p75) y
                 soporte multilingüe ES/EN/PT. 967 atletas monitoreados en 13 deportes, 10.000+ mediciones
-                registradas. El sistema sigue operativo más de 1 año después de mi salida — herramienta
+                registradas. El sistema continúa operativo tras mi salida — herramienta
                 principal de toma de decisiones de la organización.
               </p>
               <div className="flex flex-wrap gap-2 mt-4">

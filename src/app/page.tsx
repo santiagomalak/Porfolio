@@ -28,7 +28,7 @@ const featuredProjects = [
     label: 'Trabajo real · 967 atletas · 13 deportes',
     title: 'Performance Monitoring System',
     company: 'Ivolution Sport Science',
-    description: '967 atletas monitoreados en 13 deportes — fútbol, rugby, atletismo, hockey, natación y más. Alertas de tres estados con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte ES/EN/PT. El sistema sigue operativo más de 1 año después de mi salida.',
+    description: '967 atletas monitoreados en 13 deportes — fútbol, rugby, atletismo, hockey, natación y más. Alertas de tres estados con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte ES/EN/PT. El sistema continúa operativo tras mi salida — herramienta principal de decisiones de la organización.',
     tags: ['BigQuery', 'dbt', 'SQL', 'Metabase', 'Python'],
     color: 'from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40',
     border: 'border-blue-200 dark:border-blue-900/50',
