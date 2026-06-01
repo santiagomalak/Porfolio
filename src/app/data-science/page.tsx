@@ -58,6 +58,38 @@ FROM rfm_scores`,
     },
   },
   {
+    title: 'Athlete Performance Monitor — Demo Dataset',
+    description: 'Dataset sintético de 6.500+ mediciones CMJ/IMTP generado con Python. Faker + numpy con distribuciones calibradas en literatura de sport science. Sistema de alertas neuromusculares con umbrales dinámicos p25/p75 y media móvil de 5 evaluaciones. IDs hasheados desde el origen — 0 datos personales reales.',
+    tags: ['Python', 'numpy', 'Faker', 'SQL', 'Window Functions', 'Sport Science'],
+    highlight: '6.500+ mediciones · Privacy-first',
+    image: '/ds-ecommerce-cover.svg',
+    liveUrl: '/data-science/performance-monitor',
+    type: 'datascience' as const,
+    accentColor: 'teal' as const,
+    codeSnippet: {
+      language: 'Python',
+      code: `# Distribuciones calibradas con normas publicadas
+SPORTS = {
+    "Fútbol":     {"cmj": (42, 6),  "imtp": (1_800, 300)},
+    "Rugby":      {"cmj": (45, 7),  "imtp": (2_200, 350)},
+    "Atletismo":  {"cmj": (50, 8),  "imtp": (2_000, 300)},
+    "Basketball": {"cmj": (55, 8),  "imtp": (1_900, 300)},
+}
+
+def hash_id(raw: str) -> str:
+    return "ATH" + hashlib.sha256(raw.encode()).hexdigest()[:6].upper()
+
+# Faker genera nombre → se hashea → nombre descartado
+raw_name = fake.name()
+athlete_id = hash_id(raw_name + sport)  # único, anónimo
+
+# Fatiga modelada como ruido multiplicativo ±7%
+fatigue   = float(rng.normal(1.0, 0.07))
+jump_h    = max(15.0, base_cmj * fatigue + rng.normal(0, 1.5))
+max_force = max(500.0, base_imtp * fatigue + rng.normal(0, 30))`,
+    },
+  },
+  {
     title: 'Performance Monitoring System — Ivolution',
     description: '967 atletas monitoreados en 13 deportes. Alertas de tres estados (SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO) con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte multilingüe ES/EN/PT. El sistema continúa operativo tras mi salida — herramienta principal de decisiones de la organización.',
     tags: ['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'],
