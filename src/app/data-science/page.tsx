@@ -22,7 +22,7 @@ const dataScienceProjects = [
     highlight: '100k+ órdenes · Analytics Engineering',
     image: '/ds-ecommerce-cover.svg',
     githubUrl: 'https://github.com/santiagomalak/ecommerce-data-platform',
-    liveUrl: 'https://ecommerce-dashboard-puce.vercel.app',
+    liveUrl: '/data-science/olist',
     type: 'datascience' as const,
     accentColor: 'orange' as const,
     codeSnippet: {

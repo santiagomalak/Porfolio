@@ -159,10 +159,15 @@ export default function Home() {
             <div className="text-center md:text-left">
               <motion.div
                 variants={fadeUp} initial="hidden" animate="visible" custom={0}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium mb-8"
+                className="mb-8"
               >
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                Abierto a roles remotos y proyectos
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium hover:bg-primary-100 dark:hover:bg-primary-900/40 hover:border-primary-300 dark:hover:border-primary-600/60 transition-all duration-200"
+                >
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  Abierto a roles remotos y proyectos
+                </Link>
               </motion.div>
 
               <motion.h1
