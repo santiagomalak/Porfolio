@@ -37,13 +37,13 @@ export default function NotFound() {
 
         {/* Message */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0.1}>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
             Esta página no existe... o la borré yo sin querer
           </h1>
-          <p className="text-gray-500 text-lg mb-2">
+          <p className="text-gray-500 dark:text-gray-400 text-lg mb-2">
             El modelo predijo que estarías aquí — pero se equivocó.
           </p>
-          <p className="text-gray-400 text-sm mb-10">
+          <p className="text-gray-400 dark:text-gray-500 text-sm mb-10">
             Error 404 · Ruta no encontrada · Accuracy del modelo: 0%
           </p>
         </motion.div>
@@ -80,7 +80,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/data-science"
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-200 text-gray-700 rounded-xl hover:border-primary-400 hover:text-primary-700 transition-all font-medium"
+            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-200 dark:border-[#1e1e32] text-gray-700 dark:text-gray-300 rounded-xl hover:border-primary-400 dark:hover:border-primary-600 hover:text-primary-700 dark:hover:text-primary-400 transition-all font-medium"
           >
             <Search className="h-4 w-4" />
             Ver proyectos

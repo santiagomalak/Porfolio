@@ -58,7 +58,7 @@ export default function IvolutionPage() {
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
           <Link
             href="/data-science"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors mb-10"
+            className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-10"
           >
             <ArrowLeft className="h-4 w-4" />
             Volver a Data Science
@@ -67,14 +67,14 @@ export default function IvolutionPage() {
 
         {/* Header */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0.05} className="mb-12">
-          <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 text-blue-700 mb-4">
+          <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 mb-4">
             Trabajo real · Abr 2025 — Mar 2026
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-gray-900 dark:text-white">
             Performance Monitoring System
           </h1>
-          <p className="text-xl text-gray-500 font-medium mb-6">Ivolution Sport Science</p>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
+          <p className="text-xl text-gray-500 dark:text-gray-400 font-medium mb-6">Ivolution Sport Science</p>
+          <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
             Sistema de análisis de rendimiento diseñado de cero para <strong>967 atletas en 13 deportes</strong> —
             fútbol, rugby, atletismo, hockey, natación, basketball y más. Construido con SQL, BigQuery, dbt y
             Metabase. El sistema continúa operativo tras mi salida.
@@ -87,7 +87,7 @@ export default function IvolutionPage() {
           className="flex flex-wrap gap-2 mb-12"
         >
           {['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering', 'ES/EN/PT'].map(tag => (
-            <span key={tag} className="px-3 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full border border-blue-100">
+            <span key={tag} className="px-3 py-1.5 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 text-sm font-medium rounded-full border border-blue-100 dark:border-blue-900/50">
               {tag}
             </span>
           ))}
@@ -104,9 +104,9 @@ export default function IvolutionPage() {
             { value: '10k+', label: 'mediciones registradas' },
             { value: '1+ año', label: 'activo post-salida' },
           ].map((stat) => (
-            <div key={stat.label} className="bg-white rounded-xl border border-gray-200 p-5 text-center">
-              <p className="text-2xl font-bold text-primary-700 mb-1">{stat.value}</p>
-              <p className="text-xs text-gray-500">{stat.label}</p>
+            <div key={stat.label} className="bg-white dark:bg-[#0f0f17] rounded-xl border border-gray-200 dark:border-[#1e1e32] p-5 text-center">
+              <p className="text-2xl font-bold text-primary-700 dark:text-primary-400 mb-1">{stat.value}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</p>
             </div>
           ))}
         </motion.div>
@@ -114,13 +114,13 @@ export default function IvolutionPage() {
         {/* Screenshots */}
         <motion.h2
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="text-2xl font-bold mb-2 text-gray-900"
+          className="text-2xl font-bold mb-2 text-gray-900 dark:text-white"
         >
           Capturas del sistema
         </motion.h2>
         <motion.p
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.05}
-          className="text-sm text-gray-400 mb-8"
+          className="text-sm text-gray-400 dark:text-gray-500 mb-8"
         >
           Hacé click en cualquier imagen para verla en pantalla completa.
         </motion.p>
@@ -131,7 +131,7 @@ export default function IvolutionPage() {
               key={s.src}
               variants={fadeUp} initial="hidden" whileInView="visible"
               viewport={{ once: true, margin: '-60px' }} custom={i * 0.05}
-              className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+              className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] overflow-hidden hover:shadow-lg transition-shadow"
             >
               {/* Image — clickable */}
               <div
@@ -153,8 +153,8 @@ export default function IvolutionPage() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="font-semibold text-gray-900 mb-2">{s.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{s.description}</p>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{s.title}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{s.description}</p>
               </div>
             </motion.div>
           ))}
