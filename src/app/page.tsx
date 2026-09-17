@@ -178,7 +178,7 @@ export default function Home() {
                 <span className="text-secondary-500">Engineer</span>{' '}
                 <span className="text-gray-400 dark:text-gray-500 font-light">&amp;</span>{' '}
                 <br />
-                <span className="text-primary-700 dark:text-primary-400">Data Scientist</span>
+                <span className="text-primary-700 dark:text-primary-400">Full-Stack Developer</span>
               </motion.h1>
 
               <motion.p
@@ -488,8 +488,8 @@ export default function Home() {
             ¿Trabajamos juntos?
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
-            Abierto a roles remotos de Analytics Engineer, Data Engineer, Data Scientist o Full-Stack Developer.
-            También a proyectos freelance — datos, web, automatización.
+            Abierto a roles remotos de Analytics Engineer & Full-Stack Developer — y a Data Engineer
+            o Data Scientist si el proyecto lo amerita. También a freelance: datos, web, automatización.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link

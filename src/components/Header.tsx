@@ -18,7 +18,8 @@ function ThemeToggle() {
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className="p-2 rounded-lg text-gray-500 hover:text-primary-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-primary-400 dark:hover:bg-[#1e1e32] transition-all"
-      aria-label="Toggle theme"
+      aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+      aria-pressed={theme === 'dark'}
     >
       {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
     </button>
@@ -56,7 +57,7 @@ export default function Header() {
           </div>
           <div className="flex flex-col leading-none">
             <span className="font-bold text-[15px] text-gray-900 dark:text-white tracking-tight">Santiago Malak</span>
-            <span className="text-[10px] font-semibold text-primary-600 dark:text-primary-400 tracking-[0.12em] uppercase mt-0.5">
+            <span className="text-[10px] font-semibold text-primary-600 dark:text-primary-400 tracking-[0.12em] uppercase mt-0.5 whitespace-nowrap">
               Analytics Engineer
             </span>
           </div>
@@ -110,6 +111,8 @@ export default function Header() {
             className="p-2 hover:bg-gray-100 dark:hover:bg-[#1e1e32] rounded-lg transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
               <X className="w-5 h-5 text-gray-700 dark:text-gray-300" />
@@ -122,7 +125,7 @@ export default function Header() {
 
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 dark:border-[#1e1e32] bg-white dark:bg-[#080810]">
+        <div id="mobile-menu" className="md:hidden border-t border-gray-200 dark:border-[#1e1e32] bg-white dark:bg-[#080810]">
           <ul className="container mx-auto px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <li key={link.href}>

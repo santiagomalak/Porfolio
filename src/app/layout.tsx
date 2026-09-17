@@ -18,11 +18,11 @@ const BASE_URL = 'https://santiagomalak.is-a.dev'
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Santiago Malak — Analytics Engineer & Data Scientist',
+    default: 'Santiago Malak — Analytics Engineer & Full-Stack Developer',
     template: '%s | Santiago Malak',
   },
   description:
-    'Portfolio de Santiago Malak: Analytics Engineer y Data Scientist. BigQuery, dbt, Metabase, SQL, Python, Next.js. 967 atletas monitoreados en producción real. Disponible para roles remotos.',
+    'Portfolio de Santiago Malak: Analytics Engineer y Full-Stack Developer. BigQuery, dbt, Metabase, SQL, Python, Next.js. 967 atletas monitoreados en producción real. Disponible para roles remotos.',
   keywords: [
     'Santiago Malak',
     'Analytics Engineer',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     locale: 'es_AR',
     url: BASE_URL,
     siteName: 'Santiago Malak',
-    title: 'Santiago Malak — Analytics Engineer & Data Scientist',
+    title: 'Santiago Malak — Analytics Engineer & Full-Stack Developer',
     description:
       'Analytics Engineer con experiencia real en BigQuery, dbt y Metabase. 967 atletas monitoreados en producción.',
     images: [
@@ -54,13 +54,13 @@ export const metadata: Metadata = {
         url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: 'Santiago Malak — Analytics Engineer & Data Scientist',
+        alt: 'Santiago Malak — Analytics Engineer & Full-Stack Developer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Santiago Malak — Analytics Engineer & Data Scientist',
+    title: 'Santiago Malak — Analytics Engineer & Full-Stack Developer',
     description:
       'Analytics Engineer con experiencia real en BigQuery, dbt y Metabase. 967 atletas monitoreados en producción.',
     images: ['/og-image.svg'],
@@ -81,6 +81,27 @@ export const metadata: Metadata = {
   },
 }
 
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Santiago Malak',
+  alternateName: 'Santiago Aragon Malak',
+  url: BASE_URL,
+  jobTitle: 'Analytics Engineer & Full-Stack Developer',
+  description:
+    'Analytics Engineer y Full-Stack Developer. BigQuery, dbt, Metabase, SQL, Python, Next.js.',
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Universidad Nacional de Córdoba',
+  },
+  knowsAbout: ['Analytics Engineering', 'Data Science', 'BigQuery', 'dbt', 'SQL', 'Python', 'Next.js', 'TypeScript'],
+  sameAs: [
+    'https://github.com/santiagomalak',
+    'https://www.linkedin.com/in/aragonmalak/',
+    'https://www.credly.com/users/santiago-aragon-malak',
+  ],
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -89,6 +110,10 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.variable} suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <ThemeProvider>
           <div className="flex flex-col min-h-screen">
             <OpenToWorkBanner />
