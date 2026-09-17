@@ -29,16 +29,36 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#039;')
 }
 
+// Strip CR/LF and control characters — defense against header injection,
+// independent of (and in addition to) escapeHtml, which only guards the email body.
+function stripControlChars(str: string): string {
+  return str.replace(/[\r\n\x00-\x1F\x7F]/g, '')
+}
+
 // Basic email format validation
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
+// Best-effort real client IP on Vercel: x-forwarded-for is appended-to by the
+// platform, so the *last* hop is the one Vercel itself set, not the first
+// (client-controlled) one. Falls back to x-real-ip.
+function getClientIp(request: NextRequest): string {
+  const forwardedFor = request.headers.get('x-forwarded-for')
+  if (forwardedFor) {
+    const parts = forwardedFor.split(',').map((p) => p.trim()).filter(Boolean)
+    if (parts.length > 0) return parts[parts.length - 1]
+  }
+  return request.headers.get('x-real-ip') ?? 'unknown'
+}
+
+const MAX_BODY_BYTES = 20_000 // generous for a contact form; blocks pathological payloads
+
 export async function POST(request: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   try {
     // Rate limiting by IP
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+    const ip = getClientIp(request)
     if (isRateLimited(ip)) {
       return NextResponse.json(
         { error: 'Demasiados intentos. Por favor espera un momento.' },
@@ -46,8 +66,22 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const contentLength = Number(request.headers.get('content-length') ?? 0)
+    if (contentLength > MAX_BODY_BYTES) {
+      return NextResponse.json(
+        { error: 'El mensaje es demasiado largo.' },
+        { status: 413 }
+      )
+    }
+
     const body = await request.json()
-    const { name, email, subject, message } = body
+    const { name, email, subject, message, website } = body
+
+    // Honeypot: real visitors never see/fill this field (hidden via CSS in the form).
+    // A bot that fills every input trips it — silently succeed without sending mail.
+    if (typeof website === 'string' && website.trim() !== '') {
+      return NextResponse.json({ success: true }, { status: 200 })
+    }
 
     // Validación básica
     if (!name || !email || !subject || !message) {
@@ -65,10 +99,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Sanitize inputs before inserting into HTML
-    const safeName = escapeHtml(String(name).slice(0, 100))
-    const safeEmail = escapeHtml(String(email).slice(0, 200))
-    const safeSubject = escapeHtml(String(subject).slice(0, 200))
+    // Sanitize inputs before inserting into HTML: strip control chars first
+    // (defends the email headers), then HTML-escape (defends the email body).
+    const safeName = escapeHtml(stripControlChars(String(name)).slice(0, 100))
+    const safeEmail = escapeHtml(stripControlChars(String(email)).slice(0, 200))
+    const safeSubject = escapeHtml(stripControlChars(String(subject)).slice(0, 200))
     const safeMessage = escapeHtml(String(message).slice(0, 2000))
 
     const { data, error } = await resend.emails.send({
@@ -109,8 +144,8 @@ export async function POST(request: NextRequest) {
       { success: true, messageId: data?.id },
       { status: 200 }
     )
-  } catch (error: any) {
-    console.error('Error sending email:', error)
+  } catch (error: unknown) {
+    console.error('Error sending email:', error instanceof Error ? error.message : error)
     return NextResponse.json(
       { error: 'Error al enviar el mensaje. Intenta nuevamente.' },
       { status: 500 }

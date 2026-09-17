@@ -5,12 +5,15 @@ import { Mail, Linkedin, Github, Send, CheckCircle, AlertCircle, Loader2 } from 
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
+const MAX_MESSAGE_LENGTH = 2000
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: '',
+    website: '', // honeypot — stays empty for real visitors, hidden via CSS below
   })
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
@@ -34,12 +37,12 @@ export default function Contact() {
       }
 
       setStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
+      setFormData({ name: '', email: '', subject: '', message: '', website: '' })
 
       setTimeout(() => { setStatus('idle') }, 5000)
-    } catch (error: any) {
+    } catch (error: unknown) {
       setStatus('error')
-      setErrorMessage(error.message || 'Error al enviar el mensaje. Por favor, intenta nuevamente.')
+      setErrorMessage(error instanceof Error ? error.message : 'Error al enviar el mensaje. Por favor, intenta nuevamente.')
     }
   }
 
@@ -186,7 +189,25 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
+                    maxLength={MAX_MESSAGE_LENGTH}
                     className={inputClass}
+                  />
+                  <p className="mt-1 text-xs text-gray-400 dark:text-gray-500 text-right">
+                    {formData.message.length}/{MAX_MESSAGE_LENGTH}
+                  </p>
+                </div>
+
+                {/* Honeypot — invisible to real users, catches naive bots that fill every field */}
+                <div className="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+                  <label htmlFor="website">Dejar en blanco</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
                 </div>
 
