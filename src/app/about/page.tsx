@@ -1,21 +1,6 @@
-'use client'
-
 import Link from 'next/link'
 import { ArrowRight, Briefcase, Code2, Database, ExternalLink, Rocket, Download, Globe } from 'lucide-react'
-import { motion } from 'framer-motion'
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (delay = 0) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay },
-  }),
-}
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-}
+import Reveal from '@/components/Reveal'
 
 const techStack = {
   'Analytics Engineering': [
@@ -42,79 +27,72 @@ export default function AboutPage() {
 
       {/* ── Hero ── */}
       <section className="container mx-auto px-4 pt-16 pb-12 max-w-4xl">
-        <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
+        <Reveal>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            Disponible · Analytics Engineer / Data Engineer
+            Disponible · Analytics Engineer & Full-Stack Developer
           </div>
-        </motion.div>
+        </Reveal>
 
-        <motion.h1
-          variants={fadeUp} initial="hidden" animate="visible" custom={0.08}
-          className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
-        >
-          Hola, soy{' '}
-          <span className="text-gradient">Santiago Malak</span>
-        </motion.h1>
+        <Reveal delay={80}>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Hola, soy{' '}
+            <span className="text-gradient">Santiago Malak</span>
+          </h1>
+        </Reveal>
 
-        <motion.p
-          variants={fadeUp} initial="hidden" animate="visible" custom={0.16}
-          className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-8"
-        >
-          Data Engineer, Analytics Engineer y Full-Stack Developer. Actualmente independiente —
-          construyo proyectos propios, busco mi próximo rol y convierto ideas en productos reales.
-          Me muevo bien en la intersección entre datos, producto y código.
-        </motion.p>
+        <Reveal delay={160}>
+          <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-8">
+            Analytics Engineer & Full-Stack Developer. Actualmente independiente —
+            construyo proyectos propios, busco mi próximo rol y convierto ideas en productos reales.
+            Me muevo bien en la intersección entre datos, producto y código.
+          </p>
+        </Reveal>
 
-        <motion.div
-          variants={fadeUp} initial="hidden" animate="visible" custom={0.24}
-          className="flex flex-wrap gap-3"
-        >
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
-          >
-            Contactarme
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <a
-            href="/CV_Santiago_Malak.pdf"
-            download
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-[#0f0f17] border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium hover:scale-[1.02]"
-          >
-            <Download className="h-4 w-4" />
-            Descargar CV
-          </a>
-          <a
-            href="https://github.com/santiagomalak"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-200 dark:border-[#1e1e32] text-gray-700 dark:text-gray-300 rounded-xl hover:border-primary-400 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400 transition-all font-medium"
-          >
-            <ExternalLink className="h-4 w-4" />
-            GitHub
-          </a>
-        </motion.div>
+        <Reveal delay={240}>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
+            >
+              Contactarme
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href="/CV_Santiago_Malak.pdf"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-[#0f0f17] border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium hover:scale-[1.02]"
+            >
+              <Download className="h-4 w-4" />
+              Descargar CV
+            </a>
+            <a
+              href="https://github.com/santiagomalak"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-200 dark:border-[#1e1e32] text-gray-700 dark:text-gray-300 rounded-xl hover:border-primary-400 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400 transition-all font-medium"
+            >
+              <ExternalLink className="h-4 w-4" />
+              GitHub
+            </a>
+          </div>
+        </Reveal>
       </section>
 
       {/* ── Experiencia ── */}
       <section className="bg-background-alt py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <motion.h2
-            variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white"
-          >
-            <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
-              <Briefcase className="h-4 w-4 text-white" />
-            </div>
-            Experiencia
-          </motion.h2>
+          <Reveal>
+            <h2 className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white">
+              <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
+                <Briefcase className="h-4 w-4 text-white" />
+              </div>
+              Experiencia
+            </h2>
+          </Reveal>
 
           <div className="space-y-6">
-            <motion.div
-              variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}
-              className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6 hover:shadow-md dark:hover:shadow-[#1e1e32]/50 transition-shadow"
-            >
+            <Reveal className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6 hover:shadow-md dark:hover:shadow-[#1e1e32]/50 transition-shadow">
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Analytics Engineer / Data Scientist</h3>
@@ -138,29 +116,25 @@ export default function AboutPage() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ── Building Now ── */}
       <section className="container mx-auto px-4 py-16 max-w-4xl">
-        <motion.h2
-          variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-          className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white"
-        >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-600 to-secondary-500 flex items-center justify-center">
-            <Rocket className="h-4 w-4 text-white" />
-          </div>
-          Qué estoy construyendo
-        </motion.h2>
+        <Reveal>
+          <h2 className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-600 to-secondary-500 flex items-center justify-center">
+              <Rocket className="h-4 w-4 text-white" />
+            </div>
+            Qué estoy construyendo
+          </h2>
+        </Reveal>
 
         <div className="space-y-6">
           {/* StackAdvisor */}
-          <motion.div
-            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}
-            className="bg-gradient-to-br from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-2xl border border-primary-200 dark:border-primary-800/50 p-8 group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
-          >
+          <Reveal className="bg-gradient-to-br from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-2xl border border-primary-200 dark:border-primary-800/50 p-8 group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
             <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
               <div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">StackAdvisor</h3>
@@ -192,13 +166,10 @@ export default function AboutPage() {
               Visitar StackAdvisor
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </a>
-          </motion.div>
+          </Reveal>
 
           {/* Job Hunting Automation */}
-          <motion.div
-            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.1}
-            className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20 rounded-2xl border border-orange-200 dark:border-orange-800/50 p-8"
-          >
+          <Reveal delay={100} className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20 rounded-2xl border border-orange-200 dark:border-orange-800/50 p-8">
             <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
               <div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Job Hunting Automation</h3>
@@ -222,29 +193,27 @@ export default function AboutPage() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── Tech Stack ── */}
       <section className="bg-background-alt py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <motion.h2
-            variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white"
-          >
-            <div className="w-8 h-8 rounded-lg bg-secondary-500 flex items-center justify-center">
-              <Code2 className="h-4 w-4 text-white" />
-            </div>
-            Stack tecnológico
-          </motion.h2>
+          <Reveal>
+            <h2 className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white">
+              <div className="w-8 h-8 rounded-lg bg-secondary-500 flex items-center justify-center">
+                <Code2 className="h-4 w-4 text-white" />
+              </div>
+              Stack tecnológico
+            </h2>
+          </Reveal>
 
           <div className="grid md:grid-cols-2 gap-8">
             {Object.entries(techStack).map(([category, skills], catIdx) => (
-              <motion.div
+              <Reveal
                 key={category}
-                variants={fadeUp} initial="hidden" whileInView="visible"
-                viewport={{ once: true }} custom={catIdx * 0.1}
+                delay={catIdx * 100}
                 className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6"
               >
                 <div className="flex items-center gap-2 mb-5">
@@ -264,7 +233,7 @@ export default function AboutPage() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -272,24 +241,23 @@ export default function AboutPage() {
 
       {/* ── Idiomas ── */}
       <section className="container mx-auto px-4 py-12 max-w-4xl">
-        <motion.h2
-          variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-          className="text-2xl font-bold mb-8 flex items-center gap-3 text-gray-900 dark:text-white"
-        >
-          <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
-            <Globe className="h-4 w-4 text-white" />
-          </div>
-          Idiomas
-        </motion.h2>
+        <Reveal>
+          <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-gray-900 dark:text-white">
+            <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
+              <Globe className="h-4 w-4 text-white" />
+            </div>
+            Idiomas
+          </h2>
+        </Reveal>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
             { lang: 'Español', level: 'Nativo', detail: 'Lengua materna', bar: 100, color: 'bg-primary-600' },
             { lang: 'Inglés', level: 'Profesional', detail: 'Lectura técnica · Escritura · Comunicación', bar: 85, color: 'bg-indigo-500' },
             { lang: 'Portugués', level: 'C1 Avanzado', detail: 'Análisis de datos · Documentación técnica', bar: 80, color: 'bg-secondary-500' },
           ].map((l, i) => (
-            <motion.div
+            <Reveal
               key={l.lang}
-              variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.1}
+              delay={i * 100}
               className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6"
             >
               <div className="flex items-start justify-between mb-3">
@@ -303,35 +271,30 @@ export default function AboutPage() {
               <div className="w-full bg-gray-100 dark:bg-[#1e1e32] rounded-full h-1.5">
                 <div className={`${l.color} h-1.5 rounded-full`} style={{ width: `${l.bar}%` }} />
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* ── Filosofía ── */}
       <section className="container mx-auto px-4 py-16 max-w-4xl">
-        <motion.div
-          variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-          className="bg-gradient-to-br from-primary-600 to-secondary-500 rounded-3xl p-10 text-white text-center"
-        >
+        <Reveal className="bg-gradient-to-br from-primary-600 to-secondary-500 rounded-3xl p-10 text-white text-center">
           <div className="text-4xl mb-6">💡</div>
           <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-6 opacity-95">
             "Los mejores productos nacen en la intersección de datos e ingeniería.
             Los datos te dicen qué construir. El código te deja construirlo."
           </blockquote>
           <p className="opacity-80 text-sm">— Mi filosofía de trabajo</p>
-        </motion.div>
+        </Reveal>
       </section>
 
       {/* ── CTA ── */}
       <section className="container mx-auto px-4 pb-20 max-w-4xl text-center">
-        <motion.div
-          variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true }}
-        >
+        <Reveal>
           <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">¿Trabajamos juntos?</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
-            Abierto a roles remotos de Analytics Engineer, Data Engineer, Data Scientist o Full-Stack Developer.
-            También a proyectos freelance — datos, web, automatización.
+            Abierto a roles remotos de Analytics Engineer & Full-Stack Developer — y a Data Engineer
+            o Data Scientist si el proyecto lo amerita. También a freelance: datos, web, automatización.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
@@ -348,7 +311,7 @@ export default function AboutPage() {
               Ver mis proyectos
             </Link>
           </div>
-        </motion.div>
+        </Reveal>
       </section>
 
     </div>

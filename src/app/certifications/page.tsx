@@ -1,22 +1,40 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { ExternalLink, Award, GraduationCap } from 'lucide-react'
+import Reveal from '@/components/Reveal'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (delay = 0) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay },
-  }),
+interface University {
+  name: string
+  institution: string
+  date: string
+  hours: string
+  resolution: string
+  description: string
+  verifyUrl?: string
+  verifyLabel?: string
+  color: string
+  border: string
+  tag: string
 }
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+interface Certification {
+  name: string
+  issuer: string
+  date: string
+  detail: string
+  verifyUrl?: string
+  credlyUrl?: string
+  image?: string
 }
 
-const universities = [
+interface CertificationGroup {
+  category: string
+  color: string
+  border: string
+  labelColor: string
+  items: Certification[]
+}
+
+const universities: University[] = [
   {
     name: 'Diplomatura en Data Science & Machine Learning',
     institution: 'Universidad Nacional de Córdoba · ICARO',
@@ -44,7 +62,7 @@ const universities = [
   },
 ]
 
-const certifications = [
+const certifications: CertificationGroup[] = [
   {
     category: 'Google',
     color: 'from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30',
@@ -156,7 +174,7 @@ export default function CertificationsPage() {
       <div className="container mx-auto px-4 py-16 max-w-5xl">
 
         {/* Header */}
-        <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0} className="max-w-3xl mb-16">
+        <Reveal className="max-w-3xl mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-secondary-500">Certificaciones</span>{' '}
             <span className="text-primary-700 dark:text-primary-400">& Formación</span>
@@ -164,10 +182,10 @@ export default function CertificationsPage() {
           <p className="text-xl text-gray-600 dark:text-gray-400">
             Formación continua en Data Science, programación, IA y desarrollo web — de Google, IBM, Cisco y universidades internacionales.
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* UNC Diplomatura */}
-        <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0.1} className="mb-16">
+        <Reveal delay={100} className="mb-16">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
               <GraduationCap className="h-4 w-4 text-white" />
@@ -193,55 +211,49 @@ export default function CertificationsPage() {
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4 text-sm">{u.description}</p>
                 <p className="text-xs text-gray-400 dark:text-gray-500 font-mono mb-4">{u.resolution}</p>
-                {'verifyUrl' in u && u.verifyUrl && (
+                {u.verifyUrl && (
                   <a
-                    href={u.verifyUrl as string}
+                    href={u.verifyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
-                    {'verifyLabel' in u && u.verifyLabel ? u.verifyLabel as string : 'Ver certificado'}
+                    {u.verifyLabel ?? 'Ver certificado'}
                   </a>
                 )}
               </div>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Other certifications header */}
-        <motion.div
-          variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="flex items-center gap-2 mb-8"
-        >
+        <Reveal className="flex items-center gap-2 mb-8">
           <div className="w-8 h-8 rounded-lg bg-secondary-500 flex items-center justify-center">
             <Award className="h-4 w-4 text-white" />
           </div>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white">Certificaciones internacionales</h2>
-        </motion.div>
+        </Reveal>
 
         {/* Credly banner */}
-        <motion.a
-          href="https://www.credly.com/users/santiago-aragon-malak"
-          target="_blank"
-          rel="noopener noreferrer"
-          variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="flex items-center justify-between gap-4 bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800/50 rounded-2xl px-7 py-5 mb-10 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
-        >
-          <div>
-            <p className="font-bold text-gray-900 dark:text-white mb-0.5">Ver todas mis badges verificadas en Credly</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Google IT Support · IBM Web Dev · y más badges verificables</p>
-          </div>
-          <ExternalLink className="h-5 w-5 text-orange-500 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-        </motion.a>
+        <Reveal>
+          <a
+            href="https://www.credly.com/users/santiago-aragon-malak"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between gap-4 bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800/50 rounded-2xl px-7 py-5 mb-10 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
+          >
+            <div>
+              <p className="font-bold text-gray-900 dark:text-white mb-0.5">Ver todas mis badges verificadas en Credly</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Google IT Support · IBM Web Dev · y más badges verificables</p>
+            </div>
+            <ExternalLink className="h-5 w-5 text-orange-500 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </Reveal>
 
         <div className="space-y-8">
           {certifications.map((group, gi) => (
-            <motion.div
-              key={group.category}
-              variants={fadeUp} initial="hidden" whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }} custom={gi * 0.05}
-            >
+            <Reveal key={group.category} delay={gi * 50}>
               <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 ${group.labelColor}`}>
                 {group.category}
               </span>
@@ -251,16 +263,18 @@ export default function CertificationsPage() {
                     key={cert.name}
                     className={`bg-gradient-to-br ${group.color} rounded-xl border ${group.border} p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200`}
                   >
-                    {'image' in cert && cert.image && (
-                      <img src={cert.image} alt={cert.name} className="w-full rounded-lg mb-4 object-cover" />
+                    {cert.image && (
+                      <div className="relative w-full aspect-[3508/2480] rounded-lg mb-4 overflow-hidden">
+                        <Image src={cert.image} alt={cert.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                      </div>
                     )}
                     <h3 className="font-bold text-gray-900 dark:text-white mb-1 leading-snug">{cert.name}</h3>
                     <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{cert.issuer}</p>
                     <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">{cert.date} · {cert.detail}</p>
                     <div className="flex flex-wrap gap-3">
-                      {'verifyUrl' in cert && cert.verifyUrl && (
+                      {cert.verifyUrl && (
                         <a
-                          href={cert.verifyUrl as string}
+                          href={cert.verifyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
@@ -269,9 +283,9 @@ export default function CertificationsPage() {
                           Verificar
                         </a>
                       )}
-                      {'credlyUrl' in cert && cert.credlyUrl && (
+                      {cert.credlyUrl && (
                         <a
-                          href={cert.credlyUrl as string}
+                          href={cert.credlyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-xs font-medium text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 transition-colors"
@@ -284,7 +298,7 @@ export default function CertificationsPage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 
