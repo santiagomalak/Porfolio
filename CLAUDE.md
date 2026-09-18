@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Read CONSTRAINTS.md before writing code. Do not weaken it to make a change pass.
 
+Architecture decisions with real trade-offs (not just "what" but "why we didn't do the obvious alternative") are recorded in `docs/adr/`. Check there before re-litigating something that was already decided.
+
 ## Commands
 
 ```bash
