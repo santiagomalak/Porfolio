@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
---resume
+Read CONSTRAINTS.md before writing code. Do not weaken it to make a change pass.
 
 ## Commands
 
