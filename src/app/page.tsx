@@ -43,7 +43,7 @@ const featuredProjects = [
     company: 'Coding Click · Full Stack',
     description: 'Plataforma educativa completa para un instituto de formación deportiva: catálogo de cursos, pagos con Stripe e inscripción automática, aula virtual con progreso, foro por curso, evaluaciones con corrección y panel de administración. Auth y datos en Supabase con políticas RLS. En etapa final de testing y carga de contenido.',
     tags: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Stripe', 'Vercel'],
-    href: 'https://instituto-coubertin-xga7.vercel.app',
+    href: 'https://institutocoubertin.com',
     color: 'from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30',
     border: 'border-amber-200 dark:border-amber-900/50',
     labelColor: 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400',

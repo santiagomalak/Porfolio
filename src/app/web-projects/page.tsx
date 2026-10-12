@@ -18,7 +18,7 @@ const webProjects = [
     tags: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Stripe', 'Resend', 'Vercel'],
     highlight: 'Cliente · Live',
     image: '/project-coubertin.svg',
-    liveUrl: 'https://instituto-coubertin-xga7.vercel.app',
+    liveUrl: 'https://institutocoubertin.com',
     type: 'web' as const,
     accentColor: 'orange' as const,
   },
