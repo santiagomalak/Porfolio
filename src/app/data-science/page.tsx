@@ -361,10 +361,10 @@ export default function DataScience() {
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-secondary-500">Proyectos de</span>{' '}
-            <span className="text-primary-700">Data Science</span>
+            <span className="text-primary-700 dark:text-primary-400">Data & Analytics</span>
           </h1>
-          <p className="text-xl text-gray-600">
-            Machine learning, análisis estadístico y pipelines de datos — del dataset al insight accionable.
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            Analytics engineering, machine learning y análisis estadístico — del dato crudo al modelo limpio y al insight accionable.
           </p>
         </motion.div>
 

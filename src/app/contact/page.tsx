@@ -57,7 +57,7 @@ export default function Contact() {
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">Contacto</h1>
             <p className="text-xl text-gray-600 dark:text-gray-400">
-              ¿Tienes un proyecto en mente? Conversemos sobre cómo puedo ayudarte.
+              ¿Tenés un rol o un proyecto en mente? Escribime y lo conversamos.
             </p>
           </div>
 
@@ -168,10 +168,11 @@ export default function Contact() {
                     className={inputClass}
                   >
                     <option value="">Selecciona un asunto</option>
-                    <option value="web">Proyecto de Desarrollo Web</option>
-                    <option value="datascience">Proyecto de Data Science</option>
-                    <option value="both">Proyecto Combinado</option>
-                    <option value="other">Otro</option>
+                    <option value="Oportunidad laboral">Oportunidad laboral / Rol remoto</option>
+                    <option value="Proyecto Full Stack">Proyecto Full Stack / Sistema a medida</option>
+                    <option value="Proyecto de Data">Proyecto de Data / Dashboards</option>
+                    <option value="Automatización con IA">Automatización con IA</option>
+                    <option value="Otro">Otro</option>
                   </select>
                 </div>
 

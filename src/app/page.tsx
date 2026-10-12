@@ -25,35 +25,63 @@ const fadeIn = {
 
 const featuredProjects = [
   {
-    label: 'Trabajo real · 967 atletas · 13 deportes',
+    label: 'Trabajo en empresa · 967 atletas · 13 deportes',
     title: 'Performance Monitoring System',
-    company: 'Ivolution Sport Science',
-    description: '967 atletas monitoreados en 13 deportes — fútbol, rugby, atletismo, hockey, natación y más. Alertas de tres estados con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte ES/EN/PT. El sistema continúa operativo tras mi salida — herramienta principal de decisiones de la organización.',
-    tags: ['BigQuery', 'dbt', 'SQL', 'Metabase', 'Python'],
+    company: 'Ivolution Sport Science · Data',
+    description: 'Diseñé desde cero el sistema de monitoreo de fatiga neuromuscular para 967 atletas de 13 deportes: modelos en BigQuery + dbt, dashboards en Metabase y umbrales dinámicos por percentil (p25/p75) que clasifican a cada atleta en FATIGADO / ATENCIÓN / SUPERCOMPENSACIÓN. Herramienta principal de decisión del staff, con soporte ES/EN/PT.',
+    tags: ['BigQuery', 'dbt', 'SQL', 'Metabase', 'Python', 'n8n'],
+    href: '/data-science/ivolution',
     color: 'from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40',
     border: 'border-blue-200 dark:border-blue-900/50',
     labelColor: 'bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
     tagColor: 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
+    linkColor: 'text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300',
   },
   {
-    label: 'SaaS · En producción',
+    label: 'Proyecto de cliente · LMS a medida',
+    title: 'Instituto Coubertin',
+    company: 'Coding Click · Full Stack',
+    description: 'Plataforma educativa completa para un instituto de formación deportiva: catálogo de cursos, pagos con Stripe e inscripción automática, aula virtual con progreso, foro por curso, evaluaciones con corrección y panel de administración. Auth y datos en Supabase con políticas RLS. En etapa final de testing y carga de contenido.',
+    tags: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Stripe', 'Vercel'],
+    color: 'from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30',
+    border: 'border-amber-200 dark:border-amber-900/50',
+    labelColor: 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400',
+    tagColor: 'bg-amber-50 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400',
+    linkColor: 'text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-300',
+  },
+  {
+    label: 'Sistema de gestión · Demo funcional',
+    title: 'Turnex',
+    company: 'Coding Click · Full Stack + SQL',
+    description: 'Sistema de gestión para complejos deportivos: socios y cuentas corrientes, cuotas, reservas de canchas, turnos fijos, control de acceso con QR, cobros, caja diaria y portal del socio. PostgreSQL con SQL directo y migraciones versionadas, roles por perfil, tareas diarias con cron y tests unitarios + E2E.',
+    tags: ['Next.js 16', 'PostgreSQL', 'SQL (sin ORM)', 'Supabase Auth', 'Zod', 'Playwright'],
+    href: 'https://github.com/santiagomalak/Turnex',
+    color: 'from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30',
+    border: 'border-emerald-200 dark:border-emerald-900/50',
+    labelColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400',
+    tagColor: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400',
+    linkColor: 'text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300',
+  },
+  {
+    label: 'SaaS propia · En producción',
     title: 'StackAdvisor',
-    company: 'Proyecto propio',
-    description: '13 preguntas inteligentes → stack ideal con justificación detallada + roadmap de 12 semanas personalizado. Motor de recomendación propio con 25+ stacks evaluados. Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.',
-    tags: ['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine'],
+    company: 'Proyecto propio · Full Stack + IA',
+    description: 'Cuestionario que evalúa 35 combinaciones de stacks y recomienda el óptimo con justificación, roadmap de 12 semanas y estimador de costos. El Blueprint premium usa Gemini para generar arquitectura, esquema de base de datos y plan de desarrollo a medida del proyecto.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini', 'Decision Engine'],
     href: 'https://stackadvisor-nu.vercel.app',
     color: 'from-purple-50 to-violet-50 dark:from-purple-950/40 dark:to-violet-950/40',
     border: 'border-purple-200 dark:border-purple-900/50',
     labelColor: 'bg-purple-100 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
     tagColor: 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
+    linkColor: 'text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300',
   },
 ]
 
 const stats = [
-  { value: 967,  suffix: '',   label: 'Atletas monitoreados', sub: 'Performance · Ivolution' },
-  { value: 100,  suffix: 'k+', label: 'Órdenes analizadas',   sub: 'E-Commerce · Olist' },
-  { value: 10,   suffix: 'k+', label: 'Mediciones en BigQuery', sub: 'dbt · SQL · Alertas' },
-  { value: 25,   suffix: '+',  label: 'Stacks evaluados',      sub: 'StackAdvisor · SaaS' },
+  { value: 967,  suffix: '',   label: 'Atletas monitoreados', sub: 'Data · Ivolution' },
+  { value: 100,  suffix: 'k+', label: 'Órdenes modeladas',    sub: 'dbt · Olist' },
+  { value: 35,   suffix: '',   label: 'Stacks evaluados',     sub: 'StackAdvisor · IA' },
+  { value: 10,   suffix: 'k+', label: 'Mediciones procesadas', sub: 'BigQuery · Ivolution' },
 ]
 
 function StatCounter({ value, suffix, label, sub }: (typeof stats)[0]) {
@@ -174,19 +202,20 @@ export default function Home() {
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.08}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               >
-                <span className="text-secondary-500">Analytics</span><br />
-                <span className="text-secondary-500">Engineer</span>{' '}
-                <span className="text-gray-400 dark:text-gray-500 font-light">&amp;</span>{' '}
+                <span className="text-secondary-500">Hybrid Engineer</span>
                 <br />
-                <span className="text-primary-700 dark:text-primary-400">Data Scientist</span>
+                <span className="text-2xl md:text-3xl lg:text-4xl text-primary-700 dark:text-primary-400 font-semibold">
+                  Data + Full Stack + IA
+                </span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.18}
                 className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl leading-relaxed mx-auto md:mx-0"
               >
-                Construyo pipelines de datos, modelos analíticos y dashboards que los equipos realmente
-                usan para tomar decisiones. BigQuery · dbt · Metabase en producción real.
+                Construyo sistemas de datos y software que se usan en producción: pipelines en
+                BigQuery + dbt, dashboards, aplicaciones React/Next.js y automatizaciones con IA.
+                Modelo los datos, construyo la interfaz que los consume y automatizo el proceso completo.
               </motion.p>
 
               <motion.div
@@ -194,10 +223,10 @@ export default function Home() {
                 className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start flex-wrap"
               >
                 <Link
-                  href="/data-science"
+                  href="#proyectos"
                   className="px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
                 >
-                  Ver proyectos de datos
+                  Ver proyectos
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
@@ -213,7 +242,7 @@ export default function Home() {
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.38}
                 className="flex flex-wrap justify-center md:justify-start gap-2 mt-8"
               >
-                {['SQL', 'BigQuery', 'dbt', 'Python', 'React', 'Next.js', 'TypeScript', 'n8n'].map((tech) => (
+                {['SQL', 'Python', 'BigQuery', 'dbt', 'React', 'Next.js', 'TypeScript', 'Supabase', 'n8n', 'LLMs'].map((tech) => (
                   <span
                     key={tech}
                     className="px-3 py-1 bg-white dark:bg-[#111120] border border-gray-200 dark:border-[#1e1e32] rounded-full text-xs text-gray-500 dark:text-gray-400 font-medium shadow-sm"
@@ -251,14 +280,14 @@ export default function Home() {
       </section>
 
       {/* ── Proyectos destacados ── */}
-      <section className="bg-background-alt py-20">
+      <section id="proyectos" className="bg-background-alt py-20 scroll-mt-16">
         <div className="container mx-auto px-4 max-w-5xl">
           <motion.div
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">Proyectos destacados</h2>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">Lo más relevante de mi trabajo</p>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">Datos, producto y automatización — en empresa, con clientes y propios</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -283,14 +312,23 @@ export default function Home() {
                   ))}
                 </div>
                 {p.href && (
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-5 text-sm font-medium text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300 transition-colors"
-                  >
-                    Ver proyecto <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
+                  p.href.startsWith('/') ? (
+                    <Link
+                      href={p.href}
+                      className={`inline-flex items-center gap-1.5 mt-5 text-sm font-medium transition-colors ${p.linkColor}`}
+                    >
+                      Ver caso <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  ) : (
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1.5 mt-5 text-sm font-medium transition-colors ${p.linkColor}`}
+                    >
+                      {p.href.includes('github.com') ? 'Ver código' : 'Ver proyecto'} <ArrowRight className="h-3.5 w-3.5" />
+                    </a>
+                  )
                 )}
               </motion.div>
             ))}
@@ -300,12 +338,20 @@ export default function Home() {
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="text-center mt-10"
           >
-            <Link
-              href="/data-science"
-              className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
-            >
-              Ver todos los proyectos <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="flex flex-wrap justify-center gap-6">
+              <Link
+                href="/web-projects"
+                className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
+              >
+                Todos los proyectos Full Stack <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/data-science"
+                className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
+              >
+                Todos los proyectos de Data <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -406,7 +452,7 @@ export default function Home() {
           </motion.h2>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Analytics Engineering */}
+            {/* Data */}
             <motion.div
               variants={fadeUp} initial="hidden" whileInView="visible"
               viewport={{ once: true, margin: '-60px' }} custom={0}
@@ -415,12 +461,12 @@ export default function Home() {
               <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center mb-4 group-hover:bg-blue-100 dark:group-hover:bg-blue-950/70 transition-colors">
                 <BarChart3 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Analytics Engineering</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Data & Analytics</h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                Pipelines de datos, modelos analíticos y dashboards que se usan de verdad.
+                Datos dispersos → modelos limpios y dashboards que se usan para decidir.
               </p>
               <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
-                {['SQL · BigQuery · dbt', 'Metabase · Dashboards', 'Alertas dinámicas · Percentiles', 'Python · Pandas'].map(item => (
+                {['SQL · BigQuery · dbt · PostgreSQL', 'Metabase · Power BI', 'Python · pandas · scikit-learn', 'Alertas dinámicas · Percentiles'].map(item => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                     {item}
@@ -438,12 +484,12 @@ export default function Home() {
               <div className="w-11 h-11 rounded-xl bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center mb-4 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
                 <Code2 className="h-5 w-5 text-primary-700 dark:text-primary-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Desarrollo Web</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Full Stack</h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                Aplicaciones web modernas del frontend al backend, listas para producción.
+                Ideas de producto → apps completas, del modelo de datos al deploy.
               </p>
               <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
-                {['React · Next.js · TypeScript', 'Node.js · APIs REST', 'Tailwind CSS · Framer Motion', 'Docker · Vercel'].map(item => (
+                {['React · Next.js · TypeScript', 'Node.js · APIs REST', 'Supabase · PostgreSQL', 'Tailwind CSS · Docker · Vercel'].map(item => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0" />
                     {item}
@@ -461,12 +507,12 @@ export default function Home() {
               <div className="w-11 h-11 rounded-xl bg-orange-50 dark:bg-orange-950/40 flex items-center justify-center mb-4 group-hover:bg-orange-100 dark:group-hover:bg-orange-950/60 transition-colors">
                 <Zap className="h-5 w-5 text-orange-500 dark:text-orange-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Automatización</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">IA & Automatización</h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                Flujos automáticos que eliminan trabajo repetitivo y escalan desde un VPS.
+                Procesos manuales → flujos automáticos con LLMs integrados.
               </p>
               <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
-                {['n8n · Workflows visuales', 'Telegram API · Notificaciones', 'Scraping · Scoring con IA', 'Docker · VPS'].map(item => (
+                {['n8n · Make · Zapier', 'Claude API · Gemini · Groq', 'Scraping · Scoring con IA', 'Telegram API · Alertas'].map(item => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />
                     {item}
@@ -488,8 +534,9 @@ export default function Home() {
             ¿Trabajamos juntos?
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
-            Abierto a roles remotos de Analytics Engineer, Data Engineer, Data Scientist o Full-Stack Developer.
-            También a proyectos freelance — datos, web, automatización.
+            Busco roles remotos junior / semi-senior como Analytics Engineer, Data Analyst, Data Scientist,
+            Full Stack o AI/Automation Engineer. También tomo proyectos freelance de automatización,
+            dashboards y desarrollo a medida.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link

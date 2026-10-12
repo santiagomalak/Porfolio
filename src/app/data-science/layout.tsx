@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Data Science & Analytics Engineering',
-  description: 'Proyectos de Data Science y Analytics Engineering: sistema para 300+ usuarios en Ivolution, machine learning con Scikit-learn, pipelines BigQuery/dbt y segmentación de usuarios.',
+  title: 'Proyectos de Data',
+  description: 'Proyectos de datos: sistema de monitoreo para 967 atletas en Ivolution (BigQuery + dbt + Metabase), plataforma dbt sobre 100k+ órdenes Olist, machine learning con scikit-learn y segmentación de usuarios.',
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

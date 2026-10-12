@@ -18,9 +18,9 @@
   <rect x="80" y="80" width="90" height="90" rx="20" fill="url(#badge)"/>
   <text x="125" y="142" font-family="Arial,sans-serif" font-weight="bold" font-size="42" fill="white" text-anchor="middle">SA</text>
   <!-- Name -->
-  <text x="80" y="260" font-family="Arial,sans-serif" font-weight="bold" font-size="72" fill="#1a1a2e">Santiago Aragon</text>
+  <text x="80" y="260" font-family="Arial,sans-serif" font-weight="bold" font-size="72" fill="#1a1a2e">Santiago Aragon Malak</text>
   <!-- Title -->
-  <text x="80" y="330" font-family="Arial,sans-serif" font-size="36" fill="#3d4d82" font-weight="600">Data Scientist &amp; Full-Stack Developer</text>
+  <text x="80" y="330" font-family="Arial,sans-serif" font-size="36" fill="#3d4d82" font-weight="600">Hybrid Engineer: Data + Full Stack + IA</text>
   <!-- Description -->
   <text x="80" y="400" font-family="Arial,sans-serif" font-size="28" fill="#6b7280">React · Next.js · Python · Machine Learning · SQL</text>
   <!-- Bottom bar -->

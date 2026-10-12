@@ -32,8 +32,8 @@ export default function Header() {
   const navLinks = [
     { href: '/', label: 'Inicio' },
     { href: '/about', label: 'Sobre Mí' },
-    { href: '/web-projects', label: 'Desarrollo Web' },
-    { href: '/data-science', label: 'Data Science' },
+    { href: '/web-projects', label: 'Full Stack' },
+    { href: '/data-science', label: 'Data' },
     { href: '/dashboards', label: 'Dashboards' },
     { href: '/certifications', label: 'Certificaciones' },
     { href: '/contact', label: 'Contacto' },
@@ -55,9 +55,9 @@ export default function Header() {
             <span className="text-white font-bold text-sm tracking-tight select-none">SA</span>
           </div>
           <div className="flex flex-col leading-none">
-            <span className="font-bold text-[15px] text-gray-900 dark:text-white tracking-tight">Santiago Malak</span>
+            <span className="font-bold text-[15px] text-gray-900 dark:text-white tracking-tight">Santiago Aragon Malak</span>
             <span className="text-[10px] font-semibold text-primary-600 dark:text-primary-400 tracking-[0.12em] uppercase mt-0.5">
-              Analytics Engineer
+              Hybrid Engineer<span className="hidden sm:inline"> · Data + Full Stack + IA</span>
             </span>
           </div>
         </Link>
