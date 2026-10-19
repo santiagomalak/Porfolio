@@ -91,7 +91,7 @@ const webProjects = [
 export default function WebProjects() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-16">
 
         {/* Header */}
         <motion.div
@@ -100,7 +100,7 @@ export default function WebProjects() {
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-primary-700 dark:text-primary-400">Proyectos</span>{' '}
-            <span className="text-secondary-500">Full Stack</span>
+            <span className="text-secondary-500 dark:text-secondary-400">Full Stack</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">
             Del modelo de datos al deploy: sistemas a medida para clientes, productos propios con IA y

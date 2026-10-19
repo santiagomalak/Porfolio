@@ -63,10 +63,10 @@ export default function DashboardsPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-500 dark:text-indigo-400 mb-4">
-              Live Projects
+              Proyectos en vivo
             </p>
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-900 dark:text-white">
-              Interactive Dashboards
+              Dashboards interactivos
             </h1>
             <p className="text-gray-600 dark:text-zinc-400 text-lg max-w-2xl">
               Proyectos productivos con datos reales — desde pipelines de datos hasta streams en tiempo real.

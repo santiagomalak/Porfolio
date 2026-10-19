@@ -114,15 +114,15 @@ export default function Contact() {
               <div className="mt-8 p-6 bg-primary-50 dark:bg-primary-900/20 rounded-lg border border-primary-200 dark:border-primary-800/50">
                 <h3 className="font-semibold mb-2 text-primary-700 dark:text-primary-400">Disponibilidad</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Disponible para proyectos freelance y colaboraciones.
-                  Tiempo de respuesta: 24-48 horas.
+                  Disponible para roles remotos (junior / semi-senior) y proyectos freelance.
+                  Respondo en 24-48 horas.
                 </p>
               </div>
             </div>
 
             {/* Contact Form */}
             <div className="bg-white dark:bg-[#0f0f17] p-8 rounded-lg border border-gray-200 dark:border-[#1e1e32]">
-              <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Envíame un mensaje</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Mandame un mensaje</h2>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -167,7 +167,7 @@ export default function Contact() {
                     required
                     className={inputClass}
                   >
-                    <option value="">Selecciona un asunto</option>
+                    <option value="">Elegí un asunto</option>
                     <option value="Oportunidad laboral">Oportunidad laboral / Rol remoto</option>
                     <option value="Proyecto Full Stack">Proyecto Full Stack / Sistema a medida</option>
                     <option value="Proyecto de Data">Proyecto de Data / Dashboards</option>

@@ -82,7 +82,7 @@ const stats = [
   { value: 967,  suffix: '',   label: 'Atletas monitoreados', sub: 'Data · Ivolution' },
   { value: 100,  suffix: 'k+', label: 'Órdenes modeladas',    sub: 'dbt · Olist' },
   { value: 35,   suffix: '',   label: 'Stacks evaluados',     sub: 'StackAdvisor · IA' },
-  { value: 10,   suffix: 'k+', label: 'Mediciones procesadas', sub: 'BigQuery · Ivolution' },
+  { value: 10,   suffix: 'k+', label: 'Mediciones',           sub: 'BigQuery · Ivolution' },
 ]
 
 function StatCounter({ value, suffix, label, sub }: (typeof stats)[0]) {
@@ -149,7 +149,7 @@ function TerminalCard() {
         </div>
         <span className="text-xs text-zinc-500 font-mono ml-2">fct_performance.sql</span>
         <div className="ml-auto">
-          <span className="text-[10px] px-2 py-0.5 rounded-full font-mono"
+          <span className="text-[10px] px-2 py-0.5 rounded-full font-mono whitespace-nowrap"
             style={{ background: '#22c55e15', color: '#22c55e', border: '1px solid #22c55e30' }}>
             dbt · BigQuery
           </span>
@@ -182,10 +182,10 @@ export default function Home() {
       {/* ── Hero ── */}
       <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
 
             {/* Left — text */}
-            <div className="text-center md:text-left">
+            <div className="text-center lg:text-left">
               <motion.div
                 variants={fadeUp} initial="hidden" animate="visible" custom={0}
                 className="mb-8"
@@ -203,16 +203,16 @@ export default function Home() {
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.08}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               >
-                <span className="text-secondary-500">Hybrid Engineer</span>
+                <span className="text-gray-900 dark:text-white">Hybrid Engineer</span>
                 <br />
-                <span className="text-2xl md:text-3xl lg:text-4xl text-primary-700 dark:text-primary-400 font-semibold">
+                <span className="text-2xl md:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-semibold">
                   Data + Full Stack + IA
                 </span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.18}
-                className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl leading-relaxed mx-auto md:mx-0"
+                className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl leading-relaxed mx-auto lg:mx-0"
               >
                 Construyo sistemas de datos y software que se usan en producción: pipelines en
                 BigQuery + dbt, dashboards, aplicaciones React/Next.js y automatizaciones con IA.
@@ -221,7 +221,7 @@ export default function Home() {
 
               <motion.div
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.28}
-                className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start flex-wrap"
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start flex-wrap"
               >
                 <Link
                   href="#proyectos"
@@ -232,7 +232,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/dashboards"
-                  className="px-8 py-3.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 hover:scale-[1.02]"
+                  className="px-8 py-3.5 border border-gray-300 dark:border-[#2a2a44] text-gray-800 dark:text-gray-200 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-200 flex items-center justify-center gap-2 font-medium"
                 >
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                   Dashboards live
@@ -241,7 +241,7 @@ export default function Home() {
 
               <motion.div
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.38}
-                className="flex flex-wrap justify-center md:justify-start gap-2 mt-8"
+                className="flex flex-wrap justify-center lg:justify-start gap-2 mt-8"
               >
                 {['SQL', 'Python', 'BigQuery', 'dbt', 'React', 'Next.js', 'TypeScript', 'Supabase', 'n8n', 'LLMs'].map((tech) => (
                   <span
@@ -257,7 +257,7 @@ export default function Home() {
             {/* Right — terminal (desktop only) */}
             <motion.div
               variants={fadeUp} initial="hidden" animate="visible" custom={0.15}
-              className="hidden md:block"
+              className="hidden lg:block"
             >
               <TerminalCard />
             </motion.div>
@@ -365,7 +365,7 @@ export default function Home() {
             className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8"
           >
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-400 mb-2">Live Projects</p>
+              <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-400 mb-2">En vivo</p>
               <h2 className="text-2xl font-bold text-white">Dashboards interactivos</h2>
               <p className="text-zinc-400 text-sm mt-1">Datos reales, deployados en producción — abrís y funcionan.</p>
             </div>
@@ -377,7 +377,7 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-3 gap-4">
             {[
               {
                 title: 'E-Commerce Analytics',
@@ -447,7 +447,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <motion.h2
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            className="text-3xl font-bold text-center mb-12 text-secondary-500"
+            className="text-3xl font-bold text-center mb-12 text-secondary-500 dark:text-secondary-400"
           >
             Áreas de especialización
           </motion.h2>

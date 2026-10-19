@@ -62,7 +62,7 @@ FROM rfm_scores`,
     description: 'Dataset sintético de 6.500+ mediciones CMJ/IMTP generado con Python. Faker + numpy con distribuciones calibradas en literatura de sport science. Sistema de alertas neuromusculares con umbrales dinámicos p25/p75 y media móvil de 5 evaluaciones. IDs hasheados desde el origen — 0 datos personales reales.',
     tags: ['Python', 'numpy', 'Faker', 'SQL', 'Window Functions', 'Sport Science'],
     highlight: '6.500+ mediciones · Privacy-first',
-    image: '/ds-ecommerce-cover.svg',
+    image: '/ds-athlete-cover.svg',
     liveUrl: '/data-science/performance-monitor',
     type: 'datascience' as const,
     accentColor: 'teal' as const,
@@ -352,7 +352,7 @@ trend = df.groupby('decade')['popularity'].mean()
 export default function DataScience() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-16">
 
         {/* Header */}
         <motion.div
@@ -360,7 +360,7 @@ export default function DataScience() {
           className="max-w-3xl mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-secondary-500">Proyectos de</span>{' '}
+            <span className="text-secondary-500 dark:text-secondary-400">Proyectos de</span>{' '}
             <span className="text-primary-700 dark:text-primary-400">Data & Analytics</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">
@@ -388,11 +388,11 @@ export default function DataScience() {
         <motion.div
           variants={fadeUp} initial="hidden" whileInView="visible"
           viewport={{ once: true }} custom={0}
-          className="bg-white rounded-2xl border border-gray-200 p-8 flex flex-col md:flex-row items-center justify-between gap-6"
+          className="mt-10 bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-8 flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div>
-            <h2 className="text-xl font-bold mb-2 text-gray-900">Jupyter Notebooks & más análisis</h2>
-            <p className="text-gray-600 text-sm">
+            <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Jupyter Notebooks & más análisis</h2>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
               Explorá todos mis notebooks y proyectos de análisis de datos en GitHub.
             </p>
           </div>
@@ -400,7 +400,7 @@ export default function DataScience() {
             href="https://github.com/santiagomalak?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium whitespace-nowrap shadow-lg shadow-primary-200 hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium whitespace-nowrap shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
           >
             Ver en GitHub
             <ArrowRight className="h-4 w-4" />

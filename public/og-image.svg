@@ -22,8 +22,8 @@
   <!-- Title -->
   <text x="80" y="330" font-family="Arial,sans-serif" font-size="36" fill="#3d4d82" font-weight="600">Hybrid Engineer: Data + Full Stack + IA</text>
   <!-- Description -->
-  <text x="80" y="400" font-family="Arial,sans-serif" font-size="28" fill="#6b7280">React · Next.js · Python · Machine Learning · SQL</text>
+  <text x="80" y="400" font-family="Arial,sans-serif" font-size="28" fill="#6b7280">SQL · Python · BigQuery · dbt · Next.js · n8n + LLMs</text>
   <!-- Bottom bar -->
   <rect x="0" y="580" width="1200" height="50" fill="url(#badge)" opacity="0.9"/>
-  <text x="600" y="612" font-family="Arial,sans-serif" font-size="22" fill="white" text-anchor="middle" opacity="0.9">Portfolio profesional · Disponible para proyectos</text>
+  <text x="600" y="612" font-family="Arial,sans-serif" font-size="22" fill="white" text-anchor="middle" opacity="0.9">santiagomalak.is-a.dev · Disponible para roles remotos</text>
 </svg>

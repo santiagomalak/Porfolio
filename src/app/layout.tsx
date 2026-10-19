@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       'Modelo los datos, construyo la interfaz que los consume y automatizo el proceso completo. BigQuery · dbt · Next.js · n8n + LLMs.',
     images: [
       {
-        url: '/og-image.svg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Santiago Aragon Malak — Hybrid Engineer: Data + Full Stack + IA',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: 'Santiago Aragon Malak — Hybrid Engineer: Data + Full Stack + IA',
     description:
       'Modelo los datos, construyo la interfaz que los consume y automatizo el proceso completo. BigQuery · dbt · Next.js · n8n + LLMs.',
-    images: ['/og-image.svg'],
+    images: ['/og-image.png'],
   },
   icons: {
     icon: '/favicon.svg',

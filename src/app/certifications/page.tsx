@@ -158,7 +158,7 @@ export default function CertificationsPage() {
         {/* Header */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0} className="max-w-3xl mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-secondary-500">Certificaciones</span>{' '}
+            <span className="text-secondary-500 dark:text-secondary-400">Certificaciones</span>{' '}
             <span className="text-primary-700 dark:text-primary-400">& Formación</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">

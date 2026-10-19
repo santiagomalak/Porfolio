@@ -43,33 +43,31 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-[#1e1e32] bg-white/95 dark:bg-[#080810]/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:bg-[#080810]/80 shadow-sm dark:shadow-none">
-      <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <nav className="max-w-6xl mx-auto px-4 xl:px-0 h-16 flex items-center justify-between gap-3 lg:gap-6">
 
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-3 group min-w-0"
           onClick={closeMobileMenu}
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-600 to-secondary-500 flex items-center justify-center shadow-md group-hover:shadow-primary-300/60 group-hover:scale-105 transition-all duration-200">
+          <div className="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-primary-600 to-secondary-500 flex items-center justify-center shadow-md group-hover:shadow-primary-300/60 group-hover:scale-105 transition-all duration-200">
             <span className="text-white font-bold text-sm tracking-tight select-none">SA</span>
           </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-bold text-[15px] text-gray-900 dark:text-white tracking-tight">Santiago Aragon Malak</span>
-            <span className="text-[10px] font-semibold text-primary-600 dark:text-primary-400 tracking-[0.12em] uppercase mt-0.5">
-              Hybrid Engineer<span className="hidden sm:inline"> · Data + Full Stack + IA</span>
-            </span>
+          <div className="flex flex-col gap-0.5 whitespace-nowrap min-w-0">
+            <span className="font-semibold text-[15px] leading-tight text-gray-900 dark:text-white tracking-tight truncate">Santiago Aragon Malak</span>
+            <span className="text-xs leading-tight text-gray-500 dark:text-gray-400">Hybrid Engineer</span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-1">
-          <ul className="flex items-center space-x-1">
+        <div className="hidden lg:flex items-center gap-1 shrink-0">
+          <ul className="flex items-center gap-0.5">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                  className={`px-3 xl:px-3.5 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-150 ${
                     pathname === link.href
                       ? 'text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30'
                       : 'text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-[#1e1e32]'
@@ -95,15 +93,15 @@ export default function Header() {
         </div>
 
         {/* Mobile: CV + toggle + hamburger */}
-        <div className="md:hidden flex items-center gap-1">
+        <div className="lg:hidden flex items-center gap-1 shrink-0">
           <a
             href="/CV_Santiago_Malak.pdf"
             download
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-primary-700 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all"
+            className="flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm font-medium text-primary-700 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all"
             aria-label="Descargar CV"
           >
             <Download className="w-4 h-4" />
-            <span className="text-xs font-semibold">CV</span>
+            <span className="hidden sm:inline text-xs font-semibold">CV</span>
           </a>
           <ThemeToggle />
           <button
@@ -122,7 +120,7 @@ export default function Header() {
 
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 dark:border-[#1e1e32] bg-white dark:bg-[#080810]">
+        <div className="lg:hidden border-t border-gray-200 dark:border-[#1e1e32] bg-white dark:bg-[#080810]">
           <ul className="container mx-auto px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <li key={link.href}>

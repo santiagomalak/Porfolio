@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-gray-200 dark:border-[#1e1e32] bg-background-alt">
-      <div className="container mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4 xl:px-0 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm text-gray-600 dark:text-gray-400">
             © {currentYear} Santiago Aragon Malak. Todos los derechos reservados.
