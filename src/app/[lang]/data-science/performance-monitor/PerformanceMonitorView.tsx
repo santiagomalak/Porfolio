@@ -4,6 +4,11 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink, Github, ChevronDown, ChevronUp } from 'lucide-react'
 import { useState } from 'react'
+import type { Locale } from '@/i18n/config'
+import type { Dictionary } from '@/i18n/get-dictionary'
+import { localizePath } from '@/i18n/routing'
+
+type MonitorCopy = Dictionary['performanceMonitor']
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -16,10 +21,8 @@ const fadeUp = {
 const snippets = [
   {
     id: 'generate',
-    title: 'Generación del dataset',
     file: 'generate_athlete_dataset.py',
     language: 'Python',
-    description: 'Faker genera identidades ficticias que se hashean inmediatamente — ningún nombre real llega al CSV. numpy simula distribuciones CMJ/IMTP calibradas con normas publicadas en literatura de sport science.',
     code: `import hashlib, random
 from datetime import date, timedelta
 import numpy as np
@@ -76,10 +79,8 @@ for ath in athletes:
   },
   {
     id: 'alerts',
-    title: 'Sistema de alertas — Umbrales dinámicos',
     file: 'mart_fatigue_alerts.sql',
     language: 'SQL',
-    description: 'PERCENTILE_CONT calcula p25/p75 por atleta y tipo de ejercicio sobre los últimos 90 días. La última medición se compara con esa ventana dinámica para clasificar el estado neuromuscular.',
     code: `-- mart_fatigue_alerts.sql
 WITH athlete_baseline AS (
   SELECT
@@ -129,10 +130,8 @@ ORDER BY
   },
   {
     id: 'rolling',
-    title: 'Tendencia individual — Media móvil 5 evaluaciones',
     file: 'mart_athlete_trend.sql',
     language: 'SQL',
-    description: 'Seguimiento longitudinal por atleta. Media móvil de 5 evaluaciones para suavizar variabilidad del día. Detecta tendencias de mejora o deterioro sostenido.',
     code: `-- mart_athlete_trend.sql
 WITH ranked AS (
   SELECT
@@ -167,9 +166,12 @@ SELECT *,
 FROM rolling_avg
 ORDER BY athlete_id, exercise_type, eval_num`,
   },
-]
+] as const
 
-function CodeBlock({ snippet }: { snippet: typeof snippets[0] }) {
+function CodeBlock({ snippet, copy }: {
+  snippet: (typeof snippets)[number]
+  copy: { title: string; description: string }
+}) {
   const [open, setOpen] = useState(false)
 
   const langColor = snippet.language === 'Python' ? '#4ade80' : '#67e8f9'
@@ -178,6 +180,7 @@ function CodeBlock({ snippet }: { snippet: typeof snippets[0] }) {
     <div className="rounded-2xl overflow-hidden border border-[#1e1e32]" style={{ background: '#0f0f17' }}>
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="w-full flex items-start justify-between gap-4 px-6 py-5 text-left hover:bg-white/5 transition-colors"
       >
         <div className="min-w-0">
@@ -188,10 +191,10 @@ function CodeBlock({ snippet }: { snippet: typeof snippets[0] }) {
             >
               {snippet.language}
             </span>
-            <span className="text-white font-semibold text-sm">{snippet.title}</span>
+            <span className="text-white font-semibold text-sm">{copy.title}</span>
           </div>
           <span className="text-zinc-500 text-xs font-mono">{snippet.file}</span>
-          <p className="text-zinc-400 text-xs mt-2 leading-relaxed max-w-2xl">{snippet.description}</p>
+          <p className="text-zinc-400 text-xs mt-2 leading-relaxed max-w-2xl">{copy.description}</p>
         </div>
         {open
           ? <ChevronUp className="h-4 w-4 text-zinc-500 flex-shrink-0 mt-1" />
@@ -217,7 +220,11 @@ function CodeBlock({ snippet }: { snippet: typeof snippets[0] }) {
   )
 }
 
-export default function PerformanceMonitorPage() {
+export default function PerformanceMonitorView({ lang, t, common }: {
+  lang: Locale
+  t: MonitorCopy
+  common: Dictionary['common']
+}) {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12 max-w-5xl">
@@ -225,30 +232,27 @@ export default function PerformanceMonitorPage() {
         {/* Back */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
           <Link
-            href="/data-science"
+            href={localizePath(lang, '/data-science')}
             className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-colors mb-10"
           >
             <ArrowLeft className="h-4 w-4" />
-            Volver a Data Science
+            {common.backToDataScience}
           </Link>
         </motion.div>
 
         {/* Header */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0.05} className="mb-10">
           <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-teal-100 dark:bg-teal-950/40 text-teal-700 dark:text-teal-400 mb-4">
-            Demo · Datos sintéticos · Python + SQL
+            {t.badge}
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-gray-900 dark:text-white">
             Athlete Performance Monitor
           </h1>
           <p className="text-xl text-gray-500 dark:text-gray-400 font-medium mb-6">
-            CMJ · IMTP · Sistema de alertas neuromusculares
+            {t.subtitle}
           </p>
           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
-            Dataset sintético de <strong>~6.500 mediciones</strong> generado con Python —
-            distribuciones calibradas con normas publicadas en literatura de sport science.
-            Encima: sistema de alertas con umbrales dinámicos por percentil (p25/p75) y
-            seguimiento longitudinal con media móvil de 5 evaluaciones.
+            {t.introA} <strong>{t.introStrong}</strong> {t.introB}
           </p>
         </motion.div>
 
@@ -258,11 +262,7 @@ export default function PerformanceMonitorPage() {
           className="mb-10 p-5 rounded-xl border border-amber-200 dark:border-amber-900/40 bg-amber-50 dark:bg-amber-950/20"
         >
           <p className="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
-            <strong>¿Por qué datos sintéticos?</strong> Los datos reales de atletas contienen
-            información de salud sensible. En lugar de omitirlos o simplificarlos,
-            generé datos ficticios con la misma estructura y distribuciones estadísticas —
-            IDs hasheados desde el origen, ningún nombre real almacenado.
-            La metodología es idéntica al sistema real construido en Ivolution.
+            <strong>{t.whyTitle}</strong> {t.whyBody}
           </p>
         </motion.div>
 
@@ -284,10 +284,10 @@ export default function PerformanceMonitorPage() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
         >
           {[
-            { value: '150',    label: 'atletas generados' },
-            { value: '7',      label: 'deportes' },
-            { value: '6.500+', label: 'mediciones' },
-            { value: '12',     label: 'meses de datos' },
+            { value: '150',                label: t.stats.athletes },
+            { value: '7',                  label: t.stats.sports },
+            { value: t.measurementsValue, label: t.stats.measurements },
+            { value: '12',                 label: t.stats.months },
           ].map((stat) => (
             <div key={stat.label} className="bg-white dark:bg-[#0f0f17] rounded-xl border border-gray-200 dark:border-[#1e1e32] p-5 text-center">
               <p className="text-2xl font-bold text-teal-600 dark:text-teal-400 mb-1">{stat.value}</p>
@@ -301,18 +301,16 @@ export default function PerformanceMonitorPage() {
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Pipeline</h2>
-          <p className="text-sm text-gray-400 dark:text-gray-500 mb-8">
-            Desde generación hasta alertas en producción.
-          </p>
+          <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{t.pipelineTitle}</h2>
+          <p className="text-sm text-gray-400 dark:text-gray-500 mb-8">{t.pipelineIntro}</p>
 
           <div className="flex flex-col items-center gap-0">
             {[
-              { label: 'generate_athlete_dataset.py', sub: 'Faker · numpy · hashlib — 150 atletas, 6.500+ mediciones, 0 PII', color: '#4ade80', bg: '#14532d' },
-              { label: 'measurements.csv / athletes.csv', sub: 'Salida limpia · athlete_id hasheado · listo para cargar', color: '#67e8f9', bg: '#164e63' },
-              { label: 'mart_fatigue_alerts.sql', sub: 'Umbrales p25/p75 dinámicos · SUPERCOMPENSACIÓN / ATENCIÓN / FATIGADO', color: '#c084fc', bg: '#4c1d95' },
-              { label: 'mart_athlete_trend.sql', sub: 'Media móvil 5 evaluaciones · % cambio desde baseline', color: '#fb923c', bg: '#7c2d12' },
-              { label: 'Dashboard de monitoreo', sub: 'Estado neuromuscular en tiempo real · vista por atleta y por deporte', color: '#facc15', bg: '#713f12' },
+              { label: 'generate_athlete_dataset.py', sub: t.nodes.generate, color: '#4ade80', bg: '#14532d' },
+              { label: 'measurements.csv / athletes.csv', sub: t.nodes.csv, color: '#67e8f9', bg: '#164e63' },
+              { label: 'mart_fatigue_alerts.sql', sub: t.nodes.alerts, color: '#c084fc', bg: '#4c1d95' },
+              { label: 'mart_athlete_trend.sql', sub: t.nodes.trend, color: '#fb923c', bg: '#7c2d12' },
+              { label: t.nodes.dashboardLabel, sub: t.nodes.dashboard, color: '#facc15', bg: '#713f12' },
             ].map((node, i, arr) => (
               <div key={node.label} className="flex flex-col items-center w-full max-w-lg">
                 <div
@@ -338,18 +336,16 @@ export default function PerformanceMonitorPage() {
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Lógica de alertas</h2>
-          <p className="text-sm text-gray-400 dark:text-gray-500 mb-8">
-            Ventana dinámica de 90 días por atleta y tipo de ejercicio.
-          </p>
+          <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{t.alertsTitle}</h2>
+          <p className="text-sm text-gray-400 dark:text-gray-500 mb-8">{t.alertsIntro}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { estado: 'SUPERCOMPENSACIÓN', condition: 'métrica ≥ p75', desc: 'El atleta supera su rango habitual. Pico de rendimiento o sobreentrenamiento positivo.', color: '#4ade80', bg: '#14532d' },
-              { estado: 'ATENCIÓN',          condition: 'p25 < métrica < p75', desc: 'Dentro del rango normal. Monitorear tendencia.', color: '#facc15', bg: '#713f12' },
-              { estado: 'FATIGADO',          condition: 'métrica ≤ p25', desc: 'Caída por debajo del cuartil inferior. Revisar carga de entrenamiento.', color: '#f87171', bg: '#7f1d1d' },
+              { ...t.states.super,     color: '#4ade80', bg: '#14532d' },
+              { ...t.states.attention, color: '#facc15', bg: '#713f12' },
+              { ...t.states.fatigued,  color: '#f87171', bg: '#7f1d1d' },
             ].map((s) => (
               <div
-                key={s.estado}
+                key={s.label}
                 className="rounded-xl p-5"
                 style={{ background: `${s.bg}50`, border: `1px solid ${s.color}30` }}
               >
@@ -357,7 +353,7 @@ export default function PerformanceMonitorPage() {
                   className="inline-block text-xs font-bold font-mono px-2.5 py-1 rounded mb-3"
                   style={{ background: `${s.color}15`, color: s.color, border: `1px solid ${s.color}30` }}
                 >
-                  {s.estado}
+                  {s.label}
                 </span>
                 <p className="text-zinc-300 text-xs font-mono mb-2">{s.condition}</p>
                 <p className="text-zinc-400 text-xs leading-relaxed">{s.desc}</p>
@@ -371,10 +367,8 @@ export default function PerformanceMonitorPage() {
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Código</h2>
-          <p className="text-sm text-gray-400 dark:text-gray-500 mb-8">
-            Generación del dataset y los dos modelos SQL principales.
-          </p>
+          <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{t.codeTitle}</h2>
+          <p className="text-sm text-gray-400 dark:text-gray-500 mb-8">{t.codeIntro}</p>
           <div className="space-y-4">
             {snippets.map((s) => (
               <motion.div
@@ -382,7 +376,7 @@ export default function PerformanceMonitorPage() {
                 variants={fadeUp} initial="hidden" whileInView="visible"
                 viewport={{ once: true, margin: '-40px' }}
               >
-                <CodeBlock snippet={s} />
+                <CodeBlock snippet={s} copy={t.snippets[s.id]} />
               </motion.div>
             ))}
           </div>
@@ -400,20 +394,20 @@ export default function PerformanceMonitorPage() {
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border-2 border-gray-200 dark:border-[#1e1e32] text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-all font-medium"
           >
             <Github className="h-4 w-4" />
-            Ver script en GitHub
+            {t.scriptOnGithub}
           </a>
           <Link
-            href="/data-science/ivolution"
+            href={localizePath(lang, '/data-science/ivolution')}
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border-2 border-blue-200 dark:border-blue-800/40 text-blue-700 dark:text-blue-400 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950/20 transition-all font-medium"
           >
             <ExternalLink className="h-4 w-4" />
-            Ver el sistema real — Ivolution
+            {t.realSystem}
           </Link>
           <Link
-            href="/contact"
+            href={localizePath(lang, '/contact')}
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium"
           >
-            Hablemos de tu proyecto
+            {common.letsTalk}
           </Link>
         </motion.div>
 

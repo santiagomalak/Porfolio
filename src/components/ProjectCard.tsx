@@ -5,8 +5,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ExternalLink, Github, BookOpen, ChevronDown } from 'lucide-react'
 import type { Project } from '@/data/projects'
+import type { Dictionary } from '@/i18n/get-dictionary'
 
-type ProjectCardProps = Project
+type ProjectCardProps = Project & { labels: Dictionary['projectCard'] }
 
 const gradients: Record<string, string> = {
   blue:   'from-blue-50 to-indigo-100 dark:from-blue-950/40 dark:to-indigo-950/40',
@@ -41,7 +42,7 @@ const langColors: Record<string, string> = {
 export default function ProjectCard({
   title, description, tags, highlight, image,
   githubUrl, liveUrl, notebookUrl, type,
-  accentColor = 'blue', codeSnippet,
+  accentColor = 'blue', codeSnippet, labels,
 }: ProjectCardProps) {
   const [codeOpen, setCodeOpen] = useState(false)
 
@@ -91,25 +92,25 @@ export default function ProjectCard({
           {githubUrl && (
             <a href={githubUrl} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
-              <Github className="h-4 w-4" /> Código
+              <Github className="h-4 w-4" /> {labels.code}
             </a>
           )}
           {notebookUrl && (
             <a href={notebookUrl} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
-              <BookOpen className="h-4 w-4" /> Notebook
+              <BookOpen className="h-4 w-4" /> {labels.notebook}
             </a>
           )}
           {liveUrl && (
             liveUrl.startsWith('/') ? (
               <Link href={liveUrl}
                 className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
-                <ExternalLink className="h-4 w-4" /> Ver detalle
+                <ExternalLink className="h-4 w-4" /> {labels.viewDetail}
               </Link>
             ) : (
               <a href={liveUrl} target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium">
-                <ExternalLink className="h-4 w-4" /> Ver proyecto
+                <ExternalLink className="h-4 w-4" /> {labels.viewProject}
               </a>
             )
           )}
@@ -121,11 +122,12 @@ export default function ProjectCard({
         <div className="border-t border-gray-100 dark:border-[#1e1e32]">
           <button
             onClick={() => setCodeOpen(!codeOpen)}
+            aria-expanded={codeOpen}
             className="w-full flex items-center justify-between px-6 py-2.5 text-xs font-medium text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#111120] transition-all"
           >
             <span className="flex items-center gap-1.5">
               <span className="font-mono text-[11px]">{'{ }'}</span>
-              {codeOpen ? 'Ocultar código' : 'Ver código'}
+              {codeOpen ? labels.hideCode : labels.showCode}
             </span>
             <span className="flex items-center gap-2">
               <span className="font-mono text-[10px] px-1.5 py-0.5 rounded" style={{ color: langColor, background: `${langColor}15`, border: `1px solid ${langColor}30` }}>

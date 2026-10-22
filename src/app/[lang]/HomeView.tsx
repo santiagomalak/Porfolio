@@ -4,6 +4,11 @@ import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Code2, Database, BarChart3, Zap, TrendingUp, ExternalLink } from 'lucide-react'
 import { motion, useInView, animate } from 'framer-motion'
+import { intlLocale, type Locale } from '@/i18n/config'
+import type { Dictionary } from '@/i18n/get-dictionary'
+import { localizePath } from '@/i18n/routing'
+
+type HomeCopy = Dictionary['home']
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -25,10 +30,8 @@ const fadeIn = {
 
 const featuredProjects = [
   {
-    label: 'Trabajo real · 967 atletas · 13 deportes',
+    id: 'ivolution',
     title: 'Performance Monitoring System',
-    company: 'Ivolution Sport Science',
-    description: '967 atletas monitoreados en 13 deportes — fútbol, rugby, atletismo, hockey, natación y más. Alertas de tres estados con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte ES/EN/PT. El sistema continúa operativo tras mi salida — herramienta principal de decisiones de la organización.',
     tags: ['BigQuery', 'dbt', 'SQL', 'Metabase', 'Python'],
     color: 'from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40',
     border: 'border-blue-200 dark:border-blue-900/50',
@@ -36,10 +39,8 @@ const featuredProjects = [
     tagColor: 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
   },
   {
-    label: 'SaaS · En producción',
+    id: 'stackadvisor',
     title: 'StackAdvisor',
-    company: 'Proyecto propio',
-    description: '13 preguntas inteligentes → stack ideal con justificación detallada + roadmap de 12 semanas personalizado. Motor de recomendación propio con 25+ stacks evaluados. Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.',
     tags: ['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine'],
     href: 'https://stackadvisor-nu.vercel.app',
     color: 'from-purple-50 to-violet-50 dark:from-purple-950/40 dark:to-violet-950/40',
@@ -47,16 +48,18 @@ const featuredProjects = [
     labelColor: 'bg-purple-100 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
     tagColor: 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
   },
-]
+] as const
 
 const stats = [
-  { value: 967,  suffix: '',   label: 'Atletas monitoreados', sub: 'Performance · Ivolution' },
-  { value: 100,  suffix: 'k+', label: 'Órdenes analizadas',   sub: 'E-Commerce · Olist' },
-  { value: 10,   suffix: 'k+', label: 'Mediciones en BigQuery', sub: 'dbt · SQL · Alertas' },
-  { value: 25,   suffix: '+',  label: 'Stacks evaluados',      sub: 'StackAdvisor · SaaS' },
-]
+  { id: 'athletes',     value: 967, suffix: ''   },
+  { id: 'orders',       value: 100, suffix: 'k+' },
+  { id: 'measurements', value: 10,  suffix: 'k+' },
+  { id: 'stacks',       value: 25,  suffix: '+'  },
+] as const
 
-function StatCounter({ value, suffix, label, sub }: (typeof stats)[0]) {
+function StatCounter({ value, suffix, label, sub, numberLocale }: {
+  value: number; suffix: string; label: string; sub: string; numberLocale: string
+}) {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
@@ -66,10 +69,10 @@ function StatCounter({ value, suffix, label, sub }: (typeof stats)[0]) {
     const controls = animate(0, value, {
       duration: 1.8,
       ease: [0.22, 1, 0.36, 1],
-      onUpdate: (v) => { el.textContent = Math.round(v).toLocaleString('es-AR') },
+      onUpdate: (v) => { el.textContent = Math.round(v).toLocaleString(numberLocale) },
     })
     return controls.stop
-  }, [inView, value])
+  }, [inView, value, numberLocale])
 
   return (
     <div className="text-center px-4">
@@ -146,7 +149,13 @@ function TerminalCard() {
   )
 }
 
-export default function Home() {
+export default function HomeView({ lang, t, workTogether }: {
+  lang: Locale
+  t: HomeCopy
+  workTogether: Dictionary['common']['workTogether']
+}) {
+  const href = (path: string) => localizePath(lang, path)
+
   return (
     <div className="min-h-screen bg-background">
 
@@ -162,11 +171,11 @@ export default function Home() {
                 className="mb-8"
               >
                 <Link
-                  href="/contact"
+                  href={href('/contact')}
                   className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium hover:bg-primary-100 dark:hover:bg-primary-900/40 hover:border-primary-300 dark:hover:border-primary-600/60 transition-all duration-200"
                 >
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  Abierto a roles remotos y proyectos
+                  {t.availability}
                 </Link>
               </motion.div>
 
@@ -185,8 +194,7 @@ export default function Home() {
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.18}
                 className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl leading-relaxed mx-auto md:mx-0"
               >
-                Construyo pipelines de datos, modelos analíticos y dashboards que los equipos realmente
-                usan para tomar decisiones. BigQuery · dbt · Metabase en producción real.
+                {t.intro}
               </motion.p>
 
               <motion.div
@@ -194,18 +202,18 @@ export default function Home() {
                 className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start flex-wrap"
               >
                 <Link
-                  href="/data-science"
+                  href={href('/data-science')}
                   className="px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
                 >
-                  Ver proyectos de datos
+                  {t.ctaData}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="/dashboards"
+                  href={href('/dashboards')}
                   className="px-8 py-3.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 hover:scale-[1.02]"
                 >
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  Dashboards live
+                  {t.ctaDashboards}
                 </Link>
               </motion.div>
 
@@ -244,7 +252,14 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100 dark:divide-[#1e1e32]"
           >
             {stats.map((s) => (
-              <StatCounter key={s.label} {...s} />
+              <StatCounter
+                key={s.id}
+                value={s.value}
+                suffix={s.suffix}
+                label={t.stats[s.id].label}
+                sub={t.stats[s.id].sub}
+                numberLocale={intlLocale[lang]}
+              />
             ))}
           </motion.div>
         </div>
@@ -257,8 +272,8 @@ export default function Home() {
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">Proyectos destacados</h2>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">Lo más relevante de mi trabajo</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">{t.featured.title}</h2>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">{t.featured.subtitle}</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -270,11 +285,11 @@ export default function Home() {
                 className={`bg-gradient-to-br ${p.color} rounded-2xl border ${p.border} p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300`}
               >
                 <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 ${p.labelColor}`}>
-                  {p.label}
+                  {t.featured[p.id].label}
                 </span>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{p.title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 font-medium">{p.company}</p>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-5">{p.description}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 font-medium">{t.featured[p.id].company}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-5">{t.featured[p.id].description}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {p.tags.map((tag) => (
                     <span key={tag} className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${p.tagColor}`}>
@@ -282,14 +297,14 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-                {p.href && (
+                {'href' in p && (
                   <a
                     href={p.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 mt-5 text-sm font-medium text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300 transition-colors"
                   >
-                    Ver proyecto <ArrowRight className="h-3.5 w-3.5" />
+                    {t.featured.viewProject} <ArrowRight className="h-3.5 w-3.5" />
                   </a>
                 )}
               </motion.div>
@@ -301,10 +316,10 @@ export default function Home() {
             className="text-center mt-10"
           >
             <Link
-              href="/data-science"
+              href={href('/data-science')}
               className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
             >
-              Ver todos los proyectos <ArrowRight className="h-4 w-4" />
+              {t.featured.viewAll} <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
         </div>
@@ -319,14 +334,14 @@ export default function Home() {
           >
             <div>
               <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-400 mb-2">Live Projects</p>
-              <h2 className="text-2xl font-bold text-white">Dashboards interactivos</h2>
-              <p className="text-zinc-400 text-sm mt-1">Datos reales, deployados en producción — abrís y funcionan.</p>
+              <h2 className="text-2xl font-bold text-white">{t.live.title}</h2>
+              <p className="text-zinc-400 text-sm mt-1">{t.live.subtitle}</p>
             </div>
             <Link
-              href="/dashboards"
+              href={href('/dashboards')}
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-indigo-400 border border-indigo-500/30 hover:bg-indigo-500/10 transition-all whitespace-nowrap"
             >
-              Ver todos <ArrowRight className="h-3.5 w-3.5" />
+              {t.live.viewAll} <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </motion.div>
 
@@ -334,7 +349,7 @@ export default function Home() {
             {[
               {
                 title: 'E-Commerce Analytics',
-                sub: 'Olist Brazil (PT-BR) · 100k+ órdenes · dbt + PostgreSQL',
+                sub: t.live.ecommerceSub,
                 color: '#FF694B',
                 url: 'https://ecommerce-dashboard-puce.vercel.app',
                 tags: ['PostgreSQL', 'dbt', 'RFM', 'Cohort', 'i18n'],
@@ -342,7 +357,7 @@ export default function Home() {
               },
               {
                 title: 'Crypto Live Dashboard',
-                sub: 'BTC · ETH · SOL · BNB · XRP — Binance WebSocket',
+                sub: t.live.cryptoSub,
                 color: '#6366f1',
                 url: 'https://crypto-dashboard-five-dun.vercel.app',
                 tags: ['WebSocket', 'TradingView', 'Z-score', 'Zustand'],
@@ -350,7 +365,7 @@ export default function Home() {
               },
               {
                 title: 'Argentina Macro Dashboard',
-                sub: 'Dólar · Inflación · Riesgo País — datos en tiempo real',
+                sub: t.live.argentinaSub,
                 color: '#74b9ff',
                 url: 'https://argentina-macro.vercel.app',
                 tags: ['dolarapi', 'INDEC', 'MEP', 'CCL', 'Blue'],
@@ -402,7 +417,7 @@ export default function Home() {
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
             className="text-3xl font-bold text-center mb-12 text-secondary-500"
           >
-            Áreas de especialización
+            {t.specialties.title}
           </motion.h2>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -415,12 +430,12 @@ export default function Home() {
               <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center mb-4 group-hover:bg-blue-100 dark:group-hover:bg-blue-950/70 transition-colors">
                 <BarChart3 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Analytics Engineering</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{t.specialties.analytics.title}</h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                Pipelines de datos, modelos analíticos y dashboards que se usan de verdad.
+                {t.specialties.analytics.body}
               </p>
               <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
-                {['SQL · BigQuery · dbt', 'Metabase · Dashboards', 'Alertas dinámicas · Percentiles', 'Python · Pandas'].map(item => (
+                {t.specialties.analytics.items.map(item => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                     {item}
@@ -438,12 +453,12 @@ export default function Home() {
               <div className="w-11 h-11 rounded-xl bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center mb-4 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
                 <Code2 className="h-5 w-5 text-primary-700 dark:text-primary-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Desarrollo Web</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{t.specialties.web.title}</h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                Aplicaciones web modernas del frontend al backend, listas para producción.
+                {t.specialties.web.body}
               </p>
               <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
-                {['React · Next.js · TypeScript', 'Node.js · APIs REST', 'Tailwind CSS · Framer Motion', 'Docker · Vercel'].map(item => (
+                {t.specialties.web.items.map(item => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0" />
                     {item}
@@ -461,12 +476,12 @@ export default function Home() {
               <div className="w-11 h-11 rounded-xl bg-orange-50 dark:bg-orange-950/40 flex items-center justify-center mb-4 group-hover:bg-orange-100 dark:group-hover:bg-orange-950/60 transition-colors">
                 <Zap className="h-5 w-5 text-orange-500 dark:text-orange-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Automatización</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{t.specialties.automation.title}</h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                Flujos automáticos que eliminan trabajo repetitivo y escalan desde un VPS.
+                {t.specialties.automation.body}
               </p>
               <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
-                {['n8n · Workflows visuales', 'Telegram API · Notificaciones', 'Scraping · Scoring con IA', 'Docker · VPS'].map(item => (
+                {t.specialties.automation.items.map(item => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />
                     {item}
@@ -485,25 +500,24 @@ export default function Home() {
           className="max-w-3xl mx-auto text-center bg-gradient-to-br from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 p-12 rounded-3xl border border-primary-200 dark:border-primary-800/50"
         >
           <h2 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900 dark:text-white">
-            ¿Trabajamos juntos?
+            {workTogether.title}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
-            Abierto a roles remotos de Analytics Engineer & Full-Stack Developer — y a Data Engineer
-            o Data Scientist si el proyecto lo amerita. También a freelance: datos, web, automatización.
+            {workTogether.body}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
-              href="/contact"
+              href={href('/contact')}
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
             >
-              Iniciar conversación
+              {workTogether.cta}
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/about"
+              href={href('/about')}
               className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium"
             >
-              Sobre mí
+              {t.aboutMe}
             </Link>
           </div>
         </motion.div>

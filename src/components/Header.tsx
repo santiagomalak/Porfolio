@@ -5,8 +5,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X, Moon, Sun, Download } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import { LOCALE_COOKIE, localeLabels, locales, type Locale } from '@/i18n/config'
+import { localizePath, stripLocale } from '@/i18n/routing'
+import type { Dictionary } from '@/i18n/get-dictionary'
 
-function ThemeToggle() {
+type CommonCopy = Dictionary['common']
+
+function ThemeToggle({ t }: { t: CommonCopy }) {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -18,7 +23,7 @@ function ThemeToggle() {
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className="p-2 rounded-lg text-gray-500 hover:text-primary-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-primary-400 dark:hover:bg-[#1e1e32] transition-all"
-      aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+      aria-label={theme === 'dark' ? t.themeToLight : t.themeToDark}
       aria-pressed={theme === 'dark'}
     >
       {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -26,19 +31,56 @@ function ThemeToggle() {
   )
 }
 
-export default function Header() {
+// Plain <a> on purpose: a full navigation guarantees the cookie is written
+// before the middleware sees the request (a prefetching <Link> could hit the
+// middleware first and get redirected back by browser-language detection).
+function LanguageSwitcher({ lang, label, onNavigate }: { lang: Locale; label: string; onNavigate?: () => void }) {
+  const pathname = usePathname()
+  const basePath = stripLocale(pathname)
+
+  return (
+    <div role="group" aria-label={label} className="flex items-center rounded-lg border border-gray-200 dark:border-[#1e1e32] p-0.5">
+      {locales.map((l) => {
+        const active = l === lang
+        return (
+          <a
+            key={l}
+            href={localizePath(l, basePath)}
+            hrefLang={l}
+            lang={l}
+            aria-current={active ? 'true' : undefined}
+            title={localeLabels[l].name}
+            onClick={() => {
+              document.cookie = `${LOCALE_COOKIE}=${l}; path=/; max-age=31536000; samesite=lax`
+              onNavigate?.()
+            }}
+            className={`px-2 py-1 rounded-md text-xs font-semibold transition-colors ${
+              active
+                ? 'bg-primary-600 text-white'
+                : 'text-gray-500 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400'
+            }`}
+          >
+            {localeLabels[l].short}
+          </a>
+        )
+      })}
+    </div>
+  )
+}
+
+export default function Header({ lang, t, cvHref }: { lang: Locale; t: CommonCopy; cvHref: string }) {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navLinks = [
-    { href: '/', label: 'Inicio' },
-    { href: '/about', label: 'Sobre Mí' },
-    { href: '/web-projects', label: 'Desarrollo Web' },
-    { href: '/data-science', label: 'Data Science' },
-    { href: '/dashboards', label: 'Dashboards' },
-    { href: '/certifications', label: 'Certificaciones' },
-    { href: '/contact', label: 'Contacto' },
-  ]
+    { href: '/', label: t.nav.home },
+    { href: '/about', label: t.nav.about },
+    { href: '/web-projects', label: t.nav.webProjects },
+    { href: '/data-science', label: t.nav.dataScience },
+    { href: '/dashboards', label: t.nav.dashboards },
+    { href: '/certifications', label: t.nav.certifications },
+    { href: '/contact', label: t.nav.contact },
+  ].map((link) => ({ ...link, href: localizePath(lang, link.href) }))
 
   const closeMobileMenu = () => setMobileMenuOpen(false)
 
@@ -48,29 +90,30 @@ export default function Header() {
 
         {/* Logo */}
         <Link
-          href="/"
+          href={localizePath(lang, '/')}
+          aria-label="Santiago Malak — Analytics Engineer"
           className="flex items-center gap-3 group"
           onClick={closeMobileMenu}
         >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-600 to-secondary-500 flex items-center justify-center shadow-md group-hover:shadow-primary-300/60 group-hover:scale-105 transition-all duration-200">
             <span className="text-white font-bold text-sm tracking-tight select-none">SA</span>
           </div>
-          <div className="flex flex-col leading-none">
+          <div className="flex lg:hidden xl:flex flex-col leading-none">
             <span className="font-bold text-[15px] text-gray-900 dark:text-white tracking-tight">Santiago Malak</span>
             <span className="text-[10px] font-semibold text-primary-600 dark:text-primary-400 tracking-[0.12em] uppercase mt-0.5 whitespace-nowrap">
-              Analytics Engineer
+              {t.roleShort}
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-1">
-          <ul className="flex items-center space-x-1">
+        <div className="hidden lg:flex items-center gap-1">
+          <ul className="flex items-center">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                  className={`px-2 xl:px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-150 ${
                     pathname === link.href
                       ? 'text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30'
                       : 'text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-[#1e1e32]'
@@ -83,34 +126,35 @@ export default function Header() {
           </ul>
           <div className="ml-2 pl-2 border-l border-gray-200 dark:border-[#1e1e32] flex items-center gap-1">
             <a
-              href="/CV_Santiago_Malak.pdf"
+              href={cvHref}
               download
               className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-primary-700 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all"
-              aria-label="Descargar CV"
+              aria-label={t.downloadCv}
             >
               <Download className="w-4 h-4" />
               CV
             </a>
-            <ThemeToggle />
+            <LanguageSwitcher lang={lang} label={t.language} />
+            <ThemeToggle t={t} />
           </div>
         </div>
 
         {/* Mobile: CV + toggle + hamburger */}
-        <div className="md:hidden flex items-center gap-1">
+        <div className="lg:hidden flex items-center gap-1">
           <a
-            href="/CV_Santiago_Malak.pdf"
+            href={cvHref}
             download
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-primary-700 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all"
-            aria-label="Descargar CV"
+            aria-label={t.downloadCv}
           >
             <Download className="w-4 h-4" />
             <span className="text-xs font-semibold">CV</span>
           </a>
-          <ThemeToggle />
+          <ThemeToggle t={t} />
           <button
             className="p-2 hover:bg-gray-100 dark:hover:bg-[#1e1e32] rounded-lg transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle mobile menu"
+            aria-label={t.toggleMenu}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
           >
@@ -125,7 +169,7 @@ export default function Header() {
 
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
-        <div id="mobile-menu" className="md:hidden border-t border-gray-200 dark:border-[#1e1e32] bg-white dark:bg-[#080810]">
+        <div id="mobile-menu" className="lg:hidden border-t border-gray-200 dark:border-[#1e1e32] bg-white dark:bg-[#080810]">
           <ul className="container mx-auto px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -144,14 +188,18 @@ export default function Header() {
             ))}
             <li className="pt-2 border-t border-gray-100 dark:border-[#1e1e32]">
               <a
-                href="/CV_Santiago_Malak.pdf"
+                href={cvHref}
                 download
                 className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
                 onClick={closeMobileMenu}
               >
                 <Download className="w-4 h-4" />
-                Descargar CV
+                {t.downloadCv}
               </a>
+            </li>
+            <li className="pt-2 flex items-center justify-between px-4">
+              <span className="text-xs text-gray-500 dark:text-gray-400">{t.language}</span>
+              <LanguageSwitcher lang={lang} label={t.language} onNavigate={closeMobileMenu} />
             </li>
           </ul>
         </div>

@@ -1,9 +1,21 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Briefcase, Code2, Database, ExternalLink, Rocket, Download, Globe } from 'lucide-react'
 import Reveal from '@/components/Reveal'
+import { cvPath, toLocale } from '@/i18n/config'
+import { getDictionary } from '@/i18n/get-dictionary'
+import { pageMetadata } from '@/i18n/metadata'
+import { localizePath } from '@/i18n/routing'
+
+type Props = { params: { lang: string } }
+
+export function generateMetadata({ params }: Props): Metadata {
+  const lang = toLocale(params.lang)
+  return pageMetadata(lang, '/about', getDictionary(lang).meta.about)
+}
 
 const techStack = {
-  'Analytics Engineering': [
+  analytics: [
     { name: 'BigQuery', color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50' },
     { name: 'dbt', color: 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/50 dark:text-orange-400 dark:border-orange-800/50' },
     { name: 'Metabase', color: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/50 dark:text-indigo-400 dark:border-indigo-800/50' },
@@ -11,17 +23,28 @@ const techStack = {
     { name: 'Python · Pandas', color: 'bg-yellow-50 text-yellow-800 border-yellow-200 dark:bg-yellow-950/50 dark:text-yellow-400 dark:border-yellow-800/50' },
     { name: 'PostgreSQL', color: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/50 dark:text-purple-400 dark:border-purple-800/50' },
   ],
-  'Desarrollo Web': [
+  web: [
     { name: 'React · Next.js', color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50' },
     { name: 'TypeScript', color: 'bg-blue-50 text-blue-800 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50' },
     { name: 'Node.js · APIs', color: 'bg-green-50 text-green-700 border-green-200 dark:bg-green-950/50 dark:text-green-400 dark:border-green-800/50' },
     { name: 'Tailwind CSS', color: 'bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-950/50 dark:text-cyan-400 dark:border-cyan-800/50' },
     { name: 'Docker · Vercel', color: 'bg-gray-50 text-gray-800 border-gray-300 dark:bg-gray-800/50 dark:text-gray-300 dark:border-gray-700/50' },
-    { name: 'n8n · Automatización', color: 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/50 dark:text-orange-400 dark:border-orange-800/50' },
+    { name: 'automation', color: 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/50 dark:text-orange-400 dark:border-orange-800/50' },
   ],
 }
 
-export default function AboutPage() {
+const languageBars = [
+  { code: 'es', flag: '🇦🇷', bar: 100, color: 'bg-primary-600' },
+  { code: 'en', flag: '🇬🇧', bar: 85, color: 'bg-indigo-500' },
+  { code: 'pt', flag: '🇧🇷', bar: 80, color: 'bg-secondary-500' },
+] as const
+
+export default function AboutPage({ params }: Props) {
+  const lang = toLocale(params.lang)
+  const dict = getDictionary(lang)
+  const t = dict.about
+  const href = (path: string) => localizePath(lang, path)
+
   return (
     <div className="min-h-screen bg-background">
 
@@ -30,41 +53,39 @@ export default function AboutPage() {
         <Reveal>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            Disponible · Analytics Engineer & Full-Stack Developer
+            {t.badge}
           </div>
         </Reveal>
 
         <Reveal delay={80}>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Hola, soy{' '}
+            {t.greeting}{' '}
             <span className="text-gradient">Santiago Malak</span>
           </h1>
         </Reveal>
 
         <Reveal delay={160}>
           <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-8">
-            Analytics Engineer & Full-Stack Developer. Actualmente independiente —
-            construyo proyectos propios, busco mi próximo rol y convierto ideas en productos reales.
-            Me muevo bien en la intersección entre datos, producto y código.
+            {t.intro}
           </p>
         </Reveal>
 
         <Reveal delay={240}>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/contact"
+              href={href('/contact')}
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
             >
-              Contactarme
+              {t.contactMe}
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href="/CV_Santiago_Malak.pdf"
+              href={cvPath[lang]}
               download
               className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-[#0f0f17] border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium hover:scale-[1.02]"
             >
               <Download className="h-4 w-4" />
-              Descargar CV
+              {dict.common.downloadCv}
             </a>
             <a
               href="https://github.com/santiagomalak"
@@ -87,7 +108,7 @@ export default function AboutPage() {
               <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
                 <Briefcase className="h-4 w-4 text-white" />
               </div>
-              Experiencia
+              {t.experience}
             </h2>
           </Reveal>
 
@@ -95,24 +116,20 @@ export default function AboutPage() {
             <Reveal className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6 hover:shadow-md dark:hover:shadow-[#1e1e32]/50 transition-shadow">
               <div className="flex items-start justify-between gap-4 mb-3">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Analytics Engineer / Data Scientist</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t.ivolution.role}</h3>
                   <p className="text-primary-700 dark:text-primary-400 font-medium">Ivolution Sport Science</p>
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-[#111120] px-3 py-1 rounded-full border border-gray-200 dark:border-[#1e1e32] whitespace-nowrap">
-                  Abr 2025 — Mar 2026
+                  {t.ivolution.period}
                 </span>
               </div>
               <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                Diseñé de cero el sistema de análisis de rendimiento de la empresa: pipelines en BigQuery,
-                modelos en dbt y dashboards en Metabase con alertas dinámicas por percentil (p25/p75) y
-                soporte multilingüe ES/EN/PT. 967 atletas monitoreados en 13 deportes, 10.000+ mediciones
-                registradas. El sistema continúa operativo tras mi salida — herramienta
-                principal de toma de decisiones de la organización.
+                {t.ivolution.body}
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
-                {['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'].map((t) => (
-                  <span key={t} className="px-2.5 py-1 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
-                    {t}
+                {['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'].map((tag) => (
+                  <span key={tag} className="px-2.5 py-1 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
+                    {tag}
                   </span>
                 ))}
               </div>
@@ -128,7 +145,7 @@ export default function AboutPage() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-600 to-secondary-500 flex items-center justify-center">
               <Rocket className="h-4 w-4 text-white" />
             </div>
-            Qué estoy construyendo
+            {t.building}
           </h2>
         </Reveal>
 
@@ -138,7 +155,7 @@ export default function AboutPage() {
             <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
               <div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">StackAdvisor</h3>
-                <p className="text-primary-700 dark:text-primary-400 font-medium text-sm">SaaS · En producción</p>
+                <p className="text-primary-700 dark:text-primary-400 font-medium text-sm">{t.stackadvisor.kind}</p>
               </div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-100 dark:bg-green-950/50 text-green-700 dark:text-green-400 text-xs font-semibold rounded-full border border-green-200 dark:border-green-800/50">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
@@ -146,14 +163,12 @@ export default function AboutPage() {
               </span>
             </div>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-5">
-              Plataforma que resuelve la parálisis de decisión tecnológica: 13 preguntas inteligentes
-              → motor de recomendación con 25+ stacks evaluados → roadmap de 12 semanas personalizado.
-              Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.
+              {t.stackadvisor.body}
             </p>
             <div className="flex flex-wrap gap-2 mb-5">
-              {['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine', 'SaaS'].map((t) => (
-                <span key={t} className="px-2.5 py-1 bg-white dark:bg-[#111120] border border-primary-200 dark:border-primary-800/50 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
-                  {t}
+              {['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine', 'SaaS'].map((tag) => (
+                <span key={tag} className="px-2.5 py-1 bg-white dark:bg-[#111120] border border-primary-200 dark:border-primary-800/50 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
+                  {tag}
                 </span>
               ))}
             </div>
@@ -163,7 +178,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary-700 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 transition-colors"
             >
-              Visitar StackAdvisor
+              {t.stackadvisor.visit}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </Reveal>
@@ -173,23 +188,20 @@ export default function AboutPage() {
             <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
               <div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Job Hunting Automation</h3>
-                <p className="text-orange-700 dark:text-orange-400 font-medium text-sm">Automatización · En construcción</p>
+                <p className="text-orange-700 dark:text-orange-400 font-medium text-sm">{t.jobHunting.kind}</p>
               </div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 text-xs font-semibold rounded-full border border-orange-200 dark:border-orange-800/50">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                En desarrollo
+                {t.jobHunting.status}
               </span>
             </div>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-5">
-              Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes relevantes,
-              scoring con IA, checkpoint de aprobación vía Telegram y generación de CV adaptado a cada
-              oferta. Pensado para correr desde VPS de forma autónoma — porque buscar trabajo también
-              se puede optimizar.
+              {t.jobHunting.body}
             </p>
             <div className="flex flex-wrap gap-2">
-              {['n8n', 'Telegram API', 'IA', 'Automatización', 'Docker', 'VPS'].map((t) => (
-                <span key={t} className="px-2.5 py-1 bg-white dark:bg-[#111120] border border-orange-200 dark:border-orange-800/50 text-orange-700 dark:text-orange-400 text-xs font-medium rounded-full">
-                  {t}
+              {t.jobHunting.tags.map((tag) => (
+                <span key={tag} className="px-2.5 py-1 bg-white dark:bg-[#111120] border border-orange-200 dark:border-orange-800/50 text-orange-700 dark:text-orange-400 text-xs font-medium rounded-full">
+                  {tag}
                 </span>
               ))}
             </div>
@@ -205,31 +217,31 @@ export default function AboutPage() {
               <div className="w-8 h-8 rounded-lg bg-secondary-500 flex items-center justify-center">
                 <Code2 className="h-4 w-4 text-white" />
               </div>
-              Stack tecnológico
+              {t.stack}
             </h2>
           </Reveal>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {Object.entries(techStack).map(([category, skills], catIdx) => (
+            {(Object.keys(techStack) as (keyof typeof techStack)[]).map((category, catIdx) => (
               <Reveal
                 key={category}
                 delay={catIdx * 100}
                 className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6"
               >
                 <div className="flex items-center gap-2 mb-5">
-                  {category === 'Analytics Engineering'
+                  {category === 'analytics'
                     ? <Database className="h-5 w-5 text-secondary-500" />
                     : <Code2 className="h-5 w-5 text-primary-700 dark:text-primary-400" />
                   }
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{category}</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">{t.stackCategories[category]}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
+                  {techStack[category].map((skill) => (
                     <span
                       key={skill.name}
                       className={`px-3 py-1.5 text-xs font-medium rounded-lg border ${skill.color}`}
                     >
-                      {skill.name}
+                      {skill.name === 'automation' ? t.automationSkill : skill.name}
                     </span>
                   ))}
                 </div>
@@ -246,28 +258,24 @@ export default function AboutPage() {
             <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
               <Globe className="h-4 w-4 text-white" />
             </div>
-            Idiomas
+            {t.languages}
           </h2>
         </Reveal>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {[
-            { lang: 'Español', level: 'Nativo', detail: 'Lengua materna', bar: 100, color: 'bg-primary-600' },
-            { lang: 'Inglés', level: 'Profesional', detail: 'Lectura técnica · Escritura · Comunicación', bar: 85, color: 'bg-indigo-500' },
-            { lang: 'Portugués', level: 'C1 Avanzado', detail: 'Análisis de datos · Documentación técnica', bar: 80, color: 'bg-secondary-500' },
-          ].map((l, i) => (
+          {languageBars.map((l, i) => (
             <Reveal
-              key={l.lang}
+              key={l.code}
               delay={i * 100}
               className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6"
             >
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="font-bold text-gray-900 dark:text-white">{l.lang}</h3>
-                  <p className="text-sm text-primary-700 dark:text-primary-400 font-medium">{l.level}</p>
+                  <h3 className="font-bold text-gray-900 dark:text-white">{t.languageList[l.code].name}</h3>
+                  <p className="text-sm text-primary-700 dark:text-primary-400 font-medium">{t.languageList[l.code].level}</p>
                 </div>
-                <span className="text-2xl">{l.lang === 'Español' ? '🇦🇷' : l.lang === 'Inglés' ? '🇬🇧' : '🇧🇷'}</span>
+                <span className="text-2xl" aria-hidden="true">{l.flag}</span>
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">{l.detail}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">{t.languageList[l.code].detail}</p>
               <div className="w-full bg-gray-100 dark:bg-[#1e1e32] rounded-full h-1.5">
                 <div className={`${l.color} h-1.5 rounded-full`} style={{ width: `${l.bar}%` }} />
               </div>
@@ -281,34 +289,32 @@ export default function AboutPage() {
         <Reveal className="bg-gradient-to-br from-primary-600 to-secondary-500 rounded-3xl p-10 text-white text-center">
           <div className="text-4xl mb-6">💡</div>
           <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-6 opacity-95">
-            "Los mejores productos nacen en la intersección de datos e ingeniería.
-            Los datos te dicen qué construir. El código te deja construirlo."
+            {t.philosophy}
           </blockquote>
-          <p className="opacity-80 text-sm">— Mi filosofía de trabajo</p>
+          <p className="opacity-80 text-sm">{t.philosophyCaption}</p>
         </Reveal>
       </section>
 
       {/* ── CTA ── */}
       <section className="container mx-auto px-4 pb-20 max-w-4xl text-center">
         <Reveal>
-          <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">¿Trabajamos juntos?</h2>
+          <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">{dict.common.workTogether.title}</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
-            Abierto a roles remotos de Analytics Engineer & Full-Stack Developer — y a Data Engineer
-            o Data Scientist si el proyecto lo amerita. También a freelance: datos, web, automatización.
+            {dict.common.workTogether.body}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
-              href="/contact"
+              href={href('/contact')}
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
             >
-              Iniciar conversación
+              {dict.common.workTogether.cta}
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/web-projects"
+              href={href('/web-projects')}
               className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium"
             >
-              Ver mis proyectos
+              {t.seeProjects}
             </Link>
           </div>
         </Reveal>

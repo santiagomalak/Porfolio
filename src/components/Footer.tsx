@@ -1,6 +1,6 @@
 import { Github, Linkedin, Mail } from 'lucide-react'
 
-export default function Footer() {
+export default function Footer({ rights }: { rights: string }) {
   const currentYear = new Date().getFullYear()
 
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            © {currentYear} Santiago Aragon Malak. Todos los derechos reservados.
+            © {currentYear} Santiago Aragon Malak. {rights}
           </div>
 
           <div className="flex items-center space-x-6">

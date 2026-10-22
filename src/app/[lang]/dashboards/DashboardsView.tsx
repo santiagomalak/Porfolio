@@ -3,13 +3,14 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ExternalLink, Github, BarChart2, TrendingUp, Database, Globe } from 'lucide-react'
+import { format, type Dictionary } from '@/i18n/get-dictionary'
+
+type DashboardsCopy = Dictionary['dashboards']
 
 const DASHBOARDS = [
   {
     id:          'ecommerce',
     title:       'E-Commerce Analytics',
-    subtitle:    'Olist Brazil (PT-BR) · 100k+ orders · dbt + PostgreSQL',
-    description: 'Pipeline de datos end-to-end con segmentación RFM, cohort retention, revenue trends y seller performance. Datos reales de 93k clientes únicos del mercado brasileño. Análisis en portugués (C1), inglés y español. Soporte EN/ES/PT.',
     liveUrl:     'https://ecommerce-dashboard-puce.vercel.app',
     githubUrl:   'https://github.com/santiagomalak/ecommerce-dashboard',
     color:       '#FF694B',
@@ -20,8 +21,6 @@ const DASHBOARDS = [
   {
     id:          'crypto',
     title:       'Crypto Live Dashboard',
-    subtitle:    'BTC · ETH · SOL · BNB · XRP — Binance WebSocket',
-    description: 'Dashboard en tiempo real con velas TradingView, volumen, 6 timeframes y detección de anomalías por z-score. Feed de trades en vivo.',
     liveUrl:     'https://crypto-dashboard-five-dun.vercel.app',
     githubUrl:   'https://github.com/santiagomalak/crypto-dashboard',
     color:       '#6366f1',
@@ -32,8 +31,6 @@ const DASHBOARDS = [
   {
     id:          'argentina',
     title:       'Argentina Macro Dashboard',
-    subtitle:    'Dólar · Inflación · Riesgo País — datos en tiempo real',
-    description: 'Tipos de cambio en vivo (oficial, blue, MEP, CCL, cripto, tarjeta), brecha cambiaria, evolución histórica, inflación mensual e interanual (INDEC) y riesgo país EMBI+. Polling cada 60s.',
     liveUrl:     'https://argentina-macro.vercel.app',
     githubUrl:   'https://github.com/santiagomalak/Argentina-Macro',
     color:       '#74b9ff',
@@ -41,18 +38,36 @@ const DASHBOARDS = [
     tags:        ['Next.js', 'dolarapi', 'INDEC', 'Recharts', 'ArgentinaDatos'],
     status:      'live' as const,
   },
-]
+] as const
+
+const OTHER_PROJECTS = [
+  {
+    id: 'platform',
+    color: '#FF694B',
+    icon: Database,
+    url: 'https://github.com/santiagomalak/ecommerce-data-platform',
+    tags: ['dbt', 'PostgreSQL', 'Python', 'Docker'],
+  },
+  {
+    id: 'argentinaRepo',
+    color: '#74b9ff',
+    icon: Globe,
+    url: 'https://github.com/santiagomalak/Argentina-Macro',
+    tags: ['Next.js', 'dolarapi', 'INDEC', 'ArgentinaDatos'],
+  },
+] as const
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 20 },
   visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: d } }),
 }
 
-export default function DashboardsPage() {
-  const [active, setActive] = useState(DASHBOARDS[0].id)
+export default function DashboardsView({ t }: { t: DashboardsCopy }) {
+  const [active, setActive] = useState<(typeof DASHBOARDS)[number]['id']>(DASHBOARDS[0].id)
   const [loaded, setLoaded] = useState<Record<string, boolean>>({})
 
   const current = DASHBOARDS.find(d => d.id === active)!
+  const copy    = t.items[current.id]
   const Icon    = current.icon
 
   return (
@@ -63,15 +78,12 @@ export default function DashboardsPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-500 dark:text-indigo-400 mb-4">
-              Live Projects
+              {t.kicker}
             </p>
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-900 dark:text-white">
-              Interactive Dashboards
+              {t.title}
             </h1>
-            <p className="text-gray-600 dark:text-zinc-400 text-lg max-w-2xl">
-              Proyectos productivos con datos reales — desde pipelines de datos hasta streams en tiempo real.
-              Cada uno deployado y funcional.
-            </p>
+            <p className="text-gray-600 dark:text-zinc-400 text-lg max-w-2xl">{t.intro}</p>
           </motion.div>
         </div>
       </section>
@@ -88,6 +100,7 @@ export default function DashboardsPage() {
               <button
                 key={d.id}
                 onClick={() => setActive(d.id)}
+                aria-pressed={isActive}
                 className={`flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   isActive
                     ? ''
@@ -122,13 +135,13 @@ export default function DashboardsPage() {
               <div className="w-2.5 h-2.5 rounded-full" style={{ background: current.color }} />
               <h2 className="text-xl font-bold text-gray-900 dark:text-white">{current.title}</h2>
             </div>
-            <p className="text-gray-500 dark:text-zinc-500 text-sm ml-5">{current.subtitle}</p>
-            <p className="text-gray-600 dark:text-zinc-400 text-sm mt-2 max-w-2xl ml-5">{current.description}</p>
+            <p className="text-gray-500 dark:text-zinc-500 text-sm ml-5">{copy.subtitle}</p>
+            <p className="text-gray-600 dark:text-zinc-400 text-sm mt-2 max-w-2xl ml-5">{copy.description}</p>
             <div className="flex gap-2 flex-wrap mt-3 ml-5">
-              {current.tags.map(t => (
-                <span key={t} className="text-xs px-2 py-0.5 rounded-md"
+              {current.tags.map(tag => (
+                <span key={tag} className="text-xs px-2 py-0.5 rounded-md"
                   style={{ background: `${current.color}12`, color: current.color, border: `1px solid ${current.color}25` }}>
-                  {t}
+                  {tag}
                 </span>
               ))}
             </div>
@@ -136,12 +149,12 @@ export default function DashboardsPage() {
           <div className="flex gap-2">
             <a href={current.githubUrl} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-200 dark:border-[#1e1e32] text-gray-500 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-white/10">
-              <Github size={14} /> Código
+              <Github size={14} /> {t.code}
             </a>
             <a href={current.liveUrl} target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all text-white"
               style={{ background: current.color }}>
-              <ExternalLink size={14} /> Abrir
+              <ExternalLink size={14} /> {t.open}
             </a>
           </div>
         </motion.div>
@@ -157,14 +170,14 @@ export default function DashboardsPage() {
           </div>
           <div>
             <p className="text-gray-900 dark:text-white font-semibold text-lg mb-1">{current.title}</p>
-            <p className="text-gray-500 dark:text-zinc-500 text-sm">{current.subtitle}</p>
+            <p className="text-gray-500 dark:text-zinc-500 text-sm">{copy.subtitle}</p>
           </div>
           <a href={current.liveUrl} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all w-full justify-center text-white"
             style={{ background: current.color }}>
-            <ExternalLink size={15} /> Abrir dashboard
+            <ExternalLink size={15} /> {t.openDashboard}
           </a>
-          <p className="text-gray-400 dark:text-zinc-700 text-xs">Mejor experiencia en desktop</p>
+          <p className="text-gray-400 dark:text-zinc-700 text-xs">{t.bestOnDesktop}</p>
         </motion.div>
 
         {/* Desktop: iframe embed — browser chrome stays dark by design */}
@@ -193,7 +206,7 @@ export default function DashboardsPage() {
               style={{ background: '#0a0a0f' }}>
               <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
                 style={{ borderColor: `${current.color}40`, borderTopColor: current.color }} />
-              <p className="text-zinc-600 text-sm">Cargando {current.title}...</p>
+              <p className="text-zinc-600 text-sm">{format(t.loading, { title: current.title })}</p>
             </div>
           )}
 
@@ -211,51 +224,33 @@ export default function DashboardsPage() {
         {/* Other projects grid */}
         <motion.div initial="hidden" animate="visible" custom={0.3} variants={fadeUp} className="mt-12">
           <h3 className="text-sm text-gray-500 dark:text-zinc-500 uppercase tracking-widest mb-5 flex items-center gap-2">
-            <Database size={13} /> Otros proyectos
+            <Database size={13} /> {t.otherProjects}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              {
-                title: 'E-Commerce Data Platform',
-                desc: 'Pipeline dbt + PostgreSQL con 4 capas de modelos sobre 100k órdenes Olist',
-                color: '#FF694B',
-                icon: Database,
-                url: 'https://github.com/santiagomalak/ecommerce-data-platform',
-                tags: ['dbt', 'PostgreSQL', 'Python', 'Docker'],
-              },
-              {
-                title: 'Argentina Macro — Repo',
-                desc: 'Código fuente del dashboard macroeconómico: dólar, inflación INDEC y riesgo país.',
-                color: '#74b9ff',
-                icon: Globe,
-                url: 'https://github.com/santiagomalak/Argentina-Macro',
-                tags: ['Next.js', 'dolarapi', 'INDEC', 'ArgentinaDatos'],
-              },
-            ].map(p => {
+            {OTHER_PROJECTS.map(p => {
               const PIcon = p.icon
+              const pCopy = t.others[p.id]
               return (
-                <div key={p.title}
+                <div key={p.id}
                   className="p-5 rounded-xl transition-all bg-gray-50 dark:bg-[#0f0f17] border border-gray-200 dark:border-[#1e1e32] hover:bg-gray-100 dark:hover:bg-white/5">
                   <div className="flex items-center gap-2 mb-2">
                     <PIcon size={14} style={{ color: p.color }} />
-                    <span className="text-sm font-semibold text-gray-800 dark:text-zinc-200">{p.title}</span>
+                    <span className="text-sm font-semibold text-gray-800 dark:text-zinc-200">{pCopy.title}</span>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-zinc-500 mb-3">{p.desc}</p>
+                  <p className="text-xs text-gray-500 dark:text-zinc-500 mb-3">{pCopy.desc}</p>
                   <div className="flex items-center justify-between">
                     <div className="flex gap-1.5 flex-wrap">
-                      {p.tags.map(t => (
-                        <span key={t} className="text-[10px] px-2 py-0.5 rounded"
+                      {p.tags.map(tag => (
+                        <span key={tag} className="text-[10px] px-2 py-0.5 rounded"
                           style={{ background: `${p.color}12`, color: p.color }}>
-                          {t}
+                          {tag}
                         </span>
                       ))}
                     </div>
-                    {p.url && (
-                      <a href={p.url} target="_blank" rel="noopener noreferrer"
-                        className="text-xs text-gray-500 dark:text-zinc-600 hover:text-gray-800 dark:hover:text-zinc-400 flex items-center gap-1 transition-colors">
-                        <Github size={12} /> Ver repo
-                      </a>
-                    )}
+                    <a href={p.url} target="_blank" rel="noopener noreferrer"
+                      className="text-xs text-gray-500 dark:text-zinc-600 hover:text-gray-800 dark:hover:text-zinc-400 flex items-center gap-1 transition-colors">
+                      <Github size={12} /> {t.viewRepo}
+                    </a>
                   </div>
                 </div>
               )

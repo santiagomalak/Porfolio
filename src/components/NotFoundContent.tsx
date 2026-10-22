@@ -2,7 +2,10 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Home, Search } from 'lucide-react'
+import { Home, Search } from 'lucide-react'
+import type { Locale } from '@/i18n/config'
+import type { Dictionary } from '@/i18n/get-dictionary'
+import { localizePath } from '@/i18n/routing'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -12,7 +15,7 @@ const fadeUp = {
   }),
 }
 
-export default function NotFound() {
+export default function NotFoundContent({ lang, t }: { lang: Locale; t: Dictionary['notFound'] }) {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="max-w-2xl w-full text-center">
@@ -38,14 +41,10 @@ export default function NotFound() {
         {/* Message */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0.1}>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-            Esta página no existe... o la borré yo sin querer
+            {t.title}
           </h1>
-          <p className="text-gray-500 dark:text-gray-400 text-lg mb-2">
-            El modelo predijo que estarías aquí — pero se equivocó.
-          </p>
-          <p className="text-gray-400 dark:text-gray-500 text-sm mb-10">
-            Error 404 · Ruta no encontrada · Accuracy del modelo: 0%
-          </p>
+          <p className="text-gray-500 dark:text-gray-400 text-lg mb-2">{t.subtitle}</p>
+          <p className="text-gray-400 dark:text-gray-500 text-sm mb-10">{t.meta}</p>
         </motion.div>
 
         {/* Fake terminal */}
@@ -58,11 +57,11 @@ export default function NotFound() {
             <span className="w-3 h-3 rounded-full bg-yellow-500" />
             <span className="w-3 h-3 rounded-full bg-green-500" />
           </div>
-          <p className="text-gray-400">$ find / -name <span className="text-yellow-400">"pagina-que-buscas"</span></p>
+          <p className="text-gray-400">$ find / -name <span className="text-yellow-400">&quot;{t.searching}&quot;</span></p>
           <p className="text-red-400 mt-1">find: No such file or directory</p>
           <p className="text-gray-400 mt-2">$ python predict_location.py</p>
-          <p className="text-green-400 mt-1">{'>'} Predicción: <span className="text-white">somewhere/in/the/internet</span></p>
-          <p className="text-green-400">{'>'} Confianza: <span className="text-red-400">2.3%</span> <span className="text-gray-500"># no muy útil</span></p>
+          <p className="text-green-400 mt-1">{'>'} {t.prediction}: <span className="text-white">somewhere/in/the/internet</span></p>
+          <p className="text-green-400">{'>'} {t.confidence}: <span className="text-red-400">2.3%</span> <span className="text-gray-500">{t.comment}</span></p>
           <p className="text-gray-400 mt-2">$ <span className="animate-pulse">_</span></p>
         </motion.div>
 
@@ -72,18 +71,18 @@ export default function NotFound() {
           className="flex flex-wrap gap-4 justify-center"
         >
           <Link
-            href="/"
+            href={localizePath(lang, '/')}
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all font-medium shadow-lg shadow-primary-200 hover:scale-[1.02]"
           >
             <Home className="h-4 w-4" />
-            Volver al inicio
+            {t.home}
           </Link>
           <Link
-            href="/data-science"
+            href={localizePath(lang, '/data-science')}
             className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-200 dark:border-[#1e1e32] text-gray-700 dark:text-gray-300 rounded-xl hover:border-primary-400 dark:hover:border-primary-600 hover:text-primary-700 dark:hover:text-primary-400 transition-all font-medium"
           >
             <Search className="h-4 w-4" />
-            Ver proyectos
+            {t.projects}
           </Link>
         </motion.div>
 

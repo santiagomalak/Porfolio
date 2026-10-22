@@ -2,12 +2,17 @@
 
 import { useState } from 'react'
 import { Mail, Linkedin, Github, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import type { Locale } from '@/i18n/config'
+import type { Dictionary } from '@/i18n/get-dictionary'
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
+type ContactCopy = Dictionary['contact']
+type ErrorCode = keyof ContactCopy['errors']
 
 const MAX_MESSAGE_LENGTH = 2000
+const SUBJECT_KEYS = ['job', 'web', 'datascience', 'both', 'other'] as const
 
-export default function Contact() {
+export default function ContactForm({ lang, t }: { lang: Locale; t: ContactCopy }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,33 +21,36 @@ export default function Contact() {
     website: '', // honeypot — stays empty for real visitors, hidden via CSS below
   })
   const [status, setStatus] = useState<FormStatus>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorCode, setErrorCode] = useState<ErrorCode>('generic')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
-    setErrorMessage('')
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, locale: lang }),
       })
 
-      const data = await response.json()
-
       if (!response.ok) {
-        throw new Error(data.error || 'Error al enviar el mensaje')
+        // The API answers with a stable error code; the text comes from the dictionary.
+        const data: { code?: string } = await response.json().catch(() => ({}))
+        const code = data.code && data.code in t.errors ? (data.code as ErrorCode) : 'generic'
+        setErrorCode(code)
+        setStatus('error')
+        return
       }
 
       setStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '', website: '' })
 
       setTimeout(() => { setStatus('idle') }, 5000)
-    } catch (error: unknown) {
+    } catch {
+      // Network failure (offline, DNS, CORS) — nothing more specific to show.
+      setErrorCode('generic')
       setStatus('error')
-      setErrorMessage(error instanceof Error ? error.message : 'Error al enviar el mensaje. Por favor, intenta nuevamente.')
     }
   }
 
@@ -58,22 +66,20 @@ export default function Contact() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">Contacto</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              ¿Tienes un proyecto en mente? Conversemos sobre cómo puedo ayudarte.
-            </p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">{t.title}</h1>
+            <p className="text-xl text-gray-600 dark:text-gray-400">{t.intro}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Contact Info */}
             <div>
-              <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Información de Contacto</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">{t.info}</h2>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <Mail className="h-6 w-6 text-primary-700 dark:text-primary-400 mt-1" />
                   <div>
-                    <h3 className="font-medium mb-1 text-gray-900 dark:text-white">Email</h3>
+                    <h3 className="font-medium mb-1 text-gray-900 dark:text-white">{t.email}</h3>
                     <a
                       href="mailto:santiagoaragonmalak@gmail.com"
                       className="text-gray-600 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-400 transition-colors"
@@ -115,22 +121,19 @@ export default function Contact() {
               </div>
 
               <div className="mt-8 p-6 bg-primary-50 dark:bg-primary-900/20 rounded-lg border border-primary-200 dark:border-primary-800/50">
-                <h3 className="font-semibold mb-2 text-primary-700 dark:text-primary-400">Disponibilidad</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Disponible para proyectos freelance y colaboraciones.
-                  Tiempo de respuesta: 24-48 horas.
-                </p>
+                <h3 className="font-semibold mb-2 text-primary-700 dark:text-primary-400">{t.availabilityTitle}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{t.availabilityBody}</p>
               </div>
             </div>
 
             {/* Contact Form */}
             <div className="bg-white dark:bg-[#0f0f17] p-8 rounded-lg border border-gray-200 dark:border-[#1e1e32]">
-              <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Envíame un mensaje</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">{t.formTitle}</h2>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Nombre
+                    {t.name}
                   </label>
                   <input
                     type="text"
@@ -145,7 +148,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Email
+                    {t.email}
                   </label>
                   <input
                     type="email"
@@ -160,7 +163,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Asunto
+                    {t.subject}
                   </label>
                   <select
                     id="subject"
@@ -170,17 +173,16 @@ export default function Contact() {
                     required
                     className={inputClass}
                   >
-                    <option value="">Selecciona un asunto</option>
-                    <option value="web">Proyecto de Desarrollo Web</option>
-                    <option value="datascience">Proyecto de Data Science</option>
-                    <option value="both">Proyecto Combinado</option>
-                    <option value="other">Otro</option>
+                    <option value="">{t.subjectPlaceholder}</option>
+                    {SUBJECT_KEYS.map((key) => (
+                      <option key={key} value={key}>{t.subjects[key]}</option>
+                    ))}
                   </select>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Mensaje
+                    {t.message}
                   </label>
                   <textarea
                     id="message"
@@ -199,7 +201,7 @@ export default function Contact() {
 
                 {/* Honeypot — invisible to real users, catches naive bots that fill every field */}
                 <div className="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
-                  <label htmlFor="website">Dejar en blanco</label>
+                  <label htmlFor="website">{t.honeypot}</label>
                   <input
                     type="text"
                     id="website"
@@ -212,16 +214,16 @@ export default function Contact() {
                 </div>
 
                 {status === 'success' && (
-                  <div className="flex items-center gap-2 p-4 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800/50 rounded-lg text-green-800 dark:text-green-400">
+                  <div role="status" className="flex items-center gap-2 p-4 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800/50 rounded-lg text-green-800 dark:text-green-400">
                     <CheckCircle className="h-5 w-5 flex-shrink-0" />
-                    <p className="text-sm">¡Mensaje enviado exitosamente! Te responderé pronto.</p>
+                    <p className="text-sm">{t.success}</p>
                   </div>
                 )}
 
                 {status === 'error' && (
-                  <div className="flex items-center gap-2 p-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800/50 rounded-lg text-red-800 dark:text-red-400">
+                  <div role="alert" className="flex items-center gap-2 p-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800/50 rounded-lg text-red-800 dark:text-red-400">
                     <AlertCircle className="h-5 w-5 flex-shrink-0" />
-                    <p className="text-sm">{errorMessage}</p>
+                    <p className="text-sm">{t.errors[errorCode]}</p>
                   </div>
                 )}
 
@@ -233,12 +235,12 @@ export default function Contact() {
                   {status === 'loading' ? (
                     <>
                       <Loader2 className="h-5 w-5 animate-spin" />
-                      Enviando...
+                      {t.sending}
                     </>
                   ) : (
                     <>
                       <Send className="h-5 w-5" />
-                      Enviar Mensaje
+                      {t.send}
                     </>
                   )}
                 </button>

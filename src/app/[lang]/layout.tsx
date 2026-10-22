@@ -1,131 +1,63 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import OpenToWorkBanner from '@/components/OpenToWorkBanner'
-import { Analytics } from '@vercel/analytics/react'
-import { ThemeProvider } from '@/components/ThemeProvider'
+import { notFound } from 'next/navigation'
+import SiteShell from '@/components/SiteShell'
+import { isLocale, locales, toLocale } from '@/i18n/config'
+import { getDictionary } from '@/i18n/get-dictionary'
+import { pageMetadata } from '@/i18n/metadata'
+import { BASE_URL } from '@/i18n/routing'
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-})
+// One static build per language: /es, /en, /pt. The middleware maps the
+// unprefixed Spanish URLs onto /es internally.
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }))
+}
 
-const BASE_URL = 'https://santiagomalak.is-a.dev'
+// Anything that isn't one of those three is a 404, not a page. The middleware
+// never routes such paths here, but URLs with a dot (/missing.pdf) skip the
+// middleware and would otherwise render the home page with a 200.
+// dynamicParams alone doesn't cover this on Next 14 (it isn't applied to the
+// page below this layout), hence the explicit check in the layout too.
+export const dynamicParams = false
 
-export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
-  title: {
-    default: 'Santiago Malak — Analytics Engineer & Full-Stack Developer',
-    template: '%s | Santiago Malak',
-  },
-  description:
-    'Portfolio de Santiago Malak: Analytics Engineer y Full-Stack Developer. BigQuery, dbt, Metabase, SQL, Python, Next.js. 967 atletas monitoreados en producción real. Disponible para roles remotos.',
-  keywords: [
-    'Santiago Malak',
-    'Analytics Engineer',
-    'Data Engineer',
-    'Data Scientist',
-    'BigQuery',
-    'dbt',
-    'Metabase',
-    'SQL',
-    'Python',
-    'Next.js',
-    'TypeScript',
-    'portfolio',
-    'analytics engineering',
-    'data pipeline',
-  ],
-  authors: [{ name: 'Santiago Malak' }],
-  creator: 'Santiago Malak',
-  openGraph: {
-    type: 'website',
-    locale: 'es_AR',
-    url: BASE_URL,
-    siteName: 'Santiago Malak',
-    title: 'Santiago Malak — Analytics Engineer & Full-Stack Developer',
-    description:
-      'Analytics Engineer con experiencia real en BigQuery, dbt y Metabase. 967 atletas monitoreados en producción.',
-    images: [
-      {
-        url: '/og-image.svg',
-        width: 1200,
-        height: 630,
-        alt: 'Santiago Malak — Analytics Engineer & Full-Stack Developer',
-      },
+type Params = { params: { lang: string } }
+
+export function generateMetadata({ params }: Params): Metadata {
+  const lang = toLocale(params.lang)
+  const t = getDictionary(lang).meta
+  return {
+    metadataBase: new URL(BASE_URL),
+    keywords: [
+      'Santiago Malak',
+      'Analytics Engineer',
+      'Data Engineer',
+      'Data Scientist',
+      'BigQuery',
+      'dbt',
+      'Metabase',
+      'SQL',
+      'Python',
+      'Next.js',
+      'TypeScript',
+      'portfolio',
+      'analytics engineering',
+      'data pipeline',
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Santiago Malak — Analytics Engineer & Full-Stack Developer',
-    description:
-      'Analytics Engineer con experiencia real en BigQuery, dbt y Metabase. 967 atletas monitoreados en producción.',
-    images: ['/og-image.svg'],
-  },
-  icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    authors: [{ name: 'Santiago Malak' }],
+    creator: 'Santiago Malak',
+    icons: { icon: '/favicon.svg', shortcut: '/favicon.svg' },
+    robots: {
       index: true,
       follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
     },
-  },
+    // Home page values; every other page overrides these with its own.
+    ...pageMetadata(lang, '/', { title: t.siteTitle, description: t.siteDescription }),
+    // After the spread: the layout's title must be the template, not a string.
+    title: { default: t.siteTitle, template: '%s | Santiago Malak' },
+  }
 }
 
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Santiago Malak',
-  alternateName: 'Santiago Aragon Malak',
-  url: BASE_URL,
-  jobTitle: 'Analytics Engineer & Full-Stack Developer',
-  description:
-    'Analytics Engineer y Full-Stack Developer. BigQuery, dbt, Metabase, SQL, Python, Next.js.',
-  alumniOf: {
-    '@type': 'CollegeOrUniversity',
-    name: 'Universidad Nacional de Córdoba',
-  },
-  knowsAbout: ['Analytics Engineering', 'Data Science', 'BigQuery', 'dbt', 'SQL', 'Python', 'Next.js', 'TypeScript'],
-  sameAs: [
-    'https://github.com/santiagomalak',
-    'https://www.linkedin.com/in/aragonmalak/',
-    'https://www.credly.com/users/santiago-aragon-malak',
-  ],
-}
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="es" className={inter.variable} suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
-        <ThemeProvider>
-          <div className="flex flex-col min-h-screen">
-            <OpenToWorkBanner />
-            <Header />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-          </div>
-          <Analytics />
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+export default function LangLayout({ children, params }: { children: React.ReactNode } & Params) {
+  if (!isLocale(params.lang)) notFound()
+  return <SiteShell lang={params.lang}>{children}</SiteShell>
 }

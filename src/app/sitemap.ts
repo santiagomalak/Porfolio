@@ -1,68 +1,30 @@
 import { MetadataRoute } from 'next'
+import { locales } from '@/i18n/config'
+import { BASE_URL, languageAlternates, localizePath, routes } from '@/i18n/routing'
 
-const BASE_URL = 'https://santiagomalak.is-a.dev'
+const priority: Record<(typeof routes)[number], number> = {
+  '/': 1,
+  '/about': 0.9,
+  '/dashboards': 0.9,
+  '/web-projects': 0.8,
+  '/data-science': 0.8,
+  '/certifications': 0.8,
+  '/data-science/ivolution': 0.7,
+  '/data-science/olist': 0.7,
+  '/data-science/performance-monitor': 0.7,
+  '/contact': 0.6,
+}
 
+// Every page in every language, each entry listing its translations so search
+// engines connect the versions instead of flagging duplicate content.
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: BASE_URL,
+  return routes.flatMap((route) =>
+    locales.map((lang) => ({
+      url: `${BASE_URL}${localizePath(lang, route)}`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/web-projects`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/data-science`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/dashboards`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/certifications`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/data-science/ivolution`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/data-science/olist`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/data-science/performance-monitor`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-  ]
+      changeFrequency: route === '/contact' ? ('yearly' as const) : ('monthly' as const),
+      priority: priority[route],
+      alternates: { languages: languageAlternates(route) },
+    })),
+  )
 }
