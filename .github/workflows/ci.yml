@@ -63,15 +63,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Warn-only until the date in CONSTRAINTS.md — drop the `|| echo ...`
-      # fallback to make this blocking once findings are consistently zero.
+      # Blocking. High/critical findings fail the build unless covered by a
+      # dated exception (E1/E3 in CONSTRAINTS.md, mirrored in the script).
       - name: Dependency vulnerabilities (npm audit)
-        run: npm audit --audit-level=high || echo "::warning::npm audit found high/critical findings — see CONSTRAINTS.md"
+        run: node scripts/audit-check.mjs
 
-      # Free for public repos; needs GITLEAKS_LICENSE secret if this repo is private.
+      # Blocking. Free for public repos; needs GITLEAKS_LICENSE secret if this repo is private.
       - name: Secret scan (gitleaks)
         uses: gitleaks/gitleaks-action@v2
-        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -96,8 +95,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Thresholds live in .lighthouserc.json, all at "warn" level for now —
-      # see CONSTRAINTS.md for the flip-to-"error" date.
+      # Blocking. Thresholds live in .lighthouserc.json (see CONSTRAINTS.md).
       - name: Lighthouse CI
         uses: treosh/lighthouse-ci-action@v11
         with:
