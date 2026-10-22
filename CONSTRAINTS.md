@@ -28,7 +28,7 @@ This file is the project's quality bar. Read it before writing code. **Do not we
 | Accessibility | Lighthouse Accessibility ≥ 90 | `.lighthouserc.json` via Lighthouse CI | every push/PR (CI) | **Yes** (since 2026-10-22) |
 | Layout shift | CLS ≤ 0.05 | `.lighthouserc.json` via Lighthouse CI | every push/PR (CI) | **Yes** (since 2026-10-22) |
 
-Flipped from warn to blocking on 2026-10-22 (planned for 2026-10-02). The warn period never actually ran in CI — the commits that added it hadn't been pushed — so the flip was validated locally instead: `node scripts/audit-check.mjs` passes, and a local Lighthouse run on 7 routes (both languages' URL shapes) cleared every threshold (table below). Lighthouse runs once per URL on a shared CI runner; if it produces a false red, re-run the job before touching a threshold, and if it keeps happening raise `numberOfRuns` — don't lower the numbers.
+Flipped from warn to blocking on 2026-10-22 (planned for 2026-10-02). The warn period never actually ran in CI — the commits that added it hadn't been pushed — so the flip was validated locally instead: `node scripts/audit-check.mjs` passes, and a local Lighthouse run on 7 routes (both languages' URL shapes) cleared every threshold (table below). Lighthouse runs 3 times per URL (raised from 1 on 2026-10-22 after the first CI run gave a false red) and asserts on the best run; if a run is still red, re-run the job before touching a threshold — don't lower the numbers. The CI sends `Accept-Language: es-AR` as an explicit header (`extraHeaders` in `.lighthouserc.json`): headless Chrome on the runner ignores `--lang`, so without it the middleware redirected every unprefixed URL to `/en/...` and the run measured the redirect hop instead of the page.
 
 `npm audit --audit-level=high` was replaced by `scripts/audit-check.mjs` because the plain command can't express the dated exceptions below: it would be permanently red until the Next 16 migration. The script fails on anything not covered by an exception, and on everything an exception covered once that exception's date passes.
 
@@ -42,18 +42,20 @@ Re-measured 2026-10-22 after the i18n change, via `npx lighthouse@12.2.1` agains
 |---|---|---|---|
 | Performance score | `/` | 95 (96) | must not fall below 90 |
 | Performance score | `/en` | 95 | must not fall below 90 |
-| Performance score | `/data-science/ivolution` | 95 (93) | must not fall below 90 |
-| Performance score | `/dashboards` | 97 (97) | must not fall below 90 |
+| Performance score | `/data-science/ivolution` | 94–96 (93) | must not fall below 90 |
+| Performance score | `/dashboards` | 96–98 (97) | must not fall below 90 |
 | Accessibility score | `/` | 95 (96) | must not fall below 90 |
 | Accessibility score | `/data-science/ivolution` | 100 (100) | must not fall below 90 |
 | Accessibility score | `/dashboards` | 95 (95) | must not fall below 90 |
 | Accessibility score | `/pt/data-science` | 93 | must not fall below 90 |
-| LCP | `/` | 2.8s (2.8s) | must not exceed 3.5s |
-| LCP | `/data-science/ivolution` | 2.9s (3.2s) | must not exceed 3.5s |
-| LCP | `/dashboards` | 2.6s (2.6s) | must not exceed 3.5s |
+| LCP | `/` | 2.8–3.0s (2.8s) | must not exceed 3.5s |
+| LCP | `/data-science/ivolution` | 2.8–3.0s (3.2s) | must not exceed 3.5s |
+| LCP | `/dashboards` | 2.4–2.8s (2.6s) | must not exceed 3.5s |
 | CLS | all sampled routes | 0 – 0.001 | must not exceed 0.05 |
 | First Load JS (shared) | all routes | 87.3 kB (87.3 kB) | must not grow |
 | First Load JS | `/[lang]` (heaviest static page) | 140 kB (141 kB) | must not grow |
+
+LCP fix of 2026-10-22: on every page the LCP element is the hero intro paragraph, and it used to start at `opacity: 0` under a Framer Motion entrance — invisible until React hydrated, which was 2.4–3.7s of "render delay". Above-the-fold entrances are now a CSS animation (`animate-fade-up` in `tailwind.config.ts`), and the `/dashboards` iframe (a whole external app) mounts only after the page's `load` event. Ranges above are 3 runs each via Lighthouse CI. Don't put a JS-driven `initial={{ opacity: 0 }}` on above-the-fold text again; `whileInView` below the fold is fine.
 
 LCP sits above the textbook Core Web Vitals "good" threshold of 2500ms on most sampled routes — treat closing that gap as a real backlog item, not a solved problem. The 3500ms ceiling above is a ratchet (don't regress further), not a target.
 
