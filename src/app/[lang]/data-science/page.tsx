@@ -21,12 +21,12 @@ export default function DataScience({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-16">
 
         {/* Header */}
         <Reveal className="max-w-3xl mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-secondary-500">{t.titleA}</span>{' '}
+            <span className="text-secondary-500 dark:text-secondary-400">{t.titleA}</span>{' '}
             <span className="text-primary-700 dark:text-primary-400">{t.titleB}</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">{t.intro}</p>

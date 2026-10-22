@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 // depends on the language. Next still needs a top-level layout to anchor the
 // global 404 on, so this one just passes children through.
 export const metadata: Metadata = {
-  title: 'Santiago Malak',
+  title: 'Santiago Aragon Malak',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

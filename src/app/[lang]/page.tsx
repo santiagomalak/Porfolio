@@ -6,5 +6,5 @@ import { getDictionary } from '@/i18n/get-dictionary'
 export default function Home({ params }: { params: { lang: string } }) {
   const lang = toLocale(params.lang)
   const dict = getDictionary(lang)
-  return <HomeView lang={lang} t={dict.home} workTogether={dict.common.workTogether} />
+  return <HomeView lang={lang} t={dict.home} roleShort={dict.common.roleShort} workTogether={dict.common.workTogether} />
 }

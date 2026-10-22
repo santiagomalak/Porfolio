@@ -57,7 +57,7 @@ Re-measured 2026-10-22 after the i18n change, via `npx lighthouse@12.2.1` agains
 
 LCP sits above the textbook Core Web Vitals "good" threshold of 2500ms on most sampled routes — treat closing that gap as a real backlog item, not a solved problem. The 3500ms ceiling above is a ratchet (don't regress further), not a target.
 
-Known accessibility debt (pre-existing, not from i18n; why a11y is 93–96 rather than 100): `text-secondary-500` (#5B4E8B) fails contrast on the dark background, `/dashboards` inactive tab buttons are low-contrast, and `ProjectCard` uses `<h3>` directly under the page `<h1>` (heading-order).
+Known accessibility debt (pre-existing, not from i18n): `/dashboards` inactive tab buttons are low-contrast, and `ProjectCard` uses `<h3>` directly under the page `<h1>` (heading-order). The dark-mode contrast of `text-secondary-500` headings was fixed on 2026-10-22 with a `dark:text-secondary-400` variant (#9d90d6), along with darker project-card badges; after that, a spot check gave a11y 100 on `/` and `/about` and 98 on `/pt/web-projects`. Use the `dark:` variant on any new `text-secondary-500` text.
 
 ## Known exceptions
 

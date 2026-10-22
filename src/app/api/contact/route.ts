@@ -12,10 +12,10 @@ function fail(code: ErrorCode, error: string, status: number) {
 
 // The form sends a key; the email to me shows a readable label.
 const SUBJECT_LABELS: Record<string, string> = {
-  job: 'Oportunidad laboral',
-  web: 'Proyecto de Desarrollo Web',
-  datascience: 'Proyecto de Data / Analytics',
-  both: 'Proyecto combinado',
+  job: 'Oportunidad laboral / Rol remoto',
+  fullstack: 'Proyecto Full Stack / Sistema a medida',
+  data: 'Proyecto de Data / Dashboards',
+  ai: 'Automatización con IA',
   other: 'Otro',
 }
 

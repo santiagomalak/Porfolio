@@ -5,7 +5,7 @@ import Footer from '@/components/Footer'
 import OpenToWorkBanner from '@/components/OpenToWorkBanner'
 import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import { cvPath, type Locale } from '@/i18n/config'
+import { SITE_NAME, cvPath, type Locale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/get-dictionary'
 import { BASE_URL, localizePath } from '@/i18n/routing'
 
@@ -25,17 +25,17 @@ export default function SiteShell({ lang, children }: { lang: Locale; children: 
   const personJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Santiago Malak',
-    alternateName: 'Santiago Aragon Malak',
+    name: SITE_NAME,
+    alternateName: 'Santiago Malak',
     url: `${BASE_URL}${localizePath(lang, '/')}`,
-    jobTitle: 'Analytics Engineer & Full-Stack Developer',
+    jobTitle: dict.common.roleFull,
     description: dict.meta.personDescription,
     knowsLanguage: ['es', 'en', 'pt'],
     alumniOf: {
       '@type': 'CollegeOrUniversity',
       name: 'Universidad Nacional de Córdoba',
     },
-    knowsAbout: ['Analytics Engineering', 'Data Science', 'BigQuery', 'dbt', 'SQL', 'Python', 'Next.js', 'TypeScript'],
+    knowsAbout: ['Analytics Engineering', 'Data Science', 'Full Stack Development', 'AI Automation', 'BigQuery', 'dbt', 'SQL', 'Python', 'React', 'Next.js', 'TypeScript', 'Supabase', 'n8n'],
     sameAs: [
       'https://github.com/santiagomalak',
       'https://www.linkedin.com/in/aragonmalak/',

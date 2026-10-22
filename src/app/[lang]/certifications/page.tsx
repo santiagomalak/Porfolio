@@ -173,7 +173,7 @@ export default function CertificationsPage({ params }: Props) {
         {/* Header */}
         <Reveal className="max-w-3xl mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-secondary-500">{t.titleA}</span>{' '}
+            <span className="text-secondary-500 dark:text-secondary-400">{t.titleA}</span>{' '}
             <span className="text-primary-700 dark:text-primary-400">{t.titleB}</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">{t.intro}</p>

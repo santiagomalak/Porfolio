@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import SiteShell from '@/components/SiteShell'
-import { isLocale, locales, toLocale } from '@/i18n/config'
+import { SITE_NAME, isLocale, locales, toLocale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/get-dictionary'
 import { pageMetadata } from '@/i18n/metadata'
 import { BASE_URL } from '@/i18n/routing'
@@ -27,23 +27,28 @@ export function generateMetadata({ params }: Params): Metadata {
   return {
     metadataBase: new URL(BASE_URL),
     keywords: [
+      SITE_NAME,
       'Santiago Malak',
+      'Hybrid Engineer',
       'Analytics Engineer',
-      'Data Engineer',
+      'Full Stack Developer',
+      'AI Automation Engineer',
+      'Data Analyst',
       'Data Scientist',
       'BigQuery',
       'dbt',
-      'Metabase',
       'SQL',
       'Python',
+      'React',
       'Next.js',
       'TypeScript',
+      'Supabase',
+      'n8n',
+      'LLMs',
       'portfolio',
-      'analytics engineering',
-      'data pipeline',
     ],
-    authors: [{ name: 'Santiago Malak' }],
-    creator: 'Santiago Malak',
+    authors: [{ name: SITE_NAME }],
+    creator: SITE_NAME,
     icons: { icon: '/favicon.svg', shortcut: '/favicon.svg' },
     robots: {
       index: true,
@@ -53,7 +58,7 @@ export function generateMetadata({ params }: Params): Metadata {
     // Home page values; every other page overrides these with its own.
     ...pageMetadata(lang, '/', { title: t.siteTitle, description: t.siteDescription }),
     // After the spread: the layout's title must be the template, not a string.
-    title: { default: t.siteTitle, template: '%s | Santiago Malak' },
+    title: { default: t.siteTitle, template: `%s | ${SITE_NAME}` },
   }
 }
 

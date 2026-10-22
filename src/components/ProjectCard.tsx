@@ -32,7 +32,7 @@ const tagColors: Record<string, string> = {
 
 const highlightColors: Record<string, string> = {
   blue: 'bg-blue-600', purple: 'bg-purple-600',
-  green: 'bg-emerald-600', orange: 'bg-orange-500', teal: 'bg-teal-600',
+  green: 'bg-emerald-700', orange: 'bg-orange-700', teal: 'bg-teal-700',
 }
 
 const langColors: Record<string, string> = {

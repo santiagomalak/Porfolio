@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { isLocale } from '@/i18n/config'
+import { SITE_NAME, isLocale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/get-dictionary'
 
 // Social preview image (1200×630 PNG), one per language. Replaces
@@ -14,7 +14,8 @@ export const runtime = 'edge'
 
 export function GET(_req: Request, { params }: { params: { lang: string } }) {
   if (!isLocale(params.lang)) return new Response('Not found', { status: 404 })
-  const t = getDictionary(params.lang).meta
+  const dict = getDictionary(params.lang)
+  const t = dict.meta
 
   return new ImageResponse(
     (
@@ -66,9 +67,9 @@ export function GET(_req: Request, { params }: { params: { lang: string } }) {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ fontSize: 84, fontWeight: 700, letterSpacing: -2 }}>Santiago Malak</div>
+          <div style={{ fontSize: 84, fontWeight: 700, letterSpacing: -2 }}>{SITE_NAME}</div>
           <div style={{ fontSize: 44, fontWeight: 600, color: '#3d4d82', marginTop: 8 }}>
-            Analytics Engineer & Full-Stack Developer
+            {dict.common.roleFull}
           </div>
           <div style={{ fontSize: 30, color: '#6b7280', marginTop: 24 }}>{t.ogTagline}</div>
         </div>

@@ -23,6 +23,7 @@ const config: Config = {
           900: '#2f385b',
         },
         secondary: {
+          400: '#9d90d6',
           500: '#5B4E8B',
         },
       },

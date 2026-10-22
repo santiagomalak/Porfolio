@@ -10,7 +10,7 @@ type ContactCopy = Dictionary['contact']
 type ErrorCode = keyof ContactCopy['errors']
 
 const MAX_MESSAGE_LENGTH = 2000
-const SUBJECT_KEYS = ['job', 'web', 'datascience', 'both', 'other'] as const
+const SUBJECT_KEYS = ['job', 'fullstack', 'data', 'ai', 'other'] as const
 
 export default function ContactForm({ lang, t }: { lang: Locale; t: ContactCopy }) {
   const [formData, setFormData] = useState({

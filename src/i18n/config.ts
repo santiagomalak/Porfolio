@@ -20,6 +20,10 @@ export function isLocale(value: unknown): value is Locale {
   return typeof value === 'string' && (locales as readonly string[]).includes(value)
 }
 
+// Full name as it appears on the CV and LinkedIn. "Santiago Malak" (the
+// domain) is kept as an alternate name in the JSON-LD and keywords.
+export const SITE_NAME = 'Santiago Aragon Malak'
+
 export const localeLabels: Record<Locale, { short: string; name: string }> = {
   es: { short: 'ES', name: 'Español' },
   en: { short: 'EN', name: 'English' },

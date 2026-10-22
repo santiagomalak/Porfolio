@@ -4,18 +4,19 @@
 
 const es = {
   meta: {
-    siteTitle: 'Santiago Malak — Analytics Engineer & Full-Stack Developer',
+    siteTitle: 'Santiago Aragon Malak — Hybrid Engineer: Data + Full Stack + IA',
     siteDescription:
-      'Portfolio de Santiago Malak: Analytics Engineer y Full-Stack Developer. BigQuery, dbt, Metabase, SQL, Python, Next.js. 967 atletas monitoreados en producción real. Disponible para roles remotos.',
+      'Hybrid Engineer: Data + Full Stack + IA. Construyo pipelines en BigQuery + dbt, dashboards, aplicaciones React/Next.js y automatizaciones con n8n + LLMs. 967 atletas monitoreados en producción en Ivolution. Abierto a roles remotos.',
     ogDescription:
-      'Analytics Engineer con experiencia real en BigQuery, dbt y Metabase. 967 atletas monitoreados en producción.',
-    ogTagline: 'BigQuery · dbt · Metabase · SQL · Python · Next.js',
+      'Modelo los datos, construyo la interfaz que los consume y automatizo el proceso completo. BigQuery · dbt · Next.js · n8n + LLMs.',
+    ogTagline: 'SQL · Python · BigQuery · dbt · Next.js · n8n + LLMs',
     ogAvailability: 'Disponible para roles remotos',
-    personDescription: 'Analytics Engineer y Full-Stack Developer. BigQuery, dbt, Metabase, SQL, Python, Next.js.',
+    personDescription:
+      'Hybrid Engineer: Data + Full Stack + IA. SQL, Python, BigQuery, dbt, React/Next.js y automatización con n8n + LLMs.',
     about: {
       title: 'Sobre mí',
       description:
-        'Analytics Engineer y Full-Stack Developer. Ex Ivolution Sport Science — sistema de análisis para 967 atletas en 13 deportes. Actualmente construyendo StackAdvisor y abierto a roles remotos.',
+        'Hybrid Engineer: Data + Full Stack + IA. Founder de Coding Click y ex Data Scientist / Analytics Engineer en Ivolution Sport Science (967 atletas monitoreados). Abierto a roles remotos.',
     },
     certifications: {
       title: 'Certificaciones & Formación',
@@ -25,7 +26,7 @@ const es = {
     contact: {
       title: 'Contacto',
       description:
-        'Abierto a roles remotos de Analytics Engineer, Data Engineer, Data Scientist o Full-Stack Developer. También a proyectos freelance. Escribime.',
+        'Abierto a roles remotos junior / semi-senior: Analytics Engineer, Data Analyst, Data Scientist, Full Stack o AI/Automation Engineer. También proyectos freelance. Escribime.',
     },
     dashboards: {
       title: 'Dashboards interactivos',
@@ -33,9 +34,9 @@ const es = {
         'Dashboards productivos con datos reales: E-Commerce Analytics sobre 100k+ órdenes Olist con dbt + PostgreSQL, Crypto Live Dashboard con WebSocket Binance y Argentina Macro Dashboard.',
     },
     dataScience: {
-      title: 'Data Science & Analytics Engineering',
+      title: 'Proyectos de Data',
       description:
-        'Proyectos de Data Science y Analytics Engineering: sistema para 967 atletas en Ivolution, machine learning con Scikit-learn, pipelines BigQuery/dbt y segmentación de usuarios.',
+        'Proyectos de datos: sistema de monitoreo para 967 atletas en Ivolution (BigQuery + dbt + Metabase), plataforma dbt sobre 100k+ órdenes Olist, machine learning con scikit-learn y segmentación de usuarios.',
     },
     ivolution: {
       title: 'Performance Monitoring System — Ivolution',
@@ -53,9 +54,9 @@ const es = {
         'Dataset sintético de 6.500+ mediciones CMJ/IMTP generado con Python y sistema de alertas neuromusculares con umbrales dinámicos p25/p75. Privacy-first: 0 datos personales.',
     },
     webProjects: {
-      title: 'Proyectos Web',
+      title: 'Proyectos Full Stack',
       description:
-        'Proyectos de desarrollo web: StackAdvisor (SaaS en producción), Crypto Live Dashboard, Wayra Huasi y más. Construidos con Next.js, TypeScript y TailwindCSS.',
+        'Proyectos full stack: Instituto Coubertin (LMS a medida), Turnex (gestión de complejos deportivos), StackAdvisor (SaaS con IA), sitio de Coding Click y más. Next.js, TypeScript, Supabase y PostgreSQL.',
     },
   },
 
@@ -63,13 +64,14 @@ const es = {
     nav: {
       home: 'Inicio',
       about: 'Sobre Mí',
-      webProjects: 'Desarrollo Web',
-      dataScience: 'Data Science',
+      webProjects: 'Full Stack',
+      dataScience: 'Data',
       dashboards: 'Dashboards',
       certifications: 'Certificaciones',
       contact: 'Contacto',
     },
-    roleShort: 'Analytics Engineer',
+    roleShort: 'Hybrid Engineer',
+    roleFull: 'Hybrid Engineer: Data + Full Stack + IA',
     cv: 'CV',
     downloadCv: 'Descargar CV',
     themeToLight: 'Cambiar a modo claro',
@@ -78,15 +80,15 @@ const es = {
     language: 'Idioma',
     rights: 'Todos los derechos reservados.',
     banner: {
-      long: 'Disponible para roles remotos · Analytics Engineer & Full-Stack Developer · Argentina',
+      long: 'Disponible para roles remotos y proyectos freelance · Córdoba, Argentina',
       short: 'Open to work · Remoto',
       cta: 'Contactar',
     },
-    backToDataScience: 'Volver a Data Science',
+    backToDataScience: 'Volver a proyectos de Data',
     letsTalk: 'Hablemos de tu proyecto',
     workTogether: {
       title: '¿Trabajamos juntos?',
-      body: 'Abierto a roles remotos de Analytics Engineer & Full-Stack Developer — y a Data Engineer o Data Scientist si el proyecto lo amerita. También a freelance: datos, web, automatización.',
+      body: 'Busco roles remotos junior / semi-senior como Analytics Engineer, Data Analyst, Data Scientist, Full Stack o AI/Automation Engineer. También tomo proyectos freelance de automatización, dashboards y desarrollo a medida.',
       cta: 'Iniciar conversación',
     },
   },
@@ -102,35 +104,52 @@ const es = {
 
   home: {
     availability: 'Abierto a roles remotos y proyectos',
+    heroSubtitle: 'Data + Full Stack + IA',
     intro:
-      'Construyo pipelines de datos, modelos analíticos y dashboards que los equipos realmente usan para tomar decisiones. BigQuery · dbt · Metabase en producción real.',
-    ctaData: 'Ver proyectos de datos',
+      'Construyo sistemas de datos y software que se usan en producción: pipelines en BigQuery + dbt, dashboards, aplicaciones React/Next.js y automatizaciones con IA. Modelo los datos, construyo la interfaz que los consume y automatizo el proceso completo.',
+    ctaProjects: 'Ver proyectos',
     ctaDashboards: 'Dashboards live',
     stats: {
-      athletes: { label: 'Atletas monitoreados', sub: 'Performance · Ivolution' },
-      orders: { label: 'Órdenes analizadas', sub: 'E-Commerce · Olist' },
-      measurements: { label: 'Mediciones en BigQuery', sub: 'dbt · SQL · Alertas' },
-      stacks: { label: 'Stacks evaluados', sub: 'StackAdvisor · SaaS' },
+      athletes: { label: 'Atletas monitoreados', sub: 'Data · Ivolution' },
+      orders: { label: 'Órdenes modeladas', sub: 'dbt · Olist' },
+      stacks: { label: 'Stacks evaluados', sub: 'StackAdvisor · IA' },
+      measurements: { label: 'Mediciones', sub: 'BigQuery · Ivolution' },
     },
     featured: {
       title: 'Proyectos destacados',
-      subtitle: 'Lo más relevante de mi trabajo',
+      subtitle: 'Datos, producto y automatización — en empresa, con clientes y propios',
       ivolution: {
-        label: 'Trabajo real · 967 atletas · 13 deportes',
-        company: 'Ivolution Sport Science',
+        label: 'Trabajo en empresa · 967 atletas · 13 deportes',
+        company: 'Ivolution Sport Science · Data',
         description:
-          '967 atletas monitoreados en 13 deportes — fútbol, rugby, atletismo, hockey, natación y más. Alertas de tres estados con umbrales dinámicos por percentil (p25/p75), 10.000+ mediciones registradas y soporte ES/EN/PT. El sistema continúa operativo tras mi salida — herramienta principal de decisiones de la organización.',
+          'Diseñé desde cero el sistema de monitoreo de fatiga neuromuscular para 967 atletas de 13 deportes: modelos en BigQuery + dbt, dashboards en Metabase y umbrales dinámicos por percentil (p25/p75) que clasifican a cada atleta en FATIGADO / ATENCIÓN / SUPERCOMPENSACIÓN. Herramienta principal de decisión del staff, con soporte ES/EN/PT.',
+      },
+      coubertin: {
+        label: 'Proyecto de cliente · LMS a medida',
+        company: 'Coding Click · Full Stack',
+        description:
+          'Plataforma educativa completa para un instituto de formación deportiva: catálogo de cursos, pagos con Stripe e inscripción automática, aula virtual con progreso, foro por curso, evaluaciones con corrección y panel de administración. Auth y datos en Supabase con políticas RLS. En etapa final de testing y carga de contenido.',
+      },
+      turnex: {
+        label: 'Sistema de gestión · Demo funcional',
+        company: 'Coding Click · Full Stack + SQL',
+        description:
+          'Sistema de gestión para complejos deportivos: socios y cuentas corrientes, cuotas, reservas de canchas, turnos fijos, control de acceso con QR, cobros, caja diaria y portal del socio. PostgreSQL con SQL directo y migraciones versionadas, roles por perfil, tareas diarias con cron y tests unitarios + E2E.',
       },
       stackadvisor: {
-        label: 'SaaS · En producción',
-        company: 'Proyecto propio',
+        label: 'SaaS propia · En producción',
+        company: 'Proyecto propio · Full Stack + IA',
         description:
-          '13 preguntas inteligentes → stack ideal con justificación detallada + roadmap de 12 semanas personalizado. Motor de recomendación propio con 25+ stacks evaluados. Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.',
+          'Cuestionario que evalúa 35 combinaciones de stacks y recomienda el óptimo con justificación, roadmap de 12 semanas y estimador de costos. El Blueprint premium usa Gemini para generar arquitectura, esquema de base de datos y plan de desarrollo a medida del proyecto.',
       },
+      viewCase: 'Ver caso',
       viewProject: 'Ver proyecto',
-      viewAll: 'Ver todos los proyectos',
+      viewCode: 'Ver código',
+      viewAllFullStack: 'Todos los proyectos Full Stack',
+      viewAllData: 'Todos los proyectos de Data',
     },
     live: {
+      kicker: 'En vivo',
       title: 'Dashboards interactivos',
       subtitle: 'Datos reales, deployados en producción — abrís y funcionan.',
       viewAll: 'Ver todos',
@@ -141,56 +160,105 @@ const es = {
     specialties: {
       title: 'Áreas de especialización',
       analytics: {
-        title: 'Analytics Engineering',
-        body: 'Pipelines de datos, modelos analíticos y dashboards que se usan de verdad.',
-        items: ['SQL · BigQuery · dbt', 'Metabase · Dashboards', 'Alertas dinámicas · Percentiles', 'Python · Pandas'],
+        title: 'Data & Analytics',
+        body: 'Datos dispersos → modelos limpios y dashboards que se usan para decidir.',
+        items: ['SQL · BigQuery · dbt · PostgreSQL', 'Metabase · Power BI', 'Python · pandas · scikit-learn', 'Alertas dinámicas · Percentiles'],
       },
       web: {
-        title: 'Desarrollo Web',
-        body: 'Aplicaciones web modernas del frontend al backend, listas para producción.',
-        items: ['React · Next.js · TypeScript', 'Node.js · APIs REST', 'Tailwind CSS · Framer Motion', 'Docker · Vercel'],
+        title: 'Full Stack',
+        body: 'Ideas de producto → apps completas, del modelo de datos al deploy.',
+        items: ['React · Next.js · TypeScript', 'Node.js · APIs REST', 'Supabase · PostgreSQL', 'Tailwind CSS · Docker · Vercel'],
       },
       automation: {
-        title: 'Automatización',
-        body: 'Flujos automáticos que eliminan trabajo repetitivo y escalan desde un VPS.',
-        items: ['n8n · Workflows visuales', 'Telegram API · Notificaciones', 'Scraping · Scoring con IA', 'Docker · VPS'],
+        title: 'IA & Automatización',
+        body: 'Procesos manuales → flujos automáticos con LLMs integrados.',
+        items: ['n8n · Make · Zapier', 'Claude API · Gemini · Groq', 'Scraping · Scoring con IA', 'Telegram API · Alertas'],
       },
     },
     aboutMe: 'Sobre mí',
   },
 
   about: {
-    badge: 'Disponible · Analytics Engineer & Full-Stack Developer',
+    badge: 'Disponible · Hybrid Engineer: Data + Full Stack + IA',
     greeting: 'Hola, soy',
     intro:
-      'Analytics Engineer & Full-Stack Developer. Actualmente independiente — construyo proyectos propios, busco mi próximo rol y convierto ideas en productos reales. Me muevo bien en la intersección entre datos, producto y código.',
+      'Construyo sistemas de datos y software que se usan en producción. Perfil híbrido: modelo los datos, construyo la interfaz que los consume y automatizo el proceso completo — con SQL, Python, BigQuery y dbt del lado de datos, React/Next.js y TypeScript del lado de producto, y n8n + LLMs para automatizar.',
     contactMe: 'Contactarme',
     experience: 'Experiencia',
-    ivolution: {
-      role: 'Analytics Engineer / Data Scientist',
-      period: 'Abr 2025 — Mar 2026',
-      body: 'Diseñé de cero el sistema de análisis de rendimiento de la empresa: pipelines en BigQuery, modelos en dbt y dashboards en Metabase con alertas dinámicas por percentil (p25/p75) y soporte multilingüe ES/EN/PT. 967 atletas monitoreados en 13 deportes, 10.000+ mediciones registradas. El sistema continúa operativo tras mi salida — herramienta principal de toma de decisiones de la organización.',
+    jobs: {
+      codingClick: {
+        role: 'Founder & Hybrid Engineer — Full Stack, Data & Automation',
+        company: 'Coding Click · Profesional independiente',
+        period: 'Sep 2025 — Actualidad',
+        location: 'Córdoba, Argentina · Híbrido',
+        summary: 'Desarrollo de software end-to-end para PYMEs: web, sistemas a medida, data y automatización.',
+        bullets: [
+          'Diseño y desarrollo sitios, e-commerce y sistemas a medida con React/Next.js, Node.js y PostgreSQL/Supabase — desde landing pages hasta portales internos de gestión.',
+          'Construí la plataforma LMS a medida del Instituto Coubertin con Next.js, Supabase y Vercel, con documentación de producto completa; en etapa final de testing y carga de contenido.',
+          'Implemento automatizaciones y reporting de datos con n8n, Make y APIs REST: sincronización entre sistemas, alertas automáticas y dashboards de seguimiento que reemplazan procesos manuales.',
+          'Manejo el ciclo completo de cada proyecto: relevamiento técnico, propuesta, desarrollo, despliegue y mantenimiento.',
+        ],
+      },
+      ivolution: {
+        role: 'Data Scientist / Analytics Engineer',
+        company: 'Ivolution Sport Science · Contrato temporal',
+        period: 'Abr 2025 — Mar 2026',
+        location: 'Argentina · Remoto',
+        summary: 'Diseñé e implementé desde cero el sistema de análisis de rendimiento deportivo de la organización.',
+        bullets: [
+          'Construí el sistema de monitoreo de fatiga neuromuscular para 967 atletas de 13 deportes con BigQuery, dbt y Metabase, usado como herramienta principal de decisión del staff.',
+          'Implementé umbrales dinámicos por percentil (p25 fatiga / p75 supercompensación) que clasifican automáticamente a cada atleta en FATIGADO / ATENCIÓN / SUPERCOMPENSACIÓN.',
+          'Migré los modelos de CMJ Rebound de Metabase a dbt, con surrogate keys y deduplicación de atletas entre los entornos de producción y desarrollo.',
+          'Desarrollé el framework de dashboard Return to Play y la versión multilingüe (ES/EN/PT) de los dashboards; automaticé flujos del sistema con n8n.',
+        ],
+      },
     },
     building: 'Qué estoy construyendo',
     stackadvisor: {
       kind: 'SaaS · En producción',
-      body: 'Plataforma que resuelve la parálisis de decisión tecnológica: 13 preguntas inteligentes → motor de recomendación con 25+ stacks evaluados → roadmap de 12 semanas personalizado. Para founders sin CTO y developers tomando decisiones arquitectónicas críticas.',
+      body: 'SaaS propia que resuelve la parálisis de decisión tecnológica: un cuestionario evalúa 35 combinaciones de stacks y devuelve el óptimo con justificación, roadmap de 12 semanas y estimador de costos. El Blueprint premium genera con Gemini la arquitectura, el esquema de base de datos y el plan de desarrollo del proyecto.',
       visit: 'Visitar StackAdvisor',
     },
     jobHunting: {
-      kind: 'Automatización · En construcción',
-      status: 'En desarrollo',
-      body: 'Sistema semi-automático de búsqueda laboral con n8n: scraping de vacantes relevantes, scoring con IA, checkpoint de aprobación vía Telegram y generación de CV adaptado a cada oferta. Pensado para correr desde VPS de forma autónoma — porque buscar trabajo también se puede optimizar.',
-      tags: ['n8n', 'Telegram API', 'IA', 'Automatización', 'Docker', 'VPS'],
+      kind: 'IA & Automatización · Uso personal',
+      body: 'Pipeline en n8n que scrapea vacantes, las puntúa con IA según mi perfil, pide aprobación por Telegram, adapta el CV a cada oferta y registra todo en Google Sheets — porque buscar trabajo también se puede automatizar.',
     },
     stack: 'Stack tecnológico',
-    stackCategories: { analytics: 'Analytics Engineering', web: 'Desarrollo Web' },
-    automationSkill: 'n8n · Automatización',
+    stackCategories: {
+      data: 'Datos',
+      fullstack: 'Full Stack',
+      ai: 'IA & Automatización',
+      security: 'Ciberseguridad',
+    },
+    securitySkills: ['Seguridad en la nube', 'Redes', 'Gestión de incidentes', 'OSINT · Forense'],
+    education: 'Formación',
+    educationList: {
+      upso: {
+        title: 'Tecnicatura en Tecnologías de la Programación',
+        institution: 'UPSO · Modalidad a distancia',
+        period: 'En curso · título previsto a inicios de 2027',
+      },
+      dsml: {
+        title: 'Diplomatura en Data Science & Machine Learning',
+        institution: 'Universidad Nacional de Córdoba · ICARO',
+        period: '2025',
+      },
+      cyber: {
+        title: 'Diplomatura en Ciberseguridad',
+        institution: 'Universidad Nacional de Córdoba (FCEFyN)',
+        period: '2025',
+      },
+    },
+    allCertifications: 'Ver todas las certificaciones',
     languages: 'Idiomas',
     languageList: {
       es: { name: 'Español', level: 'Nativo', detail: 'Lengua materna' },
-      en: { name: 'Inglés', level: 'Profesional', detail: 'Lectura técnica · Escritura · Comunicación' },
-      pt: { name: 'Portugués', level: 'C1 Avanzado', detail: 'Análisis de datos · Documentación técnica' },
+      en: {
+        name: 'Inglés',
+        level: 'Lectura técnica',
+        detail: 'Documentación y lectura técnica fluida · conversación en desarrollo',
+      },
+      pt: { name: 'Portugués', level: 'C1 Avanzado', detail: 'Conversación fluida · Documentación técnica' },
     },
     philosophy:
       '"Los mejores productos nacen en la intersección de datos e ingeniería. Los datos te dicen qué construir. El código te deja construirlo."',
@@ -200,17 +268,19 @@ const es = {
 
   dataScience: {
     titleA: 'Proyectos de',
-    titleB: 'Data Science',
-    intro: 'Machine learning, análisis estadístico y pipelines de datos — del dataset al insight accionable.',
+    titleB: 'Data & Analytics',
+    intro:
+      'Analytics engineering, machine learning y análisis estadístico — del dato crudo al modelo limpio y al insight accionable.',
     githubTitle: 'Jupyter Notebooks & más análisis',
     githubBody: 'Explorá todos mis notebooks y proyectos de análisis de datos en GitHub.',
     githubCta: 'Ver en GitHub',
   },
 
   webProjects: {
-    titleA: 'Proyectos de',
-    titleB: 'Desarrollo Web',
-    intro: 'Aplicaciones web modernas construidas con las últimas tecnologías y mejores prácticas.',
+    titleA: 'Proyectos',
+    titleB: 'Full Stack',
+    intro:
+      'Del modelo de datos al deploy: sistemas a medida para clientes, productos propios con IA y apps en tiempo real. Next.js, TypeScript, PostgreSQL/Supabase y LLMs.',
   },
 
   certifications: {
@@ -266,21 +336,21 @@ const es = {
 
   contact: {
     title: 'Contacto',
-    intro: '¿Tenés un proyecto en mente? Conversemos sobre cómo puedo ayudarte.',
+    intro: '¿Tenés un rol o un proyecto en mente? Escribime y lo conversamos.',
     info: 'Información de contacto',
     availabilityTitle: 'Disponibilidad',
     availabilityBody:
-      'Abierto a roles remotos full-time, proyectos freelance y colaboraciones. Tiempo de respuesta: 24-48 horas.',
-    formTitle: 'Envíame un mensaje',
+      'Disponible para roles remotos (junior / semi-senior) y proyectos freelance. Respondo en 24-48 horas.',
+    formTitle: 'Mandame un mensaje',
     name: 'Nombre',
     email: 'Email',
     subject: 'Asunto',
-    subjectPlaceholder: 'Seleccioná un asunto',
+    subjectPlaceholder: 'Elegí un asunto',
     subjects: {
-      job: 'Oportunidad laboral',
-      web: 'Proyecto de Desarrollo Web',
-      datascience: 'Proyecto de Data / Analytics',
-      both: 'Proyecto combinado',
+      job: 'Oportunidad laboral / Rol remoto',
+      fullstack: 'Proyecto Full Stack / Sistema a medida',
+      data: 'Proyecto de Data / Dashboards',
+      ai: 'Automatización con IA',
       other: 'Otro',
     },
     message: 'Mensaje',
@@ -298,7 +368,7 @@ const es = {
   },
 
   dashboards: {
-    kicker: 'Live Projects',
+    kicker: 'Proyectos en vivo',
     title: 'Dashboards interactivos',
     intro:
       'Proyectos productivos con datos reales — desde pipelines de datos hasta streams en tiempo real. Cada uno deployado y funcional.',

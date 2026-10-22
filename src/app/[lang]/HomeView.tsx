@@ -28,33 +28,59 @@ const fadeIn = {
   },
 }
 
+// href: internal path (case study) or external URL (live site / GitHub repo).
 const featuredProjects = [
   {
     id: 'ivolution',
     title: 'Performance Monitoring System',
-    tags: ['BigQuery', 'dbt', 'SQL', 'Metabase', 'Python'],
+    tags: ['BigQuery', 'dbt', 'SQL', 'Metabase', 'Python', 'n8n'],
+    href: '/data-science/ivolution',
     color: 'from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40',
     border: 'border-blue-200 dark:border-blue-900/50',
     labelColor: 'bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
     tagColor: 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
+    linkColor: 'text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300',
+  },
+  {
+    id: 'coubertin',
+    title: 'Instituto Coubertin',
+    tags: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Stripe', 'Vercel'],
+    href: 'https://institutocoubertin.com',
+    color: 'from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30',
+    border: 'border-amber-200 dark:border-amber-900/50',
+    labelColor: 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400',
+    tagColor: 'bg-amber-50 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400',
+    linkColor: 'text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-300',
+  },
+  {
+    id: 'turnex',
+    title: 'Turnex',
+    tags: ['Next.js 16', 'PostgreSQL', 'SQL', 'Supabase Auth', 'Zod', 'Playwright'],
+    href: 'https://github.com/santiagomalak/Turnex',
+    color: 'from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30',
+    border: 'border-emerald-200 dark:border-emerald-900/50',
+    labelColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400',
+    tagColor: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400',
+    linkColor: 'text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300',
   },
   {
     id: 'stackadvisor',
     title: 'StackAdvisor',
-    tags: ['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine'],
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini', 'Decision Engine'],
     href: 'https://stackadvisor-nu.vercel.app',
     color: 'from-purple-50 to-violet-50 dark:from-purple-950/40 dark:to-violet-950/40',
     border: 'border-purple-200 dark:border-purple-900/50',
     labelColor: 'bg-purple-100 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
     tagColor: 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
+    linkColor: 'text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300',
   },
 ] as const
 
 const stats = [
   { id: 'athletes',     value: 967, suffix: ''   },
   { id: 'orders',       value: 100, suffix: 'k+' },
+  { id: 'stacks',       value: 35,  suffix: ''   },
   { id: 'measurements', value: 10,  suffix: 'k+' },
-  { id: 'stacks',       value: 25,  suffix: '+'  },
 ] as const
 
 function StatCounter({ value, suffix, label, sub, numberLocale }: {
@@ -123,7 +149,7 @@ function TerminalCard() {
         </div>
         <span className="text-xs text-zinc-500 font-mono ml-2">fct_performance.sql</span>
         <div className="ml-auto">
-          <span className="text-[10px] px-2 py-0.5 rounded-full font-mono"
+          <span className="text-[10px] px-2 py-0.5 rounded-full font-mono whitespace-nowrap"
             style={{ background: '#22c55e15', color: '#22c55e', border: '1px solid #22c55e30' }}>
             dbt · BigQuery
           </span>
@@ -149,9 +175,10 @@ function TerminalCard() {
   )
 }
 
-export default function HomeView({ lang, t, workTogether }: {
+export default function HomeView({ lang, t, roleShort, workTogether }: {
   lang: Locale
   t: HomeCopy
+  roleShort: string
   workTogether: Dictionary['common']['workTogether']
 }) {
   const href = (path: string) => localizePath(lang, path)
@@ -162,10 +189,10 @@ export default function HomeView({ lang, t, workTogether }: {
       {/* ── Hero ── */}
       <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
 
             {/* Left — text */}
-            <div className="text-center md:text-left">
+            <div className="text-center lg:text-left">
               <motion.div
                 variants={fadeUp} initial="hidden" animate="visible" custom={0}
                 className="mb-8"
@@ -183,34 +210,34 @@ export default function HomeView({ lang, t, workTogether }: {
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.08}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               >
-                <span className="text-secondary-500">Analytics</span><br />
-                <span className="text-secondary-500">Engineer</span>{' '}
-                <span className="text-gray-400 dark:text-gray-500 font-light">&amp;</span>{' '}
+                <span className="text-gray-900 dark:text-white">{roleShort}</span>
                 <br />
-                <span className="text-primary-700 dark:text-primary-400">Full-Stack Developer</span>
+                <span className="text-2xl md:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-semibold">
+                  {t.heroSubtitle}
+                </span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.18}
-                className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl leading-relaxed mx-auto md:mx-0"
+                className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl leading-relaxed mx-auto lg:mx-0"
               >
                 {t.intro}
               </motion.p>
 
               <motion.div
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.28}
-                className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start flex-wrap"
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start flex-wrap"
               >
                 <Link
-                  href={href('/data-science')}
+                  href="#projects"
                   className="px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
                 >
-                  {t.ctaData}
+                  {t.ctaProjects}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href={href('/dashboards')}
-                  className="px-8 py-3.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 hover:scale-[1.02]"
+                  className="px-8 py-3.5 border border-gray-300 dark:border-[#2a2a44] text-gray-800 dark:text-gray-200 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-200 flex items-center justify-center gap-2 font-medium"
                 >
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                   {t.ctaDashboards}
@@ -219,9 +246,9 @@ export default function HomeView({ lang, t, workTogether }: {
 
               <motion.div
                 variants={fadeUp} initial="hidden" animate="visible" custom={0.38}
-                className="flex flex-wrap justify-center md:justify-start gap-2 mt-8"
+                className="flex flex-wrap justify-center lg:justify-start gap-2 mt-8"
               >
-                {['SQL', 'BigQuery', 'dbt', 'Python', 'React', 'Next.js', 'TypeScript', 'n8n'].map((tech) => (
+                {['SQL', 'Python', 'BigQuery', 'dbt', 'React', 'Next.js', 'TypeScript', 'Supabase', 'n8n', 'LLMs'].map((tech) => (
                   <span
                     key={tech}
                     className="px-3 py-1 bg-white dark:bg-[#111120] border border-gray-200 dark:border-[#1e1e32] rounded-full text-xs text-gray-500 dark:text-gray-400 font-medium shadow-sm"
@@ -235,7 +262,7 @@ export default function HomeView({ lang, t, workTogether }: {
             {/* Right — terminal (desktop only) */}
             <motion.div
               variants={fadeUp} initial="hidden" animate="visible" custom={0.15}
-              className="hidden md:block"
+              className="hidden lg:block"
             >
               <TerminalCard />
             </motion.div>
@@ -266,7 +293,7 @@ export default function HomeView({ lang, t, workTogether }: {
       </section>
 
       {/* ── Proyectos destacados ── */}
-      <section className="bg-background-alt py-20">
+      <section id="projects" className="bg-background-alt py-20 scroll-mt-16">
         <div className="container mx-auto px-4 max-w-5xl">
           <motion.div
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
@@ -297,14 +324,22 @@ export default function HomeView({ lang, t, workTogether }: {
                     </span>
                   ))}
                 </div>
-                {'href' in p && (
+                {p.href.startsWith('/') ? (
+                  <Link
+                    href={href(p.href)}
+                    className={`inline-flex items-center gap-1.5 mt-5 text-sm font-medium transition-colors ${p.linkColor}`}
+                  >
+                    {t.featured.viewCase} <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                ) : (
                   <a
                     href={p.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-5 text-sm font-medium text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300 transition-colors"
+                    className={`inline-flex items-center gap-1.5 mt-5 text-sm font-medium transition-colors ${p.linkColor}`}
                   >
-                    {t.featured.viewProject} <ArrowRight className="h-3.5 w-3.5" />
+                    {p.href.includes('github.com') ? t.featured.viewCode : t.featured.viewProject}{' '}
+                    <ArrowRight className="h-3.5 w-3.5" />
                   </a>
                 )}
               </motion.div>
@@ -315,12 +350,20 @@ export default function HomeView({ lang, t, workTogether }: {
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="text-center mt-10"
           >
-            <Link
-              href={href('/data-science')}
-              className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
-            >
-              {t.featured.viewAll} <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="flex flex-wrap justify-center gap-6">
+              <Link
+                href={href('/web-projects')}
+                className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
+              >
+                {t.featured.viewAllFullStack} <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href={href('/data-science')}
+                className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
+              >
+                {t.featured.viewAllData} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -333,7 +376,7 @@ export default function HomeView({ lang, t, workTogether }: {
             className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8"
           >
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-400 mb-2">Live Projects</p>
+              <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-400 mb-2">{t.live.kicker}</p>
               <h2 className="text-2xl font-bold text-white">{t.live.title}</h2>
               <p className="text-zinc-400 text-sm mt-1">{t.live.subtitle}</p>
             </div>
@@ -345,7 +388,7 @@ export default function HomeView({ lang, t, workTogether }: {
             </Link>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-3 gap-4">
             {[
               {
                 title: 'E-Commerce Analytics',
@@ -415,7 +458,7 @@ export default function HomeView({ lang, t, workTogether }: {
         <div className="container mx-auto px-4">
           <motion.h2
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            className="text-3xl font-bold text-center mb-12 text-secondary-500"
+            className="text-3xl font-bold text-center mb-12 text-secondary-500 dark:text-secondary-400"
           >
             {t.specialties.title}
           </motion.h2>

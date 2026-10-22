@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { ogLocale, locales, type Locale } from './config'
+import { SITE_NAME, ogLocale, locales, type Locale } from './config'
+import { getDictionary } from './get-dictionary'
 import { BASE_URL, languageAlternates, localizePath } from './routing'
 
 /**
@@ -14,14 +15,15 @@ export function pageMetadata(
   const url = `${BASE_URL}${localizePath(lang, path)}`
   // Next.js replaces (doesn't deep-merge) a parent's openGraph/twitter objects,
   // so every page restates siteName, type and the image.
-  const image = { url: ogImagePath(lang), width: 1200, height: 630, alt: SITE_NAME_WITH_ROLE }
+  const alt = `${SITE_NAME} — ${getDictionary(lang).common.roleFull}`
+  const image = { url: ogImagePath(lang), width: 1200, height: 630, alt }
   return {
     ...(title ? { title } : {}),
     description,
     alternates: { canonical: url, languages: languageAlternates(path) },
     openGraph: {
       type: 'website',
-      siteName: 'Santiago Malak',
+      siteName: SITE_NAME,
       ...(title ? { title } : {}),
       description,
       url,
@@ -32,8 +34,6 @@ export function pageMetadata(
     twitter: { card: 'summary_large_image', ...(title ? { title } : {}), description, images: [image.url] },
   }
 }
-
-export const SITE_NAME_WITH_ROLE = 'Santiago Malak — Analytics Engineer & Full-Stack Developer'
 
 /** Static PNG generated at build time by src/app/og/[lang]/route.tsx. */
 export function ogImagePath(lang: Locale): string {

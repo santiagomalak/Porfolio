@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Briefcase, Code2, Database, ExternalLink, Rocket, Download, Globe } from 'lucide-react'
+import {
+  ArrowRight, Briefcase, Code2, Database, ExternalLink, Rocket, Download, Globe, Zap, Shield, GraduationCap,
+} from 'lucide-react'
 import Reveal from '@/components/Reveal'
-import { cvPath, toLocale } from '@/i18n/config'
+import { SITE_NAME, cvPath, toLocale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/get-dictionary'
 import { pageMetadata } from '@/i18n/metadata'
 import { localizePath } from '@/i18n/routing'
@@ -14,36 +16,93 @@ export function generateMetadata({ params }: Props): Metadata {
   return pageMetadata(lang, '/about', getDictionary(lang).meta.about)
 }
 
-const techStack = {
-  analytics: [
-    { name: 'BigQuery', color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50' },
-    { name: 'dbt', color: 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/50 dark:text-orange-400 dark:border-orange-800/50' },
-    { name: 'Metabase', color: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/50 dark:text-indigo-400 dark:border-indigo-800/50' },
-    { name: 'SQL', color: 'bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950/50 dark:text-teal-400 dark:border-teal-800/50' },
-    { name: 'Python · Pandas', color: 'bg-yellow-50 text-yellow-800 border-yellow-200 dark:bg-yellow-950/50 dark:text-yellow-400 dark:border-yellow-800/50' },
-    { name: 'PostgreSQL', color: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/50 dark:text-purple-400 dark:border-purple-800/50' },
-  ],
-  web: [
-    { name: 'React · Next.js', color: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50' },
-    { name: 'TypeScript', color: 'bg-blue-50 text-blue-800 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50' },
-    { name: 'Node.js · APIs', color: 'bg-green-50 text-green-700 border-green-200 dark:bg-green-950/50 dark:text-green-400 dark:border-green-800/50' },
-    { name: 'Tailwind CSS', color: 'bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-950/50 dark:text-cyan-400 dark:border-cyan-800/50' },
-    { name: 'Docker · Vercel', color: 'bg-gray-50 text-gray-800 border-gray-300 dark:bg-gray-800/50 dark:text-gray-300 dark:border-gray-700/50' },
-    { name: 'automation', color: 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/50 dark:text-orange-400 dark:border-orange-800/50' },
-  ],
+const chip = {
+  blue: 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/50',
+  orange: 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/50 dark:text-orange-400 dark:border-orange-800/50',
+  indigo: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/50 dark:text-indigo-400 dark:border-indigo-800/50',
+  teal: 'bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950/50 dark:text-teal-400 dark:border-teal-800/50',
+  yellow: 'bg-yellow-50 text-yellow-800 border-yellow-200 dark:bg-yellow-950/50 dark:text-yellow-400 dark:border-yellow-800/50',
+  purple: 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/50 dark:text-purple-400 dark:border-purple-800/50',
+  green: 'bg-green-50 text-green-700 border-green-200 dark:bg-green-950/50 dark:text-green-400 dark:border-green-800/50',
+  cyan: 'bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-950/50 dark:text-cyan-400 dark:border-cyan-800/50',
+  gray: 'bg-gray-50 text-gray-800 border-gray-300 dark:bg-gray-800/50 dark:text-gray-300 dark:border-gray-700/50',
 }
+
+// Tool names are language-neutral; only the security skills are translated
+// (they come from the dictionary, matched to these colors by position).
+const techStack = [
+  {
+    id: 'data',
+    icon: Database,
+    skills: [
+      { name: 'SQL', color: chip.teal },
+      { name: 'Python · pandas', color: chip.yellow },
+      { name: 'scikit-learn', color: chip.orange },
+      { name: 'BigQuery', color: chip.blue },
+      { name: 'dbt', color: chip.orange },
+      { name: 'PostgreSQL', color: chip.purple },
+      { name: 'Metabase', color: chip.indigo },
+      { name: 'Power BI', color: chip.yellow },
+    ],
+  },
+  {
+    id: 'fullstack',
+    icon: Code2,
+    skills: [
+      { name: 'React · Next.js', color: chip.blue },
+      { name: 'TypeScript', color: chip.blue },
+      { name: 'Node.js · APIs REST', color: chip.green },
+      { name: 'Supabase', color: chip.green },
+      { name: 'Tailwind CSS', color: chip.cyan },
+      { name: 'Docker · Vercel', color: chip.gray },
+    ],
+  },
+  {
+    id: 'ai',
+    icon: Zap,
+    skills: [
+      { name: 'n8n', color: chip.orange },
+      { name: 'Make · Zapier', color: chip.purple },
+      { name: 'Claude API', color: chip.orange },
+      { name: 'Gemini · Groq', color: chip.blue },
+      { name: 'Ollama', color: chip.gray },
+      { name: 'Telegram API', color: chip.cyan },
+    ],
+  },
+] as const
+
+const securityColors = [chip.indigo, chip.teal, chip.purple, chip.gray]
+
+const jobs = [
+  { id: 'codingClick', tags: ['Next.js', 'React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Supabase', 'n8n', 'Make', 'Docker', 'Vercel'] },
+  { id: 'ivolution', tags: ['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'n8n'] },
+] as const
+
+const educationIds = ['upso', 'dsml', 'cyber'] as const
 
 const languageBars = [
   { code: 'es', flag: '🇦🇷', bar: 100, color: 'bg-primary-600' },
-  { code: 'en', flag: '🇬🇧', bar: 85, color: 'bg-indigo-500' },
-  { code: 'pt', flag: '🇧🇷', bar: 80, color: 'bg-secondary-500' },
+  { code: 'en', flag: '🇬🇧', bar: 50, color: 'bg-indigo-500' },
+  { code: 'pt', flag: '🇧🇷', bar: 85, color: 'bg-secondary-500' },
 ] as const
+
+const sectionTitle = 'text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white'
+const card = 'bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32]'
 
 export default function AboutPage({ params }: Props) {
   const lang = toLocale(params.lang)
   const dict = getDictionary(lang)
   const t = dict.about
   const href = (path: string) => localizePath(lang, path)
+
+  const stackCards = [
+    ...techStack.map((c) => ({ id: c.id, icon: c.icon, skills: c.skills.map((s) => ({ ...s })) })),
+    {
+      id: 'security' as const,
+      icon: Shield,
+      skills: t.securitySkills.map((name, i) => ({ name, color: securityColors[i % securityColors.length] })),
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-background">
@@ -60,7 +119,7 @@ export default function AboutPage({ params }: Props) {
         <Reveal delay={80}>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
             {t.greeting}{' '}
-            <span className="text-gradient">Santiago Malak</span>
+            <span className="text-gradient">{SITE_NAME}</span>
           </h1>
         </Reveal>
 
@@ -104,7 +163,7 @@ export default function AboutPage({ params }: Props) {
       <section className="bg-background-alt py-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <Reveal>
-            <h2 className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white">
+            <h2 className={sectionTitle}>
               <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
                 <Briefcase className="h-4 w-4 text-white" />
               </div>
@@ -113,27 +172,43 @@ export default function AboutPage({ params }: Props) {
           </Reveal>
 
           <div className="space-y-6">
-            <Reveal className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6 hover:shadow-md dark:hover:shadow-[#1e1e32]/50 transition-shadow">
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t.ivolution.role}</h3>
-                  <p className="text-primary-700 dark:text-primary-400 font-medium">Ivolution Sport Science</p>
-                </div>
-                <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-[#111120] px-3 py-1 rounded-full border border-gray-200 dark:border-[#1e1e32] whitespace-nowrap">
-                  {t.ivolution.period}
-                </span>
-              </div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                {t.ivolution.body}
-              </p>
-              <div className="flex flex-wrap gap-2 mt-4">
-                {['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering'].map((tag) => (
-                  <span key={tag} className="px-2.5 py-1 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
+            {jobs.map((job, i) => {
+              const j = t.jobs[job.id]
+              return (
+                <Reveal
+                  key={job.id}
+                  delay={i * 100}
+                  className={`${card} p-6 hover:shadow-md dark:hover:shadow-[#1e1e32]/50 transition-shadow`}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4 mb-3">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{j.role}</h3>
+                      <p className="text-primary-700 dark:text-primary-400 font-medium">{j.company}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{j.location}</p>
+                    </div>
+                    <span className="self-start text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-[#111120] px-3 py-1 rounded-full border border-gray-200 dark:border-[#1e1e32] whitespace-nowrap">
+                      {j.period}
+                    </span>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-3">{j.summary}</p>
+                  <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {j.bullets.map((b) => (
+                      <li key={b} className="flex gap-2">
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-500 flex-shrink-0" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {job.tags.map((tag) => (
+                      <span key={tag} className="px-2.5 py-1 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -141,7 +216,7 @@ export default function AboutPage({ params }: Props) {
       {/* ── Building Now ── */}
       <section className="container mx-auto px-4 py-16 max-w-4xl">
         <Reveal>
-          <h2 className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white">
+          <h2 className={sectionTitle}>
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-600 to-secondary-500 flex items-center justify-center">
               <Rocket className="h-4 w-4 text-white" />
             </div>
@@ -166,7 +241,7 @@ export default function AboutPage({ params }: Props) {
               {t.stackadvisor.body}
             </p>
             <div className="flex flex-wrap gap-2 mb-5">
-              {['Next.js 14', 'TypeScript', 'TailwindCSS', 'Decision Engine', 'SaaS'].map((tag) => (
+              {['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini', 'Decision Engine', 'SaaS'].map((tag) => (
                 <span key={tag} className="px-2.5 py-1 bg-white dark:bg-[#111120] border border-primary-200 dark:border-primary-800/50 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
                   {tag}
                 </span>
@@ -192,14 +267,14 @@ export default function AboutPage({ params }: Props) {
               </div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 text-xs font-semibold rounded-full border border-orange-200 dark:border-orange-800/50">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                {t.jobHunting.status}
+                n8n + LLMs
               </span>
             </div>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-5">
               {t.jobHunting.body}
             </p>
             <div className="flex flex-wrap gap-2">
-              {t.jobHunting.tags.map((tag) => (
+              {['n8n', 'Claude API', 'Telegram API', 'Google Sheets', 'Scraping'].map((tag) => (
                 <span key={tag} className="px-2.5 py-1 bg-white dark:bg-[#111120] border border-orange-200 dark:border-orange-800/50 text-orange-700 dark:text-orange-400 text-xs font-medium rounded-full">
                   {tag}
                 </span>
@@ -213,7 +288,7 @@ export default function AboutPage({ params }: Props) {
       <section className="bg-background-alt py-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <Reveal>
-            <h2 className="text-2xl font-bold mb-10 flex items-center gap-3 text-gray-900 dark:text-white">
+            <h2 className={sectionTitle}>
               <div className="w-8 h-8 rounded-lg bg-secondary-500 flex items-center justify-center">
                 <Code2 className="h-4 w-4 text-white" />
               </div>
@@ -221,27 +296,17 @@ export default function AboutPage({ params }: Props) {
             </h2>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {(Object.keys(techStack) as (keyof typeof techStack)[]).map((category, catIdx) => (
-              <Reveal
-                key={category}
-                delay={catIdx * 100}
-                className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6"
-              >
+          <div className="grid md:grid-cols-2 gap-6">
+            {stackCards.map(({ id, icon: Icon, skills }, catIdx) => (
+              <Reveal key={id} delay={catIdx * 100} className={`${card} p-6`}>
                 <div className="flex items-center gap-2 mb-5">
-                  {category === 'analytics'
-                    ? <Database className="h-5 w-5 text-secondary-500" />
-                    : <Code2 className="h-5 w-5 text-primary-700 dark:text-primary-400" />
-                  }
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{t.stackCategories[category]}</h3>
+                  <Icon className="h-5 w-5 text-primary-700 dark:text-primary-400" />
+                  <h3 className="font-semibold text-gray-900 dark:text-white">{t.stackCategories[id]}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {techStack[category].map((skill) => (
-                    <span
-                      key={skill.name}
-                      className={`px-3 py-1.5 text-xs font-medium rounded-lg border ${skill.color}`}
-                    >
-                      {skill.name === 'automation' ? t.automationSkill : skill.name}
+                  {skills.map((skill) => (
+                    <span key={skill.name} className={`px-3 py-1.5 text-xs font-medium rounded-lg border ${skill.color}`}>
+                      {skill.name}
                     </span>
                   ))}
                 </div>
@@ -249,6 +314,36 @@ export default function AboutPage({ params }: Props) {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ── Formación ── */}
+      <section className="container mx-auto px-4 pt-16 max-w-4xl">
+        <Reveal>
+          <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-gray-900 dark:text-white">
+            <div className="w-8 h-8 rounded-lg bg-secondary-500 flex items-center justify-center">
+              <GraduationCap className="h-4 w-4 text-white" />
+            </div>
+            {t.education}
+          </h2>
+        </Reveal>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {educationIds.map((id, i) => {
+            const e = t.educationList[id]
+            return (
+              <Reveal key={id} delay={i * 100} className={`${card} p-6`}>
+                <h3 className="font-semibold text-gray-900 dark:text-white leading-snug mb-2">{e.title}</h3>
+                <p className="text-sm text-primary-700 dark:text-primary-400 font-medium">{e.institution}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{e.period}</p>
+              </Reveal>
+            )
+          })}
+        </div>
+        <Link
+          href={href('/certifications')}
+          className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-primary-700 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-300 transition-colors"
+        >
+          {t.allCertifications} <ArrowRight className="h-4 w-4" />
+        </Link>
       </section>
 
       {/* ── Idiomas ── */}
@@ -263,11 +358,7 @@ export default function AboutPage({ params }: Props) {
         </Reveal>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {languageBars.map((l, i) => (
-            <Reveal
-              key={l.code}
-              delay={i * 100}
-              className="bg-white dark:bg-[#0f0f17] rounded-2xl border border-gray-200 dark:border-[#1e1e32] p-6"
-            >
+            <Reveal key={l.code} delay={i * 100} className={`${card} p-6`}>
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h3 className="font-bold text-gray-900 dark:text-white">{t.languageList[l.code].name}</h3>

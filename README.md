@@ -1,6 +1,6 @@
-# Santiago Malak — Portfolio
+# Santiago Aragon Malak — Portfolio
 
-**Data Scientist & Full-Stack Developer**
+**Hybrid Engineer: Data + Full Stack + IA**
 
 Portfolio profesional con proyectos de desarrollo web, dashboards interactivos y ciencia de datos.
 
@@ -24,8 +24,8 @@ Live: [santiagomalak.is-a.dev](https://santiagomalak.is-a.dev)
 | Ruta | Descripcion |
 |------|-------------|
 | `/` | Hero con animaciones, live projects, tech stack pills |
-| `/about` | Bio, experiencia en Ivolution, stack tecnologico, filosofia |
-| `/web-projects` | StackAdvisor, Ivolution, Crypto Dashboard, Portfolio |
+| `/about` | Bio, experiencia (Coding Click, Ivolution), stack, formacion, idiomas |
+| `/web-projects` | Instituto Coubertin, Turnex, StackAdvisor, Coding Click, Crypto Dashboard, FreelanceOS, Wayra Huasi |
 | `/dashboards` | Argentina Macro, Crypto Live, E-Commerce Analytics (iframes interactivos) |
 | `/data-science` | IBM HR Analytics, Marketing Segmentation, Weather AUS |
 | `/certifications` | Certificaciones y cursos |
