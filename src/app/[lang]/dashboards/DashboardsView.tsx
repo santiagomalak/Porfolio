@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ExternalLink, Github, BarChart2, TrendingUp, Database, Globe } from 'lucide-react'
 import { format, type Dictionary } from '@/i18n/get-dictionary'
@@ -57,14 +57,32 @@ const OTHER_PROJECTS = [
   },
 ] as const
 
-const fadeUp = {
-  hidden:  { opacity: 0, y: 20 },
-  visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: d } }),
-}
-
 export default function DashboardsView({ t }: { t: DashboardsCopy }) {
   const [active, setActive] = useState<(typeof DASHBOARDS)[number]['id']>(DASHBOARDS[0].id)
   const [loaded, setLoaded] = useState<Record<string, boolean>>({})
+  // The embed is a whole external app. Mounting it only after this page has
+  // loaded keeps it from competing with our own first paint (it used to push
+  // LCP past 3.5s on mobile); the spinner below covers the gap.
+  const [frameReady, setFrameReady] = useState(false)
+
+  useEffect(() => {
+    // Safari has no requestIdleCallback.
+    const hasIdle = typeof window.requestIdleCallback === 'function'
+    let idle: number | undefined
+    const start = () => {
+      idle = hasIdle
+        ? window.requestIdleCallback(() => setFrameReady(true), { timeout: 1500 })
+        : window.setTimeout(() => setFrameReady(true), 200)
+    }
+    if (document.readyState === 'complete') start()
+    else window.addEventListener('load', start, { once: true })
+    return () => {
+      window.removeEventListener('load', start)
+      if (idle === undefined) return
+      if (hasIdle) window.cancelIdleCallback(idle)
+      else window.clearTimeout(idle)
+    }
+  }, [])
 
   const current = DASHBOARDS.find(d => d.id === active)!
   const copy    = t.items[current.id]
@@ -76,7 +94,7 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
       {/* Hero */}
       <section className="border-b border-gray-200 dark:border-white/5 bg-background-alt">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+          <div className="animate-fade-up motion-reduce:animate-none">
             <p className="text-xs font-semibold uppercase tracking-[4px] text-indigo-500 dark:text-indigo-400 mb-4">
               {t.kicker}
             </p>
@@ -84,15 +102,14 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
               {t.title}
             </h1>
             <p className="text-gray-600 dark:text-zinc-400 text-lg max-w-2xl">{t.intro}</p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
 
         {/* Tab selector */}
-        <motion.div initial="hidden" animate="visible" custom={0.1} variants={fadeUp}
-          className="flex gap-2 mb-6 flex-wrap">
+        <div className="animate-fade-up motion-reduce:animate-none [animation-delay:100ms] flex gap-2 mb-6 flex-wrap">
           {DASHBOARDS.map(d => {
             const DIcon = d.icon
             const isActive = active === d.id
@@ -124,7 +141,7 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
               </button>
             )
           })}
-        </motion.div>
+        </div>
 
         {/* Dashboard info bar */}
         <motion.div key={active} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
@@ -210,7 +227,7 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
             </div>
           )}
 
-          <iframe
+          {frameReady && <iframe
             key={active}
             src={current.liveUrl}
             className="w-full"
@@ -218,11 +235,11 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
             onLoad={() => setLoaded(p => ({ ...p, [active]: true }))}
             title={current.title}
             allow="clipboard-read; clipboard-write"
-          />
+          />}
         </motion.div>
 
         {/* Other projects grid */}
-        <motion.div initial="hidden" animate="visible" custom={0.3} variants={fadeUp} className="mt-12">
+        <div className="animate-fade-up motion-reduce:animate-none [animation-delay:300ms] mt-12">
           <h3 className="text-sm text-gray-500 dark:text-zinc-500 uppercase tracking-widest mb-5 flex items-center gap-2">
             <Database size={13} /> {t.otherProjects}
           </h3>
@@ -256,7 +273,7 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
               )
             })}
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   )

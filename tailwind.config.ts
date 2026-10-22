@@ -31,6 +31,18 @@ const config: Config = {
         'background': 'var(--bg)',
         'background-alt': 'var(--bg-alt)',
       },
+      // Entrance animation for above-the-fold content. Plain CSS (not Framer
+      // Motion) so it runs from the server HTML: a JS-driven opacity:0 start
+      // holds the LCP text back until hydration (~1-2s extra on mobile).
+      keyframes: {
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(24px)' },
+          to: { opacity: '1', transform: 'none' },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },

@@ -39,7 +39,7 @@ export default function IvolutionView({ lang, t, common }: {
       <div className="container mx-auto px-4 py-12 max-w-5xl">
 
         {/* Back */}
-        <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
+        <div className="animate-fade-up motion-reduce:animate-none">
           <Link
             href={localizePath(lang, '/data-science')}
             className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-10"
@@ -47,10 +47,10 @@ export default function IvolutionView({ lang, t, common }: {
             <ArrowLeft className="h-4 w-4" />
             {common.backToDataScience}
           </Link>
-        </motion.div>
+        </div>
 
         {/* Header */}
-        <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0.05} className="mb-12">
+        <div className="animate-fade-up motion-reduce:animate-none [animation-delay:50ms] mb-12">
           <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 mb-4">
             {t.badge}
           </span>
@@ -61,25 +61,19 @@ export default function IvolutionView({ lang, t, common }: {
           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
             {t.introA} <strong>{t.introStrong}</strong> {t.introB}
           </p>
-        </motion.div>
+        </div>
 
         {/* Tags */}
-        <motion.div
-          variants={fadeUp} initial="hidden" animate="visible" custom={0.1}
-          className="flex flex-wrap gap-2 mb-12"
-        >
+        <div className="animate-fade-up motion-reduce:animate-none [animation-delay:100ms] flex flex-wrap gap-2 mb-12">
           {['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'Analytics Engineering', t.multilingualTag].map(tag => (
             <span key={tag} className="px-3 py-1.5 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 text-sm font-medium rounded-full border border-blue-100 dark:border-blue-900/50">
               {tag}
             </span>
           ))}
-        </motion.div>
+        </div>
 
         {/* Stats */}
-        <motion.div
-          variants={fadeUp} initial="hidden" animate="visible" custom={0.15}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
-        >
+        <div className="animate-fade-up motion-reduce:animate-none [animation-delay:150ms] grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {[
             { value: '967', label: t.stats.athletes },
             { value: '13', label: t.stats.sports },
@@ -91,7 +85,7 @@ export default function IvolutionView({ lang, t, common }: {
               <p className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</p>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Screenshots */}
         <motion.h2

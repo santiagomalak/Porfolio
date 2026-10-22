@@ -193,10 +193,7 @@ export default function HomeView({ lang, t, roleShort, workTogether }: {
 
             {/* Left — text */}
             <div className="text-center lg:text-left">
-              <motion.div
-                variants={fadeUp} initial="hidden" animate="visible" custom={0}
-                className="mb-8"
-              >
+              <div className="animate-fade-up motion-reduce:animate-none mb-8">
                 <Link
                   href={href('/contact')}
                   className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium hover:bg-primary-100 dark:hover:bg-primary-900/40 hover:border-primary-300 dark:hover:border-primary-600/60 transition-all duration-200"
@@ -204,30 +201,21 @@ export default function HomeView({ lang, t, roleShort, workTogether }: {
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                   {t.availability}
                 </Link>
-              </motion.div>
+              </div>
 
-              <motion.h1
-                variants={fadeUp} initial="hidden" animate="visible" custom={0.08}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-              >
+              <h1 className="animate-fade-up motion-reduce:animate-none [animation-delay:80ms] text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="text-gray-900 dark:text-white">{roleShort}</span>
                 <br />
                 <span className="text-2xl md:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-semibold">
                   {t.heroSubtitle}
                 </span>
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                variants={fadeUp} initial="hidden" animate="visible" custom={0.18}
-                className="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl leading-relaxed mx-auto lg:mx-0"
-              >
+              <p className="animate-fade-up motion-reduce:animate-none [animation-delay:180ms] text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-xl leading-relaxed mx-auto lg:mx-0">
                 {t.intro}
-              </motion.p>
+              </p>
 
-              <motion.div
-                variants={fadeUp} initial="hidden" animate="visible" custom={0.28}
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start flex-wrap"
-              >
+              <div className="animate-fade-up motion-reduce:animate-none [animation-delay:280ms] flex flex-col sm:flex-row gap-4 justify-center lg:justify-start flex-wrap">
                 <Link
                   href="#projects"
                   className="px-8 py-3.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
@@ -242,12 +230,9 @@ export default function HomeView({ lang, t, roleShort, workTogether }: {
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                   {t.ctaDashboards}
                 </Link>
-              </motion.div>
+              </div>
 
-              <motion.div
-                variants={fadeUp} initial="hidden" animate="visible" custom={0.38}
-                className="flex flex-wrap justify-center lg:justify-start gap-2 mt-8"
-              >
+              <div className="animate-fade-up motion-reduce:animate-none [animation-delay:380ms] flex flex-wrap justify-center lg:justify-start gap-2 mt-8">
                 {['SQL', 'Python', 'BigQuery', 'dbt', 'React', 'Next.js', 'TypeScript', 'Supabase', 'n8n', 'LLMs'].map((tech) => (
                   <span
                     key={tech}
@@ -256,16 +241,13 @@ export default function HomeView({ lang, t, roleShort, workTogether }: {
                     {tech}
                   </span>
                 ))}
-              </motion.div>
+              </div>
             </div>
 
             {/* Right — terminal (desktop only) */}
-            <motion.div
-              variants={fadeUp} initial="hidden" animate="visible" custom={0.15}
-              className="hidden lg:block"
-            >
+            <div className="animate-fade-up motion-reduce:animate-none [animation-delay:150ms] hidden lg:block">
               <TerminalCard />
-            </motion.div>
+            </div>
 
           </div>
         </div>

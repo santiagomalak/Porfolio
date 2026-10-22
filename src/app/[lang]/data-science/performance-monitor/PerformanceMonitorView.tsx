@@ -230,7 +230,7 @@ export default function PerformanceMonitorView({ lang, t, common }: {
       <div className="container mx-auto px-4 py-12 max-w-5xl">
 
         {/* Back */}
-        <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
+        <div className="animate-fade-up motion-reduce:animate-none">
           <Link
             href={localizePath(lang, '/data-science')}
             className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 transition-colors mb-10"
@@ -238,10 +238,10 @@ export default function PerformanceMonitorView({ lang, t, common }: {
             <ArrowLeft className="h-4 w-4" />
             {common.backToDataScience}
           </Link>
-        </motion.div>
+        </div>
 
         {/* Header */}
-        <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0.05} className="mb-10">
+        <div className="animate-fade-up motion-reduce:animate-none [animation-delay:50ms] mb-10">
           <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-teal-100 dark:bg-teal-950/40 text-teal-700 dark:text-teal-400 mb-4">
             {t.badge}
           </span>
@@ -254,35 +254,26 @@ export default function PerformanceMonitorView({ lang, t, common }: {
           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
             {t.introA} <strong>{t.introStrong}</strong> {t.introB}
           </p>
-        </motion.div>
+        </div>
 
         {/* Why synthetic data */}
-        <motion.div
-          variants={fadeUp} initial="hidden" animate="visible" custom={0.1}
-          className="mb-10 p-5 rounded-xl border border-amber-200 dark:border-amber-900/40 bg-amber-50 dark:bg-amber-950/20"
-        >
+        <div className="animate-fade-up motion-reduce:animate-none [animation-delay:100ms] mb-10 p-5 rounded-xl border border-amber-200 dark:border-amber-900/40 bg-amber-50 dark:bg-amber-950/20">
           <p className="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
             <strong>{t.whyTitle}</strong> {t.whyBody}
           </p>
-        </motion.div>
+        </div>
 
         {/* Tags */}
-        <motion.div
-          variants={fadeUp} initial="hidden" animate="visible" custom={0.12}
-          className="flex flex-wrap gap-2 mb-12"
-        >
+        <div className="animate-fade-up motion-reduce:animate-none [animation-delay:120ms] flex flex-wrap gap-2 mb-12">
           {['Python', 'numpy', 'Faker', 'SQL', 'Window Functions', 'Percentile Alerts', 'Sport Science', 'Privacy-first'].map(tag => (
             <span key={tag} className="px-3 py-1.5 bg-teal-50 dark:bg-teal-950/30 text-teal-700 dark:text-teal-400 text-sm font-medium rounded-full border border-teal-100 dark:border-teal-900/40">
               {tag}
             </span>
           ))}
-        </motion.div>
+        </div>
 
         {/* Stats */}
-        <motion.div
-          variants={fadeUp} initial="hidden" animate="visible" custom={0.15}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
-        >
+        <div className="animate-fade-up motion-reduce:animate-none [animation-delay:150ms] grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {[
             { value: '150',                label: t.stats.athletes },
             { value: '7',                  label: t.stats.sports },
@@ -294,7 +285,7 @@ export default function PerformanceMonitorView({ lang, t, common }: {
               <p className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</p>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Pipeline */}
         <motion.div
