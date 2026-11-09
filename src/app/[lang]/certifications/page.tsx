@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { ExternalLink, Award, GraduationCap } from 'lucide-react'
 import Reveal from '@/components/Reveal'
+import { education } from '@/data/education'
 import { toLocale } from '@/i18n/config'
 import { getDictionary, type Dictionary } from '@/i18n/get-dictionary'
 import { pageMetadata } from '@/i18n/metadata'
@@ -17,16 +18,6 @@ type CertCopy = Dictionary['certifications']
 
 // Language-neutral data lives here; translated text (names, dates, details)
 // is looked up in the dictionary by `id`.
-interface University {
-  id: keyof CertCopy['universities']
-  institution: string
-  resolution?: string
-  verifyUrl?: string
-  color: string
-  border: string
-  tag: string
-}
-
 interface Certification {
   id: keyof CertCopy['certs']
   /** Official course title, kept in its original language. */
@@ -45,27 +36,20 @@ interface CertificationGroup {
   items: Certification[]
 }
 
-const universities: University[] = [
-  {
-    id: 'dsml',
-    institution: 'Universidad Nacional de Córdoba · ICARO',
-    resolution: 'RD-2025-149-E-UNC-DEC#FCEFYN',
-    verifyUrl: 'https://fcefyn.unc.edu.ar/facultad/secretarias/extension/area-de-formacion-continua/cursos-y-diplomaturas/validador-de-certificados/',
-    color: 'from-primary-50 to-indigo-50 dark:from-primary-900/20 dark:to-indigo-900/20',
-    border: 'border-primary-200 dark:border-primary-800/50',
-    tag: 'bg-primary-100 text-primary-700 dark:bg-primary-900/40 dark:text-primary-400',
-  },
-  {
-    id: 'cyber',
-    institution: 'Universidad San Ignacio de Loyola (USIL) · Mundos E',
-    verifyUrl: 'https://certificados.mundose.com/?i=bW9kZT1QREYmcmVjb3JkPTM5eDM1MTMwNTk=',
-    color: 'from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20',
-    border: 'border-red-200 dark:border-red-800/50',
-    tag: 'bg-red-100 text-red-700 dark:bg-red-950/40 dark:text-red-400',
-  },
-]
-
 const certifications: CertificationGroup[] = [
+  {
+    category: 'data',
+    color: 'from-teal-50 to-emerald-50 dark:from-teal-950/30 dark:to-emerald-950/30',
+    border: 'border-teal-200 dark:border-teal-800/50',
+    labelColor: 'bg-teal-100 text-teal-700 dark:bg-teal-950/50 dark:text-teal-400',
+    items: [
+      {
+        id: 'datacamp',
+        name: 'Data Analyst',
+        issuer: 'DataCamp',
+      },
+    ],
+  },
   {
     category: 'google',
     color: 'from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30',
@@ -163,7 +147,8 @@ const certifications: CertificationGroup[] = [
 ]
 
 export default function CertificationsPage({ params }: Props) {
-  const t = getDictionary(toLocale(params.lang)).certifications
+  const dict = getDictionary(toLocale(params.lang))
+  const t = dict.certifications
 
   return (
     <div className="min-h-screen bg-background">
@@ -188,8 +173,8 @@ export default function CertificationsPage({ params }: Props) {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {universities.map((u) => {
-              const copy = t.universities[u.id]
+            {education.map((u) => {
+              const copy = dict.education.items[u.id]
               return (
               <div key={u.id} className={`bg-gradient-to-br ${u.color} rounded-2xl border-2 ${u.border} p-8`}>
                 <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
@@ -197,21 +182,23 @@ export default function CertificationsPage({ params }: Props) {
                     <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 ${u.tag}`}>
                       {copy.badge}
                     </span>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{copy.name}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 font-medium text-sm">{u.institution}</p>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{copy.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 font-medium text-sm">{copy.institution}</p>
                   </div>
                   <div className="text-right">
-                    <span className="text-sm text-gray-500 dark:text-gray-400 block">{copy.date}</span>
-                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 block mt-1">{copy.hours}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 block">{copy.period}</span>
+                    {copy.hours && (
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 block mt-1">{copy.hours}</span>
+                )}
                   </div>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4 text-sm">{copy.description}</p>
                 {u.resolution && (
                   <p className="text-xs text-gray-400 dark:text-gray-500 font-mono mb-4">{u.resolution}</p>
                 )}
-                {u.verifyUrl && (
+                {u.certificateUrl && (
                   <a
-                    href={u.verifyUrl}
+                    href={u.certificateUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"

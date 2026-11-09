@@ -86,6 +86,7 @@ const en: Dictionary = {
     workTogether: {
       title: "Let's talk",
       body: "I'm looking for my next data role (junior / mid-level). Remote from anywhere, or on-site / hybrid in Córdoba, Argentina.",
+      freelance: 'I also take on freelance dashboard, automation and web development projects.',
       cta: 'Write to me',
     },
   },
@@ -113,40 +114,37 @@ const en: Dictionary = {
     },
     featured: {
       title: 'Featured projects',
-      subtitle: 'Data, web development and AI: in-house work, client projects and my own',
-      ivolution: {
-        title: 'Athlete performance dashboards',
-        label: 'In-house work · 967 athletes · 13 sports',
-        company: 'Ivolution Sport Science · Data',
-        description:
-          'I built the dashboards coaches and strength staff used to track 967 athletes across 13 sports. I cleaned and organized the test data with dbt and showed it in Metabase, with alerts that make it easy to see at a glance who is fatigued, who is in their normal range and who is performing above their usual level.',
+      subtitle: 'Data first; web development and AI too. In-house work, client projects and my own.',
+      tabsLabel: 'Project type',
+      tabs: {
+        data: 'Data',
+        dev: 'Development',
+        ai: 'AI',
       },
-      coubertin: {
-        title: 'Instituto Coubertin — Online course platform',
-        label: 'Client project · In production',
-        company: 'Coding Click · Web development',
-        description:
-          'An online course platform for a sports-education institute: students buy a course, take the classes, sit assessments and join forums, and the institute manages everything from an admin panel. It is in production and I maintain the system and its infrastructure.',
+      origins: {
+        company: 'In-house work',
+        client: 'Client project',
+        personal: 'Personal project',
       },
-      turnex: {
-        title: 'Turnex — Sports-complex management',
-        label: 'Client project · In testing',
-        company: 'Client project · Web development + SQL',
-        description:
-          'A system to run a sports complex: members, fees, court bookings, payments, a daily cash register and QR-code access. I built it for a client and it is in testing before delivery.',
+      statuses: {
+        finished: 'Completed',
+        live: 'Online',
+        production: 'In production',
+        testing: 'In testing',
+        demo: 'Demo with fictitious data',
+        personalUse: 'Personal use',
       },
-      stackadvisor: {
-        title: 'StackAdvisor',
-        label: 'Personal project · Online',
-        company: 'Personal project · Web development + AI',
-        description:
-          'A web tool that asks a short questionnaire, recommends which technologies to use for a software project and explains why. It uses AI (Gemini) to put together a tailored development plan.',
-      },
+      carouselLabel: 'Featured projects',
+      slideOf: '{n} of {total}',
+      previous: 'Previous project',
+      next: 'Next project',
+      pause: 'Pause the carousel',
+      play: 'Resume the carousel',
+      goTo: 'Go to project {n}',
       viewCase: 'Read the case study',
       viewProject: 'View project',
       viewCode: 'View code',
-      viewAllFullStack: 'All development projects',
-      viewAllData: 'All data projects',
+      viewAll: 'See all projects',
     },
     live: {
       kicker: 'Live',
@@ -157,25 +155,52 @@ const en: Dictionary = {
       cryptoSub: 'Bitcoin and other cryptocurrency prices that update instantly, with alerts when there are unusual moves.',
       argentinaSub: 'The dollar, inflation and country risk in one place, with public data that updates on its own.',
     },
-    specialties: {
-      title: 'What I do',
-      analytics: {
-        title: 'Data',
-        body: 'I gather scattered data, organize it and show it in dashboards that help people decide.',
-        items: ['SQL · Python · dbt', 'Metabase · Power BI', 'BigQuery · PostgreSQL', 'pandas · scikit-learn'],
-      },
-      web: {
-        title: 'Full stack development',
-        body: 'I build complete web applications, from the database to the screen.',
-        items: ['React · Next.js · TypeScript', 'Node.js · REST APIs', 'Supabase · PostgreSQL', 'Tailwind CSS · Docker · Vercel'],
-      },
-      automation: {
-        title: 'AI and automation',
-        body: 'I use AI to automate repetitive tasks and save time.',
-        items: ['n8n · Make · Zapier', 'Claude · Gemini · Groq', 'Automated workflows', 'Automatic alerts'],
-      },
+    tools: {
+      title: 'Tools I work with',
+      subtitle: 'The data tools are the ones I use every day; the rest complement them.',
+      data: 'Data',
+      complements: 'Complements',
+    },
+    studies: {
+      title: 'Education',
+      subtitle: 'University studies, with their certificates.',
+      viewCertificate: 'View certificate',
+      pending: 'Degree in progress',
+      allCertifications: 'See all certifications',
     },
     aboutMe: 'About me',
+  },
+
+  education: {
+    items: {
+      upso: {
+        badge: 'Universidad Provincial del Sudoeste (Argentina)',
+        title: 'Associate Degree in Programming Technologies',
+        institution: 'UPSO (Argentina) · Distance learning',
+        period: 'In progress · about 5 courses left · degree in mid-2027',
+        hours: '',
+        description: 'A distance-learning programming degree. I have about 5 courses left and expect the degree in mid-2027.',
+        verifyLabel: '',
+      },
+      dsml: {
+        badge: 'National University of Córdoba',
+        title: 'University Diploma in Data Science & Machine Learning',
+        institution: 'National University of Córdoba (FCEFyN) · ICARO',
+        period: 'May 2025',
+        hours: '250 hours · 10 credits',
+        description: 'Continuing-education university diploma taught by ICARO Asociación Civil together with the Extension Office of the Faculty of Exact, Physical and Natural Sciences at UNC (Argentina). This is where I learned Python in depth.',
+        verifyLabel: 'Verify at UNC (code: DS240502)',
+      },
+      cyber: {
+        badge: 'Universidad San Ignacio de Loyola',
+        title: 'Diploma in Cybersecurity',
+        institution: 'Universidad San Ignacio de Loyola (USIL) · taught by Mundos E',
+        period: 'September 2025',
+        hours: '200 hours',
+        description: 'Diploma from Universidad San Ignacio de Loyola (USIL), taught by Mundos E. Foundations and hands-on practice in information security.',
+        verifyLabel: 'View certificate',
+      },
+    },
   },
 
   about: {
@@ -235,23 +260,6 @@ const en: Dictionary = {
     },
     securitySkills: ['Cloud security', 'Networking', 'Incident management', 'OSINT · Forensics'],
     education: 'Education',
-    educationList: {
-      upso: {
-        title: 'Associate Degree in Programming Technologies',
-        institution: 'UPSO (Argentina) · Distance learning',
-        period: 'In progress · expected early 2027',
-      },
-      dsml: {
-        title: 'University Diploma in Data Science & Machine Learning',
-        institution: 'National University of Córdoba · ICARO',
-        period: '2025',
-      },
-      cyber: {
-        title: 'Diploma in Cybersecurity',
-        institution: 'Universidad San Ignacio de Loyola (USIL) · taught by Mundos E',
-        period: '2025',
-      },
-    },
     allCertifications: 'See all certifications',
     languages: 'Languages',
     languageList: {
@@ -295,27 +303,8 @@ const en: Dictionary = {
     viewCertificate: 'View certificate',
     verify: 'Verify',
     viewBadge: 'View badge on Credly',
-    universities: {
-      dsml: {
-        badge: 'National University of Córdoba',
-        name: 'University Diploma in Data Science & Machine Learning',
-        date: 'May 2025',
-        hours: '250 hours · 10 credits',
-        description:
-          'Continuing-education university diploma taught by ICARO Asociación Civil together with the Extension Office of the Faculty of Exact, Physical and Natural Sciences at UNC (Argentina).',
-        verifyLabel: 'Verify at UNC (code: DS240502)',
-      },
-      cyber: {
-        badge: 'Universidad San Ignacio de Loyola',
-        name: 'Diploma in Cybersecurity',
-        date: 'September 2025',
-        hours: '200 hours',
-        description:
-          'Diploma from Universidad San Ignacio de Loyola (USIL), taught by Mundos E. Foundations and hands-on practice in information security.',
-        verifyLabel: 'View certificate',
-      },
-    },
     categories: {
+      data: 'Data',
       google: 'Google',
       programming: 'Programming',
       ibm: 'IBM',
@@ -323,6 +312,7 @@ const en: Dictionary = {
       design: 'Design & UX',
     },
     certs: {
+      datacamp: { date: 'In progress', detail: 'Data Analyst career track' },
       itSupport: { date: 'Jun 2025', detail: '5 courses — Networking, OS, System Administration, Security' },
       aiEssentials: { date: 'Aug 2024', detail: 'AI fundamentals applied to everyday work' },
       python1: { date: 'Oct 2024', detail: 'Python 3 fundamentals, algorithms, data structures' },

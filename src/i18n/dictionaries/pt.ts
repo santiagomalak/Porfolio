@@ -86,6 +86,7 @@ const pt: Dictionary = {
     workTogether: {
       title: 'Vamos conversar?',
       body: 'Procuro minha próxima vaga em dados (júnior / pleno). Remoto de qualquer lugar, ou presencial / híbrido em Córdoba (Argentina).',
+      freelance: 'Também aceito projetos freelance de dashboards, automação e desenvolvimento web.',
       cta: 'Fale comigo',
     },
   },
@@ -113,40 +114,37 @@ const pt: Dictionary = {
     },
     featured: {
       title: 'Projetos em destaque',
-      subtitle: 'Dados, desenvolvimento web e IA: trabalho em empresa, para clientes e projetos próprios',
-      ivolution: {
-        title: 'Dashboards de desempenho esportivo',
-        label: 'Trabalho em empresa · 967 atletas · 13 esportes',
-        company: 'Ivolution Sport Science · Dados',
-        description:
-          'Criei os dashboards que treinadores e preparadores físicos usavam para acompanhar 967 atletas de 13 esportes. Organizei os dados das avaliações com dbt e mostrei no Metabase, com alertas que indicam de relance quem está fadigado, quem está normal e quem está rendendo acima do habitual.',
+      subtitle: 'Dados em primeiro lugar; também desenvolvimento web e IA. Trabalho em empresa, para clientes e projetos próprios.',
+      tabsLabel: 'Tipo de projeto',
+      tabs: {
+        data: 'Dados',
+        dev: 'Desenvolvimento',
+        ai: 'IA',
       },
-      coubertin: {
-        title: 'Instituto Coubertin — Plataforma de cursos',
-        label: 'Projeto de cliente · Em produção',
-        company: 'Coding Click · Desenvolvimento web',
-        description:
-          'Plataforma de cursos online para um instituto de formação esportiva: os alunos compram um curso, assistem às aulas, fazem avaliações e participam de fóruns, e o instituto administra tudo por um painel. Está em produção e eu cuido da manutenção do sistema e da infraestrutura.',
+      origins: {
+        company: 'Trabalho em empresa',
+        client: 'Projeto de cliente',
+        personal: 'Projeto próprio',
       },
-      turnex: {
-        title: 'Turnex — Gestão de complexos esportivos',
-        label: 'Projeto de cliente · Em fase de testes',
-        company: 'Projeto de cliente · Desenvolvimento web + SQL',
-        description:
-          'Sistema para administrar um complexo esportivo: sócios, mensalidades, reservas de quadras, cobranças, caixa diário e acesso com QR code. Desenvolvi para um cliente e está em fase de testes antes da entrega.',
+      statuses: {
+        finished: 'Concluído',
+        live: 'Online',
+        production: 'Em produção',
+        testing: 'Em fase de testes',
+        demo: 'Demo com dados fictícios',
+        personalUse: 'Uso pessoal',
       },
-      stackadvisor: {
-        title: 'StackAdvisor',
-        label: 'Projeto próprio · Online',
-        company: 'Projeto pessoal · Desenvolvimento web + IA',
-        description:
-          'Ferramenta web que, com um questionário curto, recomenda quais tecnologias usar em um projeto de software e explica o porquê. Usa IA (Gemini) para montar um plano de desenvolvimento sob medida.',
-      },
+      carouselLabel: 'Projetos em destaque',
+      slideOf: '{n} de {total}',
+      previous: 'Projeto anterior',
+      next: 'Próximo projeto',
+      pause: 'Pausar o carrossel',
+      play: 'Retomar o carrossel',
+      goTo: 'Ir para o projeto {n}',
       viewCase: 'Ver estudo de caso',
       viewProject: 'Ver projeto',
       viewCode: 'Ver código',
-      viewAllFullStack: 'Todos os projetos de desenvolvimento',
-      viewAllData: 'Todos os projetos de dados',
+      viewAll: 'Ver todos os projetos',
     },
     live: {
       kicker: 'Ao vivo',
@@ -157,25 +155,52 @@ const pt: Dictionary = {
       cryptoSub: 'Preços do Bitcoin e de outras criptomoedas que se atualizam na hora, com alertas quando há movimentos fora do normal.',
       argentinaSub: 'Dólar, inflação e risco-país em um só lugar, com dados públicos que se atualizam sozinhos.',
     },
-    specialties: {
-      title: 'O que eu faço',
-      analytics: {
-        title: 'Dados',
-        body: 'Reúno dados dispersos, organizo e mostro em dashboards que ajudam a decidir.',
-        items: ['SQL · Python · dbt', 'Metabase · Power BI', 'BigQuery · PostgreSQL', 'pandas · scikit-learn'],
-      },
-      web: {
-        title: 'Desenvolvimento full stack',
-        body: 'Crio aplicações web completas, do banco de dados à tela.',
-        items: ['React · Next.js · TypeScript', 'Node.js · APIs REST', 'Supabase · PostgreSQL', 'Tailwind CSS · Docker · Vercel'],
-      },
-      automation: {
-        title: 'IA e automação',
-        body: 'Uso IA para automatizar tarefas repetitivas e ganhar tempo.',
-        items: ['n8n · Make · Zapier', 'Claude · Gemini · Groq', 'Fluxos automáticos', 'Alertas automáticos'],
-      },
+    tools: {
+      title: 'Ferramentas com que trabalho',
+      subtitle: 'As de dados são as que uso todos os dias; o resto complementa.',
+      data: 'Dados',
+      complements: 'Complementos',
+    },
+    studies: {
+      title: 'Formação',
+      subtitle: 'Formação universitária, com os certificados.',
+      viewCertificate: 'Ver certificado',
+      pending: 'Diploma em andamento',
+      allCertifications: 'Ver todas as certificações',
     },
     aboutMe: 'Sobre mim',
+  },
+
+  education: {
+    items: {
+      upso: {
+        badge: 'Universidad Provincial del Sudoeste (Argentina)',
+        title: 'Curso Técnico em Tecnologias da Programação',
+        institution: 'UPSO (Argentina) · Ensino a distância',
+        period: 'Em andamento · faltam cerca de 5 disciplinas · diploma em meados de 2027',
+        hours: '',
+        description: 'Curso de programação a distância. Faltam cerca de 5 disciplinas e o diploma deve sair em meados de 2027.',
+        verifyLabel: '',
+      },
+      dsml: {
+        badge: 'Universidade Nacional de Córdoba',
+        title: 'Diploma universitário em Ciência de Dados e Machine Learning',
+        institution: 'Universidade Nacional de Córdoba (FCEFyN) · ICARO',
+        period: 'Maio 2025',
+        hours: '250 horas · 10 créditos',
+        description: 'Diploma universitário de formação continuada ministrado pela ICARO Asociación Civil em conjunto com a Secretaria de Extensão da Faculdade de Ciências Exatas, Físicas e Naturais da UNC (Argentina). Foi onde aprendi Python a fundo.',
+        verifyLabel: 'Validar na UNC (código: DS240502)',
+      },
+      cyber: {
+        badge: 'Universidad San Ignacio de Loyola',
+        title: 'Diploma em Cibersegurança',
+        institution: 'Universidad San Ignacio de Loyola (USIL) · ministrado pela Mundos E',
+        period: 'Setembro 2025',
+        hours: '200 horas',
+        description: 'Diploma da Universidad San Ignacio de Loyola (USIL), ministrado pela Mundos E. Fundamentos e prática em segurança da informação.',
+        verifyLabel: 'Ver certificado',
+      },
+    },
   },
 
   about: {
@@ -235,23 +260,6 @@ const pt: Dictionary = {
     },
     securitySkills: ['Segurança na nuvem', 'Redes', 'Gestão de incidentes', 'OSINT · Forense'],
     education: 'Formação',
-    educationList: {
-      upso: {
-        title: 'Curso Técnico em Tecnologias da Programação',
-        institution: 'UPSO (Argentina) · Ensino a distância',
-        period: 'Em andamento · conclusão prevista no início de 2027',
-      },
-      dsml: {
-        title: 'Diploma universitário em Data Science & Machine Learning',
-        institution: 'Universidade Nacional de Córdoba · ICARO',
-        period: '2025',
-      },
-      cyber: {
-        title: 'Diploma em Cibersegurança',
-        institution: 'Universidad San Ignacio de Loyola (USIL) · ministrado pela Mundos E',
-        period: '2025',
-      },
-    },
     allCertifications: 'Ver todas as certificações',
     languages: 'Idiomas',
     languageList: {
@@ -295,27 +303,8 @@ const pt: Dictionary = {
     viewCertificate: 'Ver certificado',
     verify: 'Verificar',
     viewBadge: 'Ver badge no Credly',
-    universities: {
-      dsml: {
-        badge: 'Universidade Nacional de Córdoba',
-        name: 'Diploma universitário em Data Science & Machine Learning',
-        date: 'Maio 2025',
-        hours: '250 horas · 10 créditos',
-        description:
-          'Diploma universitário de formação continuada ministrado pela ICARO Asociación Civil em conjunto com a Secretaria de Extensão da Faculdade de Ciências Exatas, Físicas e Naturais da UNC (Argentina).',
-        verifyLabel: 'Validar na UNC (código: DS240502)',
-      },
-      cyber: {
-        badge: 'Universidad San Ignacio de Loyola',
-        name: 'Diploma em Cibersegurança',
-        date: 'Setembro 2025',
-        hours: '200 horas',
-        description:
-          'Diploma da Universidad San Ignacio de Loyola (USIL), ministrado pela Mundos E. Fundamentos e prática em segurança da informação.',
-        verifyLabel: 'Ver certificado',
-      },
-    },
     categories: {
+      data: 'Dados',
       google: 'Google',
       programming: 'Programação',
       ibm: 'IBM',
@@ -323,6 +312,7 @@ const pt: Dictionary = {
       design: 'Design & UX',
     },
     certs: {
+      datacamp: { date: 'Em andamento', detail: 'Trilha de Data Analyst' },
       itSupport: { date: 'Jun 2025', detail: '5 cursos — Redes, SO, Administração, Segurança' },
       aiEssentials: { date: 'Ago 2024', detail: 'Fundamentos de IA aplicados ao trabalho' },
       python1: { date: 'Out 2024', detail: 'Fundamentos de Python 3, algoritmos, estruturas de dados' },

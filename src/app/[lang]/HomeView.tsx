@@ -2,13 +2,32 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Code2, Database, BarChart3, Download, Zap, TrendingUp, ExternalLink, Landmark } from 'lucide-react'
+import { ArrowRight, Award, Database, Download, ExternalLink, GraduationCap, Landmark, Linkedin, Mail, TrendingUp } from 'lucide-react'
 import { motion } from 'framer-motion'
+import ProjectCarousel from '@/components/ProjectCarousel'
+import TechRibbon from '@/components/TechRibbon'
+import type { FeaturedProject, ProjectCategory } from '@/data/projects'
 import { SITE_NAME, intlLocale, type Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/get-dictionary'
 import { localizePath } from '@/i18n/routing'
 
 type HomeCopy = Dictionary['home']
+
+/** One education entry resolved for the current language (data + dictionary text). */
+export interface StudyCard {
+  id: string
+  badge: string
+  title: string
+  institution: string
+  period: string
+  certificateUrl?: string
+  color: string
+  border: string
+  tag: string
+}
+
+const EMAIL = 'santiagoaragonmalak@gmail.com'
+const LINKEDIN = 'https://www.linkedin.com/in/aragonmalak/'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -27,50 +46,6 @@ const fadeIn = {
     transition: { duration: 0.5, ease: 'easeOut' },
   },
 }
-
-// href: internal path (case study) or external URL (live site / GitHub repo).
-const featuredProjects = [
-  {
-    id: 'ivolution',
-    tags: ['SQL', 'dbt', 'Metabase', 'BigQuery', 'Python'],
-    href: '/data-science/ivolution',
-    color: 'from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40',
-    border: 'border-blue-200 dark:border-blue-900/50',
-    labelColor: 'bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
-    tagColor: 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
-    linkColor: 'text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300',
-  },
-  {
-    id: 'coubertin',
-    tags: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Stripe'],
-    href: 'https://institutocoubertin.com',
-    color: 'from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30',
-    border: 'border-amber-200 dark:border-amber-900/50',
-    labelColor: 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400',
-    tagColor: 'bg-amber-50 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400',
-    linkColor: 'text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-300',
-  },
-  {
-    id: 'turnex',
-    tags: ['Next.js', 'PostgreSQL', 'SQL', 'Supabase', 'Playwright'],
-    href: 'https://github.com/santiagomalak/Turnex',
-    color: 'from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30',
-    border: 'border-emerald-200 dark:border-emerald-900/50',
-    labelColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400',
-    tagColor: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400',
-    linkColor: 'text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300',
-  },
-  {
-    id: 'stackadvisor',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini'],
-    href: 'https://stackadvisor-nu.vercel.app',
-    color: 'from-purple-50 to-violet-50 dark:from-purple-950/40 dark:to-violet-950/40',
-    border: 'border-purple-200 dark:border-purple-900/50',
-    labelColor: 'bg-purple-100 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
-    tagColor: 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400',
-    linkColor: 'text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300',
-  },
-] as const
 
 // Facts from the Ivolution job only. Rendered with their final value, no count-up.
 const stats = [
@@ -103,16 +78,26 @@ const liveDashboards = [
   },
 ] as const
 
-export default function HomeView({ lang, t, roleShort, downloadCv, cvHref, dashboards, workTogether }: {
+export default function HomeView({
+  lang, t, roleShort, downloadCv, cvHref, featured, ribbon, studies, dashboards, workTogether,
+}: {
   lang: Locale
   t: HomeCopy
   roleShort: string
   downloadCv: string
   cvHref: string
+  featured: FeaturedProject[]
+  ribbon: { data: string[]; complements: string[] }
+  studies: StudyCard[]
   dashboards: Pick<Dictionary['dashboards'], 'live' | 'items'>
   workTogether: Dictionary['common']['workTogether']
 }) {
   const href = (path: string) => localizePath(lang, path)
+  const allProjectsHref: Record<ProjectCategory, string> = {
+    data: href('/data-science'),
+    dev: href('/web-projects'),
+    ai: href('/web-projects'),
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -195,79 +180,18 @@ export default function HomeView({ lang, t, roleShort, downloadCv, cvHref, dashb
         </div>
       </section>
 
-      {/* ── Proyectos destacados ── */}
+      {/* ── Proyectos destacados (carousel) ── */}
       <section id="projects" className="bg-background-alt py-20 scroll-mt-16">
         <div className="container mx-auto px-4 max-w-5xl">
           <motion.div
             variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">{t.featured.title}</h2>
             <p className="text-gray-500 dark:text-gray-400 text-sm">{t.featured.subtitle}</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {featuredProjects.map((p, i) => (
-              <motion.div
-                key={p.id}
-                variants={fadeUp} initial="hidden" whileInView="visible"
-                viewport={{ once: true, margin: '-60px' }} custom={i * 0.1}
-                className={`bg-gradient-to-br ${p.color} rounded-2xl border ${p.border} p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300`}
-              >
-                <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 ${p.labelColor}`}>
-                  {t.featured[p.id].label}
-                </span>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{t.featured[p.id].title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 font-medium">{t.featured[p.id].company}</p>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-5">{t.featured[p.id].description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.tags.map((tag) => (
-                    <span key={tag} className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${p.tagColor}`}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                {p.href.startsWith('/') ? (
-                  <Link
-                    href={href(p.href)}
-                    className={`inline-flex items-center gap-1.5 mt-5 text-sm font-medium transition-colors ${p.linkColor}`}
-                  >
-                    {t.featured.viewCase} <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                ) : (
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1.5 mt-5 text-sm font-medium transition-colors ${p.linkColor}`}
-                  >
-                    {p.href.includes('github.com') ? t.featured.viewCode : t.featured.viewProject}{' '}
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-center mt-10"
-          >
-            <div className="flex flex-wrap justify-center gap-6">
-              <Link
-                href={href('/data-science')}
-                className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
-              >
-                {t.featured.viewAllData} <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href={href('/web-projects')}
-                className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
-              >
-                {t.featured.viewAllFullStack} <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </motion.div>
+          <ProjectCarousel projects={featured} t={t.featured} allHref={allProjectsHref} />
         </div>
       </section>
 
@@ -331,45 +255,64 @@ export default function HomeView({ lang, t, roleShort, downloadCv, cvHref, dashb
         </div>
       </section>
 
-      {/* ── Especialidades ── */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-            className="text-3xl font-bold text-center mb-12 text-secondary-500 dark:text-secondary-400"
-          >
-            {t.specialties.title}
-          </motion.h2>
+      {/* ── Herramientas ── */}
+      <TechRibbon t={t.tools} rows={ribbon} />
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {([
-              { id: 'analytics', Icon: BarChart3, box: 'bg-blue-50 dark:bg-blue-950/50', icon: 'text-blue-600 dark:text-blue-400', dot: 'bg-blue-500' },
-              { id: 'web', Icon: Code2, box: 'bg-primary-50 dark:bg-primary-900/30', icon: 'text-primary-700 dark:text-primary-400', dot: 'bg-primary-500' },
-              { id: 'automation', Icon: Zap, box: 'bg-orange-50 dark:bg-orange-950/40', icon: 'text-orange-500 dark:text-orange-400', dot: 'bg-orange-500' },
-            ] as const).map((s, i) => (
+      {/* ── Estudios ── */}
+      <section className="bg-background-alt py-20">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <motion.div
+            variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">{t.studies.title}</h2>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">{t.studies.subtitle}</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {studies.map((s, i) => (
               <motion.div
                 key={s.id}
                 variants={fadeUp} initial="hidden" whileInView="visible"
                 viewport={{ once: true, margin: '-60px' }} custom={i * 0.1}
-                className="bg-white dark:bg-[#0f0f17] p-7 rounded-2xl border border-gray-200 dark:border-[#1e1e32] hover:shadow-xl dark:hover:shadow-[#1e1e32]/50 hover:-translate-y-1 transition-all duration-300"
+                className={`flex flex-col bg-gradient-to-br ${s.color} rounded-2xl border ${s.border} p-6`}
               >
-                <div className={`w-11 h-11 rounded-xl ${s.box} flex items-center justify-center mb-4`}>
-                  <s.Icon className={`h-5 w-5 ${s.icon}`} aria-hidden="true" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{t.specialties[s.id].title}</h3>
-                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                  {t.specialties[s.id].body}
-                </p>
-                <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
-                  {t.specialties[s.id].items.map(item => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className={`w-1.5 h-1.5 rounded-full ${s.dot} flex-shrink-0`} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <span className={`self-start inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full mb-4 ${s.tag}`}>
+                  <GraduationCap className="h-3.5 w-3.5" aria-hidden="true" />
+                  {s.badge}
+                </span>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-snug mb-2">{s.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">{s.institution}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 mb-5">{s.period}</p>
+                {s.certificateUrl ? (
+                  <a
+                    href={s.certificateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto self-start inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium bg-white dark:bg-[#0f0f17] border border-gray-200 dark:border-[#2a2a44] text-gray-800 dark:text-gray-200 hover:border-primary-400 dark:hover:border-primary-600 transition-colors"
+                  >
+                    <Award className="h-4 w-4" aria-hidden="true" />
+                    {t.studies.viewCertificate}
+                    <ExternalLink className="h-3.5 w-3.5 opacity-60" aria-hidden="true" />
+                  </a>
+                ) : (
+                  // No public certificate yet (degree still in progress).
+                  <span className="mt-auto self-start inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border border-dashed border-gray-300 dark:border-[#2a2a44] text-gray-500 dark:text-gray-400">
+                    <Award className="h-4 w-4" aria-hidden="true" />
+                    {t.studies.pending}
+                  </span>
+                )}
               </motion.div>
             ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link
+              href={href('/certifications')}
+              className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:text-primary-900 dark:hover:text-primary-300 transition-colors text-sm"
+            >
+              {t.studies.allCertifications} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>
@@ -378,28 +321,41 @@ export default function HomeView({ lang, t, roleShort, downloadCv, cvHref, dashb
       <section className="container mx-auto px-4 py-20">
         <motion.div
           variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-          className="max-w-3xl mx-auto text-center bg-gradient-to-br from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 p-12 rounded-3xl border border-primary-200 dark:border-primary-800/50"
+          className="max-w-3xl mx-auto text-center bg-gradient-to-br from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 p-8 md:p-12 rounded-3xl border border-primary-200 dark:border-primary-800/50"
         >
           <h2 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900 dark:text-white">
             {workTogether.title}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
+          <p className="text-gray-700 dark:text-gray-300 mb-2 max-w-xl mx-auto">
             {workTogether.body}
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-8 max-w-xl mx-auto">
+            {workTogether.freelance}
+          </p>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center">
             <Link
               href={href('/contact')}
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 font-medium shadow-lg shadow-primary-200 dark:shadow-primary-900/30 hover:scale-[1.02]"
             >
               {workTogether.cta}
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link
-              href={href('/about')}
-              className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium"
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-flex items-center justify-center gap-2 px-4 py-3.5 border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium text-[13px] sm:text-base whitespace-nowrap"
             >
-              {t.aboutMe}
-            </Link>
+              <Mail className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+              {EMAIL}
+            </a>
+            <a
+              href={LINKEDIN}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 border-2 border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all font-medium"
+            >
+              <Linkedin className="h-4 w-4" aria-hidden="true" />
+              LinkedIn
+            </a>
           </div>
         </motion.div>
       </section>

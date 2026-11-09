@@ -4,6 +4,8 @@ import {
   ArrowRight, Briefcase, Code2, Database, ExternalLink, Rocket, Download, Globe, Zap, Shield, GraduationCap,
 } from 'lucide-react'
 import Reveal from '@/components/Reveal'
+import { education } from '@/data/education'
+import { getSkills, type SkillGroup } from '@/data/skills'
 import { SITE_NAME, cvPath, toLocale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/get-dictionary'
 import { pageMetadata } from '@/i18n/metadata'
@@ -28,48 +30,10 @@ const chip = {
   gray: 'bg-gray-50 text-gray-800 border-gray-300 dark:bg-gray-800/50 dark:text-gray-300 dark:border-gray-700/50',
 }
 
-// Tool names are language-neutral; only the security skills are translated
-// (they come from the dictionary, matched to these colors by position).
-const techStack = [
-  {
-    id: 'data',
-    icon: Database,
-    skills: [
-      { name: 'SQL', color: chip.teal },
-      { name: 'Python · pandas', color: chip.yellow },
-      { name: 'scikit-learn', color: chip.orange },
-      { name: 'BigQuery', color: chip.blue },
-      { name: 'dbt', color: chip.orange },
-      { name: 'PostgreSQL', color: chip.purple },
-      { name: 'Metabase', color: chip.indigo },
-      { name: 'Power BI', color: chip.yellow },
-    ],
-  },
-  {
-    id: 'fullstack',
-    icon: Code2,
-    skills: [
-      { name: 'React · Next.js', color: chip.blue },
-      { name: 'TypeScript', color: chip.blue },
-      { name: 'Node.js · APIs REST', color: chip.green },
-      { name: 'Supabase', color: chip.green },
-      { name: 'Tailwind CSS', color: chip.cyan },
-      { name: 'Docker · Vercel', color: chip.gray },
-    ],
-  },
-  {
-    id: 'ai',
-    icon: Zap,
-    skills: [
-      { name: 'n8n', color: chip.orange },
-      { name: 'Make · Zapier', color: chip.purple },
-      { name: 'Claude API', color: chip.orange },
-      { name: 'Gemini · Groq', color: chip.blue },
-      { name: 'Ollama', color: chip.gray },
-      { name: 'Telegram API', color: chip.cyan },
-    ],
-  },
-] as const
+// Tool chips come from the shared skills source (also used by the home ribbon);
+// only the security skills are translated here, matched to these colors by position.
+const groupIcons = { data: Database, fullstack: Code2, ai: Zap } as const
+const groupOrder: SkillGroup[] = ['data', 'fullstack', 'ai']
 
 const securityColors = [chip.indigo, chip.teal, chip.purple, chip.gray]
 
@@ -77,8 +41,6 @@ const jobs = [
   { id: 'codingClick', tags: ['Next.js', 'React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Supabase', 'n8n', 'Make', 'Docker', 'Vercel'] },
   { id: 'ivolution', tags: ['SQL', 'BigQuery', 'dbt', 'Metabase', 'Python', 'n8n'] },
 ] as const
-
-const educationIds = ['upso', 'dsml', 'cyber'] as const
 
 const languageBars = [
   { code: 'es', flag: '🇦🇷', bar: 100, color: 'bg-primary-600' },
@@ -95,8 +57,13 @@ export default function AboutPage({ params }: Props) {
   const t = dict.about
   const href = (path: string) => localizePath(lang, path)
 
+  const skills = getSkills(lang)
   const stackCards = [
-    ...techStack.map((c) => ({ id: c.id, icon: c.icon, skills: c.skills.map((s) => ({ ...s })) })),
+    ...groupOrder.map((group) => ({
+      id: group,
+      icon: groupIcons[group],
+      skills: skills.filter((s) => s.group === group).map((s) => ({ name: s.name, color: chip[s.color] })),
+    })),
     {
       id: 'security' as const,
       icon: Shield,
@@ -327,8 +294,8 @@ export default function AboutPage({ params }: Props) {
           </h2>
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {educationIds.map((id, i) => {
-            const e = t.educationList[id]
+          {education.map(({ id }, i) => {
+            const e = dict.education.items[id]
             return (
               <Reveal key={id} delay={i * 100} className={`${card} p-6`}>
                 <h3 className="font-semibold text-gray-900 dark:text-white leading-snug mb-2">{e.title}</h3>

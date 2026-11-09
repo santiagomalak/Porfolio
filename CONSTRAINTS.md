@@ -53,9 +53,11 @@ Re-measured 2026-10-22 after the i18n change, via `npx lighthouse@12.2.1` agains
 | LCP | `/dashboards` | 2.4–2.8s (2.6s) | must not exceed 3.5s |
 | CLS | all sampled routes | 0 – 0.001 | must not exceed 0.05 |
 | First Load JS (shared) | all routes | 87.3 kB (87.3 kB) | must not grow |
-| First Load JS | `/[lang]` (heaviest static page) | 140 kB (141 kB) | must not grow |
+| First Load JS | `/[lang]` (heaviest static page) | 146 kB (140 kB) | must not grow |
 
 LCP fix of 2026-10-22: on every page the LCP element is the hero intro paragraph, and it used to start at `opacity: 0` under a Framer Motion entrance — invisible until React hydrated, which was 2.4–3.7s of "render delay". Above-the-fold entrances are now a CSS animation (`animate-fade-up` in `tailwind.config.ts`), and the `/dashboards` iframe (a whole external app) mounts only after the page's `load` event. Ranges above are 3 runs each via Lighthouse CI. Don't put a JS-driven `initial={{ opacity: 0 }}` on above-the-fold text again; `whileInView` below the fold is fine.
+
+Home JS rebaseline of 2026-11-08: `/[lang]` went from 140 kB to 146 kB when the home gained two interactive pieces, the project carousel (`ProjectCarousel.tsx`, tabs + autoplay + swipe via CSS scroll-snap, no library) and the scroll-linked tool ribbon (`TechRibbon.tsx`, Framer Motion `useScroll`). That growth is the feature, not drift; measured the same day with a local Lighthouse 12.2.1 run: `/` Performance 93–94, A11y 100, LCP 2.9–3.0s, CLS 0. The new 146 kB is the number that must not grow.
 
 LCP sits above the textbook Core Web Vitals "good" threshold of 2500ms on most sampled routes — treat closing that gap as a real backlog item, not a solved problem. The 3500ms ceiling above is a ratchet (don't regress further), not a target.
 
