@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ExternalLink, Github, BarChart2, TrendingUp, Database, Globe } from 'lucide-react'
-import { format, type Dictionary } from '@/i18n/get-dictionary'
+import type { Dictionary } from '@/i18n/get-dictionary'
+import { format } from '@/i18n/format'
 
 type DashboardsCopy = Dictionary['dashboards']
 

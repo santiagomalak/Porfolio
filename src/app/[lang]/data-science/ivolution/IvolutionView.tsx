@@ -6,7 +6,8 @@ import Image from 'next/image'
 import { ArrowLeft, ExternalLink, X, ZoomIn } from 'lucide-react'
 import { useState } from 'react'
 import type { Locale } from '@/i18n/config'
-import { format, type Dictionary } from '@/i18n/get-dictionary'
+import type { Dictionary } from '@/i18n/get-dictionary'
+import { format } from '@/i18n/format'
 import { localizePath } from '@/i18n/routing'
 
 const fadeUp = {

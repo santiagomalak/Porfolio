@@ -14,7 +14,5 @@ export function getDictionary(lang: Locale): Dictionary {
 
 export type { Dictionary }
 
-/** format('Cargando {title}...', { title: 'X' }) → 'Cargando X...' */
-export function format(template: string, vars: Record<string, string>): string {
-  return template.replace(/\{(\w+)\}/g, (_, key: string) => vars[key] ?? `{${key}}`)
-}
+// Client components must import `format` from './format' directly.
+export { format } from './format'
