@@ -15,7 +15,7 @@ export function pageMetadata(
   const url = `${BASE_URL}${localizePath(lang, path)}`
   // Next.js replaces (doesn't deep-merge) a parent's openGraph/twitter objects,
   // so every page restates siteName, type and the image.
-  const alt = `${SITE_NAME} — ${getDictionary(lang).common.roleFull}`
+  const alt = `${SITE_NAME} — ${getDictionary(lang).common.roleShort}`
   const image = { url: ogImagePath(lang), width: 1200, height: 630, alt }
   return {
     ...(title ? { title } : {}),

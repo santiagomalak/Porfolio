@@ -111,7 +111,7 @@ export default function AboutPage({ params }: Props) {
       <section className="container mx-auto px-4 pt-16 pb-12 max-w-4xl">
         <Reveal>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-700/50 text-primary-700 dark:text-primary-400 text-sm font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse motion-reduce:animate-none" />
             {t.badge}
           </div>
         </Reveal>
@@ -233,15 +233,15 @@ export default function AboutPage({ params }: Props) {
                 <p className="text-primary-700 dark:text-primary-400 font-medium text-sm">{t.stackadvisor.kind}</p>
               </div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-100 dark:bg-green-950/50 text-green-700 dark:text-green-400 text-xs font-semibold rounded-full border border-green-200 dark:border-green-800/50">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                Live
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse motion-reduce:animate-none" />
+                {t.online}
               </span>
             </div>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-5">
               {t.stackadvisor.body}
             </p>
             <div className="flex flex-wrap gap-2 mb-5">
-              {['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini', 'Decision Engine', 'SaaS'].map((tag) => (
+              {['Next.js', 'TypeScript', 'Tailwind CSS', 'Gemini'].map((tag) => (
                 <span key={tag} className="px-2.5 py-1 bg-white dark:bg-[#111120] border border-primary-200 dark:border-primary-800/50 text-primary-700 dark:text-primary-400 text-xs font-medium rounded-full">
                   {tag}
                 </span>
@@ -262,11 +262,11 @@ export default function AboutPage({ params }: Props) {
           <Reveal delay={100} className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20 rounded-2xl border border-orange-200 dark:border-orange-800/50 p-8">
             <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Job Hunting Automation</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{t.jobHunting.title}</h3>
                 <p className="text-orange-700 dark:text-orange-400 font-medium text-sm">{t.jobHunting.kind}</p>
               </div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 text-xs font-semibold rounded-full border border-orange-200 dark:border-orange-800/50">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse motion-reduce:animate-none" />
                 n8n + LLMs
               </span>
             </div>
@@ -375,19 +375,8 @@ export default function AboutPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── Filosofía ── */}
-      <section className="container mx-auto px-4 py-16 max-w-4xl">
-        <Reveal className="bg-gradient-to-br from-primary-600 to-secondary-500 rounded-3xl p-10 text-white text-center">
-          <div className="text-4xl mb-6">💡</div>
-          <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-6 opacity-95">
-            {t.philosophy}
-          </blockquote>
-          <p className="opacity-80 text-sm">{t.philosophyCaption}</p>
-        </Reveal>
-      </section>
-
       {/* ── CTA ── */}
-      <section className="container mx-auto px-4 pb-20 max-w-4xl text-center">
+      <section className="container mx-auto px-4 pt-4 pb-20 max-w-4xl text-center">
         <Reveal>
           <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">{dict.common.workTogether.title}</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">

@@ -28,7 +28,7 @@ export default function SiteShell({ lang, children }: { lang: Locale; children: 
     name: SITE_NAME,
     alternateName: 'Santiago Malak',
     url: `${BASE_URL}${localizePath(lang, '/')}`,
-    jobTitle: dict.common.roleFull,
+    jobTitle: dict.common.roleShort,
     description: dict.meta.personDescription,
     knowsLanguage: ['es', 'en', 'pt'],
     alumniOf: {

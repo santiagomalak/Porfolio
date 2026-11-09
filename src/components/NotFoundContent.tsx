@@ -48,7 +48,7 @@ export default function NotFoundContent({ lang, t }: { lang: Locale; t: Dictiona
           <p className="text-gray-400 mt-2">$ python predict_location.py</p>
           <p className="text-green-400 mt-1">{'>'} {t.prediction}: <span className="text-white">somewhere/in/the/internet</span></p>
           <p className="text-green-400">{'>'} {t.confidence}: <span className="text-red-400">2.3%</span> <span className="text-gray-500">{t.comment}</span></p>
-          <p className="text-gray-400 mt-2">$ <span className="animate-pulse">_</span></p>
+          <p className="text-gray-400 mt-2">$ <span className="animate-pulse motion-reduce:animate-none">_</span></p>
         </div>
 
         {/* CTAs */}

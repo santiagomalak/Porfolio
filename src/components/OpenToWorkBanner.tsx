@@ -7,7 +7,7 @@ import { localizePath } from '@/i18n/routing'
 export default function OpenToWorkBanner({ lang, t }: { lang: Locale; t: Dictionary['common']['banner'] }) {
   return (
     <div className="bg-gradient-to-r from-[#052e16] to-[#064e3b] border-b border-green-800/50 text-green-100 py-2 px-4 flex items-center justify-center gap-3 text-xs font-medium">
-      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
+      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse motion-reduce:animate-none flex-shrink-0" />
       <span className="hidden sm:inline text-green-200">
         {t.long}
       </span>

@@ -69,7 +69,7 @@ export function GET(_req: Request, { params }: { params: { lang: string } }) {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontSize: 84, fontWeight: 700, letterSpacing: -2 }}>{SITE_NAME}</div>
           <div style={{ fontSize: 44, fontWeight: 600, color: '#3d4d82', marginTop: 8 }}>
-            {dict.common.roleFull}
+            {dict.common.roleShort}
           </div>
           <div style={{ fontSize: 30, color: '#6b7280', marginTop: 24 }}>{t.ogTagline}</div>
         </div>

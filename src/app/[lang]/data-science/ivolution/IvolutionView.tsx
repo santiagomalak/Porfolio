@@ -55,7 +55,7 @@ export default function IvolutionView({ lang, t, common }: {
             {t.badge}
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-gray-900 dark:text-white">
-            Performance Monitoring System
+            {t.title}
           </h1>
           <p className="text-xl text-gray-500 dark:text-gray-400 font-medium mb-6">Ivolution Sport Science</p>
           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
@@ -78,7 +78,7 @@ export default function IvolutionView({ lang, t, common }: {
             { value: '967', label: t.stats.athletes },
             { value: '13', label: t.stats.sports },
             { value: '10k+', label: t.stats.measurements },
-            { value: t.activeValue, label: t.stats.active },
+            { value: '3', label: t.stats.languages },
           ].map((stat) => (
             <div key={stat.label} className="bg-white dark:bg-[#0f0f17] rounded-xl border border-gray-200 dark:border-[#1e1e32] p-5 text-center">
               <p className="text-2xl font-bold text-primary-700 dark:text-primary-400 mb-1">{stat.value}</p>

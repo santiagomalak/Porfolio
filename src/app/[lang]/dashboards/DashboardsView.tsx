@@ -10,7 +10,6 @@ type DashboardsCopy = Dictionary['dashboards']
 const DASHBOARDS = [
   {
     id:          'ecommerce',
-    title:       'E-Commerce Analytics',
     liveUrl:     'https://ecommerce-dashboard-puce.vercel.app',
     githubUrl:   'https://github.com/santiagomalak/ecommerce-dashboard',
     color:       '#FF694B',
@@ -20,7 +19,6 @@ const DASHBOARDS = [
   },
   {
     id:          'crypto',
-    title:       'Crypto Live Dashboard',
     liveUrl:     'https://crypto-dashboard-five-dun.vercel.app',
     githubUrl:   'https://github.com/santiagomalak/crypto-dashboard',
     color:       '#6366f1',
@@ -30,7 +28,6 @@ const DASHBOARDS = [
   },
   {
     id:          'argentina',
-    title:       'Argentina Macro Dashboard',
     liveUrl:     'https://argentina-macro.vercel.app',
     githubUrl:   'https://github.com/santiagomalak/Argentina-Macro',
     color:       '#74b9ff',
@@ -130,12 +127,12 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
                 } : undefined}
               >
                 <DIcon size={15} />
-                {d.title}
+                {t.items[d.id].title}
                 {d.status === 'live' && (
                   <span className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full"
                     style={{ background: '#22c55e18', color: '#22c55e', border: '1px solid #22c55e30' }}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                    LIVE
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse motion-reduce:animate-none" />
+                    {t.live}
                   </span>
                 )}
               </button>
@@ -150,7 +147,7 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div className="w-2.5 h-2.5 rounded-full" style={{ background: current.color }} />
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{current.title}</h2>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{copy.title}</h2>
             </div>
             <p className="text-gray-500 dark:text-zinc-500 text-sm ml-5">{copy.subtitle}</p>
             <p className="text-gray-600 dark:text-zinc-400 text-sm mt-2 max-w-2xl ml-5">{copy.description}</p>
@@ -186,7 +183,7 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
             <Icon size={28} style={{ color: current.color }} />
           </div>
           <div>
-            <p className="text-gray-900 dark:text-white font-semibold text-lg mb-1">{current.title}</p>
+            <p className="text-gray-900 dark:text-white font-semibold text-lg mb-1">{copy.title}</p>
             <p className="text-gray-500 dark:text-zinc-500 text-sm">{copy.subtitle}</p>
           </div>
           <a href={current.liveUrl} target="_blank" rel="noopener noreferrer"
@@ -223,7 +220,7 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
               style={{ background: '#0a0a0f' }}>
               <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
                 style={{ borderColor: `${current.color}40`, borderTopColor: current.color }} />
-              <p className="text-zinc-600 text-sm">{format(t.loading, { title: current.title })}</p>
+              <p className="text-zinc-600 text-sm">{format(t.loading, { title: copy.title })}</p>
             </div>
           )}
 
@@ -233,7 +230,7 @@ export default function DashboardsView({ t }: { t: DashboardsCopy }) {
             className="w-full"
             style={{ height: 680, border: 'none' }}
             onLoad={() => setLoaded(p => ({ ...p, [active]: true }))}
-            title={current.title}
+            title={copy.title}
             allow="clipboard-read; clipboard-write"
           />}
         </motion.div>

@@ -29,12 +29,10 @@ export function generateMetadata({ params }: Params): Metadata {
     keywords: [
       SITE_NAME,
       'Santiago Malak',
-      'Hybrid Engineer',
+      'Analista de Datos',
       'Analytics Engineer',
       'Full Stack Developer',
-      'AI Automation Engineer',
       'Data Analyst',
-      'Data Scientist',
       'BigQuery',
       'dbt',
       'SQL',

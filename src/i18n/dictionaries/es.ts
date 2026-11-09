@@ -4,19 +4,19 @@
 
 const es = {
   meta: {
-    siteTitle: 'Santiago Aragon Malak — Hybrid Engineer: Data + Full Stack + IA',
+    siteTitle: 'Santiago Aragon Malak — Analista de Datos',
     siteDescription:
-      'Hybrid Engineer: Data + Full Stack + IA. Construyo pipelines en BigQuery + dbt, dashboards, aplicaciones React/Next.js y automatizaciones con n8n + LLMs. 967 atletas monitoreados en producción en Ivolution. Abierto a roles remotos.',
+      'Analista de datos. Armo dashboards para la toma de decisiones y trabajo con Python y SQL. En Ivolution Sport Science trabajé con datos de 967 deportistas. Busco puesto junior / semi-senior, remoto o híbrido en Córdoba Capital.',
     ogDescription:
-      'Modelo los datos, construyo la interfaz que los consume y automatizo el proceso completo. BigQuery · dbt · Next.js · n8n + LLMs.',
-    ogTagline: 'SQL · Python · BigQuery · dbt · Next.js · n8n + LLMs',
-    ogAvailability: 'Disponible para roles remotos',
+      'Dashboards para tomar decisiones, Python y SQL. También desarrollo full stack y automatización con IA.',
+    ogTagline: 'SQL · Python · dbt · Metabase · Power BI',
+    ogAvailability: 'Busco puesto en datos · Remoto',
     personDescription:
-      'Hybrid Engineer: Data + Full Stack + IA. SQL, Python, BigQuery, dbt, React/Next.js y automatización con n8n + LLMs.',
+      'Analista de datos: SQL, Python, dbt y dashboards en Metabase y Power BI. También desarrollo full stack y automatización con IA.',
     about: {
       title: 'Sobre mí',
       description:
-        'Hybrid Engineer: Data + Full Stack + IA. Founder de Coding Click y ex Data Scientist / Analytics Engineer en Ivolution Sport Science (967 atletas monitoreados). Abierto a roles remotos.',
+        'Analista de datos. Cofundador de Coding Click y ex Data Analytics Engineer en Ivolution Sport Science. Busco puesto en datos, remoto o híbrido en Córdoba Capital.',
     },
     certifications: {
       title: 'Certificaciones & Formación',
@@ -26,7 +26,7 @@ const es = {
     contact: {
       title: 'Contacto',
       description:
-        'Abierto a roles remotos junior / semi-senior: Analytics Engineer, Data Analyst, Data Scientist, Full Stack o AI/Automation Engineer. También proyectos freelance. Escribime.',
+        'Busco puesto de Analista de Datos o Analytics Engineer (junior / semi-senior), remoto o presencial / híbrido en Córdoba Capital. También tomo proyectos freelance. Escribime.',
     },
     dashboards: {
       title: 'Dashboards interactivos',
@@ -39,9 +39,9 @@ const es = {
         'Proyectos de datos: sistema de monitoreo para 967 atletas en Ivolution (BigQuery + dbt + Metabase), plataforma dbt sobre 100k+ órdenes Olist, machine learning con scikit-learn y segmentación de usuarios.',
     },
     ivolution: {
-      title: 'Performance Monitoring System — Ivolution',
+      title: 'Tableros de rendimiento deportivo — Ivolution',
       description:
-        'Caso de estudio: sistema de análisis de rendimiento para 967 atletas en 13 deportes con BigQuery, dbt y Metabase. Alertas dinámicas por percentil, operativo tras mi salida.',
+        'Caso de estudio: los dashboards que armé en Ivolution Sport Science para seguir a 967 deportistas de 13 disciplinas, con dbt y Metabase.',
     },
     olist: {
       title: 'E-Commerce Data Platform — Olist',
@@ -65,13 +65,12 @@ const es = {
       home: 'Inicio',
       about: 'Sobre Mí',
       webProjects: 'Full Stack',
-      dataScience: 'Data',
+      dataScience: 'Datos',
       dashboards: 'Dashboards',
       certifications: 'Certificaciones',
       contact: 'Contacto',
     },
-    roleShort: 'Hybrid Engineer',
-    roleFull: 'Hybrid Engineer: Data + Full Stack + IA',
+    roleShort: 'Analista de Datos',
     cv: 'CV',
     downloadCv: 'Descargar CV',
     themeToLight: 'Cambiar a modo claro',
@@ -80,16 +79,16 @@ const es = {
     language: 'Idioma',
     rights: 'Todos los derechos reservados.',
     banner: {
-      long: 'Disponible para roles remotos y proyectos freelance · Córdoba, Argentina',
-      short: 'Open to work · Remoto',
+      long: 'Busco puesto como Analista de Datos · Remoto o híbrido en Córdoba Capital',
+      short: 'Disponible · Remoto',
       cta: 'Contactar',
     },
-    backToDataScience: 'Volver a proyectos de Data',
+    backToDataScience: 'Volver a proyectos de datos',
     letsTalk: 'Hablemos de tu proyecto',
     workTogether: {
-      title: '¿Trabajamos juntos?',
-      body: 'Busco roles remotos junior / semi-senior como Analytics Engineer, Data Analyst, Data Scientist, Full Stack o AI/Automation Engineer. También tomo proyectos freelance de automatización, dashboards y desarrollo a medida.',
-      cta: 'Iniciar conversación',
+      title: '¿Hablamos?',
+      body: 'Busco mi próximo puesto en datos (junior / semi-senior). Remoto desde cualquier lugar, o presencial / híbrido en Córdoba Capital.',
+      cta: 'Escribime',
     },
   },
 
@@ -103,125 +102,131 @@ const es = {
   },
 
   home: {
-    availability: 'Abierto a roles remotos y proyectos',
-    heroSubtitle: 'Data + Full Stack + IA',
     intro:
-      'Construyo sistemas de datos y software que se usan en producción: pipelines en BigQuery + dbt, dashboards, aplicaciones React/Next.js y automatizaciones con IA. Modelo los datos, construyo la interfaz que los consume y automatizo el proceso completo.',
+      'Tengo experiencia armando dashboards visuales para la toma de decisiones y trabajo mucho con Python y SQL. También tengo base como desarrollador full stack y uso IA para automatizar tareas. Busco un puesto donde pueda aportar y seguir aprendiendo.',
     ctaProjects: 'Ver proyectos',
-    ctaDashboards: 'Dashboards live',
+    heroImageAlt: 'Dashboard de Ivolution con métricas de fuerza de los deportistas, filtros por fecha, deportista y tipo de ejercicio',
+    heroCaption: 'Uno de los dashboards que armé en Ivolution Sport Science para que el equipo técnico siguiera el rendimiento de cada deportista.',
+    statsCaption: 'Lo que manejé en mi trabajo en Ivolution Sport Science',
     stats: {
-      athletes: { label: 'Atletas monitoreados', sub: 'Data · Ivolution' },
-      orders: { label: 'Órdenes modeladas', sub: 'dbt · Olist' },
-      stacks: { label: 'Stacks evaluados', sub: 'StackAdvisor · IA' },
-      measurements: { label: 'Mediciones', sub: 'BigQuery · Ivolution' },
+      athletes: 'deportistas',
+      sports: 'disciplinas deportivas',
+      measurements: 'mediciones analizadas',
     },
     featured: {
       title: 'Proyectos destacados',
-      subtitle: 'Datos, producto y automatización — en empresa, con clientes y propios',
+      subtitle: 'Datos, desarrollo web e IA: trabajo en empresa, para clientes y proyectos propios',
       ivolution: {
-        label: 'Trabajo en empresa · 967 atletas · 13 deportes',
-        company: 'Ivolution Sport Science · Data',
+        title: 'Tableros de rendimiento deportivo',
+        label: 'Trabajo en empresa · 967 deportistas · 13 disciplinas',
+        company: 'Ivolution Sport Science · Datos',
         description:
-          'Diseñé desde cero el sistema de monitoreo de fatiga neuromuscular para 967 atletas de 13 deportes: modelos en BigQuery + dbt, dashboards en Metabase y umbrales dinámicos por percentil (p25/p75) que clasifican a cada atleta en FATIGADO / ATENCIÓN / SUPERCOMPENSACIÓN. Herramienta principal de decisión del staff, con soporte ES/EN/PT.',
+          'Armé los dashboards que usaban entrenadores y preparadores físicos para seguir a 967 deportistas de 13 disciplinas. Ordené los datos de las evaluaciones con dbt y los mostré en Metabase, con avisos que marcan de un vistazo quién está fatigado, quién está normal y quién rinde por encima de lo habitual.',
       },
       coubertin: {
-        label: 'Proyecto de cliente · LMS a medida',
-        company: 'Coding Click · Full Stack',
+        title: 'Instituto Coubertin — Plataforma de cursos',
+        label: 'Proyecto de cliente · En producción',
+        company: 'Coding Click · Desarrollo web',
         description:
-          'Plataforma educativa completa para un instituto de formación deportiva: catálogo de cursos, pagos con Stripe e inscripción automática, aula virtual con progreso, foro por curso, evaluaciones con corrección y panel de administración. Auth y datos en Supabase con políticas RLS. En etapa final de testing y carga de contenido.',
+          'Plataforma de cursos online para un instituto de formación deportiva: los alumnos compran un curso, cursan, rinden evaluaciones y participan en foros, y el instituto administra todo desde un panel. Está en producción y yo me encargo de mantener el sistema y su infraestructura.',
       },
       turnex: {
-        label: 'Sistema de gestión · Demo funcional',
-        company: 'Coding Click · Full Stack + SQL',
+        title: 'Turnex — Gestión de complejos deportivos',
+        label: 'Proyecto de cliente · En etapa de pruebas',
+        company: 'Proyecto de cliente · Desarrollo web + SQL',
         description:
-          'Sistema de gestión para complejos deportivos: socios y cuentas corrientes, cuotas, reservas de canchas, turnos fijos, control de acceso con QR, cobros, caja diaria y portal del socio. PostgreSQL con SQL directo y migraciones versionadas, roles por perfil, tareas diarias con cron y tests unitarios + E2E.',
+          'Sistema para administrar un complejo deportivo: socios, cuotas, reservas de canchas, cobros, caja diaria y acceso con código QR. Lo desarrollé para un cliente y está en etapa de pruebas antes de la entrega.',
       },
       stackadvisor: {
-        label: 'SaaS propia · En producción',
-        company: 'Proyecto propio · Full Stack + IA',
+        title: 'StackAdvisor',
+        label: 'Proyecto propio · Online',
+        company: 'Proyecto personal · Desarrollo web + IA',
         description:
-          'Cuestionario que evalúa 35 combinaciones de stacks y recomienda el óptimo con justificación, roadmap de 12 semanas y estimador de costos. El Blueprint premium usa Gemini para generar arquitectura, esquema de base de datos y plan de desarrollo a medida del proyecto.',
+          'Herramienta web que, con un cuestionario corto, recomienda qué tecnologías usar para un proyecto de software y explica por qué. Usa IA (Gemini) para armar un plan de desarrollo a medida.',
       },
       viewCase: 'Ver caso',
       viewProject: 'Ver proyecto',
       viewCode: 'Ver código',
-      viewAllFullStack: 'Todos los proyectos Full Stack',
-      viewAllData: 'Todos los proyectos de Data',
+      viewAllFullStack: 'Todos los proyectos de desarrollo',
+      viewAllData: 'Todos los proyectos de datos',
     },
     live: {
       kicker: 'En vivo',
       title: 'Dashboards interactivos',
-      subtitle: 'Datos reales, deployados en producción — abrís y funcionan.',
+      subtitle: 'Están publicados y funcionando: podés abrirlos y probarlos.',
       viewAll: 'Ver todos',
-      ecommerceSub: 'Olist Brazil (PT-BR) · 100k+ órdenes · dbt + PostgreSQL',
-      cryptoSub: 'BTC · ETH · SOL · BNB · XRP — Binance WebSocket',
-      argentinaSub: 'Dólar · Inflación · Riesgo País — datos en tiempo real',
+      ecommerceSub: 'Analicé más de 100.000 pedidos reales de una tienda online de Brasil: quiénes son los mejores clientes, cuántos vuelven a comprar y cómo evolucionan las ventas.',
+      cryptoSub: 'Precios de Bitcoin y otras criptomonedas que se actualizan al instante, con avisos cuando hay movimientos fuera de lo normal.',
+      argentinaSub: 'Dólar, inflación y riesgo país en un solo lugar, con datos públicos que se actualizan solos.',
     },
     specialties: {
-      title: 'Áreas de especialización',
+      title: 'Qué hago',
       analytics: {
-        title: 'Data & Analytics',
-        body: 'Datos dispersos → modelos limpios y dashboards que se usan para decidir.',
-        items: ['SQL · BigQuery · dbt · PostgreSQL', 'Metabase · Power BI', 'Python · pandas · scikit-learn', 'Alertas dinámicas · Percentiles'],
+        title: 'Datos',
+        body: 'Junto datos dispersos, los ordeno y los muestro en dashboards que sirven para decidir.',
+        items: ['SQL · Python · dbt', 'Metabase · Power BI', 'BigQuery · PostgreSQL', 'pandas · scikit-learn'],
       },
       web: {
-        title: 'Full Stack',
-        body: 'Ideas de producto → apps completas, del modelo de datos al deploy.',
+        title: 'Desarrollo full stack',
+        body: 'Armo aplicaciones web completas, desde la base de datos hasta la pantalla.',
         items: ['React · Next.js · TypeScript', 'Node.js · APIs REST', 'Supabase · PostgreSQL', 'Tailwind CSS · Docker · Vercel'],
       },
       automation: {
-        title: 'IA & Automatización',
-        body: 'Procesos manuales → flujos automáticos con LLMs integrados.',
-        items: ['n8n · Make · Zapier', 'Claude API · Gemini · Groq', 'Scraping · Scoring con IA', 'Telegram API · Alertas'],
+        title: 'IA y automatización',
+        body: 'Uso IA para automatizar tareas repetitivas y ahorrar tiempo.',
+        items: ['n8n · Make · Zapier', 'Claude · Gemini · Groq', 'Flujos automáticos', 'Avisos automáticos'],
       },
     },
     aboutMe: 'Sobre mí',
   },
 
   about: {
-    badge: 'Disponible · Hybrid Engineer: Data + Full Stack + IA',
+    badge: 'Disponible · Analista de Datos',
     greeting: 'Hola, soy',
     intro:
-      'Construyo sistemas de datos y software que se usan en producción. Perfil híbrido: modelo los datos, construyo la interfaz que los consume y automatizo el proceso completo — con SQL, Python, BigQuery y dbt del lado de datos, React/Next.js y TypeScript del lado de producto, y n8n + LLMs para automatizar.',
+      'Soy analista de datos. Aprendí a programar por mi cuenta y después hice la Diplomatura en Ciencia de Datos y Machine Learning de la UNC, donde aprendí Python a fondo. En Ivolution Sport Science armé dashboards para que profesionales del deporte tomaran decisiones con datos. También tengo base como desarrollador full stack y uso IA para automatizar tareas.',
     contactMe: 'Contactarme',
     experience: 'Experiencia',
     jobs: {
       codingClick: {
-        role: 'Founder & Hybrid Engineer — Full Stack, Data & Automation',
-        company: 'Coding Click · Profesional independiente',
-        period: 'Sep 2025 — Actualidad',
-        location: 'Córdoba, Argentina · Híbrido',
-        summary: 'Desarrollo de software end-to-end para PYMEs: web, sistemas a medida, data y automatización.',
+        role: 'Cofundador · Desarrollo web, datos y automatización',
+        company: 'Coding Click',
+        period: 'Actualidad',
+        location: 'Argentina · Remoto',
+        summary: 'Cofundé Coding Click, donde hacemos software a medida para pymes: sitios web, sistemas de gestión, dashboards y automatizaciones.',
         bullets: [
-          'Diseño y desarrollo sitios, e-commerce y sistemas a medida con React/Next.js, Node.js y PostgreSQL/Supabase — desde landing pages hasta portales internos de gestión.',
-          'Construí la plataforma LMS a medida del Instituto Coubertin con Next.js, Supabase y Vercel, con documentación de producto completa; en etapa final de testing y carga de contenido.',
-          'Implemento automatizaciones y reporting de datos con n8n, Make y APIs REST: sincronización entre sistemas, alertas automáticas y dashboards de seguimiento que reemplazan procesos manuales.',
-          'Manejo el ciclo completo de cada proyecto: relevamiento técnico, propuesta, desarrollo, despliegue y mantenimiento.',
+          'Desarrollo sitios y sistemas a medida con React/Next.js, Node.js y PostgreSQL/Supabase.',
+          'Construí la plataforma de cursos del Instituto Coubertin, que hoy está en producción; me encargo de mantener el sistema y su infraestructura.',
+          'Armo automatizaciones y reportes con n8n, Make y APIs para reemplazar tareas manuales.',
+          'Participo en todo el proceso de cada proyecto: relevamiento, propuesta, desarrollo, puesta en marcha y mantenimiento.',
         ],
       },
       ivolution: {
-        role: 'Data Scientist / Analytics Engineer',
+        role: 'Data Analytics Engineer',
         company: 'Ivolution Sport Science · Contrato temporal',
         period: 'Abr 2025 — Mar 2026',
         location: 'Argentina · Remoto',
-        summary: 'Diseñé e implementé desde cero el sistema de análisis de rendimiento deportivo de la organización.',
+        summary: 'Armaba dashboards con métricas de los deportistas para que los profesionales del deporte tomaran decisiones.',
         bullets: [
-          'Construí el sistema de monitoreo de fatiga neuromuscular para 967 atletas de 13 deportes con BigQuery, dbt y Metabase, usado como herramienta principal de decisión del staff.',
-          'Implementé umbrales dinámicos por percentil (p25 fatiga / p75 supercompensación) que clasifican automáticamente a cada atleta en FATIGADO / ATENCIÓN / SUPERCOMPENSACIÓN.',
-          'Migré los modelos de CMJ Rebound de Metabase a dbt, con surrogate keys y deduplicación de atletas entre los entornos de producción y desarrollo.',
-          'Desarrollé el framework de dashboard Return to Play y la versión multilingüe (ES/EN/PT) de los dashboards; automaticé flujos del sistema con n8n.',
+          'Armé dashboards en Metabase para seguir a 967 deportistas de 13 disciplinas, con más de 10.000 mediciones.',
+          'Ordené y transformé los datos de las evaluaciones con SQL y dbt, para que los dashboards fueran confiables y fáciles de mantener.',
+          'Agregué avisos automáticos que comparan cada evaluación con el historial del deportista y marcan si está fatigado, normal o por encima de lo habitual.',
+          'Pasé modelos de Metabase a dbt, unifiqué deportistas duplicados entre entornos, hice versiones de los dashboards en español, inglés y portugués, y automaticé tareas con n8n.',
+          'Trabajaba por tareas, con una reunión diaria (daily) con el equipo todas las mañanas.',
         ],
       },
     },
     building: 'Qué estoy construyendo',
+    online: 'Online',
     stackadvisor: {
-      kind: 'SaaS · En producción',
-      body: 'SaaS propia que resuelve la parálisis de decisión tecnológica: un cuestionario evalúa 35 combinaciones de stacks y devuelve el óptimo con justificación, roadmap de 12 semanas y estimador de costos. El Blueprint premium genera con Gemini la arquitectura, el esquema de base de datos y el plan de desarrollo del proyecto.',
+      kind: 'Proyecto propio · Desarrollo web + IA',
+      body: 'Herramienta web que, con un cuestionario corto, recomienda qué tecnologías usar para un proyecto de software y explica por qué. Usa IA (Gemini) para armar un plan de desarrollo a medida.',
       visit: 'Visitar StackAdvisor',
     },
     jobHunting: {
-      kind: 'IA & Automatización · Uso personal',
-      body: 'Pipeline en n8n que scrapea vacantes, las puntúa con IA según mi perfil, pide aprobación por Telegram, adapta el CV a cada oferta y registra todo en Google Sheets — porque buscar trabajo también se puede automatizar.',
+      title: 'Automatización de búsqueda laboral',
+      kind: 'IA y automatización · Uso personal',
+      body: 'Un flujo en n8n que junta ofertas de trabajo, las puntúa con IA según mi perfil, me pide aprobación por Telegram, adapta el CV a cada oferta y registra todo en Google Sheets.',
     },
     stack: 'Stack tecnológico',
     stackCategories: {
@@ -245,7 +250,7 @@ const es = {
       },
       cyber: {
         title: 'Diplomatura en Ciberseguridad',
-        institution: 'Universidad Nacional de Córdoba (FCEFyN)',
+        institution: 'Universidad San Ignacio de Loyola (USIL) · dictada por Mundos E',
         period: '2025',
       },
     },
@@ -260,9 +265,6 @@ const es = {
       },
       pt: { name: 'Portugués', level: 'C1 Avanzado', detail: 'Conversación fluida · Documentación técnica' },
     },
-    philosophy:
-      '"Los mejores productos nacen en la intersección de datos e ingeniería. Los datos te dicen qué construir. El código te deja construirlo."',
-    philosophyCaption: '— Mi filosofía de trabajo',
     seeProjects: 'Ver mis proyectos',
   },
 
@@ -280,7 +282,7 @@ const es = {
     titleA: 'Proyectos',
     titleB: 'Full Stack',
     intro:
-      'Del modelo de datos al deploy: sistemas a medida para clientes, productos propios con IA y apps en tiempo real. Next.js, TypeScript, PostgreSQL/Supabase y LLMs.',
+      'De la base de datos a la puesta en marcha: sistemas a medida para clientes, proyectos propios con IA y apps en tiempo real. Next.js, TypeScript, PostgreSQL/Supabase.',
   },
 
   certifications: {
@@ -289,7 +291,6 @@ const es = {
     intro:
       'Formación continua en Data Science, programación, IA y desarrollo web — de Google, IBM, Cisco y universidades internacionales.',
     university: 'Formación Universitaria',
-    universityBadge: 'Universidad Nacional de Córdoba',
     international: 'Certificaciones internacionales',
     credlyTitle: 'Ver todas mis badges verificadas en Credly',
     credlyBody: 'Google IT Support · IBM Web Dev · y más badges verificables',
@@ -298,6 +299,7 @@ const es = {
     viewBadge: 'Ver badge en Credly',
     universities: {
       dsml: {
+        badge: 'Universidad Nacional de Córdoba',
         name: 'Diplomatura en Data Science & Machine Learning',
         date: 'Mayo 2025',
         hours: '250 horas · CRE 10',
@@ -306,11 +308,12 @@ const es = {
         verifyLabel: 'Validar en UNC (código: DS240502)',
       },
       cyber: {
-        name: 'Diplomado en Ciberseguridad',
+        badge: 'Universidad San Ignacio de Loyola',
+        name: 'Diplomatura en Ciberseguridad',
         date: 'Septiembre 2025',
         hours: '200 horas',
         description:
-          'Diplomatura dictada por la Facultad de Ciencias Exactas, Físicas y Naturales de la UNC en conjunto con Mundos E y la Universidad San Ignacio de Loyola. Fundamentos y práctica en seguridad informática.',
+          'Diplomatura de la Universidad San Ignacio de Loyola (USIL), dictada por Mundos E. Fundamentos y práctica en seguridad informática.',
         verifyLabel: 'Ver certificado',
       },
     },
@@ -340,14 +343,14 @@ const es = {
     info: 'Información de contacto',
     availabilityTitle: 'Disponibilidad',
     availabilityBody:
-      'Disponible para roles remotos (junior / semi-senior) y proyectos freelance. Respondo en 24-48 horas.',
+      'Busco puesto en datos (junior / semi-senior): remoto desde cualquier lugar, o presencial / híbrido en Córdoba Capital. También tomo proyectos freelance. Respondo en 24-48 horas.',
     formTitle: 'Mandame un mensaje',
     name: 'Nombre',
     email: 'Email',
     subject: 'Asunto',
     subjectPlaceholder: 'Elegí un asunto',
     subjects: {
-      job: 'Oportunidad laboral / Rol remoto',
+      job: 'Oportunidad laboral',
       fullstack: 'Proyecto Full Stack / Sistema a medida',
       data: 'Proyecto de Data / Dashboards',
       ai: 'Automatización con IA',
@@ -371,19 +374,23 @@ const es = {
     kicker: 'Proyectos en vivo',
     title: 'Dashboards interactivos',
     intro:
-      'Proyectos productivos con datos reales — desde pipelines de datos hasta streams en tiempo real. Cada uno deployado y funcional.',
+      'Proyectos con datos reales, publicados y funcionando: desde análisis de ventas hasta precios en tiempo real.',
+    live: 'En vivo',
     items: {
       ecommerce: {
+        title: 'Ventas de un e-commerce',
         subtitle: 'Olist Brazil (PT-BR) · 100k+ órdenes · dbt + PostgreSQL',
         description:
           'Pipeline de datos end-to-end con segmentación RFM, cohort retention, revenue trends y seller performance. Datos reales de 93k clientes únicos del mercado brasileño. Interfaz en inglés, español y portugués.',
       },
       crypto: {
+        title: 'Criptomonedas en tiempo real',
         subtitle: 'BTC · ETH · SOL · BNB · XRP — Binance WebSocket',
         description:
           'Dashboard en tiempo real con velas TradingView, volumen, 6 timeframes y detección de anomalías por z-score. Feed de trades en vivo.',
       },
       argentina: {
+        title: 'Economía argentina',
         subtitle: 'Dólar · Inflación · Riesgo País — datos en tiempo real',
         description:
           'Tipos de cambio en vivo (oficial, blue, MEP, CCL, cripto, tarjeta), brecha cambiaria, evolución histórica, inflación mensual e interanual (INDEC) y riesgo país EMBI+. Polling cada 60s.',
@@ -409,19 +416,19 @@ const es = {
   },
 
   ivolution: {
-    badge: 'Trabajo real · Abr 2025 — Mar 2026',
-    introA: 'Sistema de análisis de rendimiento diseñado de cero para',
-    introStrong: '967 atletas en 13 deportes',
+    badge: 'Trabajo en empresa · Abr 2025 — Mar 2026',
+    title: 'Tableros de rendimiento deportivo',
+    introA: 'Dashboards que armé para seguir a',
+    introStrong: '967 deportistas de 13 disciplinas',
     introB:
-      '— fútbol, rugby, atletismo, hockey, natación, basketball y más. Construido con SQL, BigQuery, dbt y Metabase. El sistema continúa operativo tras mi salida.',
+      '— fútbol, rugby, atletismo, hockey, natación, básquet y más — para que el equipo técnico tomara decisiones con datos. Hechos con SQL, BigQuery, dbt y Metabase.',
     multilingualTag: 'ES/EN/PT',
     stats: {
-      athletes: 'atletas monitoreados',
-      sports: 'deportes cubiertos',
+      athletes: 'deportistas',
+      sports: 'disciplinas',
       measurements: 'mediciones registradas',
-      active: 'activo post-salida',
+      languages: 'idiomas (ES/EN/PT)',
     },
-    activeValue: '1+ año',
     screenshotsTitle: 'Capturas del sistema',
     screenshotsHint: 'Hacé click en cualquier imagen para verla en pantalla completa.',
     close: 'Cerrar',
@@ -468,7 +475,7 @@ const es = {
     introA: 'Pipeline de datos end-to-end sobre',
     introStrong: '100.000+ órdenes reales',
     introB:
-      'del e-commerce brasileño. PostgreSQL + dbt con 4 capas de modelos, RFM segmentation, cohort retention y revenue trends en SQL puro. CI/CD con GitHub Actions y dashboard deployado en producción.',
+      'del e-commerce brasileño. PostgreSQL + dbt con 4 capas de modelos, RFM segmentation, cohort retention y revenue trends en SQL puro. CI/CD con GitHub Actions y dashboard publicado.',
     stats: { orders: 'órdenes analizadas', layers: 'capas dbt', marts: 'marts analíticos', ci: 'GitHub Actions' },
     architectureTitle: 'Arquitectura del pipeline',
     architectureIntro: 'Flujo completo desde datos crudos de Kaggle hasta el dashboard en producción.',

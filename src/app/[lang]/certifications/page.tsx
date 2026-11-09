@@ -20,7 +20,7 @@ type CertCopy = Dictionary['certifications']
 interface University {
   id: keyof CertCopy['universities']
   institution: string
-  resolution: string
+  resolution?: string
   verifyUrl?: string
   color: string
   border: string
@@ -57,8 +57,7 @@ const universities: University[] = [
   },
   {
     id: 'cyber',
-    institution: 'Universidad Nacional de Córdoba · Mundos E · USIL',
-    resolution: 'FCEFyN UNC + Universidad San Ignacio de Loyola',
+    institution: 'Universidad San Ignacio de Loyola (USIL) · Mundos E',
     verifyUrl: 'https://certificados.mundose.com/?i=bW9kZT1QREYmcmVjb3JkPTM5eDM1MTMwNTk=',
     color: 'from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20',
     border: 'border-red-200 dark:border-red-800/50',
@@ -196,7 +195,7 @@ export default function CertificationsPage({ params }: Props) {
                 <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
                   <div>
                     <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 ${u.tag}`}>
-                      {t.universityBadge}
+                      {copy.badge}
                     </span>
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{copy.name}</h3>
                     <p className="text-gray-600 dark:text-gray-400 font-medium text-sm">{u.institution}</p>
@@ -207,7 +206,9 @@ export default function CertificationsPage({ params }: Props) {
                   </div>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4 text-sm">{copy.description}</p>
-                <p className="text-xs text-gray-400 dark:text-gray-500 font-mono mb-4">{u.resolution}</p>
+                {u.resolution && (
+                  <p className="text-xs text-gray-400 dark:text-gray-500 font-mono mb-4">{u.resolution}</p>
+                )}
                 {u.verifyUrl && (
                   <a
                     href={u.verifyUrl}
